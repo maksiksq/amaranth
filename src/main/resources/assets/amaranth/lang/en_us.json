@@ -1,0 +1,13 @@
+{
+  "itemGroup.amaranth": "Example Mod Tab",
+  "block.amaranth.example_block": "Example Block",
+  "item.amaranth.example_item": "Example Item",
+
+  "amaranth.configuration.title": "amaranth Configs",
+  "amaranth.configuration.section.amaranth.common.toml": "amaranth Configs",
+  "amaranth.configuration.section.amaranth.common.toml.title": "amaranth Configs",
+  "amaranth.configuration.items": "Item List",
+  "amaranth.configuration.logDirtBlock": "Log Dirt Block",
+  "amaranth.configuration.magicNumberIntroduction": "Magic Number Text",
+  "amaranth.configuration.magicNumber": "Magic Number"
+}
