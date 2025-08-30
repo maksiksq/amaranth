@@ -1,5 +1,8 @@
 package dev.maksiks.amaranth;
 
+import dev.maksiks.amaranth.item.ModItems;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,6 +29,7 @@ public class Amaranth {
     public Amaranth(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+        ModItems.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (amaranth) to respond directly to events.
@@ -43,6 +47,10 @@ public class Amaranth {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.MAFIA_BLOB);
+            event.accept(ModItems.BEANIE_BLOB);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
