@@ -101,8 +101,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> STRIPPED_MYSTIC_LOG_BLOCK = registerBlock("stripped_mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD_BLOCK = registerBlock("stripped_mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> MYSTIC_PLANKS_BLOCK = registerBlock("mystic_planks_block", () -> planks(MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> MYSTIC_STAIRS_BLOCK = registerBlock("mystic_stairs_block", () -> stairs(MYSTIC_PLANKS_BLOCK.get()));
-    public static final DeferredBlock<Block> MYSTIC_SLAB_BLOCK = registerBlock("mystic_slab_block", () -> woodSlab(MapColor.COLOR_PURPLE));
+    // public static final DeferredBlock<Block> MYSTIC_STAIRS_BLOCK = registerBlock("mystic_stairs_block", () -> stairs(MYSTIC_PLANKS_BLOCK.get()));
+    // public static final DeferredBlock<Block> MYSTIC_SLAB_BLOCK = registerBlock("mystic_slab_block", () -> woodSlab(MapColor.COLOR_PURPLE));
     // fence
     // fence gate
     // door

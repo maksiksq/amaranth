@@ -6,5 +6,7 @@
   "block.amaranth.mystic_log_block": "Mystic Log",
   "block.amaranth.stripped_mystic_log_block": "Stripped Mystic Log",
   "block.amaranth.mystic_planks_block": "Mystic Planks",
-  "block.amaranth.mystic_stairs_block": "Mystic Stairs"
+  "block.amaranth.mystic_stairs_block": "Mystic Stairs",
+  "block.amaranth.mystic_wood_block": "Mystic Wood",
+  "block.amaranth.stripped_mystic_wood_block": "Stripped Mystic Wood"
 }
