@@ -2,5 +2,9 @@
   "item.amaranth.mafia_blob": "Mafia Blob",
   "item.amaranth.beanie_blob": "Beanie Blob",
 
-  "block.amaranth.mystic_leaves_block": "Mystic Leaves"
+  "block.amaranth.mystic_leaves_block": "Mystic Leaves",
+  "block.amaranth.mystic_log_block": "Mystic Log",
+  "block.amaranth.stripped_mystic_log_block": "Stripped Mystic Log",
+  "block.amaranth.mystic_planks_block": "Mystic Planks",
+  "block.amaranth.mystic_stairs_block": "Mystic Stairs"
 }

@@ -12,8 +12,6 @@ public class ModItems {
     public static final DeferredItem<Item> MAFIA_BLOB = ITEMS.register("mafia_blob", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BEANIE_BLOB = ITEMS.register("beanie_blob", () -> new Item(new Item.Properties()));
 
-
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

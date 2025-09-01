@@ -55,6 +55,9 @@ public class Amaranth {
 
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.MYSTIC_LEAVES_BLOCK);
+            event.accept(ModBlocks.MYSTIC_LOG_BLOCK);
+            event.accept(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK);
+            event.accept(ModBlocks.MYSTIC_PLANKS_BLOCK);
         }
     }
 
