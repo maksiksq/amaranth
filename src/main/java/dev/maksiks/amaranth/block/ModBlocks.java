@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -27,6 +28,19 @@ public class ModBlocks {
         return false;
     }
 
+    private static Block sapling() {
+        return new SaplingBlock(
+                TreeGrower.SPRUCE,
+                BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.PLANT)
+                        .noCollission()
+                        .randomTicks()
+                        .instabreak()
+                        .sound(SoundType.GRASS)
+                        .pushReaction(PushReaction.DESTROY)
+        );
+    }
+
     private static Block leaves(SoundType soundType) {
         return new LeavesBlock(
                 BlockBehaviour.Properties.of()
@@ -41,6 +55,7 @@ public class ModBlocks {
                         .ignitedByLava()
                         .pushReaction(PushReaction.DESTROY)
                         .isRedstoneConductor(ModBlocks::never)
+                        .requiresCorrectToolForDrops()
         );
     }
 
@@ -84,17 +99,17 @@ public class ModBlocks {
 
     private static Block woodSlab(MapColor mapColor) {
         return new SlabBlock(
-                        BlockBehaviour.Properties.of()
-                                .mapColor(MapColor.WOOD)
-                                .instrument(NoteBlockInstrument.BASS)
-                                .strength(2.0F, 3.0F)
-                                .sound(SoundType.WOOD)
-                                .ignitedByLava()
-                );
+                BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.WOOD)
+                        .instrument(NoteBlockInstrument.BASS)
+                        .strength(2.0F, 3.0F)
+                        .sound(SoundType.WOOD)
+                        .ignitedByLava()
+        );
     }
 
 
-
+    public static final DeferredBlock<Block> MYSTIC_SAPLING_BLOCK = registerBlock("mystic_sapling_block", () -> sapling());
     public static final DeferredBlock<Block> MYSTIC_LEAVES_BLOCK = registerBlock("mystic_leaves_block", () -> leaves(SoundType.AZALEA_LEAVES));
     public static final DeferredBlock<Block> MYSTIC_LOG_BLOCK = registerBlock("mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> MYSTIC_WOOD_BLOCK = registerBlock("mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
