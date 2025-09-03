@@ -55,7 +55,6 @@ public class ModBlocks {
                         .ignitedByLava()
                         .pushReaction(PushReaction.DESTROY)
                         .isRedstoneConductor(ModBlocks::never)
-                        .requiresCorrectToolForDrops()
         );
     }
 
