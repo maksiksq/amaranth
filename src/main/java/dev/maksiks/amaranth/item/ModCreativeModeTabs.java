@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.MAFIA_BLOB);
                         output.accept(ModItems.BEANIE_BLOB);
+                        output.accept(ModItems.HEXFRUIT);
 
                         output.accept(ModBlocks.MYSTIC_SAPLING_BLOCK);
                         output.accept(ModBlocks.MYSTIC_LEAVES_BLOCK);

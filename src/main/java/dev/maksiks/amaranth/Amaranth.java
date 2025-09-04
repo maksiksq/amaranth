@@ -57,17 +57,11 @@ public class Amaranth {
             event.accept(ModItems.BEANIE_BLOB);
         }
 
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.MYSTIC_LEAVES_BLOCK);
-            event.accept(ModBlocks.MYSTIC_SAPLING_BLOCK);
-        }
+        // not putting much stuff into vanilla tabs because you can just find it in the mod tab
+        // and thus less thinking for me
 
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.MYSTIC_LOG_BLOCK);
-            event.accept(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK);
-            event.accept(ModBlocks.MYSTIC_PLANKS_BLOCK);
-            event.accept(ModBlocks.MYSTIC_WOOD_BLOCK);
-            event.accept(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK);
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.HEXFRUIT);
         }
     }
 

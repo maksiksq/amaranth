@@ -9,8 +9,12 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Amaranth.MOD_ID);
 
-    public static final DeferredItem<Item> MAFIA_BLOB = ITEMS.register("mafia_blob", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> BEANIE_BLOB = ITEMS.register("beanie_blob", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> MAFIA_BLOB = ITEMS.register("mafia_blob",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BEANIE_BLOB = ITEMS.register("beanie_blob",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> HEXFRUIT = ITEMS.register("hexfruit",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.HEXFRUIT)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
