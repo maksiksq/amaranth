@@ -12,5 +12,7 @@
   "block.amaranth.mystic_stairs_block": "Mystic Stairs",
   "block.amaranth.mystic_wood_block": "Mystic Wood",
   "block.amaranth.stripped_mystic_wood_block": "Stripped Mystic Wood",
-  "block.amaranth.mystic_sapling_block": "Mystic Sapling"
+  "block.amaranth.mystic_sapling_block": "Mystic Sapling",
+
+  "tooltip.amaranth.mafia_blob.tooltip": "§8§oWhat kind of mafia could this little boi be bossing around?§r"
 }
