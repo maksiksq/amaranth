@@ -9,10 +9,21 @@
   "block.amaranth.mystic_log_block": "Mystic Log",
   "block.amaranth.stripped_mystic_log_block": "Stripped Mystic Log",
   "block.amaranth.mystic_planks_block": "Mystic Planks",
-  "block.amaranth.mystic_stairs_block": "Mystic Stairs",
   "block.amaranth.mystic_wood_block": "Mystic Wood",
   "block.amaranth.stripped_mystic_wood_block": "Stripped Mystic Wood",
   "block.amaranth.mystic_sapling_block": "Mystic Sapling",
+
+  "block.amaranth.mystic_stairs": "Mystic Stairs",
+  "block.amaranth.mystic_slab": "Mystic Slab",
+
+  "block.amaranth.mystic_button": "Mystic Button",
+  "block.amaranth.mystic_pressure_plate": "Mystic Pressure Plate",
+
+  "block.amaranth.mystic_fence": "Mystic Fence",
+  "block.amaranth.mystic_fence_gate": "Mystic Fence Gate",
+
+  "block.amaranth.mystic_door": "Mystic Door",
+  "block.amaranth.mystic_trapdoor": "Mystic Trapdoor",
 
   "tooltip.amaranth.mafia_blob.tooltip": "§8§oWhat kind of mafia could this little boi be bossing around?§r"
 }

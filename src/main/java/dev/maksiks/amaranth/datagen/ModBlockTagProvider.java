@@ -26,7 +26,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.MYSTIC_LOG_BLOCK.get());
 
 
+        tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
+        tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
     }
-
-
 }

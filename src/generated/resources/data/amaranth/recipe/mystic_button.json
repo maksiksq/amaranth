@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "bismuth",
+  "ingredients": [
+    {
+      "item": "amaranth:mystic_planks_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "amaranth:mystic_button"
+  }
+}

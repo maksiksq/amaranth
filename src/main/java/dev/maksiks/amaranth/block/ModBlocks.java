@@ -11,7 +11,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -91,11 +93,6 @@ public class ModBlocks {
         );
     }
 
-    // the way vanilla does this is a bit ??? question raising
-    private static Block stairs(Block baseBlock) {
-        return new StairBlock(baseBlock.defaultBlockState(), BlockBehaviour.Properties.ofLegacyCopy(baseBlock));
-    }
-
     private static Block woodSlab(MapColor mapColor) {
         return new SlabBlock(
                 BlockBehaviour.Properties.of()
@@ -134,16 +131,34 @@ public class ModBlocks {
 //    public static final DeferredBlock<Block> MYSTIC_SHRUB_BLOCK = registerBlock("mystic_shrub_block", () -> planks(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_FLOWER_BLOCK = registerBlock("mystic_flower_block", () -> planks(MapColor.COLOR_MAGENTA));
 
+     private static final BlockBehaviour.Properties normalWoodProps = BlockBehaviour.Properties.of()
+            .mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F, 3.0F)
+                .sound(SoundType.WOOD)
+                .ignitedByLava();
 
-    // public static final DeferredBlock<Block> MYSTIC_STAIRS_BLOCK = registerBlock("mystic_stairs_block", () -> stairs(MYSTIC_PLANKS_BLOCK.get()));
-    // public static final DeferredBlock<Block> MYSTIC_SLAB_BLOCK = registerBlock("mystic_slab_block", () -> woodSlab(MapColor.COLOR_PURPLE));
-    // fence
-    // fence gate
-    // door
-    // trapdoor
-    // pressure plate
-    // button
-    // sapling
+     // non-full block stuff
+     public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
+             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS_BLOCK.get().defaultBlockState(), normalWoodProps));
+     public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
+             () -> new SlabBlock(normalWoodProps));
+
+     public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
+             () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps));
+     public static final DeferredBlock<ButtonBlock> MYSTIC_BUTTON = registerBlock("mystic_button",
+             () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.noCollission()));
+
+    public static final DeferredBlock<FenceBlock> MYSTIC_FENCE = registerBlock("mystic_fence",
+            () -> new FenceBlock(normalWoodProps));
+    public static final DeferredBlock<FenceGateBlock> MYSTIC_FENCE_GATE = registerBlock("mystic_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps));
+
+    public static final DeferredBlock<DoorBlock> MYSTIC_DOOR = registerBlock("mystic_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, normalWoodProps.noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock> MYSTIC_TRAPDOOR = registerBlock("mystic_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.noOcclusion()));
+
     // sign
     // hanged sign
     // boat

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "amaranth:block/mystic_log_block"
+    }
+  }
+}

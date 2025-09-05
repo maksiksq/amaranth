@@ -10,7 +10,7 @@
 - [ ] Implement bushes 
 - [ ] Wizard tower as a structure (ask miwa?)
 - [ ] force miwa to make me concepts
-- [x] make hexfruit modify the player's health instead of an effect ; or a custom effect, makes more sense because it has a timer ; actually vanilla does 2 hearts if you don't pass an amplifier already, convenient
+- [ ] make hexfruit modify the player's health instead of an effect ; or a custom effect, makes more sense because it has a timer ; actually vanilla does 2 hearts if you don't pass an amplifier already, convenient ; still would be cool as a custom effect to stack with other mods
 
 //
 

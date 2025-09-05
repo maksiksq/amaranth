@@ -45,7 +45,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .setRolls(ConstantValue.exactly(1.0F))
                                 .when(this.doesNotHaveShearsOrSilkTouch())
                                 .add(
-                                        ((LootPoolSingletonContainer.Builder)this.applyExplosionCondition(leavesBlock, LootItem.lootTableItem(item)))
+                                        ((LootPoolSingletonContainer.Builder) this.applyExplosionCondition(leavesBlock, LootItem.lootTableItem(item)))
                                                 .when(
                                                         BonusLevelTableCondition.bonusLevelFlatChance(
                                                                 registrylookup.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F
@@ -69,6 +69,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 //        dropSelf(ModBlocks.MYSTIC_WOOD_BLOCK.get());
         dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK.get());
 //        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK.get());
+
+        dropSelf(ModBlocks.MYSTIC_STAIRS.get());
+        add(ModBlocks.MYSTIC_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.MYSTIC_SLAB.get()));
+
+        dropSelf(ModBlocks.MYSTIC_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.MYSTIC_BUTTON.get());
+
+        dropSelf(ModBlocks.MYSTIC_FENCE.get());
+        dropSelf(ModBlocks.MYSTIC_FENCE_GATE.get());
+        dropSelf(ModBlocks.MYSTIC_TRAPDOOR.get());
+
+        add(ModBlocks.MYSTIC_DOOR.get(),
+                block -> createDoorTable(ModBlocks.MYSTIC_DOOR.get()));
     }
 
     @Override

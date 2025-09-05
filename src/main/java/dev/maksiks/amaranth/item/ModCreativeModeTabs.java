@@ -32,6 +32,18 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MYSTIC_PLANKS_BLOCK);
 //                        output.accept(ModBlocks.MYSTIC_WOOD_BLOCK);
 //                        output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK);
+
+                        output.accept(ModBlocks.MYSTIC_STAIRS);
+                        output.accept(ModBlocks.MYSTIC_SLAB);
+
+                        output.accept(ModBlocks.MYSTIC_PRESSURE_PLATE);
+                        output.accept(ModBlocks.MYSTIC_BUTTON);
+
+                        output.accept(ModBlocks.MYSTIC_FENCE);
+                        output.accept(ModBlocks.MYSTIC_FENCE_GATE);
+
+                        output.accept(ModBlocks.MYSTIC_DOOR);
+                        output.accept(ModBlocks.MYSTIC_TRAPDOOR);
                     }).build());
 
     // can't forget
