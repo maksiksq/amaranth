@@ -1,3 +1,6 @@
+//
+- [ ] A MUSIC DISC
+- [ ] Completely unsolicited dani reference because i felt nostalgic
 
 //
 
