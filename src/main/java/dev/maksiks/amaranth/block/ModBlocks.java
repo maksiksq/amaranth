@@ -125,11 +125,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MYSTIC_SAPLING_BLOCK = registerBlock("mystic_sapling_block", () -> sapling(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> MYSTIC_LEAVES_BLOCK = registerBlock("mystic_leaves_block", () -> leaves(SoundType.AZALEA_LEAVES));
     public static final DeferredBlock<Block> MYSTIC_LOG_BLOCK = registerBlock("mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> MYSTIC_WOOD_BLOCK = registerBlock("mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> STRIPPED_MYSTIC_LOG_BLOCK = registerBlock("stripped_mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD_BLOCK = registerBlock("stripped_mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
+//    public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD_BLOCK = registerBlock("stripped_mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> MYSTIC_PLANKS_BLOCK = registerBlock("mystic_planks_block", () -> planks(MapColor.COLOR_PURPLE));
     // unimplemented
+//    public static final DeferredBlock<Block> MYSTIC_WOOD_BLOCK = registerBlock("mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
 //    public static final DeferredBlock<Block> MYSTIC_GRASS_BLOCK = registerBlock("mystic_grass_block", () -> bushyBlock(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_SHRUB_BLOCK = registerBlock("mystic_shrub_block", () -> planks(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_FLOWER_BLOCK = registerBlock("mystic_flower_block", () -> planks(MapColor.COLOR_MAGENTA));

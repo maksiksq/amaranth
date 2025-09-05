@@ -66,9 +66,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MYSTIC_PLANKS_BLOCK.get());
         dropSelf(ModBlocks.MYSTIC_SAPLING_BLOCK.get());
 //        dropSelf(ModBlocks.MYSTIC_SHRUB_BLOCK.get());
-        dropSelf(ModBlocks.MYSTIC_WOOD_BLOCK.get());
+//        dropSelf(ModBlocks.MYSTIC_WOOD_BLOCK.get());
         dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK.get());
-        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK.get());
+//        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK.get());
     }
 
     @Override

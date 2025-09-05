@@ -30,8 +30,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MYSTIC_LOG_BLOCK);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK);
                         output.accept(ModBlocks.MYSTIC_PLANKS_BLOCK);
-                        output.accept(ModBlocks.MYSTIC_WOOD_BLOCK);
-                        output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK);
+//                        output.accept(ModBlocks.MYSTIC_WOOD_BLOCK);
+//                        output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK);
                     }).build());
 
     // can't forget

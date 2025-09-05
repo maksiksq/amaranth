@@ -1,8 +1,0 @@
-// 1.21.1	2025-09-05T20:24:22.1422573	Loot Tables
-df2acaf72536b7e2eda4a2c8bab248eace93b707 data/amaranth/loot_table/blocks/mystic_leaves_block.json
-985457c8225f9140624a275d4d9c3d00ed9f489c data/amaranth/loot_table/blocks/mystic_log_block.json
-c8bd1deb92b1f6e6cea4ab868458d8e1cac481c3 data/amaranth/loot_table/blocks/mystic_planks_block.json
-57f4b8989be5d54792c070a4fa05110ba52125c7 data/amaranth/loot_table/blocks/mystic_sapling_block.json
-0e4974db1d6f5347364abb5d76333d2b715b8679 data/amaranth/loot_table/blocks/mystic_wood_block.json
-357c9692715c9baf4ad829182058da86bf9b8db1 data/amaranth/loot_table/blocks/stripped_mystic_log_block.json
-27bad4e65f927055b0bb162c877ea4d759b68177 data/amaranth/loot_table/blocks/stripped_mystic_wood_block.json
