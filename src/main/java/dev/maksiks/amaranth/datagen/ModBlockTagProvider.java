@@ -20,11 +20,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         // temp
         tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.MYSTIC_LOG_BLOCK.get());
+                .add(ModBlocks.MYSTIC_LOG.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.MYSTIC_LOG_BLOCK.get());
+                .add(ModBlocks.MYSTIC_LOG.get());
 
+
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.MYSTIC_LOG.get())
+                .add(ModBlocks.MYSTIC_WOOD.get())
+                .add(ModBlocks.STRIPPED_MYSTIC_LOG.get())
+                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
 
         tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());

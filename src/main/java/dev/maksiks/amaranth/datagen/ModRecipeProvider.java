@@ -6,13 +6,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
-
-import static net.minecraft.data.models.model.TextureMapping.pattern;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
@@ -29,8 +25,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MAFIA_BLOB.get(), 1)
-                .requires(ModBlocks.MYSTIC_LEAVES_BLOCK.get())
-                .unlockedBy("has_hexfruit", has(ModBlocks.MYSTIC_LEAVES_BLOCK.get()))
+                .requires(ModBlocks.MYSTIC_LEAVES.get())
+                .unlockedBy("has_hexfruit", has(ModBlocks.MYSTIC_LEAVES.get()))
                 .save(recipeOutput, "amaranth:mafia_blob_from_leaves");
 
 
@@ -44,23 +40,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // yoink a custom method for smelting later so it's inside neo's folder because it's hardcoded to be in mc
 
-        stairBuilder(ModBlocks.MYSTIC_STAIRS.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("mystic")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get()))
+        stairBuilder(ModBlocks.MYSTIC_STAIRS.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("mystic")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get()))
                 .save(recipeOutput);
-        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.MYSTIC_SLAB.get(), ModBlocks.MYSTIC_PLANKS_BLOCK.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.MYSTIC_SLAB.get(), ModBlocks.MYSTIC_PLANKS.get());
 
-        buttonBuilder(ModBlocks.MYSTIC_BUTTON.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("bismuth")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).save(recipeOutput);
-        pressurePlate(recipeOutput, ModBlocks.MYSTIC_PRESSURE_PLATE.get(), ModBlocks.MYSTIC_PLANKS_BLOCK.get());
+        buttonBuilder(ModBlocks.MYSTIC_BUTTON.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("bismuth")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
+        pressurePlate(recipeOutput, ModBlocks.MYSTIC_PRESSURE_PLATE.get(), ModBlocks.MYSTIC_PLANKS.get());
 
-        fenceBuilder(ModBlocks.MYSTIC_FENCE.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("bismuth")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).save(recipeOutput);
-        fenceGateBuilder(ModBlocks.MYSTIC_FENCE_GATE.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("bismuth")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).save(recipeOutput);
+        fenceBuilder(ModBlocks.MYSTIC_FENCE.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("bismuth")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
+        fenceGateBuilder(ModBlocks.MYSTIC_FENCE_GATE.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("bismuth")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
 
-        doorBuilder(ModBlocks.MYSTIC_DOOR.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("bismuth")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).save(recipeOutput);
-        trapdoorBuilder(ModBlocks.MYSTIC_TRAPDOOR.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).group("bismuth")
-                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS_BLOCK.get())).save(recipeOutput);
+        doorBuilder(ModBlocks.MYSTIC_DOOR.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("bismuth")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocks.MYSTIC_TRAPDOOR.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("bismuth")
+                .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
     }
 }

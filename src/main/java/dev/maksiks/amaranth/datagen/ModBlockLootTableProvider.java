@@ -6,11 +6,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlag;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
@@ -57,18 +54,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-//        dropSelf(ModBlocks.MYSTIC_FLOWER_BLOCK.get());
-//        dropSelf(ModBlocks.MYSTIC_GRASS_BLOCK.get());
+        dropSelf(ModBlocks.MYSTIC_LOG.get());
+        dropSelf(ModBlocks.MYSTIC_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
+        dropSelf(ModBlocks.MYSTIC_PLANKS.get());
+        dropSelf(ModBlocks.MYSTIC_SAPLING.get());
 
-        add(ModBlocks.MYSTIC_LEAVES_BLOCK.get(),
-                block -> createFruitLeavesDrops(ModBlocks.MYSTIC_LEAVES_BLOCK.get(), ModBlocks.MYSTIC_SAPLING_BLOCK.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-        dropSelf(ModBlocks.MYSTIC_LOG_BLOCK.get());
-        dropSelf(ModBlocks.MYSTIC_PLANKS_BLOCK.get());
-        dropSelf(ModBlocks.MYSTIC_SAPLING_BLOCK.get());
-//        dropSelf(ModBlocks.MYSTIC_SHRUB_BLOCK.get());
-//        dropSelf(ModBlocks.MYSTIC_WOOD_BLOCK.get());
-        dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG_BLOCK.get());
-//        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK.get());
+        add(ModBlocks.MYSTIC_LEAVES.get(),
+                block -> createFruitLeavesDrops(ModBlocks.MYSTIC_LEAVES.get(), ModBlocks.MYSTIC_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
+
 
         dropSelf(ModBlocks.MYSTIC_STAIRS.get());
         add(ModBlocks.MYSTIC_SLAB.get(),

@@ -1,7 +1,11 @@
 package dev.maksiks.amaranth.block;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.block.custom.ModFlammableLeavesBlock;
+import dev.maksiks.amaranth.block.custom.ModFlammablePlanksBlock;
+import dev.maksiks.amaranth.block.custom.ModFlammableRotatedPillarBlock;
 import dev.maksiks.amaranth.item.ModItems;
+import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -26,112 +30,30 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(Amaranth.MOD_ID);
 
-    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return false;
-    }
+    public static final DeferredBlock<Block> MYSTIC_LOG = registerBlock("mystic_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+    public static final DeferredBlock<Block> MYSTIC_WOOD = registerBlock("mystic_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+    public static final DeferredBlock<Block> STRIPPED_MYSTIC_LOG = registerBlock("stripped_mystic_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+    public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD = registerBlock("stripped_mystic_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
 
-    private static Block sapling(MapColor mapColor) {
-        return new SaplingBlock(
-                TreeGrower.SPRUCE,
-                BlockBehaviour.Properties.of()
-                        .mapColor(mapColor)
-                        .noCollission()
-                        .randomTicks()
-                        .instabreak()
-                        .sound(SoundType.GRASS)
-                        .pushReaction(PushReaction.DESTROY)
-        );
-    }
+    public static final DeferredBlock<Block> MYSTIC_PLANKS = registerBlock("mystic_planks",
+            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
-    private static Block leaves(SoundType soundType) {
-        return new LeavesBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.PLANT)
-                        .strength(0.2F)
-                        .randomTicks()
-                        .sound(soundType)
-                        .noOcclusion()
-                        .isValidSpawn(Blocks::ocelotOrParrot)
-                        .isSuffocating(ModBlocks::never)
-                        .isViewBlocking(ModBlocks::never)
-                        .ignitedByLava()
-                        .pushReaction(PushReaction.DESTROY)
-                        .isRedstoneConductor(ModBlocks::never)
-        );
-    }
+    public static final DeferredBlock<Block> MYSTIC_LEAVES = registerBlock("mystic_leaves",
+            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
-    private static Block log(MapColor topMapColor, MapColor sideMapColor) {
-        return new RotatedPillarBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(p_258972_ -> p_258972_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
-                        .instrument(NoteBlockInstrument.BASS)
-                        .strength(2.0F)
-                        .sound(SoundType.WOOD)
-                        .ignitedByLava()
-        );
-    }
+    public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
-    private static Block wood(MapColor mapColor) {
-        return new RotatedPillarBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(mapColor)
-                        .instrument(NoteBlockInstrument.BASS)
-                        .strength(2.0F)
-                        .sound(SoundType.WOOD)
-                        .ignitedByLava()
-        );
-    }
-
-    private static Block planks(MapColor mapColor) {
-        return new Block(
-                BlockBehaviour.Properties.of()
-                        .mapColor(mapColor)
-                        .instrument(NoteBlockInstrument.BASS)
-                        .strength(2.0F, 3.0F)
-                        .sound(SoundType.WOOD)
-                        .ignitedByLava()
-        );
-    }
-
-    private static Block woodSlab(MapColor mapColor) {
-        return new SlabBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.WOOD)
-                        .instrument(NoteBlockInstrument.BASS)
-                        .strength(2.0F, 3.0F)
-                        .sound(SoundType.WOOD)
-                        .ignitedByLava()
-        );
-    }
-
-    private static Block bushyBlock(MapColor mapColor) {
-                return new TallGrassBlock(
-                        BlockBehaviour.Properties.of()
-                                .mapColor(mapColor)
-                                .replaceable()
-                                .noCollission()
-                                .instabreak()
-                                .sound(SoundType.GRASS)
-                                .offsetType(BlockBehaviour.OffsetType.XYZ)
-                                .ignitedByLava()
-                                .pushReaction(PushReaction.DESTROY)
-                );
-    }
-
-
-    public static final DeferredBlock<Block> MYSTIC_SAPLING_BLOCK = registerBlock("mystic_sapling_block", () -> sapling(MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> MYSTIC_LEAVES_BLOCK = registerBlock("mystic_leaves_block", () -> leaves(SoundType.AZALEA_LEAVES));
-    public static final DeferredBlock<Block> MYSTIC_LOG_BLOCK = registerBlock("mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> STRIPPED_MYSTIC_LOG_BLOCK = registerBlock("stripped_mystic_log_block", () -> log(MapColor.TERRACOTTA_MAGENTA, MapColor.COLOR_PURPLE));
-//    public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD_BLOCK = registerBlock("stripped_mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
-    public static final DeferredBlock<Block> MYSTIC_PLANKS_BLOCK = registerBlock("mystic_planks_block", () -> planks(MapColor.COLOR_PURPLE));
     // unimplemented
-//    public static final DeferredBlock<Block> MYSTIC_WOOD_BLOCK = registerBlock("mystic_wood_block", () -> wood(MapColor.COLOR_PURPLE));
 //    public static final DeferredBlock<Block> MYSTIC_GRASS_BLOCK = registerBlock("mystic_grass_block", () -> bushyBlock(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_SHRUB_BLOCK = registerBlock("mystic_shrub_block", () -> planks(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_FLOWER_BLOCK = registerBlock("mystic_flower_block", () -> planks(MapColor.COLOR_MAGENTA));
 
-     private static Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
+     private static final Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD)
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F, 3.0F)
@@ -140,7 +62,7 @@ public class ModBlocks {
 
      // non-full block stuff
      public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
-             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS_BLOCK.get().defaultBlockState(), normalWoodProps.get()));
+             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
      public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
              () -> new SlabBlock(normalWoodProps.get()));
 

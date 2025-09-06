@@ -1,9 +1,12 @@
 package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +20,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // no item tags yet
+        this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.MYSTIC_LOG.get().asItem())
+                .add(ModBlocks.MYSTIC_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_MYSTIC_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get().asItem());
+
+        this.tag(ItemTags.PLANKS)
+                .add(ModBlocks.MYSTIC_PLANKS.get().asItem());
     }
 }
