@@ -1,0 +1,5 @@
+// 1.21.1	2025-09-06T20:57:04.6809773	Tags for minecraft:block mod id amaranth
+359d040c410d921bf77d177919d755870de437fe data/minecraft/tags/block/fences.json
+a15f8d466d6f745a51b21bdc3956fd43d716fa06 data/minecraft/tags/block/fence_gates.json
+9e2e8723b13ba17a3e5753e22cdf25ea317280f9 data/minecraft/tags/block/leaves.json
+a69dfc304246827c86d3c85f8aa1be76af6863c1 data/minecraft/tags/block/logs_that_burn.json

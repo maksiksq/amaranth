@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.trunk_placers;
+package dev.maksiks.amaranth.worldgen.tree.trunk_placer;
 
 import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.core.registries.BuiltInRegistries;

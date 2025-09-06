@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.foliage_placers;
+package dev.maksiks.amaranth.worldgen.tree.foliage_placer;
 
 import com.mojang.datafixers.Products.P3;
 import com.mojang.serialization.Codec;
@@ -15,9 +15,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 public class MysticFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<MysticFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> blobParts(instance).apply(instance, MysticFoliagePlacer::new));

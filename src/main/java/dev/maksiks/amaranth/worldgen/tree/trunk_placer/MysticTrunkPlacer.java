@@ -1,15 +1,12 @@
-package dev.maksiks.amaranth.worldgen.tree.trunk_placers;
+package dev.maksiks.amaranth.worldgen.tree.trunk_placer;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.function.BiConsumer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;

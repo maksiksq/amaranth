@@ -4,6 +4,7 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.worldgen.ModBiomeModifiers;
 import dev.maksiks.amaranth.worldgen.ModConfiguredFeatures;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
+import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,7 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)
+            .add(Registries.BIOME, ModBiomes::bootstrap)
             ;
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

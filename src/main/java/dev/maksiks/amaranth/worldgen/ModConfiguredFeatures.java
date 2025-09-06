@@ -2,8 +2,8 @@ package dev.maksiks.amaranth.worldgen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placers.MysticFoliagePlacer;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placers.MysticTrunkPlacer;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -14,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class ModConfiguredFeatures {

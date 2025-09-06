@@ -1,9 +1,8 @@
-package dev.maksiks.amaranth.worldgen.tree.foliage_placers;
+package dev.maksiks.amaranth.worldgen.tree.foliage_placer;
 
 import dev.maksiks.amaranth.Amaranth;
 
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

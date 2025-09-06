@@ -3,8 +3,10 @@ package dev.maksiks.amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placers.ModFoliagePlacerTypes;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placers.ModTrunkPlacerTypes;
+import dev.maksiks.amaranth.worldgen.biome.ModTerrablender;
+import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.ModTrunkPlacerTypes;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -19,6 +21,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Amaranth.MOD_ID)
@@ -43,6 +46,8 @@ public class Amaranth {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModTerrablender.registerBiomes();
+
         // registering trunk and foliage placer types
         ModTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
         ModFoliagePlacerTypes.FOLIAGE_PLACER_TYPES.register(modEventBus);
@@ -54,6 +59,7 @@ public class Amaranth {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
