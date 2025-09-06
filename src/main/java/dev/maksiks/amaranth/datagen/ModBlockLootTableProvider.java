@@ -54,31 +54,28 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.MYSTIC_LOG.get());
-        dropSelf(ModBlocks.MYSTIC_WOOD.get());
-        dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG.get());
-        dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
-        dropSelf(ModBlocks.MYSTIC_PLANKS.get());
-        dropSelf(ModBlocks.MYSTIC_SAPLING.get());
+        this.dropSelf(ModBlocks.MYSTIC_LOG.get());
+        this.dropSelf(ModBlocks.MYSTIC_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG.get());
+        this.dropSelf(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
+        this.dropSelf(ModBlocks.MYSTIC_PLANKS.get());
+        this.dropSelf(ModBlocks.MYSTIC_SAPLING.get());
 
-        add(ModBlocks.MYSTIC_LEAVES.get(),
+        this.add(ModBlocks.MYSTIC_LEAVES.get(),
                 block -> createFruitLeavesDrops(ModBlocks.MYSTIC_LEAVES.get(), ModBlocks.MYSTIC_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
-
-
-
-        dropSelf(ModBlocks.MYSTIC_STAIRS.get());
-        add(ModBlocks.MYSTIC_SLAB.get(),
+        this.dropSelf(ModBlocks.MYSTIC_STAIRS.get());
+        this.add(ModBlocks.MYSTIC_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.MYSTIC_SLAB.get()));
 
-        dropSelf(ModBlocks.MYSTIC_PRESSURE_PLATE.get());
-        dropSelf(ModBlocks.MYSTIC_BUTTON.get());
+        this.dropSelf(ModBlocks.MYSTIC_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.MYSTIC_BUTTON.get());
 
-        dropSelf(ModBlocks.MYSTIC_FENCE.get());
-        dropSelf(ModBlocks.MYSTIC_FENCE_GATE.get());
-        dropSelf(ModBlocks.MYSTIC_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.MYSTIC_FENCE.get());
+        this.dropSelf(ModBlocks.MYSTIC_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.MYSTIC_TRAPDOOR.get());
 
-        add(ModBlocks.MYSTIC_DOOR.get(),
+        this.add(ModBlocks.MYSTIC_DOOR.get(),
                 block -> createDoorTable(ModBlocks.MYSTIC_DOOR.get()));
     }
 
