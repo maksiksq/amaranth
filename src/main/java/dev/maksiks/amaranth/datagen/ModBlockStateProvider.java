@@ -23,6 +23,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 //        blockWithItem(ModBlocks.STRIPPED_MYSTIC_WOOD_BLOCK);
         blockWithItem(ModBlocks.MYSTIC_PLANKS_BLOCK);
 
+        // TODO: Add a helper for this with some string manipulation
         stairsBlock(ModBlocks.MYSTIC_STAIRS.get(), blockTexture(ModBlocks.MYSTIC_PLANKS_BLOCK.get()));
         slabBlock(ModBlocks.MYSTIC_SLAB.get(), blockTexture(ModBlocks.MYSTIC_PLANKS_BLOCK.get()), blockTexture(ModBlocks.MYSTIC_PLANKS_BLOCK.get()));
 

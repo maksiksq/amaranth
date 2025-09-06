@@ -131,7 +131,7 @@ public class ModBlocks {
 //    public static final DeferredBlock<Block> MYSTIC_SHRUB_BLOCK = registerBlock("mystic_shrub_block", () -> planks(MapColor.COLOR_MAGENTA));
 //    public static final DeferredBlock<Block> MYSTIC_FLOWER_BLOCK = registerBlock("mystic_flower_block", () -> planks(MapColor.COLOR_MAGENTA));
 
-     private static final BlockBehaviour.Properties normalWoodProps = BlockBehaviour.Properties.of()
+     private static Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD)
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F, 3.0F)
@@ -140,24 +140,24 @@ public class ModBlocks {
 
      // non-full block stuff
      public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
-             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS_BLOCK.get().defaultBlockState(), normalWoodProps));
+             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS_BLOCK.get().defaultBlockState(), normalWoodProps.get()));
      public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
-             () -> new SlabBlock(normalWoodProps));
+             () -> new SlabBlock(normalWoodProps.get()));
 
      public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
-             () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps));
+             () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
      public static final DeferredBlock<ButtonBlock> MYSTIC_BUTTON = registerBlock("mystic_button",
-             () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.noCollission()));
+             () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
 
     public static final DeferredBlock<FenceBlock> MYSTIC_FENCE = registerBlock("mystic_fence",
-            () -> new FenceBlock(normalWoodProps));
+            () -> new FenceBlock(normalWoodProps.get()));
     public static final DeferredBlock<FenceGateBlock> MYSTIC_FENCE_GATE = registerBlock("mystic_fence_gate",
-            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps));
+            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps.get()));
 
     public static final DeferredBlock<DoorBlock> MYSTIC_DOOR = registerBlock("mystic_door",
-            () -> new DoorBlock(BlockSetType.SPRUCE, normalWoodProps.noOcclusion()));
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
     public static final DeferredBlock<TrapDoorBlock> MYSTIC_TRAPDOOR = registerBlock("mystic_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.noOcclusion()));
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
 
     // sign
     // hanged sign
