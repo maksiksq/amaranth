@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
 public class MysticFoliagePlacer extends FoliagePlacer {
@@ -54,104 +55,110 @@ public class MysticFoliagePlacer extends FoliagePlacer {
             int foliageRadius,
             int offset
     ) {
-        int currentY = 3;
+        AtomicInteger currentY = new AtomicInteger(3);
         BlockPos trunkPos = attachment.pos();
 
         // FIX SLOPPINESS
 
         BiConsumer<Integer, Integer> placeGenericRow = (range, y) -> this.placeLeavesRow(level, blockSetter, random, config, attachment.pos(), range, y, attachment.doubleTrunk());
 
+        Runnable bump = () -> {
+            if (random.nextInt(5) != 0) {
+                currentY.getAndDecrement();
+            }
+        };
+
         // top 1
-        currentY--;
-        tryPlaceLeaf(level, blockSetter, random, config, trunkPos.above(currentY));
+        bump.run();
+        tryPlaceLeaf(level, blockSetter, random, config, trunkPos.above(currentY.get()));
 
         // 3 x5
-        while (currentY >= 0) {
-            currentY--;
+        while (currentY.get() >= 0) {
+            bump.run();
 
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.above(currentY.get()));
 
             for (Direction dir : Direction.Plane.HORIZONTAL) {
-                tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY));
+                tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY.get()));
             }
         }
 
         // fancy rhombusish
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY.get()));
         }
 
         // fancy rhombusish w diagonals
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY.get()));
         }
 
         // 1wide 5x + fancy rhombusish w diagonals w 2wide diagonals
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY.get()));
         }
 
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 2).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 2).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 2).above(currentY.get()));
         }
 
         // 1wide pancake w 2wide corners
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], -1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], 1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], -1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 2).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], -1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], 1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], -1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 2).above(currentY.get()));
         }
 
         // 1wide pancake
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY.get()));
         }
 
         // 2wide round pancake
-        currentY--;
+        bump.run();
         for (Direction dir : Direction.Plane.HORIZONTAL) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(dir, 1).above(currentY.get()));
         }
 
         for (int i = 0; i < diagonals.length; i += 2) {
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], -1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], 1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], -1).above(currentY));
-            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], 1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 2).relative(diagonals[i+1], -1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], 1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i+1], 2).relative(diagonals[i], -1).above(currentY.get()));
+            tryPlaceLeaf(level, blockSetter, random, config, trunkPos.relative(diagonals[i], 1).relative(diagonals[i+1], 1).above(currentY.get()));
         }
 
     }

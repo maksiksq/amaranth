@@ -34,20 +34,24 @@ public class ModOverworldRegion extends Region {
                 .weirdness(ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING)
                 .build().forEach(point -> builder.add(point, ModBiomes.TEST_BIOME));
 
+
         new ParameterUtils.ParameterPointListBuilder()
-                .temperature(ParameterUtils.Temperature.NEUTRAL)
-                .humidity(ParameterUtils.Humidity.NEUTRAL)
+                .temperature(ParameterUtils.Temperature.COOL)
+                .humidity(Climate.Parameter.span(-0.2F, 0.1F))
                 .continentalness(ParameterUtils.Continentalness.span(
                         ParameterUtils.Continentalness.NEAR_INLAND,
                         ParameterUtils.Continentalness.MID_INLAND
-                )) // -0.11F to 0.3F
+                ))
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_2,
-                        ParameterUtils.Erosion.EROSION_4
-                )) // -0.375F to 0.45F
-                .depth(ParameterUtils.Depth.SURFACE) // 0.0F
-                .weirdness(
-                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(ParameterUtils.Depth.SURFACE)
+                .weirdness(ParameterUtils.Weirdness.span(
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                        )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.MYSTIC_FOREST));
 
