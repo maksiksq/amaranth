@@ -20,8 +20,7 @@ public class ModOverworldRegion extends Region {
 
 
     @Override
-    public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper)
-    {
+    public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
         // Overlap Vanilla's parameters with our own for our TEST biome.
         // The parameters for this biome are chosen arbitrarily.
@@ -49,11 +48,31 @@ public class ModOverworldRegion extends Region {
 
                 .depth(ParameterUtils.Depth.SURFACE)
                 .weirdness(ParameterUtils.Weirdness.span(
-                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
-                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.MYSTIC_FOREST));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.HOT)
+                .humidity(ParameterUtils.Humidity.ARID)
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.MID_INLAND,
+                        ParameterUtils.Continentalness.FAR_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_3,
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(ParameterUtils.Depth.SURFACE)
+                .weirdness(ParameterUtils.Weirdness.span(
+                        ParameterUtils.Weirdness.LOW_SLICE_VARIANT_ASCENDING,
+                        ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_STEPPE));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

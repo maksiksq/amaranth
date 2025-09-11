@@ -20,6 +20,9 @@ import javax.annotation.Nullable;
 public class ModBiomes {
     public static final ResourceKey<Biome> TEST_BIOME = register("test_biome");
     public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
+    public static final ResourceKey<Biome> STUBBY_STEPPE = register("stubby_steppe");
+//    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
+//    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
     protected static final int NORMAL_WATER_COLOR = 4159204;
     protected static final int NORMAL_WATER_FOG_COLOR = 329011;
@@ -36,6 +39,7 @@ public class ModBiomes {
     public static void bootstrap(BootstrapContext<Biome> context) {
         context.register(TEST_BIOME, testBiome(context));
         context.register(MYSTIC_FOREST, mysticForest(context));
+        context.register(STUBBY_STEPPE, stubbySteppe(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -124,6 +128,46 @@ public class ModBiomes {
                         .grassColorOverride(0x8b5ac0)
                         .foliageColorOverride(0x8754ba)
                         .fogColor(0x943fe4)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    public static Biome stubbySteppe(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.HORSE, 1, 2, 6))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.DONKEY, 1, 1, 1))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.ARMADILLO, 10, 2, 3));
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MYSTIC_TREE_PLACED_KEY);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(false)
+                .downfall(0.0f)
+                .temperature(1.0F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0xccfc255)
+                        .foliageColorOverride(0xAEA42A)
+                        .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();

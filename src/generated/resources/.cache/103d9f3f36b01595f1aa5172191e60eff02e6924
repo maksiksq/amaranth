@@ -1,9 +1,0 @@
-// 1.21.1	2025-09-10T11:48:04.2231074	Registries
-c293b5b88a289b4ea155a136c3a78a81eb51f2ae data/amaranth/worldgen/biome/mystic_forest.json
-9b4fce792fca0777d9795a4a19693d15717c1898 data/amaranth/worldgen/biome/test_biome.json
-c0419f5564dd2ee8a29314137a586631bf41320e data/amaranth/worldgen/configured_feature/mystic.json
-f40e50777b5a31a98942f5e97441d8933d5d1439 data/amaranth/worldgen/configured_feature/mystic_amethyst.json
-494f3b16b16e47256e7eca02d1e69e1a51e4fbb8 data/amaranth/worldgen/configured_feature/mystic_flower.json
-72bc0a8a21a9998fd5ec6fabf98a19fbb37b18b3 data/amaranth/worldgen/placed_feature/mystic_amethyst_placed.json
-e8c8697db9eed28fc9c3686f0fa93e1752fa17e7 data/amaranth/worldgen/placed_feature/mystic_flower_placed.json
-e0013a6cfe9c056ac004c8eacddb0a5d26dfa4e5 data/amaranth/worldgen/placed_feature/mystic_tree_placed.json
