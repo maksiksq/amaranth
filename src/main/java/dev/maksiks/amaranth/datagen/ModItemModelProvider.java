@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        // mystic
         basicItem(ModItems.MAFIA_BLOB.get());
         basicItem(ModItems.BEANIE_BLOB.get());
         basicItem(ModItems.HEXFRUIT.get());
@@ -27,6 +28,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.MYSTIC_DOOR.asItem());
 
         saplingItem(ModBlocks.MYSTIC_SAPLING);
+
+        // stubby
+        saplingItem(ModBlocks.STUBBY_SAPLING);
     }
 
     private void saplingItem(DeferredBlock<Block> item) {

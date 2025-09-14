@@ -48,11 +48,6 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
             () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
-    // unimplemented
-//    public static final DeferredBlock<Block> MYSTIC_GRASS_BLOCK = registerBlock("mystic_grass_block", () -> bushyBlock(MapColor.COLOR_MAGENTA));
-//    public static final DeferredBlock<Block> MYSTIC_SHRUB_BLOCK = registerBlock("mystic_shrub_block", () -> planks(MapColor.COLOR_MAGENTA));
-//    public static final DeferredBlock<Block> MYSTIC_FLOWER_BLOCK = registerBlock("mystic_flower_block", () -> planks(MapColor.COLOR_MAGENTA));
-
      private static final Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD)
                 .instrument(NoteBlockInstrument.BASS)
@@ -85,6 +80,11 @@ public class ModBlocks {
     // hanged sign
     // boat
     // chest boat
+
+    // stubby
+    public static final DeferredBlock<Block> STUBBY_SAPLING = registerBlock("stubby_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.STUBBY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

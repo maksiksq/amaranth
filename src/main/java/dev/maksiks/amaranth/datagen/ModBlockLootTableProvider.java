@@ -54,6 +54,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        // mystic
         this.dropSelf(ModBlocks.MYSTIC_LOG.get());
         this.dropSelf(ModBlocks.MYSTIC_WOOD.get());
         this.dropSelf(ModBlocks.STRIPPED_MYSTIC_LOG.get());
@@ -77,6 +78,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(ModBlocks.MYSTIC_DOOR.get(),
                 block -> createDoorTable(ModBlocks.MYSTIC_DOOR.get()));
+
+        // stubby
+        this.dropSelf(ModBlocks.STUBBY_SAPLING.get());
+
     }
 
     @Override

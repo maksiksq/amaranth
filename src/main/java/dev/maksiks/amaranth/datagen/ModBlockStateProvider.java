@@ -19,6 +19,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        // mystic
         logBlock(((RotatedPillarBlock) ModBlocks.MYSTIC_LOG.get()));
         axisBlock(((RotatedPillarBlock) ModBlocks.MYSTIC_WOOD.get()), blockTexture(ModBlocks.MYSTIC_LOG.get()), blockTexture(ModBlocks.MYSTIC_LOG.get()));
 
@@ -54,6 +55,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.MYSTIC_PRESSURE_PLATE);
         blockItem(ModBlocks.MYSTIC_FENCE_GATE);
         blockItem(ModBlocks.MYSTIC_TRAPDOOR, "_bottom");
+
+        // stubby
+        saplingBlock(ModBlocks.STUBBY_SAPLING);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

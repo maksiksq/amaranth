@@ -55,8 +55,8 @@ public class ModOverworldRegion extends Region {
                 .build().forEach(point -> builder.add(point, ModBiomes.MYSTIC_FOREST));
 
         new ParameterUtils.ParameterPointListBuilder()
-                .temperature(ParameterUtils.Temperature.HOT)
-                .humidity(ParameterUtils.Humidity.ARID)
+                .temperature(Climate.Parameter.span(0.55F, 0.9F))
+                .humidity(Climate.Parameter.span(-0.35F, -0.1F))
                 .continentalness(ParameterUtils.Continentalness.span(
                         ParameterUtils.Continentalness.MID_INLAND,
                         ParameterUtils.Continentalness.FAR_INLAND
@@ -68,11 +68,11 @@ public class ModOverworldRegion extends Region {
 
                 .depth(ParameterUtils.Depth.SURFACE)
                 .weirdness(ParameterUtils.Weirdness.span(
-                        ParameterUtils.Weirdness.LOW_SLICE_VARIANT_ASCENDING,
-                        ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
                         )
                 )
-                .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_STEPPE));
+                .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_WOODLAND));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

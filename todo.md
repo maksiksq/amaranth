@@ -49,3 +49,24 @@
 - [ ] something very dead
 - [ ] something not very dead
 -------------------------
+
+### some sort of ruins
+
+-------------------------
+
+- [ ] of some medieval civ
+-------------------------
+
+### some sort of ruins
+
+-------------------------
+
+- [ ] of some medieval civ
+-------------------------
+
+### golden forest
+
+-------------------------
+
+- [ ] like that one bedwars map, silver trees or something
+-------------------------

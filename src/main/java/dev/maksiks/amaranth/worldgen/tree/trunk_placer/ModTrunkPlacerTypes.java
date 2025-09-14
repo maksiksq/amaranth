@@ -12,4 +12,6 @@ public class ModTrunkPlacerTypes{
 
     public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<MysticTrunkPlacer>> MYSTIC_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("mystic_trunk_placer", () -> new TrunkPlacerType<>(MysticTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<StubbyTrunkPlacer>> STUBBY_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("stubby_trunk_placer", () -> new TrunkPlacerType<>(StubbyTrunkPlacer.CODEC));
 }

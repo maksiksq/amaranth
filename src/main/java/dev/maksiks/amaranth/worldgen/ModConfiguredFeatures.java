@@ -3,7 +3,9 @@ package dev.maksiks.amaranth.worldgen;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -21,9 +23,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConf
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
@@ -33,7 +37,10 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_FLOWER_KEY = registerKey("mystic_flower");
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_AMETHYST_KEY = registerKey("mystic_amethyst");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> STUBBY_KEY = registerKey("stubby");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+        // mystic
         register(context, MYSTIC_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.MYSTIC_LOG.get()),
                 new MysticTrunkPlacer(9, 2, 0),
@@ -98,6 +105,17 @@ public class ModConfiguredFeatures {
                         )
                 )
         );
+
+        // stubby
+        register(context, STUBBY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new StubbyTrunkPlacer(3, 1, 1),
+
+                BlockStateProvider.simple(Blocks.ACACIA_LEAVES),
+                new StubbyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

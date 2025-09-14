@@ -19,6 +19,7 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.MYSTIC_LEAVES))
                     .title(Component.translatable("creativetab.amaranth.amaranth"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        // mystic
                         output.accept(ModItems.MAFIA_BLOB);
                         output.accept(ModItems.BEANIE_BLOB);
                         output.accept(ModItems.HEXFRUIT);
@@ -43,6 +44,9 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.MYSTIC_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
+
+                        // stubby
+                        output.accept(ModBlocks.STUBBY_SAPLING);
                     }).build());
 
     // can't forget

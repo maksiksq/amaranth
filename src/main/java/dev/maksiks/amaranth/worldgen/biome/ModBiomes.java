@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 public class ModBiomes {
     public static final ResourceKey<Biome> TEST_BIOME = register("test_biome");
     public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
-    public static final ResourceKey<Biome> STUBBY_STEPPE = register("stubby_steppe");
+    public static final ResourceKey<Biome> STUBBY_WOODLAND = register("stubby_woodland");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -39,7 +39,7 @@ public class ModBiomes {
     public static void bootstrap(BootstrapContext<Biome> context) {
         context.register(TEST_BIOME, testBiome(context));
         context.register(MYSTIC_FOREST, mysticForest(context));
-        context.register(STUBBY_STEPPE, stubbySteppe(context));
+        context.register(STUBBY_WOODLAND, stubbyWoodland(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -133,7 +133,7 @@ public class ModBiomes {
                 .build();
     }
 
-    public static Biome stubbySteppe(BootstrapContext<Biome> context) {
+    public static Biome stubbyWoodland(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.HORSE, 1, 2, 6))
@@ -150,7 +150,7 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
 
-//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MYSTIC_TREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.STUBBY_TREE_PLACED_KEY);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
