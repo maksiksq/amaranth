@@ -39,6 +39,7 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> STUBBY_KEY = registerKey("stubby");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_KEY = registerKey("silver_birch");
     public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_FLOWER_KEY = registerKey("silver_birch_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -119,6 +120,21 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 2)).build());
 
         // silver birch
+        register(context, SILVER_BIRCH_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.BIRCH_LOG),
+                new MysticTrunkPlacer(9, 2, 0),
+
+                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                    .add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 1)
+                        .add(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 12)
+                        .add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 7)
+                        .build()),
+
+                new MysticFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 7),
+
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+
         register(
                 context,
                 SILVER_BIRCH_FLOWER_KEY,

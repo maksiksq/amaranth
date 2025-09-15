@@ -69,7 +69,8 @@
 -------------------------
 
 - [ ] like that one bedwars map, silver birch or something
-- [ ] surface rule for terracotta everywhere
+- [x] surface rule for terracotta everywhere
+- [ ] the dead leaves on the ground and particles maybe (just copy cherry)
 
 -------------------------
 
@@ -78,5 +79,29 @@
 -------------------------
 
 - [ ] in the test world
+
+-------------------------
+
+### some sort of nostalgic biomes
+
+-------------------------
+
+- [ ] kinda like terralith has but original ; out of ideas for this one
+
+-------------------------
+
+### ROSE FOREST
+
+-------------------------
+
+- [ ] like that one park Harun and Burzo made
+
+-------------------------
+
+### Some sorta geothermal biome
+
+-------------------------
+
+- [ ] i should stop getting my ideas from Terralith
 
 -------------------------

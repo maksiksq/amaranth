@@ -82,6 +82,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         // stubby
         this.dropSelf(ModBlocks.STUBBY_SAPLING.get());
 
+        // silver birch
+        this.add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get(), ModBlocks.SILVER_BIRCH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.add(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get(), ModBlocks.SILVER_BIRCH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get(), ModBlocks.SILVER_BIRCH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
+        this.dropSelf(ModBlocks.SILVER_BIRCH_SAPLING.get());
+
+
     }
 
     @Override

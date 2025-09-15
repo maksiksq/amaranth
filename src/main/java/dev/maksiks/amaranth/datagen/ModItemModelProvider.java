@@ -31,6 +31,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // stubby
         saplingItem(ModBlocks.STUBBY_SAPLING);
+
+        // silver
+        saplingItem(ModBlocks.SILVER_BIRCH_SAPLING);
     }
 
     private void saplingItem(DeferredBlock<Block> item) {

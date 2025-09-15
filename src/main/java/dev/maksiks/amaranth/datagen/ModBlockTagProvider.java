@@ -24,7 +24,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STRIPPED_MYSTIC_LOG.get())
                 .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
 
+        // mystic
         this.tag(BlockTags.LEAVES).add(ModBlocks.MYSTIC_LEAVES.get());
+
+        // stubby
+        this.tag(BlockTags.LEAVES).add(ModBlocks.STUBBY_SAPLING.get());
+
 
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());

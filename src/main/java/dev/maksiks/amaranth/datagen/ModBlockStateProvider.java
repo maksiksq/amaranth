@@ -35,8 +35,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         saplingBlock(ModBlocks.MYSTIC_SAPLING);
         leavesBlock(ModBlocks.MYSTIC_LEAVES);
 
-
-
         // TODO: Add a helper for this with some string manipulation
         stairsBlock(ModBlocks.MYSTIC_STAIRS.get(), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
         slabBlock(ModBlocks.MYSTIC_SLAB.get(), blockTexture(ModBlocks.MYSTIC_PLANKS.get()), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
@@ -58,6 +56,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // stubby
         saplingBlock(ModBlocks.STUBBY_SAPLING);
+
+        // silver
+        leavesBlock(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
+        leavesBlock(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
+        leavesBlock(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
+
+        saplingBlock(ModBlocks.SILVER_BIRCH_SAPLING);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

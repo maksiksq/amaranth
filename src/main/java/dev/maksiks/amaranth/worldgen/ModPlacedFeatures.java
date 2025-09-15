@@ -24,6 +24,7 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> STUBBY_TREE_PLACED_KEY = registerKey("stubby_tree_placed");
 
+    public static final ResourceKey<PlacedFeature> SILVER_BIRCH_TREE_PLACED_KEY = registerKey("silver_birch_tree_placed");
     public static final ResourceKey<PlacedFeature> SILVER_BIRCH_FLOWER_PLACED_KEY = registerKey("silver_birch_flower_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -44,6 +45,11 @@ public class ModPlacedFeatures {
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1),
                         ModBlocks.STUBBY_SAPLING.get()));
+
+        register(context, SILVER_BIRCH_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_BIRCH_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
+                        ModBlocks.SILVER_BIRCH_SAPLING.get()));
 
         register(context, SILVER_BIRCH_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_BIRCH_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));

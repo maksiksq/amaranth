@@ -32,7 +32,6 @@ public class ModBiomes {
     private static final Music NORMAL_MUSIC = null;
     public static final int SWAMP_SKELETON_WEIGHT = 70;
 
-
     private static ResourceKey<Biome> register(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name));
     }
@@ -193,7 +192,7 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SILVER_BIRCH_FLOWER_PLACED_KEY);
 
-//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MYSTIC_TREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SILVER_BIRCH_TREE_PLACED_KEY);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
@@ -208,7 +207,7 @@ public class ModBiomes {
                         .waterColor(NORMAL_WATER_COLOR)
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
-                        .grassColorOverride(0xFFFC00)
+                        .grassColorOverride(0xFFFB1A)
                         .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
                         .foliageColorOverride(0xFFFC33)
                         .fogColor(12638463)

@@ -11,4 +11,6 @@ public class ModTreeGrowers {
             Optional.empty(), Optional.of(ModConfiguredFeatures.MYSTIC_KEY), Optional.empty());
     public static final TreeGrower STUBBY_GROWER = new TreeGrower(Amaranth.MOD_ID + ":stubby",
             Optional.empty(), Optional.of(ModConfiguredFeatures.STUBBY_KEY), Optional.empty());
+    public static final TreeGrower SILVER_BIRCH_GROWER = new TreeGrower(Amaranth.MOD_ID + ":silver_birch",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.SILVER_BIRCH_KEY), Optional.empty());
 }

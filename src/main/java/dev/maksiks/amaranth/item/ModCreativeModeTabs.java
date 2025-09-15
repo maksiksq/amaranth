@@ -47,6 +47,13 @@ public class ModCreativeModeTabs {
 
                         // stubby
                         output.accept(ModBlocks.STUBBY_SAPLING);
+
+                        // silver
+                        output.accept(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
+                        output.accept(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
+                        output.accept(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
+
+                        output.accept(ModBlocks.SILVER_BIRCH_SAPLING);
                     }).build());
 
     // can't forget
