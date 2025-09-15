@@ -21,6 +21,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> TEST_BIOME = register("test_biome");
     public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
     public static final ResourceKey<Biome> STUBBY_WOODLAND = register("stubby_woodland");
+    public static final ResourceKey<Biome> SILVER_BIRCH_FOREST = register("silver_birch_forest");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -40,6 +41,7 @@ public class ModBiomes {
         context.register(TEST_BIOME, testBiome(context));
         context.register(MYSTIC_FOREST, mysticForest(context));
         context.register(STUBBY_WOODLAND, stubbyWoodland(context));
+        context.register(SILVER_BIRCH_FOREST, silverBirchForest(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -92,6 +94,7 @@ public class ModBiomes {
                 .build();
     }
 
+    // mystic
     public static Biome mysticForest(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -133,6 +136,7 @@ public class ModBiomes {
                 .build();
     }
 
+    // stubby
     public static Biome stubbyWoodland(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -167,6 +171,46 @@ public class ModBiomes {
                         .skyColor(7972607)
                         .grassColorOverride(0xccfc255)
                         .foliageColorOverride(0xAEA42A)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // silver birch
+    public static Biome silverBirchForest(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SILVER_BIRCH_FLOWER_PLACED_KEY);
+
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MYSTIC_TREE_PLACED_KEY);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0xFFFC00)
+                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
+                        .foliageColorOverride(0xFFFC33)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())

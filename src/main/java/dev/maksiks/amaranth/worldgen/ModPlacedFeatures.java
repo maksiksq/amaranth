@@ -24,6 +24,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> STUBBY_TREE_PLACED_KEY = registerKey("stubby_tree_placed");
 
+    public static final ResourceKey<PlacedFeature> SILVER_BIRCH_FLOWER_PLACED_KEY = registerKey("silver_birch_flower_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -32,16 +34,20 @@ public class ModPlacedFeatures {
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
                         ModBlocks.MYSTIC_SAPLING.get()));
 
-        register(context, STUBBY_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STUBBY_KEY),
-                // 1 / chance has to be integer mojang why
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1),
-                        ModBlocks.STUBBY_SAPLING.get()));
-
         register(context, MYSTIC_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MYSTIC_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
         register(context, MYSTIC_AMETHYST_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MYSTIC_AMETHYST_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        register(context, STUBBY_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STUBBY_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1),
+                        ModBlocks.STUBBY_SAPLING.get()));
+
+        register(context, SILVER_BIRCH_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_BIRCH_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

@@ -68,5 +68,15 @@
 
 -------------------------
 
-- [ ] like that one bedwars map, silver trees or something
+- [ ] like that one bedwars map, silver birch or something
+- [ ] surface rule for terracotta everywhere
+
+-------------------------
+
+### that quirky azalea tree biome
+
+-------------------------
+
+- [ ] in the test world
+
 -------------------------

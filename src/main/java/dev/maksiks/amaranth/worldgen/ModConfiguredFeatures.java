@@ -39,6 +39,8 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> STUBBY_KEY = registerKey("stubby");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_FLOWER_KEY = registerKey("silver_birch_flower");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         // mystic
         register(context, MYSTIC_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -116,6 +118,36 @@ public class ModConfiguredFeatures {
 
                 new TwoLayersFeatureSize(1, 0, 2)).build());
 
+        // silver birch
+        register(
+                context,
+                SILVER_BIRCH_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        240,
+                        12,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new DualNoiseProvider(
+                                                new InclusiveRange<>(1, 3),
+                                                new NormalNoise.NoiseParameters(-10, 1.0),
+                                                1.0F,
+                                                2345L,
+                                                new NormalNoise.NoiseParameters(-3, 1.0),
+                                                1.0F,
+                                                List.of(
+                                                        Blocks.OXEYE_DAISY.defaultBlockState(),
+                                                        Blocks.WHITE_TULIP.defaultBlockState(),
+                                                        Blocks.AZURE_BLUET.defaultBlockState(),
+                                                        Blocks.DANDELION.defaultBlockState()
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
