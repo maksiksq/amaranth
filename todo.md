@@ -114,3 +114,12 @@
 - [ ] like glass but amethyst style and coolr
 
 -------------------------
+
+
+### Some sorta bamboo-ish i guess tranquill biome
+
+-------------------------
+
+- [ ] mint skies, mint trees, little leaves, mountainous terrain
+
+-------------------------
