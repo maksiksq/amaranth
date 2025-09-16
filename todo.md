@@ -105,3 +105,12 @@
 - [ ] i should stop getting my ideas from Terralith
 
 -------------------------
+
+
+### Underground crystal biome
+
+-------------------------
+
+- [ ] like glass but amethyst style and coolr
+
+-------------------------
