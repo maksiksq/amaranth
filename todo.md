@@ -123,3 +123,19 @@
 - [ ] mint skies, mint trees, little leaves, mountainous terrain
 
 -------------------------
+
+### Just a pretty lilac biome 
+
+-------------------------
+
+- [ ] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
+
+-------------------------
+
+### Desolate cold biome 
+
+-------------------------
+
+- [ ] Some sorta like really desolate black ice biome, it must be scawy (![img_1.png](img_1.png))
+
+-------------------------
