@@ -3,6 +3,7 @@ package dev.maksiks.amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
+import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.worldgen.biome.ModTerrablender;
 import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes;
@@ -45,6 +46,7 @@ public class Amaranth {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModParticles.register(modEventBus);
 
         ModTerrablender.registerBiomes();
 

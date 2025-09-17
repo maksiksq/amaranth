@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import dev.maksiks.amaranth.particle.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,7 +31,7 @@ public class ModSilverBirchLeavesBlock extends ModFlammableLeavesBlock {
             BlockPos blockpos = p_273218_.below();
             BlockState blockstate = p_272837_.getBlockState(blockpos);
             if (!isFaceFull(blockstate.getCollisionShape(p_272837_, blockpos), Direction.UP)) {
-                ParticleUtils.spawnParticleBelow(p_272837_, p_273218_, p_273360_, ParticleTypes.ENCHANT);
+                ParticleUtils.spawnParticleBelow(p_272837_, p_273218_, p_273360_, ModParticles.SILVER_BIRCH_PARTICLES.get());
             }
         }
     }
