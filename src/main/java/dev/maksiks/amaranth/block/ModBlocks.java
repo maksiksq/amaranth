@@ -4,6 +4,7 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.custom.ModFlammableLeavesBlock;
 import dev.maksiks.amaranth.block.custom.ModFlammablePlanksBlock;
 import dev.maksiks.amaranth.block.custom.ModFlammableRotatedPillarBlock;
+import dev.maksiks.amaranth.block.custom.ModSilverBirchLeavesBlock;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
@@ -87,13 +88,13 @@ public class ModBlocks {
 
     // silver birch
     public static final DeferredBlock<Block> SILVERY_SILVER_BIRCH_LEAVES = registerBlock("silvery_silver_birch_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> LIGHT_SILVER_BIRCH_LEAVES = registerBlock("light_silver_birch_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> DARK_SILVER_BIRCH_LEAVES = registerBlock("dark_silver_birch_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> SILVER_BIRCH_SAPLING = registerBlock("silver_birch_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
