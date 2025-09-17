@@ -17,4 +17,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<StubbyFoliagePlacer>> STUBBY_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("stubby_trunk_placer", () -> new FoliagePlacerType<>(StubbyFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<SilverBirchFoliagePlacer>> SILVER_BIRCH_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("silver_birch_foliage_placer", () -> new FoliagePlacerType<>(SilverBirchFoliagePlacer.CODEC));
 }
