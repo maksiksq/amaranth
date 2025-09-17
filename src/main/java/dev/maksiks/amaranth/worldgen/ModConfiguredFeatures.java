@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.worldgen;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.SilverBirchFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
@@ -122,7 +123,7 @@ public class ModConfiguredFeatures {
         // silver birch
         register(context, SILVER_BIRCH_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.BIRCH_LOG),
-                new MysticTrunkPlacer(9, 2, 0),
+                new MysticTrunkPlacer(10, 2, 0),
 
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                     .add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 1)
@@ -130,7 +131,7 @@ public class ModConfiguredFeatures {
                         .add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 7)
                         .build()),
 
-                new MysticFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 7),
+                new SilverBirchFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 7),
 
                 new TwoLayersFeatureSize(1, 0, 2)).build());
 
