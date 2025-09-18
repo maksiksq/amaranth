@@ -1,26 +1,17 @@
 package dev.maksiks.amaranth.block;
 
 import dev.maksiks.amaranth.Amaranth;
-import dev.maksiks.amaranth.block.custom.ModFlammableLeavesBlock;
-import dev.maksiks.amaranth.block.custom.ModFlammablePlanksBlock;
-import dev.maksiks.amaranth.block.custom.ModFlammableRotatedPillarBlock;
-import dev.maksiks.amaranth.block.custom.ModSilverBirchLeavesBlock;
+import dev.maksiks.amaranth.block.custom.*;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -98,6 +89,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SILVER_BIRCH_SAPLING = registerBlock("silver_birch_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
+    public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
+            () -> new ModGoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

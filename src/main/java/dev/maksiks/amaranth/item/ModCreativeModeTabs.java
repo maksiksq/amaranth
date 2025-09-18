@@ -53,6 +53,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
                         output.accept(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
 
+                        output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
                         output.accept(ModBlocks.SILVER_BIRCH_SAPLING);
                     }).build());
 

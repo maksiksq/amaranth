@@ -30,7 +30,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // stubby
         this.tag(BlockTags.LEAVES).add(ModBlocks.STUBBY_SAPLING.get());
 
-
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
     }

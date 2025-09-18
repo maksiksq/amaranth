@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "amaranth:block/stripped_mystic_log",
+    "side": "amaranth:block/stripped_mystic_log"
+  }
+}

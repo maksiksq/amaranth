@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mystic_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "amaranth:mystic_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "amaranth:mystic_fence"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mystic_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "amaranth:mystic_fence"
+    ]
+  }
+}

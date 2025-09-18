@@ -95,7 +95,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.SILVER_BIRCH_SAPLING.get());
 
-
+        this.add(ModBlocks.GOLDEN_LEAF_LITTER.get(),
+                block -> createPetalsDrops(ModBlocks.GOLDEN_LEAF_LITTER.get()));
     }
 
     @Override

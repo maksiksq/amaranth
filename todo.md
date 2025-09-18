@@ -2,6 +2,7 @@
 - [ ] A MUSIC DISC
 - [ ] Completely unsolicited dani reference because i felt nostalgic
 - [ ] mc tree maker framework or something because it's kinda pain
+- [ ] fix: deprecated petal cutout renderer
 
 //
 

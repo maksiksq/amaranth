@@ -62,6 +62,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
         leavesBlock(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
 
+        // leaf litter is made manually
         saplingBlock(ModBlocks.SILVER_BIRCH_SAPLING);
     }
 

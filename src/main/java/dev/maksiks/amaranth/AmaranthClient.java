@@ -1,8 +1,11 @@
 package dev.maksiks.amaranth;
 
+import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.particle.SilverBirchParticles;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;

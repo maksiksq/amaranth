@@ -27,16 +27,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModBlocks.MYSTIC_DOOR.asItem());
 
-        saplingItem(ModBlocks.MYSTIC_SAPLING);
+        splatBlockItem(ModBlocks.MYSTIC_SAPLING);
 
         // stubby
-        saplingItem(ModBlocks.STUBBY_SAPLING);
+        splatBlockItem(ModBlocks.STUBBY_SAPLING);
 
         // silver
-        saplingItem(ModBlocks.SILVER_BIRCH_SAPLING);
+        splatBlockItem(ModBlocks.GOLDEN_LEAF_LITTER);
+        splatBlockItem(ModBlocks.SILVER_BIRCH_SAPLING);
     }
 
-    private void saplingItem(DeferredBlock<Block> item) {
+    private void splatBlockItem(DeferredBlock<Block> item) {
         withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + item.getId().getPath()));
