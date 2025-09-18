@@ -209,7 +209,7 @@ public class ModBiomes {
                         .waterColor(NORMAL_WATER_COLOR)
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
-                        .grassColorOverride(0xFFFB1A)
+                        .grassColorOverride(0xFFD000)
                         .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
                         .foliageColorOverride(0xFFFC33)
                         .fogColor(12638463)
