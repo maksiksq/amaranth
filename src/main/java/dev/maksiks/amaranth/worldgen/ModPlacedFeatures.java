@@ -10,10 +10,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -26,6 +23,7 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> SILVER_BIRCH_TREE_PLACED_KEY = registerKey("silver_birch_tree_placed");
     public static final ResourceKey<PlacedFeature> SILVER_BIRCH_FLOWER_PLACED_KEY = registerKey("silver_birch_flower_placed");
+    public static final ResourceKey<PlacedFeature> GOLDEN_LEAF_LITTER_PLACED_KEY = registerKey("golden_leaf_litter_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -53,6 +51,16 @@ public class ModPlacedFeatures {
 
         register(context, SILVER_BIRCH_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_BIRCH_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        register(
+                context,
+                GOLDEN_LEAF_LITTER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.GOLDEN_LEAF_LITTER_KEY),
+                List.of(
+                        NoiseThresholdCountPlacement.of(-0.8, 5, 10),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()));
 
     }
 

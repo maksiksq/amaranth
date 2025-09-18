@@ -3,6 +3,7 @@
 - [ ] Completely unsolicited dani reference because i felt nostalgic
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] fix: deprecated petal cutout renderer
+- [ ] fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 
 //
 

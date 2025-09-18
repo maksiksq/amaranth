@@ -2,11 +2,13 @@ package dev.maksiks.amaranth.worldgen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.SilverBirchFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -16,6 +18,7 @@ import net.minecraft.util.InclusiveRange;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -42,6 +45,7 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_KEY = registerKey("silver_birch");
     public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_FLOWER_KEY = registerKey("silver_birch_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> GOLDEN_LEAF_LITTER_KEY = registerKey("golden_leaf_litter");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         // mystic
@@ -163,6 +167,25 @@ public class ModConfiguredFeatures {
                                         )
                                 )
                         )
+                )
+        );
+
+        SimpleWeightedRandomList.Builder<BlockState> goldenLeafLitterBuilder = SimpleWeightedRandomList.builder();
+
+        for (int i = 1; i <= 4; i++) {
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                goldenLeafLitterBuilder.add(
+                        ModBlocks.GOLDEN_LEAF_LITTER.get().defaultBlockState().setValue(ModGoldenLeafLitterBlock.AMOUNT, Integer.valueOf(i)).setValue(ModGoldenLeafLitterBlock.FACING, direction), 1
+                );
+            }
+        }
+
+        register(
+                context,
+                GOLDEN_LEAF_LITTER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(goldenLeafLitterBuilder)))
                 )
         );
     }
