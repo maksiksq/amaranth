@@ -8,6 +8,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 
 import javax.annotation.Nullable;
 
+import static dev.maksiks.amaranth.ClientConfig.HIDE_BIOME_LEAF_PARTICLES;
+
 public class SilverBirchParticles extends TextureSheetParticle {
     private static final float ACCELERATION_SCALE = 0.0025F;
     private static final int INITIAL_LIFETIME = 600;
@@ -64,7 +66,8 @@ public class SilverBirchParticles extends TextureSheetParticle {
 
         // if you have minimal particles, you won't see these
         // i think the override being false should do remove them but uhm, I guess it doesn't?
-        if (setting == ParticleStatus.MINIMAL) {
+        // + config
+        if (setting == ParticleStatus.MINIMAL || HIDE_BIOME_LEAF_PARTICLES.getAsBoolean()) {
             this.remove();
         }
 
