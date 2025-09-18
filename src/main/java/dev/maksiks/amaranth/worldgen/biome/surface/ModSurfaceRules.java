@@ -7,6 +7,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.SILVER_NOISE;
 
 public class ModSurfaceRules {
@@ -15,102 +18,55 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
     private static final SurfaceRules.RuleSource YELLOW_TERRACOTTA = makeStateRule(Blocks.YELLOW_TERRACOTTA);
 
+    private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
+        return SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.ON_FLOOR,
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.yBlockCheck(VerticalAnchor.absolute(layerY), 0),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(layerY + 1), 0)),
+                                                YELLOW_TERRACOTTA
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
         RandomSource random = RandomSource.create();
 
-        int silverLayer1 = 61+random.nextInt(2);
-        int silverLayer2 = 64-random.nextInt(2);
-        int silverLayer3 = 69+random.nextInt(2);
-        int silverLayer4 = 74-random.nextInt(2);
-        int silverLayer5 = 78+random.nextInt(2);
+        List<SurfaceRules.RuleSource> rules = new ArrayList<>();
+
+        int[] silverLayers = {
+                61+random.nextInt(2),
+        64-random.nextInt(2),
+        69+random.nextInt(2),
+        74-random.nextInt(2),
+        78+random.nextInt(2),
+        84+random.nextInt(3),
+        96+random.nextInt(5),
+        102+random.nextInt(5),
+        120+random.nextInt(5),
+        145+random.nextInt(5)
+        };
+
+        for (int layer : silverLayers) {
+            rules.add(silverLayerRule(layer));
+        }
 
         // Default to a grass and dirt surface
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface));;
+
         return SurfaceRules.sequence(
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer1), 0),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer1+1), 0)),
-                                                        YELLOW_TERRACOTTA
-                                                )
-                                        )
-                                )
-                        )
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer2), 0),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer2+1), 0)),
-                                                        YELLOW_TERRACOTTA
-                                                )
-                                        )
-                                )
-                        )
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer3), 0),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer3+1), 0)),
-                                                        YELLOW_TERRACOTTA
-                                                )
-                                        )
-                                )
-                        )
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer4), 0),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer4+1), 0)),
-                                                        YELLOW_TERRACOTTA
-                                                )
-                                        )
-                                )
-                        )
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.SILVER_BIRCH_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer5), 0),
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(silverLayer5+1), 0)),
-                                                        YELLOW_TERRACOTTA
-                                                )
-                                        )
-                                )
-                        )
-                ),
-                // Default to a grass and dirt surface
-                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
+                rules.toArray(SurfaceRules.RuleSource[]::new)
         );
     }
 
