@@ -1,5 +1,7 @@
 package dev.maksiks.amaranth.particle;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.ParticleStatus;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -58,6 +60,14 @@ public class SilverBirchParticles extends TextureSheetParticle {
 
     @Override
     public void tick() {
+        ParticleStatus setting = Minecraft.getInstance().options.particles().get();
+
+        // if you have minimal particles, you won't see these
+        // i think the override being false should do remove them but uhm, I guess it doesn't?
+        if (setting == ParticleStatus.MINIMAL) {
+            this.remove();
+        }
+
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
