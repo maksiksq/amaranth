@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth;
 
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.event.FogHandler;
 import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
@@ -47,6 +48,8 @@ public class Amaranth {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModParticles.register(modEventBus);
+
+        NeoForge.EVENT_BUS.register(FogHandler.class);
 
         ModTerrablender.registerBiomes();
 

@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
@@ -22,6 +23,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
     public static final ResourceKey<Biome> STUBBY_WOODLAND = register("stubby_woodland");
     public static final ResourceKey<Biome> SILVER_BIRCH_FOREST = register("silver_birch_forest");
+    public static final ResourceKey<Biome> DESOLATE_ICE_FIELDS = register("desolate_ice_fields");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -41,6 +43,7 @@ public class ModBiomes {
         context.register(MYSTIC_FOREST, mysticForest(context));
         context.register(STUBBY_WOODLAND, stubbyWoodland(context));
         context.register(SILVER_BIRCH_FOREST, silverBirchForest(context));
+        context.register(DESOLATE_ICE_FIELDS, desolateIceFields(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -217,4 +220,40 @@ public class ModBiomes {
                         .build())
                 .build();
     }
+
+    // dark ice
+    public static Biome desolateIceFields(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        // no peaceful mobs
+
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.0f)
+                .temperature(0.0F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(0x3E3942)
+                        .grassColorOverride(0x5C5C5C)
+                        .foliageColorOverride(0x4D4D4D)
+                        .fogColor(0x121414)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(new Music(SoundEvents.MUSIC_BIOME_BASALT_DELTAS, 6000, 24000, true))
+                        .build())
+                .build();
+    }
+
 }

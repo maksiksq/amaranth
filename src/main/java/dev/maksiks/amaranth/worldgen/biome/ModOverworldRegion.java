@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
@@ -68,8 +69,8 @@ public class ModOverworldRegion extends Region {
 
                 .depth(ParameterUtils.Depth.SURFACE)
                 .weirdness(ParameterUtils.Weirdness.span(
-                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
-                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_WOODLAND));
@@ -94,6 +95,30 @@ public class ModOverworldRegion extends Region {
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.SILVER_BIRCH_FOREST));
 
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.span(
+                        ParameterUtils.Temperature.ICY,
+                        ParameterUtils.Temperature.COOL
+                ))
+                .humidity(ParameterUtils.Humidity.span(
+                        ParameterUtils.Humidity.DRY,
+                        ParameterUtils.Humidity.NEUTRAL
+                ))
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.NEAR_INLAND,
+                        ParameterUtils.Continentalness.FAR_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_1,
+                        ParameterUtils.Erosion.EROSION_2
+                ))
+                .weirdness(ParameterUtils.Weirdness.span(
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                        ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                ))
+                .depth(
+                        ParameterUtils.Depth.SURFACE)
+                .build().forEach(point -> builder.add(point, ModBiomes.DESOLATE_ICE_FIELDS));
         // Add our points to the mapper
         builder.build().forEach(mapper);
     }

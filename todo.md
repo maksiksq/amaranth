@@ -4,6 +4,8 @@
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] fix: deprecated petal cutout renderer
 - [ ] fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
+- [ ] fix: maybe try fixing the grass color for silver birch again??
+- [ ] i think you can manipulate biome rarity with custom regions rather than the overworld
 
 //
 
@@ -51,6 +53,7 @@
 
 - [ ] something very dead
 - [ ] something not very dead
+- 
 -------------------------
 
 ### some sort of ruins
@@ -65,15 +68,16 @@
 -------------------------
 
 - [ ] of some medieval civ
+- 
 -------------------------
 
 ### golden forest
 
 -------------------------
 
-- [ ] like that one bedwars map, silver birch or something
+- [x] like that one bedwars map, silver birch or something
 - [x] surface rule for terracotta everywhere
-- [ ] the dead leaves on the ground and particles maybe (just copy cherry)
+- [x] the dead leaves on the ground and particles maybe (just copy cherry) ; "just copy cherry" my ass how naive 
 
 -------------------------
 
@@ -109,7 +113,6 @@
 
 -------------------------
 
-
 ### Underground crystal biome
 
 -------------------------
@@ -132,6 +135,7 @@
 -------------------------
 
 - [ ] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
+- [ ] Pastelwood
 
 -------------------------
 
@@ -141,5 +145,9 @@
 
 - [ ] Some sorta like really desolate black ice biome, it must be scawy (![img_1.png](img_1.png))
 - [ ] heartache ice - Distilled dread... it didn't just gather in here by itself. What could have caused such a ... what even happened here? There's a structure that's a heart built of white ice, frozen solid, no longer beating, it always spawns submerged into the ice sheets
+- [ ] vanilla uses structures for this stuff
+- [ ] dark fog (neo has an event?)
+- [ ] permanent snowstorm
+- [ ] wind ambience
 
 -------------------------

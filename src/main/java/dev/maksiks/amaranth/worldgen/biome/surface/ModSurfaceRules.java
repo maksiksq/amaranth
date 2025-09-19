@@ -16,6 +16,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final SurfaceRules.RuleSource RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
+    private static final SurfaceRules.RuleSource SNOW_BLOCK = makeStateRule(Blocks.SNOW_BLOCK);
     private static final SurfaceRules.RuleSource YELLOW_TERRACOTTA = makeStateRule(Blocks.YELLOW_TERRACOTTA);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
@@ -62,8 +63,11 @@ public class ModSurfaceRules {
             rules.add(silverLayerRule(layer));
         }
 
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
+                SurfaceRules.sequence(SNOW_BLOCK)));
+
         // Default to a grass and dirt surface
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface));;
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurface));
 
         return SurfaceRules.sequence(
                 rules.toArray(SurfaceRules.RuleSource[]::new)
