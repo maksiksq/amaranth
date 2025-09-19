@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "amaranth:test",
+      "structure": "amaranth:desolate_spike",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 24657818,
-    "separation": 8,
-    "spacing": 32
+    "separation": 1,
+    "spacing": 4
   }
 }

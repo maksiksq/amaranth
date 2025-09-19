@@ -18,6 +18,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
     private static final SurfaceRules.RuleSource SNOW_BLOCK = makeStateRule(Blocks.SNOW_BLOCK);
     private static final SurfaceRules.RuleSource YELLOW_TERRACOTTA = makeStateRule(Blocks.YELLOW_TERRACOTTA);
+    private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -40,8 +41,24 @@ public class ModSurfaceRules {
 
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
-        SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
+        SurfaceRules.RuleSource grassSurfaceAndStoneBelow = SurfaceRules.sequence(
+                // Top block: grass (if above water), else dirt
+                SurfaceRules.ifTrue(
+                        SurfaceRules.ON_FLOOR,
+                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)
+                ),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.ON_FLOOR,
+                        SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)
+                ),
 
+                SurfaceRules.ifTrue(
+                        SurfaceRules.UNDER_FLOOR,
+                        DIRT
+                ),
+
+                STONE
+        );
         RandomSource random = RandomSource.create();
 
         List<SurfaceRules.RuleSource> rules = new ArrayList<>();
@@ -67,7 +84,7 @@ public class ModSurfaceRules {
                 SurfaceRules.sequence(SNOW_BLOCK)));
 
         // Default to a grass and dirt surface
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurface));
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurfaceAndStoneBelow));
 
         return SurfaceRules.sequence(
                 rules.toArray(SurfaceRules.RuleSource[]::new)

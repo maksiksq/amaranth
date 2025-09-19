@@ -97,6 +97,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(ModBlocks.GOLDEN_LEAF_LITTER.get(),
                 block -> createPetalsDrops(ModBlocks.GOLDEN_LEAF_LITTER.get()));
+
+        // desolate
+        this.add(ModBlocks.MIASMA_ICE.get(),
+                block -> createSilkTouchOnlyTable(ModBlocks.MIASMA_ICE.get()));
+        this.add(ModBlocks.DENSE_MIASMA_ICE.get(),
+                block -> createSilkTouchOnlyTable(ModBlocks.DENSE_MIASMA_ICE.get()));
     }
 
     @Override

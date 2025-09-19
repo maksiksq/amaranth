@@ -93,6 +93,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
             () -> new ModGoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
+    // desolate ice fields
+    public static final DeferredBlock<Block> MIASMA_ICE = registerBlock("miasma_ice",
+            () -> new IceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE)));
+    public static final DeferredBlock<Block> DENSE_MIASMA_ICE = registerBlock("dense_miasma_ice",
+            () -> new HalfTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ICE)));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

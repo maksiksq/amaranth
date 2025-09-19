@@ -64,6 +64,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // leaf litter is made manually
         saplingBlock(ModBlocks.SILVER_BIRCH_SAPLING);
+
+        // desolate
+        iceBlock(ModBlocks.MIASMA_ICE);
+        blockItem(ModBlocks.MIASMA_ICE);
+        blockWithItem(ModBlocks.DENSE_MIASMA_ICE);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -74,7 +79,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void leavesBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(),
                 models().singleTexture(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), ResourceLocation.parse("minecraft:block/leaves"),
-                        "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
+                        "all", blockTexture(blockRegistryObject.get())).renderType("cutout_mipped"));
+    }
+
+    private void iceBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(),
+                models().cubeAll(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("translucent"));
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

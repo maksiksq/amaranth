@@ -33,5 +33,8 @@
   "block.amaranth.light_silver_birch_leaves": "Light Silver Birch Leaves",
   "block.amaranth.dark_silver_birch_leaves": "Dark Silver Birch Leaves",
   "block.amaranth.silvery_silver_birch_leaves": "Silvery Silver Birch Leaves",
-  "block.amaranth.golden_leaf_litter": "Golden Leaf Litter"
+  "block.amaranth.golden_leaf_litter": "Golden Leaf Litter",
+
+  "block.amaranth.miasma_ice": "Miasma Ice",
+  "block.amaranth.dense_miasma_ice": "Miasma Ice"
 }

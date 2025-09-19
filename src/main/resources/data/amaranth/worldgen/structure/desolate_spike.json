@@ -1,13 +1,13 @@
 {
   "type": "minecraft:jigsaw",
 
-  "start_pool": "amaranth:test/start_pool",
+  "start_pool": "amaranth:desolate_spike/start_pool",
 
   "size": 2,
 
   "max_distance_from_center": 80,
 
-  "biomes": "#amaranth:has_structure/test",
+  "biomes": "#amaranth:has_structure/desolate_spike",
 
   "step": "surface_structures",
 

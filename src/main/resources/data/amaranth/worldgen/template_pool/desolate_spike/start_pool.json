@@ -1,11 +1,11 @@
 {
-  "name": "amaranth:test/start_pool",
+  "name": "amaranth:desolate_spike/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "amaranth:test",
+        "location": "amaranth:desolate_spike",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
