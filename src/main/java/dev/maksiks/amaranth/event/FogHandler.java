@@ -15,7 +15,7 @@ public class FogHandler {
     private static float targetRed = 1f, targetGreen = 1f, targetBlue = 1f;
     private static float targetNear = 0f, targetFar = 192f;
 
-    private static final float TRANSITION_SPEED = 0.01f;
+    private static final float TRANSITION_SPEED = 0.005f;
 
     private static void updateTarget(ResourceKey<Biome> biome) {
         if (biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
