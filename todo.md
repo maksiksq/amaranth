@@ -6,6 +6,7 @@
 - [ ] fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 - [ ] fix: maybe try fixing the grass color for silver birch again??
 - [ ] i think you can manipulate biome rarity with custom regions rather than the overworld
+- [ ] fix: silver birch has grass inside
 
 //
 

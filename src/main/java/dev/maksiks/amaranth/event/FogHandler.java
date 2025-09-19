@@ -17,22 +17,6 @@ public class FogHandler {
 
     private static final float TRANSITION_SPEED = 0.005f;
 
-    private static void updateTarget(ResourceKey<Biome> biome) {
-        if (biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
-            targetRed = 0.05f;
-            targetGreen = 0.05f;
-            targetBlue = 0.08f;
-            targetNear = -1.0f;
-            targetFar = 12.0f;
-        } else {
-            targetRed = 1f;
-            targetGreen = 1f;
-            targetBlue = 1f;
-            targetNear = 0f;
-            targetFar = 192f;
-        }
-    }
-
     private static void stepTowardTarget() {
         currentRed = Mth.lerp(TRANSITION_SPEED, currentRed, targetRed);
         currentGreen = Mth.lerp(TRANSITION_SPEED, currentGreen, targetGreen);
