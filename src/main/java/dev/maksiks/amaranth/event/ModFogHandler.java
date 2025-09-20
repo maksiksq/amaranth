@@ -20,14 +20,18 @@ public class ModFogHandler {
     private static float targetRed = 1f, targetGreen = 1f, targetBlue = 1f;
     private static float targetNear = 0f, targetFar = 192f;
 
-    private static final float TRANSITION_SPEED = 0.005f;
+    private static final float TRANSITION_SPEED_IN = 0.005f;
+    private static final float TRANSITION_SPEED_OUT = 0.0005f;
+    private static final float TRANSITION_THRESHOLD = 0.001f;
 
     private static void stepTowardTarget() {
-        currentRed = Mth.lerp(TRANSITION_SPEED, currentRed, targetRed);
-        currentGreen = Mth.lerp(TRANSITION_SPEED, currentGreen, targetGreen);
-        currentBlue = Mth.lerp(TRANSITION_SPEED, currentBlue, targetBlue);
-        currentNear = Mth.lerp(TRANSITION_SPEED, currentNear, targetNear);
-        currentFar = Mth.lerp(TRANSITION_SPEED, currentFar, targetFar);
+        float speed = isInDesolateIceFields() ? TRANSITION_SPEED_IN : TRANSITION_SPEED_OUT;
+
+        currentRed = Mth.lerp(speed, currentRed, targetRed);
+        currentGreen = Mth.lerp(speed, currentGreen, targetGreen);
+        currentBlue = Mth.lerp(speed, currentBlue, targetBlue);
+        currentNear = Mth.lerp(speed, currentNear, targetNear);
+        currentFar = Mth.lerp(speed, currentFar, targetFar);
     }
 
     private static boolean isInDesolateIceFields() {
@@ -36,6 +40,14 @@ public class ModFogHandler {
 
         ResourceKey<Biome> biome = mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElse(null);
         return biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS);
+    }
+
+    private static boolean isTransitioning() {
+        return Math.abs(currentRed - targetRed) > TRANSITION_THRESHOLD ||
+                Math.abs(currentGreen - targetGreen) > TRANSITION_THRESHOLD ||
+                Math.abs(currentBlue - targetBlue) > TRANSITION_THRESHOLD ||
+                Math.abs(currentNear - targetNear) > TRANSITION_THRESHOLD ||
+                Math.abs(currentFar - targetFar) > TRANSITION_THRESHOLD;
     }
 
     @SubscribeEvent
@@ -48,8 +60,8 @@ public class ModFogHandler {
         float vanillaB = event.getBlue();
 
         if (isInDesolateIceFields()) {
-            targetRed = 0.05f;
-            targetGreen = 0.05f;
+            targetRed = 0.03f;
+            targetGreen = 0.04f;
             targetBlue = 0.05f;
         } else {
             targetRed = vanillaR;
@@ -87,9 +99,7 @@ public class ModFogHandler {
         event.setNearPlaneDistance(currentNear);
         event.setFarPlaneDistance(currentFar);
 
-        // only cancelling if the player in the right biome
-        // hopefully this might stop a conflict or two
-        if (isInDesolateIceFields()) {
+        if (isInDesolateIceFields() || isTransitioning()) {
             event.setCanceled(true);
         }
     }
