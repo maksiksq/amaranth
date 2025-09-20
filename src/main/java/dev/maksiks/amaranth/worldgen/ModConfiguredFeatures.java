@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.worldgen;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
+import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.SilverBirchFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
@@ -22,10 +23,7 @@ import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -35,6 +33,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
+
+import static dev.maksiks.amaranth.worldgen.features.ModFeatures.DESOLATE_SPIKE;
 
 public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_KEY = registerKey("mystic");
@@ -46,6 +46,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_KEY = registerKey("silver_birch");
     public static ResourceKey<ConfiguredFeature<?, ?>> SILVER_BIRCH_FLOWER_KEY = registerKey("silver_birch_flower");
     public static ResourceKey<ConfiguredFeature<?, ?>> GOLDEN_LEAF_LITTER_KEY = registerKey("golden_leaf_litter");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> DESOLATE_SPIKE_KEY = registerKey("desolate_spike");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         // mystic
@@ -188,6 +190,11 @@ public class ModConfiguredFeatures {
                         96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(goldenLeafLitterBuilder)))
                 )
         );
+
+        // desolate
+        register(context, DESOLATE_SPIKE_KEY,
+                ModFeatures.DESOLATE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE);
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

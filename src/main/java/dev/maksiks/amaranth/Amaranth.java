@@ -1,12 +1,13 @@
 package dev.maksiks.amaranth;
 
 import dev.maksiks.amaranth.block.ModBlocks;
-import dev.maksiks.amaranth.event.FogHandler;
+import dev.maksiks.amaranth.event.ModFogHandler;
 import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.worldgen.biome.ModTerrablender;
 import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
+import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.ModTrunkPlacerTypes;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -48,8 +49,7 @@ public class Amaranth {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModParticles.register(modEventBus);
-
-        NeoForge.EVENT_BUS.register(FogHandler.class);
+        ModFeatures.FEATURES.register(modEventBus);
 
         ModTerrablender.registerBiomes();
 

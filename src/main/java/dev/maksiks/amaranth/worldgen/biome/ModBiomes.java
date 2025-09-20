@@ -235,10 +235,12 @@ public class ModBiomes {
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
 
+        biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DESOLATE_SPIKE_PLACED_KEY);
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
 
         return new Biome.BiomeBuilder()
-                .hasPrecipitation(true)
+                // we do be make it custom tho
+                .hasPrecipitation(false)
                 .downfall(0.0f)
                 .temperature(0.0F)
                 .generationSettings(biomeBuilder.build())

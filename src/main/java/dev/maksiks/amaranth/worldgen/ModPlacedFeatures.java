@@ -25,6 +25,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SILVER_BIRCH_FLOWER_PLACED_KEY = registerKey("silver_birch_flower_placed");
     public static final ResourceKey<PlacedFeature> GOLDEN_LEAF_LITTER_PLACED_KEY = registerKey("golden_leaf_litter_placed");
 
+    public static final ResourceKey<PlacedFeature> DESOLATE_SPIKE_PLACED_KEY = registerKey("desolate_spike_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -62,6 +64,17 @@ public class ModPlacedFeatures {
                         PlacementUtils.HEIGHTMAP,
                         BiomeFilter.biome()));
 
+        register(
+                context,
+                DESOLATE_SPIKE_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.DESOLATE_SPIKE_KEY),
+                List.of(
+                        CountPlacement.of(5),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

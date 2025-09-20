@@ -1,14 +1,17 @@
 package dev.maksiks.amaranth.event;
 
+import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
-public class FogHandler {
+@EventBusSubscriber(modid = Amaranth.MOD_ID)
+public class ModFogHandler {
     private static float currentRed = 1f, currentGreen = 1f, currentBlue = 1f;
     private static float currentNear = 0f, currentFar = 192f;
 
