@@ -22,6 +22,16 @@ public class ClientConfig {
             .comment(" If you don't want to disable them whole you can keep just a few for the immersion at least. Probably no lag included.")
             .define("minimizeCustomBiomeWeatherParticles", false);
 
+
+    public static final ModConfigSpec.IntValue SNOW_DIRECTION_CHANGE_TIME_MIN = BUILDER
+            .comment(" # Dev stuff, you probably shouldn't care/touch")
+            .comment(" Fog direction change minimal bound in ticks")
+            .defineInRange("snowDirectionChangeTimeMin", 30000, 1, Integer.MAX_VALUE);
+
+    public static final ModConfigSpec.IntValue SNOW_DIRECTION_CHANGE_TIME_ADDED_RANGE = BUILDER
+            .comment(" Random amount added to the direction change timer in ticks")
+            .defineInRange("snowDirectionChangeTimeAddedRange", 60000, 1, Integer.MAX_VALUE);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     private static boolean validateItemName(final Object obj) {
