@@ -29,7 +29,7 @@ public class MiasmaBlockHighlightHandler {
         Level level = event.getCamera().getEntity().level();
         BlockState state = level.getBlockState(pos);
 
-        if (state.is(ModBlocks.MIASMA_ICE.get()) || state.is(ModBlocks.DENSE_MIASMA_ICE.get())) {
+        if (state.is(ModBlocks.SORROW_ICE.get()) || state.is(ModBlocks.REMNANT_SORROW_ICE.get())) {
             event.setCanceled(true);
             drawCustomOutline(event, pos);
         }

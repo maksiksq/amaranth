@@ -57,8 +57,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.SILVER_BIRCH_SAPLING);
 
                         // desolate ice fields
-                        output.accept(ModBlocks.MIASMA_ICE);
-                        output.accept(ModBlocks.DENSE_MIASMA_ICE);
+                        output.accept(ModBlocks.SORROW_ICE);
+                        output.accept(ModBlocks.REMNANT_SORROW_ICE);
                     }).build());
 
     // can't forget

@@ -34,7 +34,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
 
         // desolate
-        this.tag(BlockTags.ICE).add(ModBlocks.MIASMA_ICE.get());
-        this.tag(BlockTags.ICE).add(ModBlocks.DENSE_MIASMA_ICE.get());
+        this.tag(BlockTags.ICE).add(ModBlocks.SORROW_ICE.get());
+        this.tag(BlockTags.ICE).add(ModBlocks.REMNANT_SORROW_ICE.get());
     }
 }

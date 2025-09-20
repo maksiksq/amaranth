@@ -30,7 +30,7 @@ public class ModClientWeatherHandler {
             return;
         }
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 100; i++) {
             double x = mc.player.getX() + mc.level.random.nextGaussian() * 10;
             double y = mc.player.getY() + mc.level.random.nextDouble() * 8;
             double z = mc.player.getZ() + mc.level.random.nextGaussian() * 10;

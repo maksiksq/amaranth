@@ -94,9 +94,9 @@ public class ModBlocks {
             () -> new ModGoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
     // desolate ice fields
-    public static final DeferredBlock<Block> MIASMA_ICE = registerBlock("miasma_ice",
+    public static final DeferredBlock<Block> SORROW_ICE = registerBlock("sorrow_ice",
             () -> new IceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE)));
-    public static final DeferredBlock<Block> DENSE_MIASMA_ICE = registerBlock("dense_miasma_ice",
+    public static final DeferredBlock<Block> REMNANT_SORROW_ICE = registerBlock("remnant_sorrow_ice",
             () -> new HalfTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ICE)));
 
 

@@ -41,9 +41,9 @@ public class DesolateSpike extends Feature<NoneFeatureConfiguration> {
                         BlockPos placePos = layerCenter.offset(dx, 0, dz);
 
                         if (random.nextFloat() < 0.7f) {
-                            level.setBlock(placePos, ModBlocks.MIASMA_ICE.get().defaultBlockState(), 2);
+                            level.setBlock(placePos, ModBlocks.SORROW_ICE.get().defaultBlockState(), 2);
                         } else {
-                            level.setBlock(placePos, ModBlocks.DENSE_MIASMA_ICE.get().defaultBlockState(), 2);
+                            level.setBlock(placePos, ModBlocks.REMNANT_SORROW_ICE.get().defaultBlockState(), 2);
                         }
                     }
                 }

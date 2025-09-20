@@ -66,9 +66,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         saplingBlock(ModBlocks.SILVER_BIRCH_SAPLING);
 
         // desolate
-        iceBlock(ModBlocks.MIASMA_ICE);
-        blockItem(ModBlocks.MIASMA_ICE);
-        blockWithItem(ModBlocks.DENSE_MIASMA_ICE);
+        iceBlock(ModBlocks.SORROW_ICE);
+        blockItem(ModBlocks.SORROW_ICE);
+        blockWithItem(ModBlocks.REMNANT_SORROW_ICE);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

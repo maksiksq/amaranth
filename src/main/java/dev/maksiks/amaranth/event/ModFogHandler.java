@@ -8,6 +8,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
@@ -42,7 +43,7 @@ public class ModFogHandler {
         if (biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
             targetRed = 0.05f;
             targetGreen = 0.05f;
-            targetBlue = 0.08f;
+            targetBlue = 0.05f;
         } else {
             targetRed = vanillaR;
             targetGreen = vanillaG;
