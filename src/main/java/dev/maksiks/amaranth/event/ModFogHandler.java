@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -29,18 +30,24 @@ public class ModFogHandler {
         currentFar = Mth.lerp(TRANSITION_SPEED, currentFar, targetFar);
     }
 
+    private static boolean isInDesolateIceFields() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || mc.level == null) return false;
+
+        ResourceKey<Biome> biome = mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElse(null);
+        return biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS);
+    }
+
     @SubscribeEvent
     public static void onFogColor(ViewportEvent.ComputeFogColor event) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
 
-        ResourceKey<Biome> biome = mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElse(null);
-
         float vanillaR = event.getRed();
         float vanillaG = event.getGreen();
         float vanillaB = event.getBlue();
 
-        if (biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
+        if (isInDesolateIceFields()) {
             targetRed = 0.05f;
             targetGreen = 0.05f;
             targetBlue = 0.05f;
@@ -57,17 +64,17 @@ public class ModFogHandler {
         event.setBlue(currentBlue);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onFogRender(ViewportEvent.RenderFog event) {
+        if (event.isCanceled()) return;
+
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
-
-        ResourceKey<Biome> biome = mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElse(null);
 
         float vanillaNear = event.getNearPlaneDistance();
         float vanillaFar = event.getFarPlaneDistance();
 
-        if (biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
+        if (isInDesolateIceFields()) {
             targetNear = -1.0f;
             targetFar = 7.0f;
         } else {
@@ -79,6 +86,11 @@ public class ModFogHandler {
 
         event.setNearPlaneDistance(currentNear);
         event.setFarPlaneDistance(currentFar);
-        event.setCanceled(true);
+
+        // only cancelling if the player in the right biome
+        // hopefully this might stop a conflict or two
+        if (isInDesolateIceFields()) {
+            event.setCanceled(true);
+        }
     }
 }

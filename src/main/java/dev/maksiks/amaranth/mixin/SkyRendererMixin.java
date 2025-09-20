@@ -1,6 +1,5 @@
 package dev.maksiks.amaranth.mixin;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -16,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LevelRenderer.class)
 public class SkyRendererMixin {
     @Inject(method = "renderSky", at = @At("HEAD"), cancellable = true)
-    private void onRenderSky(Matrix4f matrix4f, Matrix4f projectionMatrix, float partialTick, Camera camera, boolean isFoggy, Runnable skyFogSetup, CallbackInfo ci) {
+    private void onRenderSky(Matrix4f viewMatrix, Matrix4f projectionMatrix, float partialTick, Camera camera, boolean isFoggy, Runnable skyFogSetup, CallbackInfo ci) {
+        if (ci.isCancelled()) return;
+
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
 
