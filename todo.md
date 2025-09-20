@@ -152,7 +152,14 @@
 - [x] permanent snowstorm
 - [ ] wind ambience
 - [ ] custom structure
+- [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 - [ ] add powdery snow, and rarely at that to cause as much pain as possible
 - [ ] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
 
 -------------------------
+
+
+### Biome with mixed trees
+
+-----------------------
+- [ ] mixed forest of different trees, red, green, greener, yellow, idk

@@ -37,7 +37,7 @@ public class ModClientWeatherHandler {
         }
 
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || mc.player == null) return;
+        if (mc.level == null || mc.player == null || mc.isPaused()) return;
 
         ResourceKey<Biome> biomeKey = mc.level.getBiome(mc.player.blockPosition())
                 .unwrapKey().orElse(null);
