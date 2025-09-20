@@ -15,6 +15,13 @@ public class ClientConfig {
             .comment(" Whether to show leaf particles e.g. in the silver birch biome. You can disable them by setting particles to minimal too, but you might want to keep all other particles if it's just these biomes causing lag when loaded.")
             .define("hideBiomeLeafParticles", false);
 
+    public static final ModConfigSpec.BooleanValue HIDE_CUSTOM_BIOME_WEATHER_PARTICLES = BUILDER
+            .comment(" Whether to create biome's custom weather particles e.g. in desolate ice fields. This one might prevent a lot of lag when you're in the biome. You could also set particles to minimal in the settings as well.")
+            .define("hideCustomBiomeWeatherParticles", false);
+    public static final ModConfigSpec.BooleanValue MINIMIZE_CUSTOM_BIOME_WEATHER_PARTICLES = BUILDER
+            .comment(" If you don't want to disable them whole you can keep just a few for the immersion at least. Probably no lag included.")
+            .define("minimizeCustomBiomeWeatherParticles", false);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     private static boolean validateItemName(final Object obj) {

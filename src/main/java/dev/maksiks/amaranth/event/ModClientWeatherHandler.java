@@ -10,7 +10,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+
+import static dev.maksiks.amaranth.ClientConfig.*;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID, value = Dist.CLIENT)
 public class ModClientWeatherHandler {
@@ -20,6 +21,10 @@ public class ModClientWeatherHandler {
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
+        if (HIDE_CUSTOM_BIOME_WEATHER_PARTICLES.getAsBoolean()) {
+            return;
+        }
+
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null) return;
 
@@ -30,7 +35,9 @@ public class ModClientWeatherHandler {
             return;
         }
 
-        for (int i = 0; i < 100; i++) {
+        int snowCount = MINIMIZE_CUSTOM_BIOME_WEATHER_PARTICLES.getAsBoolean() ? 10 : 100;
+
+        for (int i = 0; i < snowCount; i++) {
             double x = mc.player.getX() + mc.level.random.nextGaussian() * 10;
             double y = mc.player.getY() + mc.level.random.nextDouble() * 8;
             double z = mc.player.getZ() + mc.level.random.nextGaussian() * 10;
