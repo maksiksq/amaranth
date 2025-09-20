@@ -1,11 +1,11 @@
 {
-  "name": "amaranth:desolate_spike/start_pool",
+  "name": "amaranth:frozen_heart/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "amaranth:desolate_spike",
+        "location": "amaranth:frozen_heart",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

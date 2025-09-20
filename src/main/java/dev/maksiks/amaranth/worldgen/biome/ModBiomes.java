@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -244,13 +245,14 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterColor(0x050505)
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(0x3E3942)
                         .grassColorOverride(0x5C5C5C)
                         .foliageColorOverride(0x4D4D4D)
                         .fogColor(0x121414)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(ModSounds.getSoundHolder(ModSounds.ARCTIC_WIND_THRONGLED))
                         .backgroundMusic(new Music(SoundEvents.MUSIC_BIOME_BASALT_DELTAS, 6000, 24000, true))
                         .build())
                 .build();

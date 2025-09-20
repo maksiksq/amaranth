@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.event.ModFogHandler;
 import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
+import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.worldgen.biome.ModTerrablender;
 import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
@@ -50,6 +51,7 @@ public class Amaranth {
         ModBlocks.register(modEventBus);
         ModParticles.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         ModTerrablender.registerBiomes();
 

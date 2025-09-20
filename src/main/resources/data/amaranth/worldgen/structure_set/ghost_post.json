@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "amaranth:ghost_post",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 24657818,
+    "separation": 8,
+    "spacing": 32
+  }
+}

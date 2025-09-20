@@ -1,0 +1,8 @@
+{
+  "replace": false,
+
+  "_comment": "This can specify a biome tag too btw",
+  "values": [
+    "amaranth:desolate_ice_fields"
+  ]
+}

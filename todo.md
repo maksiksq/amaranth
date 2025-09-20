@@ -11,7 +11,7 @@
 
 //
 
-- [ ] Mystic biome
+- [x] Mystic biome
 -------------------------
 - [x] Arcane Hysteria tree. And some sorta mystic biome. The vibe is kind of eerie, unsettling. "Some say the souls still scream even when sawed into planks. This is, of course, untrue! *Probably*."
 - [ ] Implement bushes 
@@ -151,10 +151,9 @@
 - [x] dark fog (neo has an event?)
 - [x] permanent snowstorm
 - [ ] wind ambience
-- [ ] custom structure
-- [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 - [ ] add powdery snow, and rarely at that to cause as much pain as possible
 - [ ] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
+- [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 
 -------------------------
 
