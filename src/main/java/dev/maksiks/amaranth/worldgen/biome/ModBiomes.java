@@ -234,7 +234,7 @@ public class ModBiomes {
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
 
-        BiomeDefaultFeatures.
+        //
         biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DESOLATE_SPIKE_PLACED_KEY);
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
 

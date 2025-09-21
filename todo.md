@@ -151,10 +151,12 @@
 - [x] dark fog (neo has an event?)
 - [x] permanent snowstorm
 - [x] wind ambience
-- [ ] add powdery snow, and rarely at that to cause as much pain as possible
+- [x] add powdery snow, and rarely at that to cause as much pain as possible
 - [ ] bury the heart somehow
 - [x] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
 - [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
+- [ ] maybe: technically it never actually snows with snow layers which is kinda lame but also whatever
+- [ ] maybe fix: place snow layers on top of powdered snow
 
 -------------------------
 

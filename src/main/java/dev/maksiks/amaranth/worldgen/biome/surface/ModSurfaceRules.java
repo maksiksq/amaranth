@@ -19,6 +19,9 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource SNOW_BLOCK = makeStateRule(Blocks.SNOW_BLOCK);
     private static final SurfaceRules.RuleSource YELLOW_TERRACOTTA = makeStateRule(Blocks.YELLOW_TERRACOTTA);
     private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
+    private static final SurfaceRules.RuleSource POWDER_SNOW = makeStateRule(Blocks.POWDER_SNOW);
+    private static final SurfaceRules.RuleSource DIORITE = makeStateRule(Blocks.DIORITE);
+    private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -36,6 +39,19 @@ public class ModSurfaceRules {
                                 )
                         )
                 )
+        );
+    }
+
+    private static SurfaceRules.RuleSource powderSnowBlobsLayerRule() {
+        return SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, POWDER_SNOW),
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, POWDER_SNOW)
+                        )
+                )
+
         );
     }
 
@@ -64,21 +80,24 @@ public class ModSurfaceRules {
         List<SurfaceRules.RuleSource> rules = new ArrayList<>();
 
         int[] silverLayers = {
-                61+random.nextInt(2),
-        64-random.nextInt(2),
-        69+random.nextInt(2),
-        74-random.nextInt(2),
-        78+random.nextInt(2),
-        84+random.nextInt(3),
-        96+random.nextInt(5),
-        102+random.nextInt(5),
-        120+random.nextInt(5),
-        145+random.nextInt(5)
+                61 + random.nextInt(2),
+                64 - random.nextInt(2),
+                69 + random.nextInt(2),
+                74 - random.nextInt(2),
+                78 + random.nextInt(2),
+                84 + random.nextInt(3),
+                96 + random.nextInt(5),
+                102 + random.nextInt(5),
+                120 + random.nextInt(5),
+                145 + random.nextInt(5)
         };
 
         for (int layer : silverLayers) {
             rules.add(silverLayerRule(layer));
         }
+
+        // desolate
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS), powderSnowBlobsLayerRule()));
 
         rules.add(
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
