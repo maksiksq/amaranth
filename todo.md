@@ -8,7 +8,7 @@
 - [ ] i think you can manipulate biome rarity with custom regions rather than the overworld
 - [x] fix: silver birch has grass inside
 - [ ] fix: use a placed feature instead of a structure because why again
-
+- [ ] do more complex biomes with a custom biome source
 //
 
 - [x] Mystic biome
@@ -152,7 +152,7 @@
 - [x] permanent snowstorm
 - [x] wind ambience
 - [x] add powdery snow, and rarely at that to cause as much pain as possible
-- [ ] bury the heart somehow
+- [x] bury the heart somehow
 - [x] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
 - [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 - [ ] maybe: technically it never actually snows with snow layers which is kinda lame but also whatever
@@ -165,3 +165,8 @@
 
 -----------------------
 - [ ] mixed forest of different trees, red, green, greener, yellow, idk
+
+### Some sort of island biome
+
+-----------------------
+- [ ] how was that tropical dimension mod called again
