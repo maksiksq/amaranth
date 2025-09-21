@@ -19,19 +19,40 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.MYSTIC_LEAVES))
                     .title(Component.translatable("creativetab.amaranth.amaranth"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        // mystic
+                        // misc
                         output.accept(ModItems.MAFIA_BLOB);
                         output.accept(ModItems.BEANIE_BLOB);
+
+                        // fruit
                         output.accept(ModItems.HEXFRUIT);
 
+                        // leaves
+                        output.accept(ModBlocks.MYSTIC_LEAVES);
+                        output.accept(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
+                        output.accept(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
+                        output.accept(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
+                        output.accept(ModBlocks.PURPLE_MIXED_OAK_LEAVES);
+                        output.accept(ModBlocks.RED_MIXED_OAK_LEAVES);
+                        output.accept(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
+
+                        // saplings
+                        output.accept(ModBlocks.MYSTIC_SAPLING);
+                        output.accept(ModBlocks.STUBBY_SAPLING);
+                        output.accept(ModBlocks.SILVER_BIRCH_SAPLING);
+                        output.accept(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
+                        output.accept(ModBlocks.RED_MIXED_OAK_SAPLING);
+                        output.accept(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+
+                        // biome decor
+                        output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
+
+                        // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
                         output.accept(ModBlocks.MYSTIC_WOOD);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_LOG);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD);
 
                         output.accept(ModBlocks.MYSTIC_PLANKS);
-                        output.accept(ModBlocks.MYSTIC_SAPLING);
-                        output.accept(ModBlocks.MYSTIC_LEAVES);
 
                         output.accept(ModBlocks.MYSTIC_STAIRS);
                         output.accept(ModBlocks.MYSTIC_SLAB);
@@ -45,18 +66,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MYSTIC_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
 
-                        // stubby
-                        output.accept(ModBlocks.STUBBY_SAPLING);
-
-                        // silver
-                        output.accept(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
-                        output.accept(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES);
-                        output.accept(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
-
-                        output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
-                        output.accept(ModBlocks.SILVER_BIRCH_SAPLING);
-
-                        // desolate ice fields
+                        // rocks
                         output.accept(ModBlocks.SORROW_ICE);
                         output.accept(ModBlocks.REMNANT_SORROW_ICE);
                     }).build());
