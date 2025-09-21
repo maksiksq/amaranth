@@ -9,6 +9,7 @@
     "type": "minecraft:random_spread",
     "salt": 24857318,
     "separation": 8,
-    "spacing": 32
+    "spacing": 32,
+    "terrain_adaptation": "bury"
   }
 }

@@ -80,8 +80,10 @@ public class ModSurfaceRules {
             rules.add(silverLayerRule(layer));
         }
 
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
-                SurfaceRules.sequence(SNOW_BLOCK)));
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
+                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                                SurfaceRules.sequence(SNOW_BLOCK))));
 
         // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurfaceAndStoneBelow));

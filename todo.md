@@ -146,13 +146,14 @@
 -------------------------
 
 - [x] Some sorta like really desolate black ice biome, it must be scawy (![img_1.png](img_1.png))
-- [ ] heartache ice - Distilled dread... it didn't just gather in here by itself. What could have caused such a ... what even happened here? There's a structure that's a heart built of white ice, frozen solid, no longer beating, it always spawns submerged into the ice sheets
+- [x] heartache ice - Distilled dread... it didn't just gather in here by itself. What could have caused such a ... what even happened here? There's a structure that's a heart built of white ice, frozen solid, no longer beating, it always spawns submerged into the ice sheets
 - [x] vanilla uses structures for this stuff ; no it doesn't, place feature go br
 - [x] dark fog (neo has an event?)
 - [x] permanent snowstorm
-- [ ] wind ambience
+- [x] wind ambience
 - [ ] add powdery snow, and rarely at that to cause as much pain as possible
-- [ ] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
+- [ ] bury the heart somehow
+- [x] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
 - [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 
 -------------------------
