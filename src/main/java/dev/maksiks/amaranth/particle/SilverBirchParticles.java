@@ -11,11 +11,7 @@ import javax.annotation.Nullable;
 import static dev.maksiks.amaranth.ClientConfig.HIDE_BIOME_LEAF_PARTICLES;
 
 public class SilverBirchParticles extends TextureSheetParticle {
-    private static final float ACCELERATION_SCALE = 0.0025F;
     private static final int INITIAL_LIFETIME = 600;
-    private static final int CURVE_ENDPOINT_TIME = 300;
-    private static final float FALL_ACC = 0.25F;
-    private static final float WIND_BIG = 2.0F;
     private float rotSpeed;
     private final float particleRandom;
     private final float spinAcceleration;
@@ -86,9 +82,17 @@ public class SilverBirchParticles extends TextureSheetParticle {
 
             double wind = getGlobalWindFactor(this.level);
 
-            this.xd += d0 * 0.0025F * wind;
-            this.zd += d1 * 0.0025F * wind;
-            this.yd = this.yd - (double)this.gravity;
+            double weatherHorizontalMult =
+                    this.level.isThundering() ? 3 :
+                            this.level.isThundering() ? 2 : 1;
+
+            double weatherVerticalMult =
+                    this.level.isThundering() ? 8.5 :
+                            this.level.isThundering() ? 5 : 1;
+
+            this.xd += d0 * 0.0025F * wind * weatherHorizontalMult;
+            this.zd += d1 * 0.0025F * wind * weatherHorizontalMult;
+            this.yd = this.yd - (double)this.gravity * weatherVerticalMult;
             this.rotSpeed = this.rotSpeed + this.spinAcceleration / 20.0F;
             this.oRoll = this.roll;
             this.roll = this.roll + this.rotSpeed / 20.0F;

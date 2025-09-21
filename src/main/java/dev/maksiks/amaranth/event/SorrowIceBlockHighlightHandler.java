@@ -19,7 +19,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID, value = Dist.CLIENT)
-public class MiasmaBlockHighlightHandler {
+public class SorrowIceBlockHighlightHandler {
 
     @SubscribeEvent
     public static void onDrawBlockHighlight(RenderHighlightEvent.Block event) {
