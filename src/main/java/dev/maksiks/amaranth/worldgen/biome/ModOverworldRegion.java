@@ -34,7 +34,6 @@ public class ModOverworldRegion extends Region {
                 .weirdness(ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING)
                 .build().forEach(point -> builder.add(point, ModBiomes.TEST_BIOME));
 
-
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.COOL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.1F))
@@ -101,16 +100,13 @@ public class ModOverworldRegion extends Region {
                         ParameterUtils.Temperature.COOL
                 ))
                 .humidity(ParameterUtils.Humidity.span(
-                        ParameterUtils.Humidity.DRY,
-                        ParameterUtils.Humidity.NEUTRAL
+                        ParameterUtils.Humidity.ARID,
+                        ParameterUtils.Humidity.DRY
                 ))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.FAR_INLAND
-                ))
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
                 .erosion(ParameterUtils.Erosion.span(
-                        ParameterUtils.Erosion.EROSION_1,
-                        ParameterUtils.Erosion.EROSION_2
+                        ParameterUtils.Erosion.EROSION_5,
+                        ParameterUtils.Erosion.EROSION_6
                 ))
                 .weirdness(ParameterUtils.Weirdness.span(
                         ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
@@ -118,6 +114,29 @@ public class ModOverworldRegion extends Region {
                 ))
                 .depth(Climate.Parameter.span(-1.0F, 0.0F))
                 .build().forEach(point -> builder.add(point, ModBiomes.DESOLATE_ICE_FIELDS));
+
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(Climate.Parameter.span(-0.4F, 0.3F))
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.NEAR_INLAND,
+                        ParameterUtils.Continentalness.MID_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_2,
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(Climate.Parameter.span(-1.0F, 0.0F))
+                .weirdness(ParameterUtils.Weirdness.span(
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.MIXED_WOODS));
+
+
         // Add our points to the mapper
         builder.build().forEach(mapper);
     }

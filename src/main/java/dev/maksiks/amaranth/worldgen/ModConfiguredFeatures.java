@@ -10,8 +10,11 @@ import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +26,7 @@ import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -30,6 +34,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
@@ -49,7 +54,16 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> DESOLATE_SPIKE_KEY = registerKey("desolate_spike");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> PURPLE_MIXED_OAK_KEY = registerKey("purple_mixed_oak");
+    public static ResourceKey<ConfiguredFeature<?, ?>> RED_MIXED_OAK_KEY = registerKey("red_mixed_oak");
+    public static ResourceKey<ConfiguredFeature<?, ?>> YELLOW_MIXED_OAK_KEY = registerKey("yellow_mixed_oak");
+    public static ResourceKey<ConfiguredFeature<?, ?>> MIXED_OAK_KEY = registerKey("mixed_oak_key");
+
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+        HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+        HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
+
         // mystic
         register(context, MYSTIC_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.MYSTIC_LOG.get()),
@@ -132,7 +146,7 @@ public class ModConfiguredFeatures {
                 new MysticTrunkPlacer(10, 2, 0),
 
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                    .add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 1)
+                        .add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 1)
                         .add(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 12)
                         .add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 7)
                         .build()),
@@ -195,6 +209,43 @@ public class ModConfiguredFeatures {
         register(context, DESOLATE_SPIKE_KEY,
                 ModFeatures.DESOLATE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE);
 
+        // mixed
+        register(context, PURPLE_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new StraightTrunkPlacer(4, 2, 0),
+                BlockStateProvider.simple(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        register(context, RED_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new StraightTrunkPlacer(4, 2, 0),
+                BlockStateProvider.simple(ModBlocks.RED_MIXED_OAK_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        register(context, YELLOW_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new StraightTrunkPlacer(4, 2, 0),
+                BlockStateProvider.simple(ModBlocks.YELLOW_MIXED_OAK_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        register(
+                context,
+                MIXED_OAK_KEY,
+                Feature.SIMPLE_RANDOM_SELECTOR,
+                new SimpleRandomFeatureConfiguration(
+                        HolderSet.direct(
+                                PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModConfiguredFeatures.PURPLE_MIXED_OAK_KEY)),
+                                PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_MIXED_OAK_KEY)),
+                                PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModConfiguredFeatures.YELLOW_MIXED_OAK_KEY))
+                        )
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

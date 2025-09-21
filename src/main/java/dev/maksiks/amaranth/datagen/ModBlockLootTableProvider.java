@@ -103,6 +103,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createSilkTouchOnlyTable(ModBlocks.SORROW_ICE.get()));
         this.add(ModBlocks.REMNANT_SORROW_ICE.get(),
                 block -> createSilkTouchOnlyTable(ModBlocks.REMNANT_SORROW_ICE.get()));
+
+        // mixed
+        this.add(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get(), ModBlocks.PURPLE_MIXED_OAK_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.add(ModBlocks.RED_MIXED_OAK_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.RED_MIXED_OAK_LEAVES.get(), ModBlocks.RED_MIXED_OAK_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.add(ModBlocks.YELLOW_MIXED_OAK_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.YELLOW_MIXED_OAK_LEAVES.get(), ModBlocks.YELLOW_MIXED_OAK_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.dropSelf(ModBlocks.PURPLE_MIXED_OAK_SAPLING.get());
+        this.dropSelf(ModBlocks.RED_MIXED_OAK_SAPLING.get());
+        this.dropSelf(ModBlocks.YELLOW_MIXED_OAK_SAPLING.get());
     }
 
     @Override

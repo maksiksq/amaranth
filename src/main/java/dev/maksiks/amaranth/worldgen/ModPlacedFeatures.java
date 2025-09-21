@@ -28,6 +28,11 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> DESOLATE_SPIKE_PLACED_KEY = registerKey("desolate_spike_placed");
 
+    public static final ResourceKey<PlacedFeature> PURPLE_MIXED_OAK_TREE_PLACED_KEY = registerKey("purple_mixed_oak_tree_placed");
+    public static final ResourceKey<PlacedFeature> RED_MIXED_OAK_TREE_PLACED_KEY = registerKey("red_mixed_oak_tree_placed");
+    public static final ResourceKey<PlacedFeature> YELLOW_MIXED_OAK_TREE_PLACED_KEY = registerKey("yellow_mixed_oak_tree_placed");
+    public static final ResourceKey<PlacedFeature> MIXED_OAK_PLACED_KEY = registerKey("mixed_oak_placed_key");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -77,6 +82,24 @@ public class ModPlacedFeatures {
                         HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
                 )
         );
+
+        // mixed
+        register(context, PURPLE_MIXED_OAK_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PURPLE_MIXED_OAK_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                        ModBlocks.PURPLE_MIXED_OAK_SAPLING.get()));
+        register(context, RED_MIXED_OAK_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_MIXED_OAK_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                        ModBlocks.RED_MIXED_OAK_SAPLING.get()));
+        register(context, YELLOW_MIXED_OAK_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.YELLOW_MIXED_OAK_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                        ModBlocks.YELLOW_MIXED_OAK_SAPLING.get()));
+        register(context, MIXED_OAK_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MIXED_OAK_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
+                        ModBlocks.PURPLE_MIXED_OAK_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

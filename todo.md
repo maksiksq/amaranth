@@ -2,13 +2,15 @@
 - [ ] A MUSIC DISC
 - [ ] Completely unsolicited dani reference because i felt nostalgic
 - [ ] mc tree maker framework or something because it's kinda pain
-- [ ] fix: deprecated petal cutout renderer
-- [ ] fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
+- [x] fix: deprecated petal cutout renderer
+- [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 - [ ] fix: maybe try fixing the grass color for silver birch again??
 - [ ] i think you can manipulate biome rarity with custom regions rather than the overworld
 - [x] fix: silver birch has grass inside
 - [ ] fix: use a placed feature instead of a structure because why again
 - [ ] do more complex biomes with a custom biome source
+- [x] add more creative mod tabs ; just sorted the one tab i have
+- [ ] distribute biome rarity w regions ; also make them not spawn too high
 //
 
 - [x] Mystic biome
@@ -155,18 +157,33 @@
 - [x] bury the heart somehow
 - [x] structure with a lamp and a direction sign saying something a la "lost" or "undefined"
 - [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
-- [ ] maybe: technically it never actually snows with snow layers which is kinda lame but also whatever
+- [ ] maybe fix: technically it never actually snows with snow layers which is kinda lame but also whatever
 - [ ] maybe fix: place snow layers on top of powdered snow
 
 -------------------------
 
 
 ### Biome with mixed trees
-
 -----------------------
 - [ ] mixed forest of different trees, red, green, greener, yellow, idk
 
 ### Some sort of island biome
-
 -----------------------
 - [ ] how was that tropical dimension mod called again
+
+### Grainy desert
+-----------------------
+- [ ] gravel + sand + something else stashed into a desolate landscape with occasional oasises
+
+### Some frozen as hell forest
+-----------------------
+- [ ] a frozen forest with white trees and ice everywhere
+
+### golf flats
+-----------------------
+- [ ] A flat biome with orderly trees like in that one world
+
+### tree on tree forest
+-----------------------
+- [ ] trees on trees ha
+![img_2.png](img_2.png)

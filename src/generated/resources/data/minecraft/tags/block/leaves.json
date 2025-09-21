@@ -1,6 +1,11 @@
 {
   "values": [
     "amaranth:mystic_leaves",
-    "amaranth:stubby_sapling"
+    "amaranth:silvery_silver_birch_leaves",
+    "amaranth:dark_silver_birch_leaves",
+    "amaranth:light_silver_birch_leaves",
+    "amaranth:purple_mixed_oak_leaves",
+    "amaranth:red_mixed_oak_leaves",
+    "amaranth:yellow_mixed_oak_leaves"
   ]
 }

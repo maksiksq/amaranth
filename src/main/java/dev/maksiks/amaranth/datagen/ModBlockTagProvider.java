@@ -26,15 +26,31 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // mystic
         this.tag(BlockTags.LEAVES).add(ModBlocks.MYSTIC_LEAVES.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.MYSTIC_SAPLING.get());
 
         // stubby
-        this.tag(BlockTags.LEAVES).add(ModBlocks.STUBBY_SAPLING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.STUBBY_SAPLING.get());
 
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
 
+        // silver
+        this.tag(BlockTags.LEAVES).add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.SILVER_BIRCH_SAPLING.get());
+
         // desolate
         this.tag(BlockTags.ICE).add(ModBlocks.SORROW_ICE.get());
         this.tag(BlockTags.ICE).add(ModBlocks.REMNANT_SORROW_ICE.get());
+
+        // mixed
+        this.tag(BlockTags.LEAVES).add(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.RED_MIXED_OAK_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.YELLOW_MIXED_OAK_LEAVES.get());
+
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.PURPLE_MIXED_OAK_SAPLING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.RED_MIXED_OAK_SAPLING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.YELLOW_MIXED_OAK_SAPLING.get());
     }
 }

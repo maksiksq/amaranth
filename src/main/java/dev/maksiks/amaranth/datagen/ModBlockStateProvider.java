@@ -69,6 +69,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         iceBlock(ModBlocks.SORROW_ICE);
         blockItem(ModBlocks.SORROW_ICE);
         blockWithItem(ModBlocks.REMNANT_SORROW_ICE);
+
+        // mixed
+        leavesBlock(ModBlocks.PURPLE_MIXED_OAK_LEAVES);
+        leavesBlock(ModBlocks.RED_MIXED_OAK_LEAVES);
+        leavesBlock(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
+
+        saplingBlock(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
+        saplingBlock(ModBlocks.RED_MIXED_OAK_SAPLING);
+        saplingBlock(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
