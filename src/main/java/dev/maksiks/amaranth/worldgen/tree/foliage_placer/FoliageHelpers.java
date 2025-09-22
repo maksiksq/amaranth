@@ -166,6 +166,39 @@ public class FoliageHelpers {
         };
     }
 
+    public static LeafPlacer bigSplatDiamond(
+            RandomSource random,
+            BiConsumer<BlockPos, RandomSource> tryPlaceLeaf,
+            BlockPos trunkPos,
+            AtomicInteger currentY,
+            int innerChance,
+            int outerChance
+            // doesn't have corners inherently
+    ) {
+        return () -> {
+            for (int dx = -2; dx <= 2; dx++) {
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (dx == 0 && dz == 0) continue; // skip trunk
+
+                    int manhattan = Math.abs(dx) + Math.abs(dz);
+                    if (manhattan > 2) continue; // corners bye
+
+                    int curChance;
+                    if (manhattan == 1) {
+                        curChance = innerChance;
+                    } else if (manhattan == 2) {
+                        curChance = outerChance;
+                    } else {
+                        continue; // should never hit
+                    }
+
+                    if (random.nextInt(100) < curChance) {
+                        tryPlaceLeaf.accept(trunkPos.offset(dx, currentY.get(), dz), random);
+                    }
+                }
+            }
+        };
+    }
     public static LeafPlacer bigSplatDistributed(
             RandomSource random,
             BiConsumer<BlockPos, RandomSource> tryPlaceLeaf,

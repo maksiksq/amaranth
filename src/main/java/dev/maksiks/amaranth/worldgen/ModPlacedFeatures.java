@@ -33,6 +33,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> YELLOW_MIXED_OAK_TREE_PLACED_KEY = registerKey("yellow_mixed_oak_tree_placed");
     public static final ResourceKey<PlacedFeature> MIXED_OAK_PLACED_KEY = registerKey("mixed_oak_placed");
 
+    public static final ResourceKey<PlacedFeature> TRIMMED_TREE_PLACED_KEY = registerKey("trimmed_tree_placed");
     public static final ResourceKey<PlacedFeature> ORDERLY_FLOWER_PLACED_KEY = registerKey("orderly_flower_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -102,6 +103,12 @@ public class ModPlacedFeatures {
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
                         ModBlocks.PURPLE_MIXED_OAK_SAPLING.get()));
+
+        register(context, TRIMMED_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TRIMMED_TREE_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1F, 1),
+                        ModBlocks.TRIMMED_TREE_SAPLING.get()));
+
 
         // orderly
         register(context, ORDERLY_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ORDERLY_FLOWER_KEY),

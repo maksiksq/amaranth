@@ -7,6 +7,7 @@ import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.SilverBirchFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.TrimmedTreeFoliagePlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
 import net.minecraft.core.Direction;
@@ -208,7 +209,8 @@ public class ModConfiguredFeatures {
                 ModFeatures.DESOLATE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE);
 
         // mixed
-        register(context, PURPLE_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, PURPLE_MIXED_OAK_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 BlockStateProvider.simple(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get()),
@@ -216,7 +218,8 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 1)).build()
         );
 
-        register(context, RED_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, RED_MIXED_OAK_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 BlockStateProvider.simple(ModBlocks.RED_MIXED_OAK_LEAVES.get()),
@@ -224,7 +227,8 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 1)).build()
         );
 
-        register(context, YELLOW_MIXED_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, YELLOW_MIXED_OAK_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 BlockStateProvider.simple(ModBlocks.YELLOW_MIXED_OAK_LEAVES.get()),
@@ -246,7 +250,6 @@ public class ModConfiguredFeatures {
         );
 
         // orderly
-
         register(
                 context,
                 ORDERLY_FLOWER_KEY,
@@ -254,6 +257,18 @@ public class ModConfiguredFeatures {
                 new RandomPatchConfiguration(
                         130, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.ROSE_BUSH)))
                 )
+        );
+
+        register(
+                context,
+                TRIMMED_TREE_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.OAK_LOG),
+                        new StraightTrunkPlacer(6, 0, 0),
+                        BlockStateProvider.simple(Blocks.OAK_LEAVES),
+                        new TrimmedTreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
 

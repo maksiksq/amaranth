@@ -20,4 +20,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<SilverBirchFoliagePlacer>> SILVER_BIRCH_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("silver_birch_foliage_placer", () -> new FoliagePlacerType<>(SilverBirchFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<TrimmedTreeFoliagePlacer>> TRIMMED_TREE_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("trimmed_tree_foliage_placer", () -> new FoliagePlacerType<>(TrimmedTreeFoliagePlacer.CODEC));
 }

@@ -192,3 +192,7 @@
 -----------------------
 - [ ] holy cow (lmao)
 - [ ] infernal swine (*dies*)
+
+### thuja biome
+-----------------------
+- [ ] another orderly biome woa
