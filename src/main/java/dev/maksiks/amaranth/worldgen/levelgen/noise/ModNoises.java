@@ -13,10 +13,10 @@ public class ModNoises {
                     ResourceLocation.fromNamespaceAndPath("amaranth", "silver")
             );
 
-    public static final ResourceKey<NormalNoise.NoiseParameters> STRIPE_NOISE =
+    public static final ResourceKey<NormalNoise.NoiseParameters> STRIPE_ATTEMPT_NOISE =
             ResourceKey.create(
                     Registries.NOISE,
-                    ResourceLocation.fromNamespaceAndPath("amaranth", "stripe")
+                    ResourceLocation.fromNamespaceAndPath("amaranth", "stripe_attempt")
             );
 
 

@@ -113,7 +113,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(
-                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_NOISE, -0.88, 0.05),
+                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
                                                 LIME_TERRACOTTA
                                         )
                                 )
