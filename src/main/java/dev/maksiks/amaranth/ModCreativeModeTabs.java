@@ -1,7 +1,7 @@
-package dev.maksiks.amaranth.item;
+package dev.maksiks.amaranth;
 
-import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -42,6 +42,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
                         output.accept(ModBlocks.RED_MIXED_OAK_SAPLING);
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+                        output.accept(ModBlocks.TRIMMED_TREE_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);

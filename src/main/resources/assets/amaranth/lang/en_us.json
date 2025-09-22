@@ -45,5 +45,7 @@
 
   "block.amaranth.purple_mixed_oak_sapling": "Purple Mixed Oak Sapling",
   "block.amaranth.red_mixed_oak_sapling": "Red Mixed Oak Sapling",
-  "block.amaranth.yellow_mixed_oak_sapling": "Yellow Mixed Oak Sapling"
+  "block.amaranth.yellow_mixed_oak_sapling": "Yellow Mixed Oak Sapling",
+
+  "block.amaranth.trimmed_tree_sapling": "Trimmed Tree Sapling"
 }

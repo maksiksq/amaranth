@@ -14,7 +14,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -22,11 +21,9 @@ import net.minecraft.util.InclusiveRange;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -38,8 +35,6 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
-
-import static dev.maksiks.amaranth.worldgen.features.ModFeatures.DESOLATE_SPIKE;
 
 public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_KEY = registerKey("mystic");
@@ -59,6 +54,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> YELLOW_MIXED_OAK_KEY = registerKey("yellow_mixed_oak");
     public static ResourceKey<ConfiguredFeature<?, ?>> MIXED_OAK_KEY = registerKey("mixed_oak_key");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> TRIMMED_TREE_KEY = registerKey("trimmed_tree_key");
     public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_FLOWER_KEY = registerKey("orderly_flower_key");
 
 

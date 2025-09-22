@@ -40,6 +40,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
         splatBlockItem(ModBlocks.RED_MIXED_OAK_SAPLING);
         splatBlockItem(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+
+        // orderly oak sapling
+        splatBlockItem(ModBlocks.TRIMMED_TREE_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

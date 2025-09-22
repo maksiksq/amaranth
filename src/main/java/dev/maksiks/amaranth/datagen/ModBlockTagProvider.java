@@ -52,5 +52,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.PURPLE_MIXED_OAK_SAPLING.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.RED_MIXED_OAK_SAPLING.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.YELLOW_MIXED_OAK_SAPLING.get());
+
+        // orderly
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.TRIMMED_TREE_SAPLING.get());
     }
 }

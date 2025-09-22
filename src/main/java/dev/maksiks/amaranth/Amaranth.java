@@ -1,8 +1,6 @@
 package dev.maksiks.amaranth;
 
 import dev.maksiks.amaranth.block.ModBlocks;
-import dev.maksiks.amaranth.event.ModFogHandler;
-import dev.maksiks.amaranth.item.ModCreativeModeTabs;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.sound.ModSounds;

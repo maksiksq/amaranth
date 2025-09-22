@@ -117,6 +117,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PURPLE_MIXED_OAK_SAPLING.get());
         this.dropSelf(ModBlocks.RED_MIXED_OAK_SAPLING.get());
         this.dropSelf(ModBlocks.YELLOW_MIXED_OAK_SAPLING.get());
+
+        // orderly
+        this.dropSelf(ModBlocks.TRIMMED_TREE_SAPLING.get());
     }
 
     @Override

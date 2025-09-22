@@ -78,6 +78,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         saplingBlock(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
         saplingBlock(ModBlocks.RED_MIXED_OAK_SAPLING);
         saplingBlock(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+
+        // orderly
+        saplingBlock(ModBlocks.TRIMMED_TREE_SAPLING);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
