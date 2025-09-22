@@ -187,3 +187,8 @@
 -----------------------
 - [ ] trees on trees ha
 ![img_2.png](img_2.png)
+
+### sacred and evil biomes
+-----------------------
+- [ ] holy cow (lmao)
+- [ ] infernal swine (*dies*)

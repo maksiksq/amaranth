@@ -1,9 +1,11 @@
 package dev.maksiks.amaranth.worldgen.biome.surface;
 
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
+import dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 
@@ -22,6 +24,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource POWDER_SNOW = makeStateRule(Blocks.POWDER_SNOW);
     private static final SurfaceRules.RuleSource DIORITE = makeStateRule(Blocks.DIORITE);
     private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW);
+    private static final SurfaceRules.RuleSource LIME_TERRACOTTA = makeStateRule(Blocks.LIME_TERRACOTTA);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -103,6 +106,20 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
                                 SurfaceRules.sequence(SNOW_BLOCK))));
+
+        // orderly
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS),
+                SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_NOISE, -0.88, 0.05),
+                                                LIME_TERRACOTTA
+                                        )
+                                )
+                        )
+                )
+        ));
 
         // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurfaceAndStoneBelow));

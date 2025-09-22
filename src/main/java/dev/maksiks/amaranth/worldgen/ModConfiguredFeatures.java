@@ -59,6 +59,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> YELLOW_MIXED_OAK_KEY = registerKey("yellow_mixed_oak");
     public static ResourceKey<ConfiguredFeature<?, ?>> MIXED_OAK_KEY = registerKey("mixed_oak_key");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_FLOWER_KEY = registerKey("orderly_flower_key");
+
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -244,6 +246,17 @@ public class ModConfiguredFeatures {
                                 PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_MIXED_OAK_KEY)),
                                 PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModConfiguredFeatures.YELLOW_MIXED_OAK_KEY))
                         )
+                )
+        );
+
+        // orderly
+
+        register(
+                context,
+                ORDERLY_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        130, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.ROSE_BUSH)))
                 )
         );
     }
