@@ -255,7 +255,7 @@ public class ModConfiguredFeatures {
                 ORDERLY_FLOWER_KEY,
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
-                        130, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.ROSE_BUSH)))
+                        110, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.ROSE_BUSH)))
                 )
         );
 

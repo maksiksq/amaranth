@@ -21,4 +21,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> DESOLATE_SPIKE =
             FEATURES.register("desolate_spike",
                     () -> new DesolateSpike(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ORDERLY_COURTS_RUINS =
+            FEATURES.register("orderly_courts_ruins",
+                    () -> new OrderlyCourtsRuins(NoneFeatureConfiguration.CODEC));
 }

@@ -2,6 +2,7 @@
 - [ ] A MUSIC DISC
 - [ ] Completely unsolicited dani reference because i felt nostalgic
 - [ ] mc tree maker framework or something because it's kinda pain
+- [ ] framework for turn nbt into placed feature gen
 - [x] fix: deprecated petal cutout renderer
 - [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 - [ ] fix: maybe try fixing the grass color for silver birch again??
@@ -12,6 +13,12 @@
 - [x] add more creative mod tabs ; just sorted the one tab i have
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 //
+
+- [x] music
+-------------------------
+- compose some music for the trailer 
+- https://www.youtube.com/watch?v=srhTqupfGyQ 8:45 sounds like it'd fit really well maybe i could use it as inspiration
+--------------------
 
 - [x] Mystic biome
 -------------------------
@@ -181,7 +188,9 @@
 
 ### golf flats
 -----------------------
-- [ ] A flat biome with orderly trees like in that one world
+- [x] A flat biome with orderly trees like in that one world
+- [ ] less flat more terrain
+- [ ] fountain
 
 ### tree on tree forest
 -----------------------

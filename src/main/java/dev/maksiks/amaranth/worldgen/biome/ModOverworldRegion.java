@@ -136,7 +136,7 @@ public class ModOverworldRegion extends Region {
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.MIXED_WOODS));
 
-
+        // HAS VARIANT - CHANGE BOTH
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.5F, 0.4F))
@@ -156,6 +156,27 @@ public class ModOverworldRegion extends Region {
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.ORDERLY_COURTS));
+
+        // VARIANT
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(Climate.Parameter.span(-0.5F, 0.4F))
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.NEAR_INLAND,
+                        ParameterUtils.Continentalness.FAR_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_4,
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(Climate.Parameter.span(-0.25F, 0))
+                .weirdness(ParameterUtils.Weirdness.span(
+                                ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_VARIANT_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.ORDERLY_COURTS_RUINS));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);
