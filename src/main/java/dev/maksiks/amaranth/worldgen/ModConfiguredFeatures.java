@@ -53,10 +53,11 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> PURPLE_MIXED_OAK_KEY = registerKey("purple_mixed_oak");
     public static ResourceKey<ConfiguredFeature<?, ?>> RED_MIXED_OAK_KEY = registerKey("red_mixed_oak");
     public static ResourceKey<ConfiguredFeature<?, ?>> YELLOW_MIXED_OAK_KEY = registerKey("yellow_mixed_oak");
-    public static ResourceKey<ConfiguredFeature<?, ?>> MIXED_OAK_KEY = registerKey("mixed_oak_key");
+    public static ResourceKey<ConfiguredFeature<?, ?>> MIXED_OAK_KEY = registerKey("mixed_oak");
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> TRIMMED_TREE_KEY = registerKey("trimmed_tree_key");
-    public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_FLOWER_KEY = registerKey("orderly_flower_key");
+    public static ResourceKey<ConfiguredFeature<?, ?>> TRIMMED_TREE_KEY = registerKey("trimmed_tree");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_FLOWER_KEY = registerKey("orderly_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_COURTS_RUINS_KEY = registerKey("orderly_courts_ruins");
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -270,6 +271,10 @@ public class ModConfiguredFeatures {
                         new TrimmedTreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
         );
+
+        // orderly courts ruins
+        register(context, ORDERLY_COURTS_RUINS_KEY,
+                ModFeatures.ORDERLY_COURTS_RUINS.get(), NoneFeatureConfiguration.INSTANCE);
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "all": "amaranth:block/dark_silver_birch_leaves"
-  }
-}
