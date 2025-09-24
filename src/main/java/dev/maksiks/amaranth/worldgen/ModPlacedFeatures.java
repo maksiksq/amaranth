@@ -124,7 +124,8 @@ public class ModPlacedFeatures {
                         CountPlacement.of(1),
                         RarityFilter.onAverageOnceEvery(4),
                         InSquarePlacement.spread(),
-                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
                 )
         );
     }

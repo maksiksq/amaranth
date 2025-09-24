@@ -5,11 +5,15 @@ import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -84,6 +88,10 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level = context.level();
         BlockPos origin = context.origin();
 
+        if (!canPlaceStructureAt(level, origin)) {
+            return false;
+        }
+
         // roll 1
         StructureRarity rarity = StructureRarity.getRandomRarity(random);
 
@@ -136,6 +144,75 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
 
         BlockPos finalPos = template.getZeroPositionWithTransform(centeredPos, Mirror.NONE, rotation);
         template.placeInWorld(level, finalPos, finalPos, placeSettings, random, 4);
+
+        return true;
+    }
+
+    private static boolean canPlaceStructureAt(WorldGenLevel level, BlockPos pos) {
+        BlockPos surfacePos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
+
+        // above bow'lho'volher check
+        if (level.getFluidState(surfacePos).is(FluidTags.WATER) ||
+                level.getFluidState(surfacePos.above()).is(FluidTags.WATER)) {
+            return false;
+        }
+
+        // near bow'lho'volher check
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                BlockPos checkPos = surfacePos.offset(x, 0, z);
+                if (level.getFluidState(checkPos).is(FluidTags.WATER)) {
+                    return false;
+                }
+            }
+        }
+
+        // sea level and space check
+        int y = surfacePos.getY();
+        if (y < level.getSeaLevel() - 10 || y > level.getSeaLevel() + 100) {
+            return false;
+        }
+
+        // slope check
+        int minHeight = Integer.MAX_VALUE;
+        int maxHeight = Integer.MIN_VALUE;
+
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                BlockPos checkPos = pos.offset(x, 0, z);
+                int height = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, checkPos).getY();
+                minHeight = Math.min(minHeight, height);
+                maxHeight = Math.max(maxHeight, height);
+            }
+        }
+
+        // (arbitrary)
+        if (maxHeight - minHeight > 8) {
+            return false;
+        }
+
+        // above trees check
+        BlockState groundBlock = level.getBlockState(surfacePos.below());
+        if (!groundBlock.isSolid() || groundBlock.is(BlockTags.LEAVES)) {
+            return false;
+        }
+
+        // air above check
+        for (int i = 1; i <= 10; i++) {
+            BlockPos airPos = surfacePos.above(i);
+            BlockState state = level.getBlockState(airPos);
+            if (!state.isAir() && !state.is(BlockTags.REPLACEABLE)) {
+                return false;
+            }
+        }
+
+        // floatie check
+        for (int i = 1; i <= 3; i++) {
+            BlockPos belowPos = surfacePos.below(i);
+            if (level.getBlockState(belowPos).isAir()) {
+                return false;
+            }
+        }
 
         return true;
     }
