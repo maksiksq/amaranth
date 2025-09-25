@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.worldgen.features;
 import com.mojang.serialization.Codec;
 import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -86,8 +88,8 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_2"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_3"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_4"),
-            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_5"),
-            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_6"),
+            //
+            //
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_7"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_8"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_9"),
@@ -95,26 +97,24 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_11"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_12"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_13")
-            // ANGRY REMINDER MAKE A CHECK FOR IT IT NOT LOADS OR I"LL LOOSE ONE
     );
 
+    // i never ended up using these but i think they're just left as empties which is not bad either
     private static final List<ResourceLocation> UNCOMMON_STRUCTURES = List.of(
             //
     );
 
+    // i never ended up using these but they're just left as empties which is not bad either
     private static final List<ResourceLocation> RARE_STRUCTURES = List.of(
             //
     );
 
     private static final List<ResourceLocation> EPIC_STRUCTURES = List.of(
-            //
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_duck")
     );
 
-    private static final List<ResourceLocation> LEGENDARY_STRUCTURES = List.of(
-            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_duck"),
-            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_1"),
-            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_2")
-    );
+    // i never ended up using these but they're just left as empties which is not bad either
+    private static final List<ResourceLocation> LEGENDARY_STRUCTURES = List.of();
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
@@ -153,15 +153,26 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
     // the placer
     private boolean placeStructureTemplate(WorldGenLevel level, BlockPos origin, ResourceLocation structureLocation, RandomSource random) {
         StructureTemplateManager templateManager = level.getLevel().getServer().getStructureManager();
-
         StructureTemplate template = templateManager.getOrCreate(structureLocation);
 
         if (template.getSize().getX() == 0 || template.getSize().getZ() == 0) {
             Amaranth.LOGGER.error("Heat death of structure: {}", structureLocation);
+            return false;
         }
 
-        // randomly rotating because why not
         Rotation rotation = Rotation.getRandom(random);
+        Vec3i structureSize = template.getSize(rotation);
+        BlockPos centeredPos = origin.offset(-structureSize.getX() / 2, 0, -structureSize.getZ() / 2);
+        BlockPos finalPos = template.getZeroPositionWithTransform(centeredPos, Mirror.NONE, rotation);
+
+        // moving the fountains 1 block down because they're the only ones to generate with a base
+        if (structureLocation.equals(ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_fountain"))) {
+            finalPos = finalPos.below(1);
+        }
+
+        if (!hasValidFoundation(level, finalPos, structureSize)) {
+            return false;
+        }
 
         ChunkPos chunkPos = new ChunkPos(origin);
         BoundingBox boundingBox = new BoundingBox(
@@ -178,12 +189,30 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
                 .setBoundingBox(boundingBox)
                 .setRandom(random);
 
-        Vec3i structureSize = template.getSize(rotation);
-        BlockPos centeredPos = origin.offset(-structureSize.getX() / 2, 0, -structureSize.getZ() / 2);
-
-        BlockPos finalPos = template.getZeroPositionWithTransform(centeredPos, Mirror.NONE, rotation);
         template.placeInWorld(level, finalPos, finalPos, placeSettings, random, 4);
+        return true;
+    }
 
+    private boolean hasValidFoundation(WorldGenLevel level, BlockPos pos, Vec3i structureSize) {
+        for (int x = 0; x < structureSize.getX(); x++) {
+            for (int z = 0; z < structureSize.getZ(); z++) {
+                BlockPos checkPos = pos.offset(x, 0, z);
+                BlockPos groundPos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, checkPos);
+
+                // it's deprecated but i have 0 idea what to replace it with
+                BlockPos belowPos = groundPos.below();
+                BlockState groundBlock = level.getBlockState(belowPos);
+                if (!groundBlock.isFaceSturdy(level, belowPos, Direction.UP, SupportType.FULL)) {
+                    return false;
+                }
+
+                // a bit of variation is ok
+                int heightDiff = Math.abs(groundPos.getY() - pos.getY());
+                if (heightDiff > 3) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -207,6 +236,9 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
         }
 
         // sea level and space check
+
+        // .getSeaLevel() is deprecated but i have no idea what to replace it with
+        // maybe it's just a solid 63? Either way let it be for now
         int y = surfacePos.getY();
         if (y < level.getSeaLevel() - 10 || y > level.getSeaLevel() + 100) {
             return false;
@@ -231,8 +263,9 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
         }
 
         // above trees check
-        BlockState groundBlock = level.getBlockState(surfacePos.below());
-        if (!groundBlock.isSolid() || groundBlock.is(BlockTags.LEAVES)) {
+        BlockPos surfaceBelowPos = surfacePos.below();
+        BlockState groundBlock = level.getBlockState(surfaceBelowPos);
+        if (!groundBlock.isFaceSturdy(level, surfaceBelowPos, Direction.UP, SupportType.FULL) || groundBlock.is(BlockTags.LEAVES)) {
             return false;
         }
 

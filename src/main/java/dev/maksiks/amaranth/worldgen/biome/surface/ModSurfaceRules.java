@@ -120,6 +120,18 @@ public class ModSurfaceRules {
                         )
                 )
         ));
+        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS_RUINS),
+                SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
+                                                LIME_TERRACOTTA
+                                        )
+                                )
+                        )
+                )
+        ));
 
         // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurfaceAndStoneBelow));
