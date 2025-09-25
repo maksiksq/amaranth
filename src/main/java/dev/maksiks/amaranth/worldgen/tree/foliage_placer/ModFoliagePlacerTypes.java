@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.worldgen.tree.foliage_placer;
 
 import dev.maksiks.amaranth.Amaranth;
 
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.TreeOnTreeTreeTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,4 +24,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<TrimmedTreeFoliagePlacer>> TRIMMED_TREE_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("trimmed_tree_foliage_placer", () -> new FoliagePlacerType<>(TrimmedTreeFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<TreeOnTreeTreeFoliagePlacer>> TREE_ON_TREE_TREE_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("tree_on_tree_tree_foliage_placer", () -> new FoliagePlacerType<>(TreeOnTreeTreeFoliagePlacer.CODEC));
 }

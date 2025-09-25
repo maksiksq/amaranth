@@ -28,6 +28,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> MIXED_WOODS = register("mixed_woods");
     public static final ResourceKey<Biome> ORDERLY_COURTS = register("orderly_courts");
     public static final ResourceKey<Biome> ORDERLY_COURTS_RUINS = register("orderly_courts_ruins");
+    public static final ResourceKey<Biome> TREE_ON_TREE_FOREST = register("tree_on_tree_forest");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -51,6 +52,7 @@ public class ModBiomes {
         context.register(MIXED_WOODS, mixedWoods(context));
         context.register(ORDERLY_COURTS, orderlyCourts(context));
         context.register(ORDERLY_COURTS_RUINS, orderlyCourtsRuins(context));
+        context.register(TREE_ON_TREE_FOREST, treeOnTreeForest(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -339,7 +341,6 @@ public class ModBiomes {
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xA0D446)
-//                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
                         .foliageColorOverride(0x6EDE0D)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
@@ -381,8 +382,47 @@ public class ModBiomes {
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xA0D446)
-//                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
                         .foliageColorOverride(0x6EDE0D)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // tree on tree
+    public static Biome treeOnTreeForest(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.FOREST_FLOWERS);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.TREE_ON_TREE_TREE_PLACED_KEY);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x66CC1F)
+                        .foliageColorOverride(0x66CC1F)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())

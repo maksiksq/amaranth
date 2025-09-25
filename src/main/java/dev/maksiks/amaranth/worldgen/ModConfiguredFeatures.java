@@ -4,12 +4,10 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.MysticFoliagePlacer;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.SilverBirchFoliagePlacer;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.StubbyFoliagePlacer;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.TrimmedTreeFoliagePlacer;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.*;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.TreeOnTreeTreeTrunkPlacer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -59,10 +57,10 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_FLOWER_KEY = registerKey("orderly_flower");
     public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_COURTS_RUINS_KEY = registerKey("orderly_courts_ruins");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> TREE_ON_TREE_TREE_KEY = registerKey("tree_on_tree_tree");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-        HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 
         // mystic
         register(context, MYSTIC_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -275,6 +273,17 @@ public class ModConfiguredFeatures {
         // orderly courts ruins
         register(context, ORDERLY_COURTS_RUINS_KEY,
                 ModFeatures.ORDERLY_COURTS_RUINS.get(), NoneFeatureConfiguration.INSTANCE);
+
+        // tree on tree
+//         copy of purple mixed tree rn
+        register(context, TREE_ON_TREE_TREE_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.OAK_LOG),
+                        new TreeOnTreeTreeTrunkPlacer(4, 2, 0),
+                        BlockStateProvider.simple(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get()),
+                        new TreeOnTreeTreeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

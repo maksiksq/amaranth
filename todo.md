@@ -1,22 +1,24 @@
 //
 - [ ] A MUSIC DISC
 - [ ] Completely unsolicited dani reference because i felt nostalgic
+- 
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] framework for turn nbt into placed feature gen
+
 - [x] fix: deprecated petal cutout renderer
 - [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 - [ ] fix: maybe try fixing the grass color for silver birch again??
-- [ ] i think you can manipulate biome rarity with custom regions rather than the overworld
 - [x] fix: silver birch has grass inside
-- [ ] fix: use a placed feature instead of a structure because why again
-- [ ] do more complex biomes with a custom biome source
+- [x] fix: use a placed feature instead of a structure because why again
 - [x] add more creative mod tabs ; just sorted the one tab i have
+
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
-//
+
+- //
 
 - [x] music
 -------------------------
-- compose some music for the trailer 
+- [x] compose some music for the trailer 
 - https://www.youtube.com/watch?v=srhTqupfGyQ 8:45 sounds like it'd fit really well maybe i could use it as inspiration
 --------------------
 
@@ -25,7 +27,6 @@
 - [x] Arcane Hysteria tree. And some sorta mystic biome. The vibe is kind of eerie, unsettling. "Some say the souls still scream even when sawed into planks. This is, of course, untrue! *Probably*."
 - [ ] Implement bushes 
 - [ ] Wizard tower as a structure
-- [ ] ask miwa to make concepts?
 - [ ] make hexfruit modify the player's health instead of an effect ; or a custom effect, makes more sense because it has a timer ; actually vanilla does 2 hearts if you don't pass an amplifier already, convenient ; still would be cool as a custom effect to stack with other mods
 - [x] brush up door texture
 - [x] make amethysts spawn on the ground
@@ -63,7 +64,7 @@
 -------------------------
 
 - [ ] something very dead
-- [ ] something not very dead
+- [x] something not very dead
 - 
 -------------------------
 
@@ -108,11 +109,11 @@
 
 -------------------------
 
-### ROSE FOREST
+~~### ROSE FOREST~~
 
 -------------------------
 
-- [ ] like that one park Harun and Burzo made
+~~- [ ] like that one park Harun and Burzo made~~ ; did orderly ruins instead
 
 -------------------------
 
@@ -166,13 +167,14 @@
 - [ ] maybe: I could make the wind direction server side so it can be synced between people but kind too minor of a thing
 - [ ] maybe fix: technically it never actually snows with snow layers which is kinda lame but also whatever
 - [ ] maybe fix: place snow layers on top of powdered snow
-
+- [ ] shaders eat fog
+- [ ] make for configurable
 -------------------------
 
 
 ### Biome with mixed trees
 -----------------------
-- [ ] mixed forest of different trees, red, green, greener, yellow, idk
+- [x] mixed forest of different trees, red, green, greener, yellow, idk
 
 ### Some sort of island biome
 -----------------------
@@ -189,19 +191,37 @@
 ### golf flats
 -----------------------
 - [x] A flat biome with orderly trees like in that one world
-- [ ] less flat more terrain
-- [ ] fountain
+- [x] less flat more terrain
+- [x] fountain
+- [x] structures
+- [x] variants
 
 ### tree on tree forest
 -----------------------
-- [ ] trees on trees ha
+- [x] trees on trees ha
+- [ ] make it very rare
+- [ ] make it more like the dev screenshot and less intentional
 ![img_2.png](img_2.png)
 
 ### sacred and evil biomes
 -----------------------
 - [ ] holy cow (lmao)
 - [ ] infernal swine (*dies*)
+-----------------------
 
 ### thuja biome
 -----------------------
 - [ ] another orderly biome woa
+-----------------------
+
+### mushrooms
+-----------------------
+- [ ] shrooms
+- [ ] shroom boi mob
+-----------------------
+
+### yooo smth like that taumcraft biome
+-----------------------
+- [ ] that's an idea
+- [ ] corruption
+-----------------------

@@ -37,6 +37,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ORDERLY_FLOWER_PLACED_KEY = registerKey("orderly_flower_placed");
     public static final ResourceKey<PlacedFeature> ORDERLY_COURTS_RUINS_PLACED_KEY = registerKey("orderly_courts_ruins_placed");
 
+    public static final ResourceKey<PlacedFeature> TREE_ON_TREE_TREE_PLACED_KEY = registerKey("tree_on_tree_tree_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -128,6 +130,12 @@ public class ModPlacedFeatures {
                         BiomeFilter.biome()
                 )
         );
+
+        // tree on tree
+        register(context, TREE_ON_TREE_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TREE_ON_TREE_TREE_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(100, 0.1F, 1),
+                        ModBlocks.PURPLE_MIXED_OAK_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
