@@ -33,11 +33,11 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
     // Chance = tier's chance - last one
     // also im one step away from making a gacha game again help
     private enum StructureRarity {
-        COMMON(1),
-        UNCOMMON(2),
-        RARE(3),
-        EPIC(4),
-        LEGENDARY(90);
+        COMMON(55),
+        UNCOMMON(20),
+        RARE(15),
+        EPIC(9),
+        LEGENDARY(1);
 
         private final int cumulativeWeight;
 
@@ -58,10 +58,44 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
 
     // Structure lists for each rarity tier
     private static final List<ResourceLocation> COMMON_STRUCTURES = List.of(
-            // TODO: Add your common structure NBT file locations
-            // ResourceLocation.fromNamespaceAndPath("amaranth", "structures/common_pile"),
-            // ResourceLocation.fromNamespaceAndPath("amaranth", "structures/common_rock"),
-            // ResourceLocation.fromNamespaceAndPath("amaranth", "structures/common_shrine")
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_arch_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_arch_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_fountain"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_lunch_table_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_lunch_table_3"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_3"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_4"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_5"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_6"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_build_7"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_fallen_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_fallen_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_fallen_3"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_fallen_4"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_fallen_5"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_pillar_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_pillar_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_pillar_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_pillar_3"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_pillar_4"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_ruined_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_pillar_ruined_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_1"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_2"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_3"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_4"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_5"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_6"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_7"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_8"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_9"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_10"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_11"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_12"),
+            ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_thin_pillar_13")
+            // ANGRY REMINDER MAKE A CHECK FOR IT IT NOT LOADS OR I"LL LOOSE ONE
     );
 
     private static final List<ResourceLocation> UNCOMMON_STRUCTURES = List.of(
@@ -121,6 +155,11 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
         StructureTemplateManager templateManager = level.getLevel().getServer().getStructureManager();
 
         StructureTemplate template = templateManager.getOrCreate(structureLocation);
+
+        if (template.getSize().getX() == 0 || template.getSize().getZ() == 0) {
+            Amaranth.LOGGER.error("Heat death of structure: {}", structureLocation);
+        }
+
         // randomly rotating because why not
         Rotation rotation = Rotation.getRandom(random);
 
