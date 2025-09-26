@@ -26,6 +26,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW);
     private static final SurfaceRules.RuleSource LIME_TERRACOTTA = makeStateRule(Blocks.LIME_TERRACOTTA);
     private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
+    private static final SurfaceRules.RuleSource MYCELIUM = makeStateRule(Blocks.MYCELIUM);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -106,17 +107,15 @@ public class ModSurfaceRules {
         rules.add(
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                                SurfaceRules.sequence(SNOW_BLOCK))));
+                                SNOW_BLOCK)));
 
         // orderly
         rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS),
                 SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                                SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
-                                                LIME_TERRACOTTA
-                                        )
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
+                                        LIME_TERRACOTTA
                                 )
                         )
                 )
@@ -135,8 +134,37 @@ public class ModSurfaceRules {
                 )
         ));
 
+        // shroomlands
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS),
+                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                        ),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)
+                                        ),
+
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.UNDER_FLOOR,
+                                                DIRT
+                                        ),
+
+                                        STONE
+                                ))));
+
         // Default to a grass and dirt surface
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)), grassSurfaceAndStoneBelow));
+        rules.add(SurfaceRules.ifTrue(
+                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS)),
+                                grassSurfaceAndStoneBelow
+                        )
+                )
+        );
 
         return SurfaceRules.sequence(
                 rules.toArray(SurfaceRules.RuleSource[]::new)

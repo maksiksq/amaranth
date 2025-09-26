@@ -217,10 +217,10 @@
 ### mushrooms
 -----------------------
 - [ ] shrooms
-- [ ] shroom boi mob
+- [ ] shroom boi mob dunmeshi mushrooms n stuff
 -----------------------
 
-### yooo smth like that taumcraft biome
+### yooo smth like that thaumcraft biome
 -----------------------
 - [ ] that's an idea
 - [ ] corruption

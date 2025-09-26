@@ -198,6 +198,24 @@ public class ModOverworldRegion extends Region {
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.TREE_ON_TREE_FOREST));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(Climate.Parameter.span(-0.4F, 0.4F))
+                .continentalness(ParameterUtils.Continentalness.NEAR_INLAND)
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_4,
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(Climate.Parameter.span(-0.25F, 0))
+                .weirdness(ParameterUtils.Weirdness.span(
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.SHROOMLANDS));
+
         // Add our points to the mapper
         builder.build().forEach(mapper);
     }
