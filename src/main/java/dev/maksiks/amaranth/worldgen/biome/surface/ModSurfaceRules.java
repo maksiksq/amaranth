@@ -27,6 +27,11 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource LIME_TERRACOTTA = makeStateRule(Blocks.LIME_TERRACOTTA);
     private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
     private static final SurfaceRules.RuleSource MYCELIUM = makeStateRule(Blocks.MYCELIUM);
+    private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
+    private static final SurfaceRules.RuleSource DEAD_TUBE_CORAL_BLOCK = makeStateRule(Blocks.DEAD_TUBE_CORAL_BLOCK);
+    private static final SurfaceRules.RuleSource DEAD_BRAIN_CORAL_BLOCK = makeStateRule(Blocks.DEAD_BRAIN_CORAL_BLOCK);
+    private static final SurfaceRules.RuleSource DEAD_BUBBLE_CORAL_BLOCK = makeStateRule(Blocks.DEAD_BUBBLE_CORAL_BLOCK);
+    private static final SurfaceRules.RuleSource SUSPICIOUS_GRAVEL = makeStateRule(Blocks.SUSPICIOUS_GRAVEL);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -156,12 +161,78 @@ public class ModSurfaceRules {
                                         STONE
                                 ))));
 
+        // dusty
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.2D, 0.2D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BUBBLE_CORAL_BLOCK)
+                                )
+                        ))
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.24D, 0.24D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BRAIN_CORAL_BLOCK)
+                                )
+                        ))
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.28D, 0.28D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_TUBE_CORAL_BLOCK)
+                                )
+                        ))
+        );
+
+        // no these do not contain anything im just being evil and they look cool
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.30D, 0.30D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SUSPICIOUS_GRAVEL)
+                                )
+                        ))
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRAVEL)
+                                        ),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.UNDER_FLOOR,
+                                                GRAVEL
+                                        ),
+
+                                        STONE
+                                ))));
+
+
         // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(
                         SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)),
                         SurfaceRules.ifTrue(
                                 SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS)),
-                                grassSurfaceAndStoneBelow
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS)),
+                                        grassSurfaceAndStoneBelow
+                                )
                         )
                 )
         );

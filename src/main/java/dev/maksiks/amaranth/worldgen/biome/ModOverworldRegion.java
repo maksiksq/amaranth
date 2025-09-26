@@ -115,7 +115,6 @@ public class ModOverworldRegion extends Region {
                 .depth(Climate.Parameter.span(-0.25F, 0))
                 .build().forEach(point -> builder.add(point, ModBiomes.DESOLATE_ICE_FIELDS));
 
-
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.2F))
@@ -215,6 +214,28 @@ public class ModOverworldRegion extends Region {
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.SHROOMLANDS));
+
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(Climate.Parameter.span(-0.1F, 0.6F))
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.NEAR_INLAND,
+                        ParameterUtils.Continentalness.MID_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_2,
+                        ParameterUtils.Erosion.EROSION_4
+                ))
+
+                .depth(Climate.Parameter.span(-0.25F, 0))
+                .weirdness(ParameterUtils.Weirdness.span(
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.DUSTY_FLATS));
+
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

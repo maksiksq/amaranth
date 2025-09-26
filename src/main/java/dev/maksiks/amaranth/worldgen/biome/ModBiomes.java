@@ -30,6 +30,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ORDERLY_COURTS_RUINS = register("orderly_courts_ruins");
     public static final ResourceKey<Biome> TREE_ON_TREE_FOREST = register("tree_on_tree_forest");
     public static final ResourceKey<Biome> SHROOMLANDS = register("shroomlands");
+    public static final ResourceKey<Biome> DUSTY_FLATS = register("dusty_flats");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -55,6 +56,7 @@ public class ModBiomes {
         context.register(ORDERLY_COURTS_RUINS, orderlyCourtsRuins(context));
         context.register(TREE_ON_TREE_FOREST, treeOnTreeForest(context));
         context.register(SHROOMLANDS, shroomlands(context));
+        context.register(DUSTY_FLATS, dustyFlats(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -293,7 +295,7 @@ public class ModBiomes {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
-                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .temperature(0.6F)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -301,7 +303,6 @@ public class ModBiomes {
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x7fdb3d)
-//                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
                         .foliageColorOverride(0x59AE30)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
@@ -335,7 +336,7 @@ public class ModBiomes {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
-                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .temperature(0.6F)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -376,7 +377,7 @@ public class ModBiomes {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
-                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .temperature(0.6F)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -416,7 +417,7 @@ public class ModBiomes {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
-                .temperature(ParameterUtils.Temperature.COOL.ordinal())
+                .temperature(0.6F)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -465,6 +466,43 @@ public class ModBiomes {
                         .skyColor(7972607)
                         .grassColorOverride(0xb791cc)
                         .foliageColorOverride(0xb791cc)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // dusty
+    public static Biome dustyFlats(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+
+        // dead corals mayb?
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(0.6F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x6b6b6b)
+                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
+                        .foliageColorOverride(0x6b6b6b)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())

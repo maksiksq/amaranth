@@ -218,6 +218,7 @@
 -----------------------
 - [ ] shrooms
 - [ ] shroom boi mob dunmeshi mushrooms n stuff
+- [ ] shroom jigsaw
 -----------------------
 
 ### yooo smth like that thaumcraft biome
@@ -225,3 +226,13 @@
 - [ ] that's an idea
 - [ ] corruption
 -----------------------
+
+### Dusty gravely biome
+-----------------------
+- [ ] concrete go brrr
+----------------------
+
+### Firefly esc biome
+-----------------------
+- [ ] eg like that one led strip in my garden 
+----------------------
