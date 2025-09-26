@@ -25,6 +25,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIORITE = makeStateRule(Blocks.DIORITE);
     private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW);
     private static final SurfaceRules.RuleSource LIME_TERRACOTTA = makeStateRule(Blocks.LIME_TERRACOTTA);
+    private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -120,6 +121,7 @@ public class ModSurfaceRules {
                         )
                 )
         ));
+        // orderly ruins
         rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS_RUINS),
                 SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,

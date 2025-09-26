@@ -12,6 +12,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
+import static dev.maksiks.amaranth.ClientConfig.HIDE_DESOLATE_ICE_FIELDS_FOG;
+
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
 public class ModFogHandler {
     private static float currentRed = 1f, currentGreen = 1f, currentBlue = 1f;
@@ -78,6 +80,7 @@ public class ModFogHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onFogRender(ViewportEvent.RenderFog event) {
+        if (HIDE_DESOLATE_ICE_FIELDS_FOG.getAsBoolean()) return;
         if (event.isCanceled()) return;
 
         Minecraft mc = Minecraft.getInstance();
