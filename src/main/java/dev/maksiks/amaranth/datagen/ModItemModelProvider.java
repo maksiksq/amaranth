@@ -43,7 +43,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // orderly oak sapling
         splatBlockItem(ModBlocks.TRIMMED_TREE_SAPLING);
+
+        withExistingParent(ModItems.SHROOM_BOI_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
+
+
 
     private void splatBlockItem(DeferredBlock<Block> item) {
         withExistingParent(item.getId().getPath(),

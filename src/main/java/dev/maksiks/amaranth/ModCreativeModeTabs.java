@@ -26,6 +26,9 @@ public class ModCreativeModeTabs {
                         // fruit
                         output.accept(ModItems.HEXFRUIT);
 
+                        // spawn eggs
+                        output.accept(ModItems.SHROOM_BOI_SPAWN_EGG);
+
                         // leaves
                         output.accept(ModBlocks.MYSTIC_LEAVES);
                         output.accept(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);

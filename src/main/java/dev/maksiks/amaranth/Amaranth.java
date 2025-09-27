@@ -1,6 +1,8 @@
 package dev.maksiks.amaranth;
 
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.entity.ModEntities;
+import dev.maksiks.amaranth.entity.client.ShroomBoiRenderer;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.sound.ModSounds;
@@ -9,7 +11,12 @@ import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.ModTrunkPlacerTypes;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -50,6 +57,7 @@ public class Amaranth {
         ModParticles.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
 
         ModTerrablender.registerBiomes();
 
@@ -74,6 +82,10 @@ public class Amaranth {
             event.accept(ModItems.BEANIE_BLOB);
         }
 
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.SHROOM_BOI_SPAWN_EGG);
+        }
+
         // not putting much stuff into vanilla tabs because you can just find it in the mod tab
         // and thus less thinking for me
 
@@ -87,5 +99,13 @@ public class Amaranth {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @EventBusSubscriber(modid = Amaranth.MOD_ID, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.SHROOM_BOI.get(), ShroomBoiRenderer::new);
+        }
     }
 }

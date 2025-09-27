@@ -219,6 +219,10 @@
 - [ ] shrooms
 - [ ] shroom boi mob dunmeshi mushrooms n stuff
 - [ ] shroom jigsaw
+- [ ] make children edible
+- [ ] make hangies random
+- [ ] z fighting like this
+- [ ] leg pixel wrong
 -----------------------
 
 ### yooo smth like that thaumcraft biome
@@ -235,4 +239,9 @@
 ### Firefly esc biome
 -----------------------
 - [ ] eg like that one led strip in my garden 
+----------------------
+
+### Mountainous forest
+-----------------------
+- [ ] just that's it 
 ----------------------

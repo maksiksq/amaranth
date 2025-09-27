@@ -1,11 +1,13 @@
 package dev.maksiks.amaranth.item;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.entity.ModEntities;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -26,6 +28,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HEXFRUIT = ITEMS.register("hexfruit",
             () -> new Item(new Item.Properties().food(ModFoodProperties.HEXFRUIT)));
+
+    public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = ITEMS.register("shroom_boi_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xff3333, 0xf2f2f2,
+                    new Item.Properties()));
 
 
 

@@ -7,6 +7,8 @@
   "item.amaranth.beanie_blob": "Beanie Blob",
   "item.amaranth.hexfruit": "Hexfruit",
 
+  "item.amaranth.shroom_boi_spawn_egg": "Shroom Boi Spawn Egg",
+
   "block.amaranth.mystic_leaves": "Mystic Leaves",
   "block.amaranth.mystic_log": "Mystic Log",
   "block.amaranth.stripped_mystic_log": "Stripped Mystic Log",
@@ -47,5 +49,7 @@
   "block.amaranth.red_mixed_oak_sapling": "Red Mixed Oak Sapling",
   "block.amaranth.yellow_mixed_oak_sapling": "Yellow Mixed Oak Sapling",
 
-  "block.amaranth.trimmed_tree_sapling": "Trimmed Tree Sapling"
+  "block.amaranth.trimmed_tree_sapling": "Trimmed Tree Sapling",
+
+  "entity.amaranth.shroom_boi": "Shroom Boi"
 }
