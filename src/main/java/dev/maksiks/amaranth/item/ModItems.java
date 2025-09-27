@@ -30,7 +30,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.HEXFRUIT)));
 
     public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = ITEMS.register("shroom_boi_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xff3333, 0xf2f2f2,
+            () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xf75d57, 0xf1f1f1,
                     new Item.Properties()));
 
 

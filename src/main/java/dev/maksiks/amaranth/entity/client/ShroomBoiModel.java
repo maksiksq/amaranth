@@ -121,9 +121,10 @@ public class ShroomBoiModel<T extends ShroomBoiEntity> extends HierarchicalModel
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
+
     private void applyHeadRotation(float headYaw, float headPitch) {
-        headYaw = Mth.clamp(headYaw, -30f, 30f);
-        headPitch = Mth.clamp(headPitch, -25f, 45);
+        headYaw = Mth.clamp(headYaw, -20f, 20f);
+        headPitch = Mth.clamp(headPitch, -15f, 20f);
 
         this.hatangietorso.yRot = headYaw * ((float)Math.PI / 180f);
         this.hatangietorso.xRot = headPitch *  ((float)Math.PI / 180f);

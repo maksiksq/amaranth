@@ -217,12 +217,14 @@
 ### mushrooms
 -----------------------
 - [ ] shrooms
-- [ ] shroom boi mob dunmeshi mushrooms n stuff
+- [x] shroom boi mob dunmeshi mushrooms n stuff
 - [ ] shroom jigsaw
 - [ ] make children edible
 - [ ] make hangies random
-- [ ] z fighting like this
-- [ ] leg pixel wrong
+- [x] z fighting ; it was actually having 2 colors on the same plane
+- [x] leg pixel wrong
+- [ ] maybe add brown variant in the future
+- [x] head rotates too much
 -----------------------
 
 ### yooo smth like that thaumcraft biome
