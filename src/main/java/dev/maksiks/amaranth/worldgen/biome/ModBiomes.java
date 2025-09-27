@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
 import net.minecraft.core.registries.Registries;
@@ -438,6 +439,7 @@ public class ModBiomes {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.mooshroomSpawns(spawnBuilder);
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.SHROOM_BOI.get(), 5, 4, 4));
 
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));

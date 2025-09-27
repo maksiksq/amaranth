@@ -220,6 +220,8 @@
 - [x] shroom boi mob dunmeshi mushrooms n stuff
 - [ ] shroom jigsaw
 - [ ] make children edible
+- [ ] make shroom boi tameable 
+- [x] make shroom boi spawn in shroomlands 
 - [ ] make hangies random
 - [x] z fighting ; it was actually having 2 colors on the same plane
 - [x] leg pixel wrong
