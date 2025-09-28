@@ -249,3 +249,14 @@
 -----------------------
 - [ ] just that's it 
 ----------------------
+
+### Moss
+-----------------------
+- [ ] mossy as hell forest and flat 
+- [ ] make a loss structure that kind of blends in with the terrain but you wont miss it 
+----------------------
+
+### Druid forest
+-----------------------
+- [ ] loore 
+----------------------

@@ -146,7 +146,7 @@ public class ModSurfaceRules {
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(
                                                 SurfaceRules.ON_FLOOR,
-                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)
                                         ),
                                         SurfaceRules.ifTrue(
                                                 SurfaceRules.ON_FLOOR,

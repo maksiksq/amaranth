@@ -16,8 +16,8 @@ public class ModEntities {
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Amaranth.MOD_ID);
 
     public static final Supplier<EntityType<ShroomBoiEntity>> SHROOM_BOI =
-        ENTITY_TYPES.register("shroom_boi", () -> EntityType.Builder.of(ShroomBoiEntity::new, MobCategory.CREATURE)
-                .sized(0.25f, 0.5f).build(Amaranth.MOD_ID + ":shroom_boi"));
+            ENTITY_TYPES.register("shroom_boi", () -> EntityType.Builder.of(ShroomBoiEntity::new, MobCategory.MONSTER)
+                    .sized(0.25f, 0.5f).build(Amaranth.MOD_ID + ":shroom_boi"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

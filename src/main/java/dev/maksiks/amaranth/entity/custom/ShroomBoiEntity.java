@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.entity.custom;
 
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.item.ModItems;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -145,7 +147,7 @@ public class ShroomBoiEntity extends Animal {
                 double y = this.getY() + this.random.nextDouble() * this.getBbHeight();
                 double z = this.getZ() + (this.random.nextDouble() - 0.5) * this.getBbWidth();
 
-                serverLevel.sendParticles(ParticleTypes.EFFECT,
+                serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.MUSHROOM_STEM.defaultBlockState()),
                         x, y, z, 1,
                         (this.random.nextDouble() - 0.5) * 0.1,
                         this.random.nextDouble() * 0.1,
@@ -165,7 +167,7 @@ public class ShroomBoiEntity extends Animal {
             this.playSound(SoundEvents.PLAYER_BURP, 1.0F, 1.0F);
 
             if (this.level() instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(ParticleTypes.EFFECT,
+                serverLevel.sendParticles(        new BlockParticleOption(ParticleTypes.BLOCK, Blocks.MUSHROOM_STEM.defaultBlockState()),
                         this.getX(), this.getY() + this.getBbHeight() * 0.5, this.getZ(),
                         15, 0.3, 0.3, 0.3, 0.1);
             }
