@@ -11,6 +11,7 @@
 - [x] fix: silver birch has grass inside
 - [x] fix: use a placed feature instead of a structure because why again
 - [x] add more creative mod tabs ; just sorted the one tab i have
+- [x] fix: fountains generate with grass corners
 
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 
