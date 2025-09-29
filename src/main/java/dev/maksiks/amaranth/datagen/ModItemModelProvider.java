@@ -17,6 +17,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        // misc
+        basicItem(ModItems.PALETTE_OVERLOAD_MUSIC_DISC.get());
+
         // mystic
         basicItem(ModItems.MAFIA_BLOB.get());
         basicItem(ModItems.BEANIE_BLOB.get());

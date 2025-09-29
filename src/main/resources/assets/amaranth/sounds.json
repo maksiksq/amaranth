@@ -4,5 +4,13 @@
     "sounds": [
       "amaranth:arctic_wind_throngled"
     ]
+  },
+  "palette_overload": {
+    "sounds": [
+      {
+        "name": "amaranth:palette_overload",
+        "stream": true
+      }
+    ]
   }
 }

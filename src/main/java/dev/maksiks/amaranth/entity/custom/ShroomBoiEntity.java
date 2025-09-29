@@ -18,6 +18,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -63,7 +64,7 @@ public class ShroomBoiEntity extends Animal {
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(ModItems.HEXFRUIT.get());
+        return stack.is(Items.ROTTEN_FLESH);
     }
 
     @Override

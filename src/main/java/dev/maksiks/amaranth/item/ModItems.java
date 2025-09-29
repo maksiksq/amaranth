@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.item;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
+import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +34,9 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xf75d57, 0xf1f1f1,
                     new Item.Properties()));
 
-
+    // discs
+    public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

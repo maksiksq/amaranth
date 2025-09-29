@@ -3,8 +3,12 @@ package dev.maksiks.amaranth.sound;
 import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.JukeboxSong;
+import net.minecraft.world.level.block.JukeboxBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -21,6 +25,13 @@ public class ModSounds {
                 BuiltInRegistries.SOUND_EVENT.getResourceKey(supplier.get())
                         .orElseThrow()
         );
+    }
+
+    public static final Supplier<SoundEvent> PALETTE_OVERLOAD = registerSoundEvent("palette_overload");
+    public static final ResourceKey<JukeboxSong> PALETTE_OVERLOAD_KEY = createSong("palette_overload");
+
+    private static ResourceKey<JukeboxSong> createSong(String name) {
+        return ResourceKey.create(Registries.JUKEBOX_SONG, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name));
     }
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {

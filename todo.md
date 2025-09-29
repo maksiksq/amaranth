@@ -261,3 +261,9 @@
 -----------------------
 - [ ] loore 
 ----------------------
+
+### That irl forest i was in
+-----------------------
+- [ ] tree, i wrote it down, right? 
+- [ ] not dense leafage
+----------------------

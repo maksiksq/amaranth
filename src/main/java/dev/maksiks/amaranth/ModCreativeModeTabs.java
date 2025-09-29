@@ -73,6 +73,9 @@ public class ModCreativeModeTabs {
                         // rocks
                         output.accept(ModBlocks.SORROW_ICE);
                         output.accept(ModBlocks.REMNANT_SORROW_ICE);
+
+                        // music discs
+                        output.accept(ModItems.PALETTE_OVERLOAD_MUSIC_DISC);
                     }).build());
 
     // can't forget
