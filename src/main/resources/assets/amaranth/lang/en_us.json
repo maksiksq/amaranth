@@ -54,5 +54,25 @@
 
   "block.amaranth.trimmed_tree_sapling": "Trimmed Tree Sapling",
 
-  "entity.amaranth.shroom_boi": "Shroom Boi"
+  "block.amaranth.anthocyanin_leaves": "Anthocyanin Leaves",
+  "block.amaranth.anthocyanin_log": "Anthocyanin Log",
+  "block.amaranth.stripped_anthocyanin_log": "Stripped Anthocyanin Log",
+  "block.amaranth.anthocyanin_planks": "Anthocyanin Planks",
+  "block.amaranth.anthocyanin_wood": "Anthocyanin Wood",
+  "block.amaranth.stripped_anthocyanin_wood": "Stripped Anthocyanin Wood",
+  "block.amaranth.anthocyanin_sapling": "Anthocyanin Sapling",
+
+  "block.amaranth.anthocyanin_stairs": "Anthocyanin Stairs",
+  "block.amaranth.anthocyanin_slab": "Anthocyanin Slab",
+
+  "block.amaranth.anthocyanin_button": "Anthocyanin Button",
+  "block.amaranth.anthocyanin_pressure_plate": "Anthocyanin Pressure Plate",
+
+  "block.amaranth.anthocyanin_fence": "Anthocyanin Fence",
+  "block.amaranth.anthocyanin_fence_gate": "Anthocyanin Fence Gate",
+
+  "block.amaranth.anthocyanin_door": "Anthocyanin Door",
+  "block.amaranth.anthocyanin_trapdoor": "Anthocyanin Trapdoor",
+
+  "entity.amaranth.shroom_boi": "Shroom Boi",
 }

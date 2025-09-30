@@ -81,6 +81,42 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // orderly
         saplingBlock(ModBlocks.TRIMMED_TREE_SAPLING);
+
+        // anthocyanin
+        logBlock(((RotatedPillarBlock) ModBlocks.ANTHOCYANIN_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.ANTHOCYANIN_WOOD.get()), blockTexture(ModBlocks.ANTHOCYANIN_LOG.get()), blockTexture(ModBlocks.MYSTIC_LOG.get()));
+
+        logBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get()), blockTexture(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get()), blockTexture(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get()));
+
+        blockItem(ModBlocks.ANTHOCYANIN_LOG);
+        blockItem(ModBlocks.ANTHOCYANIN_WOOD);
+        blockItem(ModBlocks.STRIPPED_ANTHOCYANIN_LOG);
+        blockItem(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD);
+
+        blockWithItem(ModBlocks.ANTHOCYANIN_PLANKS);
+        saplingBlock(ModBlocks.ANTHOCYANIN_SAPLING);
+        leavesBlock(ModBlocks.ANTHOCYANIN_LEAVES);
+
+        // TODO: Add a helper for this with some string manipulation
+        stairsBlock(ModBlocks.ANTHOCYANIN_STAIRS.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
+        slabBlock(ModBlocks.ANTHOCYANIN_SLAB.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
+
+        buttonBlock(ModBlocks.ANTHOCYANIN_BUTTON.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
+        pressurePlateBlock(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
+
+        fenceBlock(ModBlocks.ANTHOCYANIN_FENCE.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
+        fenceGateBlock(ModBlocks.ANTHOCYANIN_FENCE_GATE.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
+
+        doorBlockWithRenderType(ModBlocks.ANTHOCYANIN_DOOR.get(), modLoc("block/anthocyanin_door_bottom"), modLoc("block/mystic_door_top"), "cutout");
+        trapdoorBlockWithRenderType(ModBlocks.ANTHOCYANIN_TRAPDOOR.get(), modLoc("block/anthocyanin_trapdoor"), true, "cutout");
+
+        blockItem(ModBlocks.ANTHOCYANIN_STAIRS);
+        blockItem(ModBlocks.ANTHOCYANIN_SLAB);
+        blockItem(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE);
+        blockItem(ModBlocks.ANTHOCYANIN_FENCE_GATE);
+        blockItem(ModBlocks.ANTHOCYANIN_TRAPDOOR, "_bottom");
+
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

@@ -120,6 +120,32 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // orderly
         this.dropSelf(ModBlocks.TRIMMED_TREE_SAPLING.get());
+
+        // anthocyanin
+        this.dropSelf(ModBlocks.ANTHOCYANIN_LOG.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get());
+        this.dropSelf(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_PLANKS.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_SAPLING.get());
+
+        this.add(ModBlocks.ANTHOCYANIN_LEAVES.get(),
+                block -> createFruitLeavesDrops(ModBlocks.ANTHOCYANIN_LEAVES.get(), ModBlocks.ANTHOCYANIN_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.dropSelf(ModBlocks.ANTHOCYANIN_STAIRS.get());
+        this.add(ModBlocks.ANTHOCYANIN_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.ANTHOCYANIN_SLAB.get()));
+
+        this.dropSelf(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_BUTTON.get());
+
+        this.dropSelf(ModBlocks.ANTHOCYANIN_FENCE.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.ANTHOCYANIN_TRAPDOOR.get());
+
+        this.add(ModBlocks.ANTHOCYANIN_DOOR.get(),
+                block -> createDoorTable(ModBlocks.ANTHOCYANIN_DOOR.get()));
+
     }
 
     @Override

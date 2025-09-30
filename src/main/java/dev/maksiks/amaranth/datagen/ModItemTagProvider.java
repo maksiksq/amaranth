@@ -24,7 +24,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.MYSTIC_LOG.get().asItem())
                 .add(ModBlocks.MYSTIC_WOOD.get().asItem())
                 .add(ModBlocks.STRIPPED_MYSTIC_LOG.get().asItem())
-                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get().asItem());
+                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get().asItem())
+                .add(ModBlocks.ANTHOCYANIN_LOG.get().asItem())
+                .add(ModBlocks.ANTHOCYANIN_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get().asItem());
 
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.MYSTIC_PLANKS.get().asItem());

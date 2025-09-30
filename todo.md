@@ -12,6 +12,7 @@
 - [x] fix: use a placed feature instead of a structure because why again
 - [x] add more creative mod tabs ; just sorted the one tab i have
 - [x] fix: fountains generate with grass corners
+- [ ] finish: shrooms
 
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 
@@ -266,4 +267,10 @@
 -----------------------
 - [ ] tree, i wrote it down, right? 
 - [ ] not dense leafage
+----------------------
+
+### Blue flower biome
+-----------------------
+- [ ] probably not poisonous
+- [ ] new wood
 ----------------------

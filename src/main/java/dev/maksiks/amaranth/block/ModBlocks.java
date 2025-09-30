@@ -22,6 +22,14 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(Amaranth.MOD_ID);
 
+    private static final Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sound(SoundType.WOOD)
+            .ignitedByLava();
+
+    // mystic
     public static final DeferredBlock<Block> MYSTIC_LOG = registerBlock("mystic_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> MYSTIC_WOOD = registerBlock("mystic_wood",
@@ -39,13 +47,6 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
             () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
-
-     private static final Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
-            .mapColor(MapColor.WOOD)
-                .instrument(NoteBlockInstrument.BASS)
-                .strength(2.0F, 3.0F)
-                .sound(SoundType.WOOD)
-                .ignitedByLava();
 
      // non-full block stuff
      public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
@@ -93,13 +94,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
             () -> new ModGoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
-    // mixed forest
+    // desolate ice fields
     public static final DeferredBlock<Block> SORROW_ICE = registerBlock("sorrow_ice",
             () -> new IceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE)));
     public static final DeferredBlock<Block> REMNANT_SORROW_ICE = registerBlock("remnant_sorrow_ice",
             () -> new HalfTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ICE)));
 
-    // desolate ice fields
+    // mixed forest
     public static final DeferredBlock<Block> PURPLE_MIXED_OAK_LEAVES = registerBlock("purple_mixed_oak_leaves",
             () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
@@ -118,8 +119,50 @@ public class ModBlocks {
     public static final DeferredBlock<Block> YELLOW_MIXED_OAK_SAPLING = registerBlock("yellow_mixed_oak_sapling",
             () -> new SaplingBlock(ModTreeGrowers.YELLOW_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
+    // orderly courts
     public static final DeferredBlock<Block> TRIMMED_TREE_SAPLING = registerBlock("trimmed_tree_sapling",
             () -> new SaplingBlock(ModTreeGrowers.TRIMMED_TREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    // anthocyanin
+    public static final DeferredBlock<Block> ANTHOCYANIN_LOG = registerBlock("anthocyanin_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+    public static final DeferredBlock<Block> ANTHOCYANIN_WOOD = registerBlock("anthocyanin_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+    public static final DeferredBlock<Block> STRIPPED_ANTHOCYANIN_LOG = registerBlock("stripped_anthocyanin_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+    public static final DeferredBlock<Block> STRIPPED_ANTHOCYANIN_WOOD = registerBlock("stripped_anthocyanin_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+
+    public static final DeferredBlock<Block> ANTHOCYANIN_PLANKS = registerBlock("anthocyanin_planks",
+            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+
+    public static final DeferredBlock<Block> ANTHOCYANIN_LEAVES = registerBlock("anthocyanin_leaves",
+            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+
+    // TODO: GROWER
+    public static final DeferredBlock<Block> ANTHOCYANIN_SAPLING = registerBlock("anthocyanin_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
+    // non-full block stuff
+    public static final DeferredBlock<StairBlock> ANTHOCYANIN_STAIRS = registerBlock("anthocyanin_stairs",
+            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+    public static final DeferredBlock<SlabBlock> ANTHOCYANIN_SLAB = registerBlock("anthocyanin_slab",
+            () -> new SlabBlock(normalWoodProps.get()));
+
+    public static final DeferredBlock<PressurePlateBlock> ANTHOCYANIN_PRESSURE_PLATE = registerBlock("anthocyanin_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
+    public static final DeferredBlock<ButtonBlock> ANTHOCYANIN_BUTTON = registerBlock("anthocyanin_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
+
+    public static final DeferredBlock<FenceBlock> ANTHOCYANIN_FENCE = registerBlock("anthocyanin_fence",
+            () -> new FenceBlock(normalWoodProps.get()));
+    public static final DeferredBlock<FenceGateBlock> ANTHOCYANIN_FENCE_GATE = registerBlock("anthocyanin_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps.get()));
+
+    public static final DeferredBlock<DoorBlock> ANTHOCYANIN_DOOR = registerBlock("anthocyanin_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<TrapDoorBlock> ANTHOCYANIN_TRAPDOOR = registerBlock("anthocyanin_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

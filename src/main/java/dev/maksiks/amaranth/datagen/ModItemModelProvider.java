@@ -48,6 +48,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.TRIMMED_TREE_SAPLING);
 
         withExistingParent(ModItems.SHROOM_BOI_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
+        // anthocyanin
+        buttonItem(ModBlocks.ANTHOCYANIN_BUTTON, ModBlocks.ANTHOCYANIN_PLANKS);
+        fenceItem(ModBlocks.ANTHOCYANIN_FENCE, ModBlocks.ANTHOCYANIN_PLANKS);
+
+        basicItem(ModBlocks.ANTHOCYANIN_DOOR.asItem());
+
+        splatBlockItem(ModBlocks.ANTHOCYANIN_SAPLING);
     }
 
 

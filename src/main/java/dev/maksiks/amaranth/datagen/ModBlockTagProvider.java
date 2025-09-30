@@ -18,21 +18,31 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        // logs
         this.tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.MYSTIC_LOG.get())
                 .add(ModBlocks.MYSTIC_WOOD.get())
                 .add(ModBlocks.STRIPPED_MYSTIC_LOG.get())
-                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get());
+                .add(ModBlocks.STRIPPED_MYSTIC_WOOD.get())
+                .add(ModBlocks.ANTHOCYANIN_LOG.get())
+                .add(ModBlocks.ANTHOCYANIN_WOOD.get())
+                .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get())
+                .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get());
 
         // mystic
         this.tag(BlockTags.LEAVES).add(ModBlocks.MYSTIC_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.MYSTIC_SAPLING.get());
-
-        // stubby
-        this.tag(BlockTags.SAPLINGS).add(ModBlocks.STUBBY_SAPLING.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.ANTHOCYANIN_LEAVES.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.ANTHOCYANIN_SAPLING.get());
 
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
+
+        this.tag(BlockTags.FENCES).add(ModBlocks.ANTHOCYANIN_FENCE.get());
+        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.ANTHOCYANIN_FENCE_GATE.get());
+
+        // stubby
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.STUBBY_SAPLING.get());
 
         // silver
         this.tag(BlockTags.LEAVES).add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get());
