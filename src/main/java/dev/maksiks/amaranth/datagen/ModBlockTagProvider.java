@@ -29,7 +29,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get())
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get());
 
-        // mystic
+        // saplings and leaves
         this.tag(BlockTags.LEAVES).add(ModBlocks.MYSTIC_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.MYSTIC_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(ModBlocks.ANTHOCYANIN_LEAVES.get());

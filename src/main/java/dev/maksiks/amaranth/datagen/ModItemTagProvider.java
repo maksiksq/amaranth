@@ -31,6 +31,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get().asItem());
 
         this.tag(ItemTags.PLANKS)
-                .add(ModBlocks.MYSTIC_PLANKS.get().asItem());
+                .add(ModBlocks.MYSTIC_PLANKS.get().asItem())
+                .add(ModBlocks.ANTHOCYANIN_PLANKS.get().asItem());
     }
 }

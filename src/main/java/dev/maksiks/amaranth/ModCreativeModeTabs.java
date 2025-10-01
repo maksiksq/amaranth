@@ -37,6 +37,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PURPLE_MIXED_OAK_LEAVES);
                         output.accept(ModBlocks.RED_MIXED_OAK_LEAVES);
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
+                        output.accept(ModBlocks.ANTHOCYANIN_LEAVES);
 
                         // saplings
                         output.accept(ModBlocks.MYSTIC_SAPLING);
@@ -46,29 +47,44 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.RED_MIXED_OAK_SAPLING);
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
                         output.accept(ModBlocks.TRIMMED_TREE_SAPLING);
+                        output.accept(ModBlocks.ANTHOCYANIN_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
 
                         // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
+                        output.accept(ModBlocks.ANTHOCYANIN_LOG);
                         output.accept(ModBlocks.MYSTIC_WOOD);
+                        output.accept(ModBlocks.ANTHOCYANIN_WOOD);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_LOG);
+                        output.accept(ModBlocks.STRIPPED_ANTHOCYANIN_LOG);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD);
+                        output.accept(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD);
 
                         output.accept(ModBlocks.MYSTIC_PLANKS);
+                        output.accept(ModBlocks.ANTHOCYANIN_PLANKS);
 
                         output.accept(ModBlocks.MYSTIC_STAIRS);
+                        output.accept(ModBlocks.ANTHOCYANIN_STAIRS);
                         output.accept(ModBlocks.MYSTIC_SLAB);
+                        output.accept(ModBlocks.ANTHOCYANIN_SLAB);
 
                         output.accept(ModBlocks.MYSTIC_PRESSURE_PLATE);
+                        output.accept(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE);
                         output.accept(ModBlocks.MYSTIC_BUTTON);
+                        output.accept(ModBlocks.ANTHOCYANIN_BUTTON);
 
                         output.accept(ModBlocks.MYSTIC_FENCE);
+                        output.accept(ModBlocks.ANTHOCYANIN_FENCE);
                         output.accept(ModBlocks.MYSTIC_FENCE_GATE);
+                        output.accept(ModBlocks.ANTHOCYANIN_FENCE_GATE);
 
                         output.accept(ModBlocks.MYSTIC_DOOR);
+                        output.accept(ModBlocks.ANTHOCYANIN_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
+                        output.accept(ModBlocks.ANTHOCYANIN_TRAPDOOR);
+                        output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR);
 
                         // rocks
                         output.accept(ModBlocks.SORROW_ICE);

@@ -116,6 +116,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE);
         blockItem(ModBlocks.ANTHOCYANIN_FENCE_GATE);
         blockItem(ModBlocks.ANTHOCYANIN_TRAPDOOR, "_bottom");
+        blockItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR, "_bottom");
 
     }
 
