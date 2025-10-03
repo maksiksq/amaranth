@@ -18,6 +18,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        // TODO: Tidy and add all the missing ones even if useless
         // logs
         this.tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.MYSTIC_LOG.get())
@@ -38,6 +39,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
+
+        this.tag(BlockTags.TRAPDOORS).add(ModBlocks.MYSTIC_TRAPDOOR.get());
+        this.tag(BlockTags.TRAPDOORS).add(ModBlocks.ANTHOCYANIN_TRAPDOOR.get());
+        this.tag(BlockTags.TRAPDOORS).add(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get());
 
         this.tag(BlockTags.FENCES).add(ModBlocks.ANTHOCYANIN_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.ANTHOCYANIN_FENCE_GATE.get());
