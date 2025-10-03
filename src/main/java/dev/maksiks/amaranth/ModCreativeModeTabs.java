@@ -38,6 +38,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.RED_MIXED_OAK_LEAVES);
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
                         output.accept(ModBlocks.ANTHOCYANIN_LEAVES);
+                        output.accept(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
 
                         // saplings
                         output.accept(ModBlocks.MYSTIC_SAPLING);

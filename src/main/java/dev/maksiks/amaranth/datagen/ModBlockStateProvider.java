@@ -97,7 +97,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.ANTHOCYANIN_PLANKS);
         saplingBlock(ModBlocks.ANTHOCYANIN_SAPLING);
         leavesBlock(ModBlocks.ANTHOCYANIN_LEAVES);
-        leavesBlock(ModBlocks.ORNAMENTED_ANTHOCYANIN_LEAVES);
+        leavesBlock(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
 
         // TODO: Add a helper for this with some string manipulation
         stairsBlock(ModBlocks.ANTHOCYANIN_STAIRS.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));

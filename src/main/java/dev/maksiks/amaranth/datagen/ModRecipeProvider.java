@@ -78,5 +78,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_anthocyanin_planks", has(ModBlocks.ANTHOCYANIN_PLANKS.get())).save(recipeOutput);
         trapdoorBuilder(ModBlocks.ANTHOCYANIN_TRAPDOOR.get(), Ingredient.of(ModBlocks.ANTHOCYANIN_PLANKS.get())).group("anthocyanin")
                 .unlockedBy("has_anthocyanin_planks", has(ModBlocks.ANTHOCYANIN_PLANKS.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get(), 1)
+                .requires(ModBlocks.ANTHOCYANIN_TRAPDOOR.get())
+                .requires(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get())
+                .unlockedBy("has_anthocyanin_trapdoor", has(ModBlocks.ANTHOCYANIN_TRAPDOOR.get()))
+                .unlockedBy("has_anthocyanin_trapdoor", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
+                .save(recipeOutput);
     }
 }
