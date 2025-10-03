@@ -33,6 +33,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LEAVES).add(ModBlocks.MYSTIC_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.MYSTIC_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(ModBlocks.ANTHOCYANIN_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.ORNAMENTED_ANTHOCYANIN_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.ANTHOCYANIN_SAPLING.get());
 
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());

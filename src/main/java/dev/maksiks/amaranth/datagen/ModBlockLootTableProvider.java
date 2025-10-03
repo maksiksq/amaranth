@@ -130,7 +130,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.ANTHOCYANIN_SAPLING.get());
 
         this.add(ModBlocks.ANTHOCYANIN_LEAVES.get(),
-                block -> createFruitLeavesDrops(ModBlocks.ANTHOCYANIN_LEAVES.get(), ModBlocks.ANTHOCYANIN_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                block -> createLeavesDrops(ModBlocks.ANTHOCYANIN_LEAVES.get(), ModBlocks.ANTHOCYANIN_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.ORNAMENTED_ANTHOCYANIN_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.ORNAMENTED_ANTHOCYANIN_LEAVES.get(), ModBlocks.ANTHOCYANIN_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ModBlocks.ANTHOCYANIN_STAIRS.get());
         this.add(ModBlocks.ANTHOCYANIN_SLAB.get(),

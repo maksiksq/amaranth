@@ -138,6 +138,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> ANTHOCYANIN_LEAVES = registerBlock("anthocyanin_leaves",
             () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+    public static final DeferredBlock<Block> ORNAMENTED_ANTHOCYANIN_LEAVES = registerBlock("ornamented_anthocyanin_leaves",
+            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     // TODO: GROWER
     public static final DeferredBlock<Block> ANTHOCYANIN_SAPLING = registerBlock("anthocyanin_sapling",
