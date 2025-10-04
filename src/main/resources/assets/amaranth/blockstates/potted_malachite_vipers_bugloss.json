@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "minecraft:block/potted_malachite_vipers_bugloss"
+      "model": "amaranth:block/potted_malachite_vipers_bugloss"
     }
   }
 }

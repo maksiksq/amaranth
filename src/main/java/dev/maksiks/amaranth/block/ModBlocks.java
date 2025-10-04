@@ -175,7 +175,7 @@ public class ModBlocks {
             () -> new FlowerBlock(MobEffects.POISON, 0.35F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
 
     public static final DeferredBlock<FlowerPotBlock> POTTED_MALACHITE_VIPERS_BUGLOSS = registerBlock("potted_malachite_vipers_bugloss",
-            () -> new FlowerPotBlock(null, MALACHITE_VIPERS_BUGLOSS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MALACHITE_VIPERS_BUGLOSS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
