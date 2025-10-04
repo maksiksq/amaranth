@@ -75,5 +75,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // orderly
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.TRIMMED_TREE_SAPLING.get());
+
+        this.tag(BlockTags.FLOWERS).add(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get());
+        this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS.get());
     }
 }

@@ -57,6 +57,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.asItem());
 
         splatBlockItem(ModBlocks.ANTHOCYANIN_SAPLING);
+
+        splatBlockItem(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
     }
 
 

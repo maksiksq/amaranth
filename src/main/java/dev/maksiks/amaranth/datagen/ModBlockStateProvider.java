@@ -121,9 +121,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.ANTHOCYANIN_TRAPDOOR, "_bottom");
         blockItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR, "_bottom");
 
+        flowerBlock(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
+        // pot is made manually
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
+    private void flowerBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
                 models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }

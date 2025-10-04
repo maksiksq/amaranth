@@ -18,6 +18,7 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -151,6 +152,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get(),
                 block -> createDoorTable(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get()));
 
+        this.dropSelf(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get());
+        this.add(ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS.get(),
+                block -> createPotFlowerItemTable(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get()));
     }
 
     @Override

@@ -53,6 +53,9 @@ public class ModCreativeModeTabs {
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
 
+                        // flowers
+                        output.accept(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
+
                         // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
                         output.accept(ModBlocks.ANTHOCYANIN_LOG);
