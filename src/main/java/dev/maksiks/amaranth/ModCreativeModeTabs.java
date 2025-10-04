@@ -83,6 +83,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.MYSTIC_DOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_DOOR);
+                        output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_TRAPDOOR);
                         output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR);

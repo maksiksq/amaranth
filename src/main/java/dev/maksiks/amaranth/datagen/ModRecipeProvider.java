@@ -79,11 +79,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         trapdoorBuilder(ModBlocks.ANTHOCYANIN_TRAPDOOR.get(), Ingredient.of(ModBlocks.ANTHOCYANIN_PLANKS.get())).group("anthocyanin")
                 .unlockedBy("has_anthocyanin_planks", has(ModBlocks.ANTHOCYANIN_PLANKS.get())).save(recipeOutput);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get(), 1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get(), 1)
                 .requires(ModBlocks.ANTHOCYANIN_TRAPDOOR.get())
                 .requires(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get())
                 .unlockedBy("has_anthocyanin_trapdoor", has(ModBlocks.ANTHOCYANIN_TRAPDOOR.get()))
-                .unlockedBy("has_anthocyanin_trapdoor", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
+                .unlockedBy("has_blooming_anthocyanin_leaves", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get(), 1)
+                .requires(ModBlocks.ANTHOCYANIN_DOOR.get())
+                .requires(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get())
+                .unlockedBy("has_anthocyanin_door", has(ModBlocks.ANTHOCYANIN_DOOR.get()))
+                .unlockedBy("has_blooming_anthocyanin_leaves", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
                 .save(recipeOutput);
     }
 }

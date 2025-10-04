@@ -148,6 +148,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(ModBlocks.ANTHOCYANIN_DOOR.get(),
                 block -> createDoorTable(ModBlocks.ANTHOCYANIN_DOOR.get()));
+        this.add(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get(),
+                block -> createDoorTable(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get()));
 
     }
 

@@ -40,6 +40,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.FENCES).add(ModBlocks.MYSTIC_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.MYSTIC_FENCE_GATE.get());
 
+        this.tag(BlockTags.DOORS).add(ModBlocks.MYSTIC_DOOR.get());
+        this.tag(BlockTags.DOORS).add(ModBlocks.ANTHOCYANIN_DOOR.get());
+        this.tag(BlockTags.DOORS).add(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get());
+
         this.tag(BlockTags.TRAPDOORS).add(ModBlocks.MYSTIC_TRAPDOOR.get());
         this.tag(BlockTags.TRAPDOORS).add(ModBlocks.ANTHOCYANIN_TRAPDOOR.get());
         this.tag(BlockTags.TRAPDOORS).add(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get());

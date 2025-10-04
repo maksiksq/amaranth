@@ -110,6 +110,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         fenceGateBlock(ModBlocks.ANTHOCYANIN_FENCE_GATE.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
 
         doorBlockWithRenderType(ModBlocks.ANTHOCYANIN_DOOR.get(), modLoc("block/anthocyanin_door_bottom"), modLoc("block/anthocyanin_door_top"), "cutout");
+        doorBlockWithRenderType(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.get(), modLoc("block/ornamented_anthocyanin_door_bottom"), modLoc("block/ornamented_anthocyanin_door_top"), "cutout");
         trapdoorBlockWithRenderType(ModBlocks.ANTHOCYANIN_TRAPDOOR.get(), modLoc("block/anthocyanin_trapdoor"), true, "cutout");
         trapdoorBlockWithRenderType(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR.get(), modLoc("block/ornamented_anthocyanin_trapdoor"), true, "cutout");
 

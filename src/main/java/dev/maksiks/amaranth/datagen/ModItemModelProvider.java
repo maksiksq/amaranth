@@ -54,6 +54,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         fenceItem(ModBlocks.ANTHOCYANIN_FENCE, ModBlocks.ANTHOCYANIN_PLANKS);
 
         basicItem(ModBlocks.ANTHOCYANIN_DOOR.asItem());
+        basicItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR.asItem());
 
         splatBlockItem(ModBlocks.ANTHOCYANIN_SAPLING);
     }

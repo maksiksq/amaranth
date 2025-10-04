@@ -272,6 +272,7 @@
 ### Blue flower biome
 -----------------------
 - [ ] probably not poisonous
-- [ ] add ornamented trapdoor recipe
-- [ ] new wood
+- [x] add ornamented trapdoor recipe
+- [ ] new wood ; door ; stripped log
+- [ ] flowers
 ----------------------
