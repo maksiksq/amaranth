@@ -32,7 +32,7 @@ public class ModClientWeatherHandler {
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
-        if (HIDE_CUSTOM_BIOME_WEATHER_PARTICLES.getAsBoolean()) {
+        if (HIDE_CUSTOM_BIOME_WEATHER_PARTICLES.getAsBoolean() || HIDE_ALL_BIOME_PARTICLES.getAsBoolean()) {
             return;
         }
 

@@ -11,24 +11,40 @@ import java.util.List;
 public class ClientConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
+    public static final ModConfigSpec.BooleanValue HIDE_ALL_BIOME_PARTICLES = BUILDER
+            .comment("")
+            .comment(" Noooo MY PRETTY PARTICLES HOW RUDE (jk).")
+            .define("hideAllBiomeParticles", false);
+
     public static final ModConfigSpec.BooleanValue HIDE_BIOME_LEAF_PARTICLES = BUILDER
-            .comment(" Whether to hide leaf particles e.g. in the silver birch biome. You can disable them by setting particles to minimal too, but you might want to keep all other particles if it's just these biomes causing lag when loaded.")
+            .comment(" # These are global biome particle settings.")
+            .comment(" All of them can be disabled by setting particles to minimal in vanilla settings as well.")
+            .comment(" The minimize ones should hopefully reduce lag while keeping the minimal amount of particles to make it still feel alive.")
+            .comment("")
+            .comment(" Whether to hide leaf particles e.g. in the silver birch biome.")
             .define("hideBiomeLeafParticles", false);
 
+    public static final ModConfigSpec.BooleanValue HIDE_BIOME_AMBIENCE_PARTICLES = BUILDER
+            .comment(" Whether to hide ambience particles e.g. in the anthocyanin forest biome.")
+            .define("hideBiomeAmbienceParticles", false);
+    public static final ModConfigSpec.BooleanValue MINIMIZE_BIOME_AMBIENCE_PARTICLES = BUILDER
+            .define("minimizeBiomeAmbienceParticles", false);
+
     public static final ModConfigSpec.BooleanValue HIDE_CUSTOM_BIOME_WEATHER_PARTICLES = BUILDER
-            .comment(" Whether to hide biome's custom weather particles e.g. in desolate ice fields. This one might prevent a lot of lag when you're in the biome. You could also set particles to minimal in the settings as well.")
+            .comment(" Whether to hide biome's custom weather particles e.g. in desolate ice fields.")
             .define("hideCustomBiomeWeatherParticles", false);
     public static final ModConfigSpec.BooleanValue MINIMIZE_CUSTOM_BIOME_WEATHER_PARTICLES = BUILDER
-            .comment(" If you don't want to disable them whole you can keep just a few for the immersion at least. Probably no lag included.")
             .define("minimizeCustomBiomeWeatherParticles", false);
 
     public static final ModConfigSpec.BooleanValue HIDE_DESOLATE_ICE_FIELDS_FOG = BUILDER
+            .comment("")
             .comment(" # Biome-specific")
             .comment(" Whether to hide the dark fog in desolate ice fields.")
             .define("hideDesolateIceFieldsFog", false);
 
 
     public static final ModConfigSpec.IntValue SNOW_DIRECTION_CHANGE_TIME_MIN = BUILDER
+            .comment("")
             .comment(" # Dev stuff, you probably shouldn't care/touch")
             .comment(" Fog direction change minimal bound in ticks")
             .defineInRange("snowDirectionChangeTimeMin", 30000, 1, Integer.MAX_VALUE);

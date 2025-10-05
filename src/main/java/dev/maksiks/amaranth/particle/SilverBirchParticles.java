@@ -8,6 +8,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 
 import javax.annotation.Nullable;
 
+import static dev.maksiks.amaranth.ClientConfig.HIDE_ALL_BIOME_PARTICLES;
 import static dev.maksiks.amaranth.ClientConfig.HIDE_BIOME_LEAF_PARTICLES;
 
 public class SilverBirchParticles extends TextureSheetParticle {
@@ -25,7 +26,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
 
         if (gameTime >= nextFlipTime) {
             lastFlipTime = gameTime;
-            int duration = 80 + level.random.nextInt(60); // 80–140 ticks = ~4–7s
+            int duration = 80 + level.random.nextInt(60);
             nextFlipTime = gameTime + duration;
 
             windDirection = level.random.nextBoolean() ? 1.0 : -1.0;
@@ -61,9 +62,9 @@ public class SilverBirchParticles extends TextureSheetParticle {
         ParticleStatus setting = Minecraft.getInstance().options.particles().get();
 
         // if you have minimal particles, you won't see these
-        // i think the override being false should do remove them but uhm, I guess it doesn't?
+        // i think the override being false should remove them but uhm, I guess it doesn't?
         // + config
-        if (setting == ParticleStatus.MINIMAL || HIDE_BIOME_LEAF_PARTICLES.getAsBoolean()) {
+        if (setting == ParticleStatus.MINIMAL || HIDE_BIOME_LEAF_PARTICLES.getAsBoolean() || HIDE_ALL_BIOME_PARTICLES.getAsBoolean()) {
             this.remove();
         }
 

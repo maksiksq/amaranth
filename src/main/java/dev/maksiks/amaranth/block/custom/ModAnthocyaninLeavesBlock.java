@@ -9,6 +9,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static dev.maksiks.amaranth.ClientConfig.MINIMIZE_BIOME_AMBIENCE_PARTICLES;
+
 public class ModAnthocyaninLeavesBlock extends ModFlammableLeavesBlock {
     public static final MapCodec<net.minecraft.world.level.block.CherryLeavesBlock> CODEC = simpleCodec(net.minecraft.world.level.block.CherryLeavesBlock::new);
 
@@ -24,6 +26,10 @@ public class ModAnthocyaninLeavesBlock extends ModFlammableLeavesBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         super.animateTick(state, level, pos, random);
+
+        if (MINIMIZE_BIOME_AMBIENCE_PARTICLES.getAsBoolean() && random.nextInt(3) != 0) {
+            return;
+        }
 
         if (level.isClientSide && random.nextInt(4) == 0) {
             BlockPos below = pos.below();

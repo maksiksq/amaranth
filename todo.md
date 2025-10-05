@@ -272,10 +272,17 @@
 
 ### Blue flower biome
 -----------------------
-- [ ] probably not poisonous
+- [x] probably not poisonous ; vibes
 - [x] add ornamented trapdoor recipe
 - [x] new wood ; door ; stripped log
 - [x] flowers
 - [x] something on floor
-- [ ] particle + config
+- [x] particle + config
+- [ ] maybe add custom greenecyaner block instead of prismarines and stuff
+- [ ] maybe make the particles not generate in the ground (who cares honestly)
+----------------------
+
+### Thorny vine biomes
+-----------------------
+- [ ] thorny vine plant all over the floor
 ----------------------

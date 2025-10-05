@@ -1,19 +1,21 @@
 package dev.maksiks.amaranth.particle;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.ParticleStatus;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
+
+import static dev.maksiks.amaranth.ClientConfig.*;
 
 public class AnthocyaninParticles extends TextureSheetParticle {
 
     private static final float[] COLOR = {0.65f, 0.85f, 1.0f};
 
     protected AnthocyaninParticles(ClientLevel level, double x, double y, double z,
-                            double vx, double vy, double vz, SpriteSet spriteSet) {
+                                   double vx, double vy, double vz, SpriteSet spriteSet) {
         super(level, x, y, z, vx, vy, vz);
 
         this.setSprite(spriteSet.get(level.random.nextInt(4), 4));
@@ -33,6 +35,18 @@ public class AnthocyaninParticles extends TextureSheetParticle {
     @Override
     public void tick() {
         super.tick();
+
+        ParticleStatus setting = Minecraft.getInstance().options.particles().get();
+
+        // if you have minimal particles, you won't see these
+        // i think the override being false should remove them but uhm, I guess it doesn't?
+        // + config
+        if (setting == ParticleStatus.MINIMAL ||
+                HIDE_BIOME_AMBIENCE_PARTICLES.getAsBoolean() ||
+                HIDE_ALL_BIOME_PARTICLES.getAsBoolean()) {
+            // also see the minimize one somewhere else
+            this.remove();
+        }
 
         if (!this.removed) {
             double t = (this.age + this.random.nextFloat()) * 0.1;
