@@ -46,7 +46,7 @@ public class ShroomBoiEntity extends Animal {
 
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, stack -> stack.is(ModItems.HEXFRUIT.get()), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, stack -> stack.is(Items.ROTTEN_FLESH), false));
 
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
 
