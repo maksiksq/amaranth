@@ -40,6 +40,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> TREE_ON_TREE_TREE_PLACED_KEY = registerKey("tree_on_tree_tree_placed");
 
     public static final ResourceKey<PlacedFeature> ANTHOCYANIN_PLACED_KEY = registerKey("anthocyanin_placed");
+    public static final ResourceKey<PlacedFeature> ANTHOCYANIN_FLOWER_PLACED_KEY = registerKey("anthocyanin_flower_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -144,6 +145,10 @@ public class ModPlacedFeatures {
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
                         ModBlocks.ANTHOCYANIN_SAPLING.get()));
+
+        register(context, ANTHOCYANIN_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ANTHOCYANIN_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

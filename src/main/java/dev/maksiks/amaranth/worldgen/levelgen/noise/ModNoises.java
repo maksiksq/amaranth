@@ -19,5 +19,11 @@ public class ModNoises {
                     ResourceLocation.fromNamespaceAndPath("amaranth", "stripe_attempt")
             );
 
+    public static final ResourceKey<NormalNoise.NoiseParameters> VEINY_NOISE =
+            ResourceKey.create(
+                    Registries.NOISE,
+                    ResourceLocation.fromNamespaceAndPath("amaranth", "veiny")
+            );
+
 
 }

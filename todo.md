@@ -221,7 +221,8 @@
 - [ ] shrooms
 - [x] shroom boi mob dunmeshi mushrooms n stuff
 - [ ] shroom jigsaw
-- [ ] make children edible
+- [ ] make it half mycelium-half grass
+- [x] make children edible
 - [ ] make shroom boi tameable 
 - [x] make shroom boi spawn in shroomlands 
 - [ ] make hangies random
@@ -273,6 +274,7 @@
 -----------------------
 - [ ] probably not poisonous
 - [x] add ornamented trapdoor recipe
-- [ ] new wood ; door ; stripped log
-- [ ] flowers
+- [x] new wood ; door ; stripped log
+- [x] flowers
+- [ ] something on floor
 ----------------------

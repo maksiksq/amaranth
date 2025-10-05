@@ -33,6 +33,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import net.neoforged.fml.common.Mod;
 
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> TREE_ON_TREE_TREE_KEY = registerKey("tree_on_tree_tree");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> ANTHOCYANIN_KEY = registerKey("anthocyanin");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ANTHOCYANIN_FLOWER_KEY = registerKey("anthocyanin_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -301,6 +303,29 @@ public class ModConfiguredFeatures {
                                 .build()),
                         new AnthocyaninFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        register(
+                context,
+                ANTHOCYANIN_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        30,
+                        16,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new WeightedStateProvider(
+                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                        .add(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get().defaultBlockState(), 5)
+                                                        .add(Blocks.BLUE_ORCHID.defaultBlockState(), 2)
+                                                        .add(Blocks.CORNFLOWER.defaultBlockState(), 1)
+                                                        .build()
+                                        )
+                                )
+                        )
+                )
         );
     }
 
