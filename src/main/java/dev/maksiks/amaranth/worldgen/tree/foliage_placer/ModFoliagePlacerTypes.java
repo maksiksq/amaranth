@@ -27,4 +27,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<TreeOnTreeTreeFoliagePlacer>> TREE_ON_TREE_TREE_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("tree_on_tree_tree_foliage_placer", () -> new FoliagePlacerType<>(TreeOnTreeTreeFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AnthocyaninFoliagePlacer>> ANTHOCYANIN_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("anthocyanin_foliage_placer", () -> new FoliagePlacerType<>(AnthocyaninFoliagePlacer.CODEC));
 }

@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.*;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.AnthocyaninTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.TreeOnTreeTreeTrunkPlacer;
@@ -58,6 +59,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> ORDERLY_COURTS_RUINS_KEY = registerKey("orderly_courts_ruins");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> TREE_ON_TREE_TREE_KEY = registerKey("tree_on_tree_tree");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> ANTHOCYANIN_KEY = registerKey("anthocyanin");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -275,13 +278,28 @@ public class ModConfiguredFeatures {
                 ModFeatures.ORDERLY_COURTS_RUINS.get(), NoneFeatureConfiguration.INSTANCE);
 
         // tree on tree
-//         copy of purple mixed tree rn
         register(context, TREE_ON_TREE_TREE_KEY, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
                         new TreeOnTreeTreeTrunkPlacer(4, 2, 0),
                         BlockStateProvider.simple(ModBlocks.PURPLE_MIXED_OAK_LEAVES.get()),
                         new TreeOnTreeTreeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        // anthocyanin
+        register(
+                context,
+                ANTHOCYANIN_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.ANTHOCYANIN_LOG.get()),
+                        new AnthocyaninTrunkPlacer(6, 0, 0),
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(ModBlocks.ANTHOCYANIN_LEAVES.get().defaultBlockState(), 4)
+                                .add(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get().defaultBlockState(), 1)
+                                .build()),
+                        new AnthocyaninFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }

@@ -25,4 +25,7 @@ public class ModTreeGrowers {
 
     public static final TreeGrower TRIMMED_TREE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":trimmed_tree",
             Optional.empty(), Optional.of(ModConfiguredFeatures.TRIMMED_TREE_KEY), Optional.empty());
+
+    public static final TreeGrower ANTHOCYANIN_GROWER = new TreeGrower(Amaranth.MOD_ID + ":anthocyanin",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ANTHOCYANIN_KEY), Optional.empty());
 }
