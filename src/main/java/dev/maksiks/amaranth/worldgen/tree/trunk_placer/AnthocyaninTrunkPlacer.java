@@ -42,11 +42,14 @@ public class AnthocyaninTrunkPlacer extends TrunkPlacer {
     ) {
         setDirtAt(level, blockSetter, random, pos.below(), config);
 
+        List<FoliagePlacer.FoliageAttachment> foliage = new ArrayList<>();
         for (int i = 0; i < freeTreeHeight; i++) {
+            if (i == freeTreeHeight/2 && random.nextInt(4) == 0) {
+                foliage.add(new FoliagePlacer.FoliageAttachment(pos.above(i), 0, false));
+            }
             this.placeLog(level, blockSetter, random, pos.above(i), config);
         }
 
-        List<FoliagePlacer.FoliageAttachment> foliage = new ArrayList<>();
         foliage.add(new FoliagePlacer.FoliageAttachment(pos.above(freeTreeHeight), 0, false));
 
         BlockPos tip = pos.above(freeTreeHeight);
