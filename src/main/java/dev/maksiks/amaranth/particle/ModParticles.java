@@ -17,6 +17,10 @@ public class ModParticles {
             PARTICLE_TYPES.register("silver_birch_particles",
             () -> new SimpleParticleType(false));
 
+    public static final Supplier<SimpleParticleType> ANTHOCYANIN_PARTICLES =
+            PARTICLE_TYPES.register("anthocyanin_particles",
+            () -> new SimpleParticleType(false));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

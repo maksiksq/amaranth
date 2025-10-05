@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.SILVER_NOISE;
+import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.VEINY_NOISE;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
@@ -32,6 +33,9 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DEAD_BRAIN_CORAL_BLOCK = makeStateRule(Blocks.DEAD_BRAIN_CORAL_BLOCK);
     private static final SurfaceRules.RuleSource DEAD_BUBBLE_CORAL_BLOCK = makeStateRule(Blocks.DEAD_BUBBLE_CORAL_BLOCK);
     private static final SurfaceRules.RuleSource SUSPICIOUS_GRAVEL = makeStateRule(Blocks.SUSPICIOUS_GRAVEL);
+    private static final SurfaceRules.RuleSource PRISMARINE = makeStateRule(Blocks.PRISMARINE);
+    private static final SurfaceRules.RuleSource CYAN_CONCRETE = makeStateRule(Blocks.CYAN_CONCRETE);
+    private static final SurfaceRules.RuleSource DARK_PRISMARINE = makeStateRule(Blocks.DARK_PRISMARINE);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -178,7 +182,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.24D, 0.24D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.015D, 0.015D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BRAIN_CORAL_BLOCK)
                                 )
                         ))
@@ -189,7 +193,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.28D, 0.28D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.03D, 0.03D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_TUBE_CORAL_BLOCK)
                                 )
                         ))
@@ -201,7 +205,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.30D, 0.30D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.05D, 0.05D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SUSPICIOUS_GRAVEL)
                                 )
                         ))
@@ -223,6 +227,43 @@ public class ModSurfaceRules {
                                         STONE
                                 ))));
 
+
+        // anthocyanin
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.06D, 0.06D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DARK_PRISMARINE)
+                                )
+                        )
+                )
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.11D, 0.11D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, CYAN_CONCRETE)
+                                )
+                        )
+                )
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.16D, 0.16D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, PRISMARINE)
+                                )
+                        )
+                )
+        );
 
         // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(

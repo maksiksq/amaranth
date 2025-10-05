@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth;
 
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.particle.AnthocyaninParticles;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.particle.SilverBirchParticles;
 import net.minecraft.client.Minecraft;
@@ -38,5 +39,6 @@ public class AmaranthClient {
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.SILVER_BIRCH_PARTICLES.get(), SilverBirchParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.ANTHOCYANIN_PARTICLES.get(), AnthocyaninParticles.Provider::new);
     }
 }

@@ -1,11 +1,11 @@
 {
-  "firstOctave": -7,
+  "firstOctave": -4,
   "amplitudes": [
     1.0,
     1.0,
     0.5,
     0.25
   ],
-  "xz_scale": 0.5,
+  "xz_scale": 1.4,
   "y_scale": 0.5
 }

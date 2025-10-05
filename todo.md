@@ -276,5 +276,6 @@
 - [x] add ornamented trapdoor recipe
 - [x] new wood ; door ; stripped log
 - [x] flowers
-- [ ] something on floor
+- [x] something on floor
+- [ ] particle + config
 ----------------------
