@@ -96,26 +96,26 @@ public class ModRegion1 extends Region {
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.ANTHOCYANIN_FOREST));
 
-        // stubby 1
+        // dusty
         new ParameterUtils.ParameterPointListBuilder()
-                .temperature(Climate.Parameter.span(0.55F, 0.9F))
-                .humidity(Climate.Parameter.span(-0.35F, -0.1F))
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(Climate.Parameter.span(-0.6F, -0.1F))
                 .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.MID_INLAND,
-                        ParameterUtils.Continentalness.FAR_INLAND
+                        ParameterUtils.Continentalness.NEAR_INLAND,
+                        ParameterUtils.Continentalness.MID_INLAND
                 ))
                 .erosion(ParameterUtils.Erosion.span(
-                        ParameterUtils.Erosion.EROSION_3,
-                        ParameterUtils.Erosion.EROSION_5
+                        ParameterUtils.Erosion.EROSION_2,
+                        ParameterUtils.Erosion.EROSION_4
                 ))
 
                 .depth(Climate.Parameter.span(-0.25F, 0))
                 .weirdness(ParameterUtils.Weirdness.span(
-                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
-                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                                ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_DESCENDING
                         )
                 )
-                .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_WOODLAND));
+                .build().forEach(point -> builder.add(point, ModBiomes.DUSTY_FLATS));
 
 
         // Add our points to the mapper

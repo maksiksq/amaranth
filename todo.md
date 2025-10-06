@@ -5,6 +5,8 @@
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] framework for turn nbt into placed feature gen
 
+- [ ] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in them 
+
 - [x] fix: deprecated petal cutout renderer
 - [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
 - [ ] fix: maybe try fixing the grass color for silver birch again??
