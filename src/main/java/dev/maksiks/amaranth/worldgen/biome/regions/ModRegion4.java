@@ -14,6 +14,8 @@ import terrablender.api.VanillaParameterOverlayBuilder;
 
 import java.util.function.Consumer;
 
+import static dev.maksiks.amaranth.worldgen.biome.regions.ModRegionHelpers.NORMAL_BIOME_DEPTH;
+
 public class ModRegion4 extends Region {
     public ModRegion4(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
@@ -43,7 +45,7 @@ public class ModRegion4 extends Region {
                         ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
                         ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
                 ))
-                .depth(Climate.Parameter.span(-0.25F, 0))
+                .depth(NORMAL_BIOME_DEPTH)
                 .build().forEach(point -> builder.add(point, ModBiomes.DESOLATE_ICE_FIELDS));
 
         // shroom
@@ -56,7 +58,7 @@ public class ModRegion4 extends Region {
                         ParameterUtils.Erosion.EROSION_5
                 ))
 
-                .depth(Climate.Parameter.span(-0.25F, 0))
+                .depth(NORMAL_BIOME_DEPTH)
                 .weirdness(ParameterUtils.Weirdness.span(
                                 ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
                                 ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
@@ -77,7 +79,7 @@ public class ModRegion4 extends Region {
                         ParameterUtils.Erosion.EROSION_5
                 ))
 
-                .depth(Climate.Parameter.span(-0.25F, 0))
+                .depth(NORMAL_BIOME_DEPTH)
                 .weirdness(ParameterUtils.Weirdness.span(
                                 ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
                                 ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
