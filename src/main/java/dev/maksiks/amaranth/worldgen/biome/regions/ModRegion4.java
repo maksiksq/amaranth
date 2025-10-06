@@ -14,8 +14,8 @@ import terrablender.api.VanillaParameterOverlayBuilder;
 
 import java.util.function.Consumer;
 
-public class ModRareRegion extends Region {
-    public ModRareRegion(ResourceLocation name, int weight) {
+public class ModRegion4 extends Region {
+    public ModRegion4(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
 
@@ -24,6 +24,7 @@ public class ModRareRegion extends Region {
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
 
+        // desolate
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.span(
                         ParameterUtils.Temperature.ICY,
@@ -45,7 +46,7 @@ public class ModRareRegion extends Region {
                 .depth(Climate.Parameter.span(-0.25F, 0))
                 .build().forEach(point -> builder.add(point, ModBiomes.DESOLATE_ICE_FIELDS));
 
-
+        // shroom
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.4F, 0.4F))
@@ -62,6 +63,27 @@ public class ModRareRegion extends Region {
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.SHROOMLANDS));
+
+        // stubby 3
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(Climate.Parameter.span(0.55F, 0.9F))
+                .humidity(Climate.Parameter.span(-0.35F, -0.1F))
+                .continentalness(ParameterUtils.Continentalness.span(
+                        ParameterUtils.Continentalness.MID_INLAND,
+                        ParameterUtils.Continentalness.FAR_INLAND
+                ))
+                .erosion(ParameterUtils.Erosion.span(
+                        ParameterUtils.Erosion.EROSION_3,
+                        ParameterUtils.Erosion.EROSION_5
+                ))
+
+                .depth(Climate.Parameter.span(-0.25F, 0))
+                .weirdness(ParameterUtils.Weirdness.span(
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
+                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
+                        )
+                )
+                .build().forEach(point -> builder.add(point, ModBiomes.STUBBY_WOODLAND));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

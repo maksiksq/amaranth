@@ -14,8 +14,8 @@ import terrablender.api.VanillaParameterOverlayBuilder;
 
 import java.util.function.Consumer;
 
-public class ModEasterEggRegion extends Region {
-    public ModEasterEggRegion(ResourceLocation name, int weight) {
+public class ModRegion5 extends Region {
+    public ModRegion5(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
 
@@ -24,6 +24,7 @@ public class ModEasterEggRegion extends Region {
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
 
+        // treeontree
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.2F))
