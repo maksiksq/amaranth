@@ -182,7 +182,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.015D, 0.015D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.24D, 0.24D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BRAIN_CORAL_BLOCK)
                                 )
                         ))
@@ -193,7 +193,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.03D, 0.03D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.28D, 0.28D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_TUBE_CORAL_BLOCK)
                                 )
                         ))
@@ -205,7 +205,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.05D, 0.05D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.30D, 0.30D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SUSPICIOUS_GRAVEL)
                                 )
                         ))
