@@ -25,5 +25,11 @@ public class ModNoises {
                     ResourceLocation.fromNamespaceAndPath("amaranth", "veiny")
             );
 
+    public static final ResourceKey<NormalNoise.NoiseParameters> PATCHY_NOISE =
+            ResourceKey.create(
+                    Registries.NOISE,
+                    ResourceLocation.fromNamespaceAndPath("amaranth", "patchy")
+            );
+
 
 }

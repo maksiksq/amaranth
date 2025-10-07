@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -18,6 +19,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        // misc
         // temp
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MAFIA_BLOB.get(), 1)
                 .requires(ModItems.HEXFRUIT.get())
@@ -29,13 +31,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_hexfruit", has(ModBlocks.MYSTIC_LEAVES.get()))
                 .save(recipeOutput, "amaranth:mafia_blob_from_leaves");
 
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.BEANIE_BLOB.get())
                 .pattern("HHH")
                 .pattern("HHH")
                 .pattern("HHH")
                 .define('H', ModItems.HEXFRUIT.get())
                 .unlockedBy("has_hexfruit", has(ModItems.HEXFRUIT.get()))
+                .save(recipeOutput);
+
+        // not temp
+
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TEA_CUP.get(), 1)
+//                .pattern("M M")
+//                .pattern(" M ")
+//                .pattern("   ")
+//                .define('M', ModBlocks.MARBLE.getAsItem())
+//                .unlockedBy("has_marble", has(ModBlocks.MARBLE.get()))
+//                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MUSHROOM_TEA.get(), 1)
+                .requires(ModItems.EMPTY_TEA_CUP.get())
+                .requires(Items.RED_MUSHROOM_BLOCK)
+                .requires(Items.BROWN_MUSHROOM_BLOCK)
+                .unlockedBy("has_tea_cup", has(ModItems.EMPTY_TEA_CUP.get()))
                 .save(recipeOutput);
 
         // yoink a custom method for smelting later so it's inside neo's folder because it's hardcoded to be in mc

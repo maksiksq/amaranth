@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -33,5 +34,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.MYSTIC_PLANKS.get().asItem())
                 .add(ModBlocks.ANTHOCYANIN_PLANKS.get().asItem());
+
+        // uh
+        this.tag(ItemTags.GOAT_FOOD)
+                .add(ModItems.MUSHROOM_TEA.get());
     }
 }

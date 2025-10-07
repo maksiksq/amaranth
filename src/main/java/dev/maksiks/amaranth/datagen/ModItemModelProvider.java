@@ -19,6 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // misc
         basicItem(ModItems.PALETTE_OVERLOAD_MUSIC_DISC.get());
+        basicItem(ModItems.EMPTY_TEA_CUP.get());
 
         // mystic
         basicItem(ModItems.MAFIA_BLOB.get());
@@ -44,10 +45,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.RED_MIXED_OAK_SAPLING);
         splatBlockItem(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
 
-        // orderly oak sapling
+        // orderly
         splatBlockItem(ModBlocks.TRIMMED_TREE_SAPLING);
 
         withExistingParent(ModItems.SHROOM_BOI_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
+        // shroom
+        basicItem(ModItems.MUSHROOM_TEA.get());
 
         // anthocyanin
         buttonItem(ModBlocks.ANTHOCYANIN_BUTTON, ModBlocks.ANTHOCYANIN_PLANKS);

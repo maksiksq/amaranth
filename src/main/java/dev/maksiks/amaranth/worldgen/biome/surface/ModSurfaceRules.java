@@ -12,8 +12,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.SILVER_NOISE;
-import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.VEINY_NOISE;
+import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.*;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
@@ -148,6 +147,20 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS),
                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
                                 SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.ON_FLOOR ,
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(PATCHY_NOISE, 0.2D, 2.0D),
+                                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                                )
+                                        ),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.ON_FLOOR ,
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                                )
+                                        ),
                                         SurfaceRules.ifTrue(
                                                 SurfaceRules.ON_FLOOR,
                                                 SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)

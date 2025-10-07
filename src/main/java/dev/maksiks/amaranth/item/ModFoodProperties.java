@@ -8,7 +8,13 @@ public class ModFoodProperties {
     // image eating this before a boss intentionally and the 0.9 chance does not proc lmao
     // evil hehehe
     public static final FoodProperties HEXFRUIT = new FoodProperties.Builder().nutrition(3).saturationModifier(5)
-            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 700), 0.9F).build();
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 700), 0.9F)
+            .alwaysEdible()
+            .build();
+
+    public static final FoodProperties MUSHROOM_TEA = new FoodProperties.Builder().nutrition(9).saturationModifier(7)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 30), 0.7F)
+            .build();
 
 
 

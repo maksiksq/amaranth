@@ -34,6 +34,11 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xf75d57, 0xf1f1f1,
                     new Item.Properties()));
 
+    public static final DeferredItem<Item> EMPTY_TEA_CUP = ITEMS.register("empty_tea_cup",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> MUSHROOM_TEA = ITEMS.register("mushroom_tea",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.MUSHROOM_TEA)));
+
     // discs
     public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));

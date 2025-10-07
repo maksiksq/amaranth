@@ -52,7 +52,9 @@ public class ModRegion4 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.4F, 0.4F))
-                .continentalness(ParameterUtils.Continentalness.NEAR_INLAND)
+                .continentalness(
+                        ParameterUtils.Continentalness.MID_INLAND,
+                        ParameterUtils.Continentalness.FAR_INLAND)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_4,
                         ParameterUtils.Erosion.EROSION_5

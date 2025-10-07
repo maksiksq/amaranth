@@ -233,6 +233,7 @@
 - [x] leg pixel wrong
 - [ ] maybe add brown variant in the future
 - [x] head rotates too much
+- [ ] make shroom boi hitbox bigger
 -----------------------
 
 ### yooo smth like that thaumcraft biome

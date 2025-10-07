@@ -22,9 +22,11 @@ public class ModCreativeModeTabs {
                         // misc
                         output.accept(ModItems.MAFIA_BLOB);
                         output.accept(ModItems.BEANIE_BLOB);
+                        output.accept(ModItems.EMPTY_TEA_CUP);
 
-                        // fruit
+                        // food
                         output.accept(ModItems.HEXFRUIT);
+                        output.accept(ModItems.MUSHROOM_TEA);
 
                         // spawn eggs
                         output.accept(ModItems.SHROOM_BOI_SPAWN_EGG);
