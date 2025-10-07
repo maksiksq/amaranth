@@ -13,7 +13,6 @@ public class ModFoodProperties {
             .build();
 
     public static final FoodProperties MUSHROOM_TEA = new FoodProperties.Builder().nutrition(9).saturationModifier(7)
-            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 30), 0.7F)
             .build();
 
 
