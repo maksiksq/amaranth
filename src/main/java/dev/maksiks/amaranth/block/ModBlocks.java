@@ -30,6 +30,11 @@ public class ModBlocks {
             .sound(SoundType.WOOD)
             .ignitedByLava();
 
+    // misc
+    // mmm yes calcite 2
+    public static final DeferredBlock<Block> MARBLE = registerBlock("marble",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
+
     // mystic
     public static final DeferredBlock<Block> MYSTIC_LOG = registerBlock("mystic_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));

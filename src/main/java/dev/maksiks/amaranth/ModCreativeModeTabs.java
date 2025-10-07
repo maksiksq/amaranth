@@ -96,6 +96,7 @@ public class ModCreativeModeTabs {
                         // rocks
                         output.accept(ModBlocks.SORROW_ICE);
                         output.accept(ModBlocks.REMNANT_SORROW_ICE);
+                        output.accept(ModBlocks.MARBLE);
 
                         // music discs
                         output.accept(ModItems.PALETTE_OVERLOAD_MUSIC_DISC);

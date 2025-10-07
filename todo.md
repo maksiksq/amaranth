@@ -14,8 +14,9 @@
 - [x] fix: use a placed feature instead of a structure because why again
 - [x] add more creative mod tabs ; just sorted the one tab i have
 - [x] fix: fountains generate with grass corners
-- [ ] fix: dusty biome
+- [x] fix: dusty biome
 - [ ] finish: shrooms
+- [ ] maybe marble columns and etc.
 
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 

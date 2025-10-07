@@ -19,6 +19,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        // misc
+        blockWithItem(ModBlocks.MARBLE);
+
         // mystic
         logBlock(((RotatedPillarBlock) ModBlocks.MYSTIC_LOG.get()));
         axisBlock(((RotatedPillarBlock) ModBlocks.MYSTIC_WOOD.get()), blockTexture(ModBlocks.MYSTIC_LOG.get()), blockTexture(ModBlocks.MYSTIC_LOG.get()));

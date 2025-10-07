@@ -41,13 +41,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // not temp
 
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TEA_CUP.get(), 1)
-//                .pattern("M M")
-//                .pattern(" M ")
-//                .pattern("   ")
-//                .define('M', ModBlocks.MARBLE.getAsItem())
-//                .unlockedBy("has_marble", has(ModBlocks.MARBLE.get()))
-//                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_TEA_CUP.get(), 1)
+                .pattern("M M")
+                .pattern(" M ")
+                .pattern("   ")
+                .define('M', ModBlocks.MARBLE.get().asItem())
+                .unlockedBy("has_marble", has(ModBlocks.MARBLE.get()))
+                .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MUSHROOM_TEA.get(), 1)
                 .requires(ModItems.EMPTY_TEA_CUP.get())

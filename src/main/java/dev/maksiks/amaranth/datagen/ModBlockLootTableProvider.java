@@ -55,6 +55,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        // misc
+        this.dropSelf(ModBlocks.MARBLE.get());
+
         // mystic
         this.dropSelf(ModBlocks.MYSTIC_LOG.get());
         this.dropSelf(ModBlocks.MYSTIC_WOOD.get());

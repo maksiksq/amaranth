@@ -18,6 +18,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        // misc
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModBlocks.MARBLE.get());
+
+        this.tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.MARBLE.get());
+
         // TODO: Tidy and add all the missing ones even if useless
         // logs
         this.tag(BlockTags.LOGS_THAT_BURN)
