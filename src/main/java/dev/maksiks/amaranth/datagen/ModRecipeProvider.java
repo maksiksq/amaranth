@@ -1,12 +1,15 @@
 package dev.maksiks.amaranth.datagen;
 
+import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -47,7 +50,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("   ")
                 .define('M', ModBlocks.MARBLE.get().asItem())
                 .unlockedBy("has_marble", has(ModBlocks.MARBLE.get()))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "empty_tea_cup_from_marble"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_TEA_CUP.get(), 1)
+                .pattern("D D")
+                .pattern(" D ")
+                .pattern("   ")
+                .define('D', Blocks.POLISHED_DIORITE.asItem())
+                .unlockedBy("has_diorite", has(Blocks.DIORITE))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "empty_tea_cup_from_polished_diorite"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MUSHROOM_TEA.get(), 1)
                 .requires(ModItems.EMPTY_TEA_CUP.get())

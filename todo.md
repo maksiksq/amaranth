@@ -4,6 +4,7 @@
 - 
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] framework for turn nbt into placed feature gen
+- [ ] a mod that makes players edible
 
 - [ ] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in them 
 
@@ -17,6 +18,7 @@
 - [x] fix: dusty biome
 - [ ] finish: shrooms
 - [ ] maybe marble columns and etc.
+- [ ] actually put marble in somewhere
 
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 
