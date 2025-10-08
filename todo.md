@@ -23,9 +23,10 @@
 - [x]  RegionUtils.getVanillaParameterPoints(Biomes.RIVER); omg
 - [ ]  report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
 - [ ]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now
-- [ ]  make surface rules not generate stuff underground ; find some way to copy vanilla !!!
+- [ ]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
+- [ ]  distribute the biomes with a fresh head
 
-- [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
+- [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 
 - //
 

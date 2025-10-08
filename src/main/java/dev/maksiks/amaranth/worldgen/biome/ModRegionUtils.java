@@ -40,11 +40,15 @@ public class ModRegionUtils {
                                 if (!validator.test(key)) {
                                     if (failOnInvalid) {
                                         throw new IllegalArgumentException(String.format(
-                                                "Invalid biome detected in region '%s' (config: %s, index: %d).\n" +
-                                                        "Current array:\n%s",
+                                                "\"%s\" is not an allowed entry, specify a valid biome key!\n" +
+                                                        "Amaranth OverworldRegion: \"%s\" failed in biome array: \"%s\" in region %s.\n" +
+                                                        "Current value:\n%s",
+                                                key != null ? key.location() : "null",
                                                 regionId, configName, regionIndex, arrayToString(input)
                                         ));
                                     }
+                                    // Return null for invalid entries when not throwing exception
+                                    // This is important - THE_VOID gets replaced with null in variant arrays
                                     return null;
                                 }
                                 return key;
@@ -53,7 +57,6 @@ public class ModRegionUtils {
                 })
                 .toArray(ResourceKey[][]::new);
     }
-
     public static String arrayToString(ResourceKey<Biome>[][] array) {
         if (array == null) return "null";
 

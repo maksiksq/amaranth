@@ -7,7 +7,7 @@ import terrablender.api.Region;
 
 import java.util.List;
 
-public class TerraBlenderBiomeSelectors {
+public class TerrablenderBiomeSelectors {
     public static final List<List<ResourceKey<Biome>>> OCEANS_TERRABLENDER =
             ModBiomeSelectorUtils.create("oceans/oceans_terrablender", "", new ResourceKey[][]{
                     {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
