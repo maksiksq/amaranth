@@ -14,7 +14,7 @@ import terrablender.api.VanillaParameterOverlayBuilder;
 
 import java.util.function.Consumer;
 
-import static dev.maksiks.amaranth.worldgen.biome.regions.ModRegionHelpers.NORMAL_BIOME_DEPTH;
+import static dev.maksiks.amaranth.worldgen.biome.regions.ModRegionHelpers.*;
 
 public class ModRegion5 extends Region {
     public ModRegion5(ResourceLocation name, int weight) {
@@ -30,10 +30,7 @@ public class ModRegion5 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.2F))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.MID_INLAND
-                ))
+                .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_2,
                         ParameterUtils.Erosion.EROSION_4
@@ -46,6 +43,9 @@ public class ModRegion5 extends Region {
                         )
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.TREE_ON_TREE_FOREST));
+
+        // vanilla filling
+        addWaterAndRiverFilling(builder);
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

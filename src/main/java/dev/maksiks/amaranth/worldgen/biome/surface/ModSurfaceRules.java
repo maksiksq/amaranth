@@ -80,12 +80,14 @@ public class ModSurfaceRules {
                         SurfaceRules.ON_FLOOR,
                         SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)
                 ),
-
                 SurfaceRules.ifTrue(
                         SurfaceRules.UNDER_FLOOR,
                         DIRT
                 ),
-
+                SurfaceRules.ifTrue(
+                        SurfaceRules.DEEP_UNDER_FLOOR,
+                        STONE
+                ),
                 STONE
         );
         RandomSource random = RandomSource.create();

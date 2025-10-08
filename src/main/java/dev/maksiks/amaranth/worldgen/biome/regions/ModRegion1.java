@@ -6,15 +6,17 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 import terrablender.api.VanillaParameterOverlayBuilder;
+import terrablender.worldgen.RegionUtils;
 
 import java.util.function.Consumer;
 
-import static dev.maksiks.amaranth.worldgen.biome.regions.ModRegionHelpers.NORMAL_BIOME_DEPTH;
+import static dev.maksiks.amaranth.worldgen.biome.regions.ModRegionHelpers.*;
 
 public class ModRegion1 extends Region {
     public ModRegion1(ResourceLocation name, int weight) {
@@ -39,10 +41,7 @@ public class ModRegion1 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.4F))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.FAR_INLAND
-                ))
+                .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_4,
                         ParameterUtils.Erosion.EROSION_5
@@ -60,10 +59,7 @@ public class ModRegion1 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.4F))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.FAR_INLAND
-                ))
+                .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_4,
                         ParameterUtils.Erosion.EROSION_5
@@ -81,10 +77,7 @@ public class ModRegion1 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.2F, 0.2F))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.MID_INLAND
-                ))
+                .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_2,
                         ParameterUtils.Erosion.EROSION_5
@@ -102,10 +95,7 @@ public class ModRegion1 extends Region {
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(Climate.Parameter.span(-0.6F, -0.1F))
-                .continentalness(ParameterUtils.Continentalness.span(
-                        ParameterUtils.Continentalness.NEAR_INLAND,
-                        ParameterUtils.Continentalness.MID_INLAND
-                ))
+                .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_2,
                         ParameterUtils.Erosion.EROSION_4
@@ -119,6 +109,8 @@ public class ModRegion1 extends Region {
                 )
                 .build().forEach(point -> builder.add(point, ModBiomes.DUSTY_FLATS));
 
+        // vanilla filling
+        addWaterAndRiverFilling(builder);
 
         // Add our points to the mapper
         builder.build().forEach(mapper);
