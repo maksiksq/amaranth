@@ -3,12 +3,17 @@ package dev.maksiks.amaranth.event;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.entity.ModEntities;
+import dev.maksiks.amaranth.entity.ModSpawnPlacements;
 import dev.maksiks.amaranth.entity.client.ShroomBoiModel;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -33,7 +38,7 @@ public class ModEventBusEvents {
     }
 
     @SubscribeEvent
-    public static void registerSpawnPlacements(final RegisterSpawnPlacementsEvent event) {
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
         System.out.println("Registering spawn placement for Shroom Boi!");
         event.register(
                 ModEntities.SHROOM_BOI.get(),

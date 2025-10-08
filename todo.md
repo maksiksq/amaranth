@@ -19,6 +19,8 @@
 - [ ] finish: shrooms
 - [ ] maybe marble columns and etc.
 - [ ] actually put marble in somewhere
+- [ ]  RegionUtils.getVanillaParameterPoints(Biomes.RIVER); omg
+- [ ]  report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
 
 - [ ] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 

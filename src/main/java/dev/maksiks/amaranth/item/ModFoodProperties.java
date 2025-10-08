@@ -12,7 +12,7 @@ public class ModFoodProperties {
             .alwaysEdible()
             .build();
 
-    public static final FoodProperties MUSHROOM_TEA = new FoodProperties.Builder().nutrition(9).saturationModifier(7)
+    public static final FoodProperties MUSHROOM_TEA = new FoodProperties.Builder().nutrition(9).saturationModifier(12)
             .build();
 
 
