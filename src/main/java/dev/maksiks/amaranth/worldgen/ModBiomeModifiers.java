@@ -23,25 +23,11 @@ import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public class ModBiomeModifiers {
-    // note: i could not get it to spawn as a CREATURE
-    // (some weird spawn condition im not hitting?)
-    // so doing this instead, kind of wonk but the best i could get
-    // was a MONSTER which is kind of weird
     public static final ResourceKey<BiomeModifier> ADD_SHROOM_BOI_SPAWNS = registerKey("add_shroom_boi_spawns");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
-
-        // why 400? so high? and it doesn't spawn as creature in the biome
-        // im confused, already spent a few hours figuring out why it doesn't spawn normally,
-        // something is definitely wrong here
-//        context.register(ADD_SHROOM_BOI_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
-//                HolderSet.direct(biomes.getOrThrow(ModBiomes.SHROOMLANDS), biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(ModBiomes.MIXED_WOODS)),
-//                List.of(
-//                        new MobSpawnSettings.SpawnerData(ModEntities.SHROOM_BOI.get(), 400, 1 ,4)
-//                )
-//        ));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
