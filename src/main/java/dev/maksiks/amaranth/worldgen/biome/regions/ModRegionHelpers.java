@@ -19,7 +19,7 @@ public class ModRegionHelpers {
 
     // in terrablender's helpers FAR_INLAND has 1.0F while just INLAND has 0.55F,
     // is it some weird thing or a typo?
-    public static final Climate.Parameter NORMAL_BIOME_CONTINENTALNESS = Climate.Parameter.span(-0.19F, 1.0F);
+    public static final Climate.Parameter NORMAL_BIOME_CONTINENTALNESS = Climate.Parameter.span(-0.11F, 1.0F);
 
     public static void addWaterAndRiverFilling(VanillaParameterOverlayBuilder builder) {
         RegionUtils.getVanillaParameterPoints(Biomes.OCEAN).forEach(point -> builder.add(point, Biomes.OCEAN));
