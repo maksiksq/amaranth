@@ -75,8 +75,8 @@ public class ModRegion1 extends Region {
 
         // anthocyanin
         new ParameterUtils.ParameterPointListBuilder()
-                .temperature(ParameterUtils.Temperature.NEUTRAL)
-                .humidity(Climate.Parameter.span(-0.2F, 0.2F))
+                .temperature(ParameterUtils.Temperature.FULL_RANGE)
+                .humidity(ParameterUtils.Humidity.FULL_RANGE)
                 .continentalness(NORMAL_BIOME_CONTINENTALNESS)
                 .erosion(ParameterUtils.Erosion.span(
                         ParameterUtils.Erosion.EROSION_2,
@@ -84,11 +84,7 @@ public class ModRegion1 extends Region {
                 ))
 
                 .depth(NORMAL_BIOME_DEPTH)
-                .weirdness(ParameterUtils.Weirdness.span(
-                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING,
-                                ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING
-                        )
-                )
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
                 .build().forEach(point -> builder.add(point, ModBiomes.ANTHOCYANIN_FOREST));
 
         // dusty
