@@ -25,7 +25,7 @@
 - [ ]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now
 - [ ]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
 - [ ]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
-- [ ]  add overrides to terrablender's builder for exceptions
+- [x]  add overrides to terrablender's builder for exceptions
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 

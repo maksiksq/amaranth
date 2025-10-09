@@ -17,6 +17,49 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
     }
 
     public void addBiomesPublic(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        super.addBiomes(mapper);
+        Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> wrappedMapper = pair -> {
+            Climate.ParameterPoint point = pair.getFirst();
+            ResourceKey<Biome> biome = pair.getSecond();
+
+            Climate.ParameterPoint modified = adjustParameters(point, biome);
+            mapper.accept(Pair.of(modified, biome));
+        };
+
+        super.addBiomes(wrappedMapper);
+    }
+
+    private Climate.ParameterPoint adjustParameters(Climate.ParameterPoint point, ResourceKey<Biome> biome) {
+        if (biome == null) return point;
+
+// unused for now but experimenting if i do need it
+//        if (biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
+//            return new Climate.ParameterPoint(
+//                    point.temperature(),
+//                    point.humidity(),
+//                    point.continentalness(),
+//                    point.erosion(),
+//                    Climate.Parameter.span(-0.25F, 0.0F),
+//                    point.weirdness(),
+//                    point.offset()
+//            );
+//        }
+
+        return point;
+    }
+
+
+    @Override
+    public ResourceKey<Biome> pickBeachBiome(int temp, int humidity) {
+        return super.pickBeachBiome(temp, humidity);
+    }
+
+    @Override
+    public ResourceKey<Biome> pickPeakBiome(int temp, int humidity, Climate.Parameter weirdness) {
+        return super.pickPeakBiome(temp, humidity, weirdness);
+    }
+
+    @Override
+    public ResourceKey<Biome> pickSlopeBiome(int temp, int humidity, Climate.Parameter weirdness) {
+        return super.pickSlopeBiome(temp, humidity, weirdness);
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.Climate;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,6 +12,9 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class ModRegionUtils {
+    // also terrablender helpers
+    public static final Climate.Parameter NORMAL_BIOME_CONTINENTALNESS = Climate.Parameter.span(-0.11F, 1.0F);
+
     @SafeVarargs
     public static void forEachBiome(Consumer<ResourceKey<Biome>> consumer, ResourceKey<Biome>[][]... arrays) {
         for (ResourceKey<Biome>[][] outer : arrays) {
@@ -47,8 +51,8 @@ public class ModRegionUtils {
                                                 regionId, configName, regionIndex, arrayToString(input)
                                         ));
                                     }
-                                    // Return null for invalid entries when not throwing exception
-                                    // This is important - THE_VOID gets replaced with null in variant arrays
+                                    // return null for invalid entries when not throwing exception
+                                    // this is important - THE_VOID gets replaced with null in variant arrays
                                     return null;
                                 }
                                 return key;
