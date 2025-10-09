@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,6 +14,7 @@ import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
 import static dev.maksiks.amaranth.ClientConfig.HIDE_DESOLATE_ICE_FIELDS_FOG;
+import static dev.maksiks.amaranth.event.ModEventUtils.isPlayerUnderground;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
 public class ModFogHandler {
@@ -27,7 +29,7 @@ public class ModFogHandler {
     private static final float TRANSITION_THRESHOLD = 0.001f;
 
     private static void stepTowardTarget() {
-        float speed = isInDesolateIceFields() ? TRANSITION_SPEED_IN : TRANSITION_SPEED_OUT;
+        float speed = isInDesolateIceFieldsAndValid() ? TRANSITION_SPEED_IN : TRANSITION_SPEED_OUT;
 
         currentRed = Mth.lerp(speed, currentRed, targetRed);
         currentGreen = Mth.lerp(speed, currentGreen, targetGreen);
@@ -36,9 +38,12 @@ public class ModFogHandler {
         currentFar = Mth.lerp(speed, currentFar, targetFar);
     }
 
-    private static boolean isInDesolateIceFields() {
+    private static boolean isInDesolateIceFieldsAndValid() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return false;
+
+        // checking if the player is underground/not skylit
+        if (isPlayerUnderground(mc.player, mc.level)) return false;
 
         ResourceKey<Biome> biome = mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElse(null);
         return biome != null && biome.equals(ModBiomes.DESOLATE_ICE_FIELDS);
@@ -61,7 +66,7 @@ public class ModFogHandler {
         float vanillaG = event.getGreen();
         float vanillaB = event.getBlue();
 
-        if (isInDesolateIceFields()) {
+        if (isInDesolateIceFieldsAndValid()) {
             targetRed = 0.03f;
             targetGreen = 0.04f;
             targetBlue = 0.05f;
@@ -89,7 +94,7 @@ public class ModFogHandler {
         float vanillaNear = event.getNearPlaneDistance();
         float vanillaFar = event.getFarPlaneDistance();
 
-        if (isInDesolateIceFields()) {
+        if (isInDesolateIceFieldsAndValid()) {
             targetNear = -1.0f;
             targetFar = 7.0f;
         } else {
@@ -102,7 +107,7 @@ public class ModFogHandler {
         event.setNearPlaneDistance(currentNear);
         event.setFarPlaneDistance(currentFar);
 
-        if (isInDesolateIceFields() || isTransitioning()) {
+        if (isInDesolateIceFieldsAndValid() || isTransitioning()) {
             event.setCanceled(true);
         }
     }

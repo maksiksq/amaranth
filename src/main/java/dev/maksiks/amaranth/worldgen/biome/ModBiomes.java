@@ -267,7 +267,6 @@ public class ModBiomes {
                         .foliageColorOverride(0x4D4D4D)
                         .fogColor(0x121414)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
-                        .ambientLoopSound(ModSounds.getSoundHolder(ModSounds.ARCTIC_WIND_THRONGLED))
                         .backgroundMusic(new Music(SoundEvents.MUSIC_BIOME_BASALT_DELTAS, 6000, 24000, true))
                         .build())
                 .build();
