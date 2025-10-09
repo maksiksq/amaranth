@@ -34,7 +34,6 @@ public class ModTerrablenderRegions extends Region {
     public static ModTerrablenderRegions REGION_2;
     public static ModTerrablenderRegions REGION_3;
     public static ModTerrablenderRegions REGION_4;
-    public static ModTerrablenderRegions REGION_5;
 
     public static void init() {
         REGION_1 = new ModTerrablenderRegions(
@@ -72,23 +71,6 @@ public class ModTerrablenderRegions extends Region {
         );
 
         REGION_3 = new ModTerrablenderRegions(
-                8,
-                ModRegionUtils.to2DArray(ModBiomeSelectors.OCEANS_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_VARIANT_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_VARIANT_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.SHATTERED_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.BEACH_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.PEAK_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.PEAK_BIOMES_VARIANT_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.SLOPE_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER),
-                new IdentityHashMap<>(),
-                Map.of()
-        );
-
-        REGION_4 = new ModTerrablenderRegions(
                 4,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.OCEANS_2_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_2_AMARANTH),
@@ -105,7 +87,7 @@ public class ModTerrablenderRegions extends Region {
                 Map.of()
         );
 
-        REGION_5 = new ModTerrablenderRegions(
+        REGION_4 = new ModTerrablenderRegions(
                 2,
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.OCEANS_TERRABLENDER),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_3_AMARANTH),
@@ -126,7 +108,6 @@ public class ModTerrablenderRegions extends Region {
         Regions.register(REGION_2);
         Regions.register(REGION_3);
         Regions.register(REGION_4);
-        Regions.register(REGION_5);
     }
 
     private static int count = 0;

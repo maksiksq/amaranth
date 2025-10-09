@@ -303,3 +303,50 @@
 -----------------------
 - [ ] thorny vine plant all over the floor
 ----------------------
+
+### Dunmeshi dwarf underground biome / hades upper hell
+----------------------
+- [ ] ancient bronze machinery ... you're the first one here in a long while
+----------------------
+
+### Made in abyss flower ocean but tame
+----------------------
+- [ ] just lotta white flowers and waterfalls
+----------------------
+
+### a sea of stars
+----------------------
+- [ ] star water ; glitter bath water ; what ; make it actually creatable into gamer girl bath water that's hilarious
+----------------------
+
+### salt flat
+----------------------
+- [ ] salt
+- [ ] earth cracks since it's so dry
+----------------------
+
+### exposed coral reef
+----------------------
+- [ ] salt
+- [ ] earth cracks since it's so dry
+----------------------
+
+### polluted red biomes
+----------------------
+- [ ] lakes of red
+----------------------
+
+### marshlands
+----------------------
+- [ ] reeds
+----------------------
+
+### basalt columns
+----------------------
+- [ ] pillary
+----------------------
+
+### metal flower field
+----------------------
+- [ ] it ouch
+----------------------

@@ -2,17 +2,20 @@ package dev.maksiks.amaranth.worldgen.biome.surface;
 
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises;
+import net.minecraft.data.worldgen.SurfaceRuleData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.*;
+import static net.minecraft.world.level.levelgen.SurfaceRules.stoneDepthCheck;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
@@ -68,32 +71,23 @@ public class ModSurfaceRules {
         );
     }
 
+    private static SurfaceRules.RuleSource safeSurfaceFloorRule(SurfaceRules.RuleSource innerRule) {
+        return SurfaceRules.ifTrue(
+                stoneDepthCheck(0, false, 10, CaveSurface.FLOOR),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.abovePreliminarySurface(),
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, innerRule)
+                )
+        );
+    }
+
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
-        SurfaceRules.RuleSource grassSurfaceAndStoneBelow = SurfaceRules.sequence(
-                // Top block: grass (if above water), else dirt
-                SurfaceRules.ifTrue(
-                        SurfaceRules.ON_FLOOR,
-                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.ON_FLOOR,
-                        SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.UNDER_FLOOR,
-                        DIRT
-                ),
-                SurfaceRules.ifTrue(
-                        SurfaceRules.DEEP_UNDER_FLOOR,
-                        STONE
-                ),
-                STONE
-        );
         RandomSource random = RandomSource.create();
 
         List<SurfaceRules.RuleSource> rules = new ArrayList<>();
 
+        // silver
         int[] silverLayers = {
                 61 + random.nextInt(2),
                 64 - random.nextInt(2),
@@ -113,189 +107,160 @@ public class ModSurfaceRules {
 
         // desolate
         rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS), powderSnowBlobsLayerRule()));
-
         rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
-                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                                SNOW_BLOCK)));
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS),
+                        SurfaceRules.ifTrue(
+                                // makes an illusion instead of cutoff underground i guess, even if it really corresponds to terrain above lol
+                                stoneDepthCheck(0, false, 64, CaveSurface.FLOOR),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SNOW_BLOCK)
+                        )
+                )
+        );
 
-        // orderly
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS),
-                SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
-                                        LIME_TERRACOTTA
-                                )
+        // orderly (VARIANT BELOW)
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS),
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LIME_TERRACOTTA)
                         )
                 )
         ));
-        // orderly ruins
-        rules.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS_RUINS),
-                SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                                SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
-                                                LIME_TERRACOTTA
+
+        // orderly ruins (ORIGINAL ABOVE)
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.ORDERLY_COURTS_RUINS),
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(ModNoises.STRIPE_ATTEMPT_NOISE, -0.88, 0.05),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LIME_TERRACOTTA)
+                        )
+                )
+        ));
+
+        // shroom
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.SHROOMLANDS),
+                SurfaceRules.sequence(
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(PATCHY_NOISE, 0.2D, 2.0D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                )
+                        ),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
+                                )
+                        ),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(PATCHY_NOISE, -1.0D, -0.3D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)
+                                )
+                        ),
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)),
+                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT),
+                        STONE
+                )
+        ));
+
+        // dusty
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(
+                                stoneDepthCheck(0, false, 10, CaveSurface.FLOOR),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.abovePreliminarySurface(),
+                                        SurfaceRules.sequence(
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.ON_FLOOR,
+                                                        SurfaceRules.ifTrue(
+                                                                SurfaceRules.noiseCondition(SILVER_NOISE, -0.20D, 0.20D),
+                                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BUBBLE_CORAL_BLOCK)
+                                                        )
+                                                ),
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.UNDER_FLOOR,
+                                                        SurfaceRules.ifTrue(
+                                                                SurfaceRules.noiseCondition(SILVER_NOISE, -0.20D, 0.20D),
+                                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BUBBLE_CORAL_BLOCK)
+                                                        )
+                                                )
+                                        )
+                                )
+                        ),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.24D, 0.24D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BRAIN_CORAL_BLOCK)
+                                )
+                        ),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.28D, 0.28D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_TUBE_CORAL_BLOCK)
+                                )
+                        ),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.30D, 0.30D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SUSPICIOUS_GRAVEL)
+                                )
+                        ),
+                        SurfaceRules.ifTrue(
+                                stoneDepthCheck(0, false, 20, CaveSurface.FLOOR),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.abovePreliminarySurface(),
+                                        SurfaceRules.sequence(
+                                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRAVEL)),
+                                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, GRAVEL),
+                                                SurfaceRules.ifTrue(stoneDepthCheck(0, true, 10, CaveSurface.FLOOR), GRAVEL)
                                         )
                                 )
                         )
                 )
         ));
 
-        // shroomlands
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS),
-                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                                SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.ON_FLOOR ,
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.noiseCondition(PATCHY_NOISE, 0.2D, 2.0D),
-                                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
-                                                )
-                                        ),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.ON_FLOOR ,
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
-                                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MYCELIUM)
-                                                )
-                                        ),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.ON_FLOOR,
-                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK)
-                                        ),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.ON_FLOOR,
-                                                SurfaceRules.ifTrue(SurfaceRules.not(isAtOrAboveWaterLevel), DIRT)
-                                        ),
-
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.UNDER_FLOOR,
-                                                DIRT
-                                        ),
-
-                                        STONE
-                                ))));
-
-        // dusty
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.2D, 0.2D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BUBBLE_CORAL_BLOCK)
-                                )
-                        ))
-        );
-
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.24D, 0.24D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_BRAIN_CORAL_BLOCK)
-                                )
-                        ))
-        );
-
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.28D, 0.28D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DEAD_TUBE_CORAL_BLOCK)
-                                )
-                        ))
-        );
-
-        // no these do not contain anything im just being evil and they look cool
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.30D, 0.30D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SUSPICIOUS_GRAVEL)
-                                )
-                        ))
-        );
-
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS),
-                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
-                                SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.ON_FLOOR,
-                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRAVEL)
-                                        ),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.UNDER_FLOOR,
-                                                GRAVEL
-                                        ),
-
-                                        STONE
-                                ))));
-
-
         // anthocyanin
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.06D, 0.06D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DARK_PRISMARINE)
-                                )
-                        )
-                )
-        );
-
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.11D, 0.11D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, CYAN_CONCRETE)
-                                )
-                        )
-                )
-        );
-
-        rules.add(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.16D, 0.16D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, PRISMARINE)
-                                )
-                        )
-                )
-        );
-
-        // Default to a grass and dirt surface
         rules.add(SurfaceRules.ifTrue(
-                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DESOLATE_ICE_FIELDS)),
+                SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                safeSurfaceFloorRule(
                         SurfaceRules.ifTrue(
-                                SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.SHROOMLANDS)),
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.DUSTY_FLATS)),
-                                        grassSurfaceAndStoneBelow
-                                )
+                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.06D, 0.06D),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, DARK_PRISMARINE)
                         )
                 )
-        );
+        ));
 
-        return SurfaceRules.sequence(
-                rules.toArray(SurfaceRules.RuleSource[]::new)
-        );
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.11D, 0.11D),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, CYAN_CONCRETE)
+                        )
+                )
+        ));
+
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.ANTHOCYANIN_FOREST),
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.16D, 0.16D),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, PRISMARINE)
+                        )
+                )
+        ));
+
+        // vanilla default fallback
+        rules.add(SurfaceRuleData.overworld());
+
+        return SurfaceRules.sequence(rules.toArray(SurfaceRules.RuleSource[]::new));
     }
 
     private static SurfaceRules.RuleSource makeStateRule(Block block) {
