@@ -23,8 +23,8 @@
 - [x]  RegionUtils.getVanillaParameterPoints(Biomes.RIVER); omg
 - [ ]  report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
 - [x]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now ; terrablender's builder let's go
-- [ ]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
-- [ ]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
+- [x]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
+- [x]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
 - [x]  add overrides to terrablender's builder for exceptions
 - [x]  fix: desolate biome effects should not work underground
 
