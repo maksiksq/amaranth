@@ -72,11 +72,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.THORN.get())
                 .requires(ModItems.THORN.get())
                 .requires(ModItems.THORN.get())
-                .requires(ModItems.THORN.get())
-                .requires(ModItems.THORN.get())
-                .requires(ModItems.THORN.get())
-                .requires(ModItems.THORN.get())
-                .requires(ModItems.THORN.get())
                 .requires(Items.VINE)
                 .unlockedBy("has_thorn", has(ModItems.THORN.get()))
                 .save(recipeOutput);

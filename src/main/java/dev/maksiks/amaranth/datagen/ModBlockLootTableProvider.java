@@ -34,6 +34,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        HolderLookup.RegistryLookup<Enchantment> enchantmentRegistryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
         // misc
         this.dropSelf(ModBlocks.MARBLE.get());
 
@@ -140,7 +142,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // pain
         this.add(ModBlocks.SPIKY_ARCHES.get(),
-                block -> createSilkTouchOrShearsDispatchTable(ModBlocks.SPIKY_ARCHES.get(), super.applyExplosionCondition(block, LootItem.lootTableItem(ModItems.THORN))));
+                block -> createSilkTouchOrShearsDispatchTable(ModBlocks.SPIKY_ARCHES.get(),
+                        LootItem.lootTableItem(ModItems.THORN)
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.33F, 0.55F, 0.77F, 1.0F))
+                ));
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
