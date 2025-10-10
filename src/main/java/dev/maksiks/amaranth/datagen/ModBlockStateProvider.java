@@ -2,13 +2,17 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -128,8 +132,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // pot is made manually
 
         // pain
-        twoPlanesCutoutBlock(ModBlocks.SPIKY_ARCHES);
+        randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 3);
     }
+
+    private void randomVariantTwoPlaneCutout(DeferredBlock<Block> blockRegistryObject, int variantCount) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath();
+
+        getVariantBuilder(blockRegistryObject.get()).forAllStates(state -> {
+            int variant = state.getValue(dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock.VARIANT);
+            return ConfiguredModel.builder()
+                    .modelFile(models()
+                            .cross(baseName + "_" + variant, modLoc("block/" + baseName + "_" + variant))
+                            .renderType("cutout"))
+                    .build();
+        });
+
+        for (int i = 0; i < variantCount; i++) {
+            models().cross(baseName + "_" + i, modLoc("block/" + baseName + "_" + i)).renderType("cutout");
+        }
+    }
+
+
 
     private void twoPlanesCutoutBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),

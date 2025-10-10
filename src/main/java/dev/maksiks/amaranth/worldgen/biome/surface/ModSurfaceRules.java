@@ -1,5 +1,7 @@
 package dev.maksiks.amaranth.worldgen.biome.surface;
 
+import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises;
 import net.minecraft.data.worldgen.SurfaceRuleData;
@@ -38,6 +40,9 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource PRISMARINE = makeStateRule(Blocks.PRISMARINE);
     private static final SurfaceRules.RuleSource CYAN_CONCRETE = makeStateRule(Blocks.CYAN_CONCRETE);
     private static final SurfaceRules.RuleSource DARK_PRISMARINE = makeStateRule(Blocks.DARK_PRISMARINE);
+    private static final SurfaceRules.RuleSource SPIKY_ARCHES_0 = SurfaceRules.state(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0));
+    private static final SurfaceRules.RuleSource SPIKY_ARCHES_1 = SurfaceRules.state(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 1));
+    private static final SurfaceRules.RuleSource SPIKY_ARCHES_2 = SurfaceRules.state(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 2));
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -253,6 +258,20 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.noiseCondition(VEINY_NOISE, -0.16D, 0.16D),
                                 SurfaceRules.ifTrue(isAtOrAboveWaterLevel, PRISMARINE)
+                        )
+                )
+        ));
+
+        // pain
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.FIELDS_OF_PAIN),
+                SurfaceRules.ifTrue(
+                        stoneDepthCheck(0, false, 10, CaveSurface.FLOOR),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.abovePreliminarySurface(),
+                                SurfaceRules.ifTrue(
+                                        stoneDepthCheck(6, true, 6, CaveSurface.FLOOR),
+                                        SPIKY_ARCHES_0)
                         )
                 )
         ));

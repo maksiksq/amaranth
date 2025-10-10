@@ -182,7 +182,6 @@ public class ModBlocks {
             () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MALACHITE_VIPERS_BUGLOSS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
 
     // pain
-    // most frankensteined block ever
     public static final DeferredBlock<Block> SPIKY_ARCHES = registerBlock("spiky_arches",
             () -> new ModSpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 

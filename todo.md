@@ -355,3 +355,8 @@
 ----------------------
 - [ ] just some tree biome or even two with unused vanilla trunk and folliage placers 
 ----------------------
+
+### witchy forest
+----------------------
+- [ ] the witchy tree from the survival world 
+----------------------

@@ -148,7 +148,6 @@ public class ModPlacedFeatures {
 
         register(context, ANTHOCYANIN_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ANTHOCYANIN_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
