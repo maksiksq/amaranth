@@ -24,6 +24,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BEANIE_BLOB);
                         output.accept(ModItems.EMPTY_TEA_CUP);
 
+                        // biome items
+                        output.accept(ModItems.THORN);
+
                         // food
                         output.accept(ModItems.HEXFRUIT);
                         output.accept(ModItems.MUSHROOM_TEA);

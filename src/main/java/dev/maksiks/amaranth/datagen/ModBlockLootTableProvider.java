@@ -140,7 +140,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // pain
         this.add(ModBlocks.SPIKY_ARCHES.get(),
-                block -> createSilkTouchOrShearsDispatchTable(ModBlocks.SPIKY_ARCHES.get(), super.applyExplosionCondition(block, LootItem.lootTableItem(Blocks.VINE))));
+                block -> createSilkTouchOrShearsDispatchTable(ModBlocks.SPIKY_ARCHES.get(), super.applyExplosionCondition(block, LootItem.lootTableItem(ModItems.THORN))));
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

@@ -43,6 +43,10 @@ public class ModItems {
     public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
 
+    // pain
+    public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

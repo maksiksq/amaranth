@@ -302,6 +302,7 @@
 ### Thorny vine biome
 -----------------------
 - [ ] thorny vine plant all over the floor
+- [ ] thorn crown ; works like thorns enchant
 ----------------------
 
 ### Dunmeshi dwarf underground biome / hades upper hell
