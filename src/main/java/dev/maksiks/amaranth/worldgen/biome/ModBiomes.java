@@ -33,6 +33,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> SHROOMLANDS = register("shroomlands");
     public static final ResourceKey<Biome> DUSTY_FLATS = register("dusty_flats");
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
+    public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
 //    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
 //    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
 
@@ -60,6 +61,7 @@ public class ModBiomes {
         context.register(SHROOMLANDS, shroomlands(context));
         context.register(DUSTY_FLATS, dustyFlats(context));
         context.register(ANTHOCYANIN_FOREST, anthocyaninForest(context));
+        context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -547,6 +549,44 @@ public class ModBiomes {
                         .grassColorOverride(0x00AAFF)
                         .foliageColorOverride(0x00AAFF)
                         .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // pain
+    public static Biome fieldsOfPain(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        // spikes
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(0.6F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x8CCC58)
+//                        .foliageColorOverride(0x59AE30)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())

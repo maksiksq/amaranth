@@ -54,10 +54,10 @@ public class ModTerrablenderRegions extends Region {
         );
 
         REGION_2 = new ModTerrablenderRegions(
-                8,
+                6,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.OCEANS_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_VARIANT_AMARANTH),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_2_AMARANTH),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_VARIANT_2_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_VARIANT_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.SHATTERED_BIOMES_AMARANTH),
@@ -73,7 +73,7 @@ public class ModTerrablenderRegions extends Region {
         REGION_3 = new ModTerrablenderRegions(
                 4,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.OCEANS_2_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_2_AMARANTH),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_3_AMARANTH),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_2_AMARANTH),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_VARIANT_TERRABLENDER),
@@ -90,7 +90,7 @@ public class ModTerrablenderRegions extends Region {
         REGION_4 = new ModTerrablenderRegions(
                 2,
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.OCEANS_TERRABLENDER),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_3_AMARANTH),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_4_AMARANTH),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_3_AMARANTH),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_VARIANT_TERRABLENDER),

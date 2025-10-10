@@ -1,13 +1,13 @@
 //
 - [ ] A MUSIC DISC
-- [ ] Completely unsolicited dani reference because i felt nostalgic
+- [ ] Completely unsolicited dani reference because i felt nostalgic ; milk
 - 
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] framework for turn nbt into placed feature gen
 - [ ] a mod that makes players edible
 - [ ] a minecraft biome and terrablender biome guide, no one has to suffer through this shit again
 
-- [ ] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in them 
+- [x] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in them ; terrablender builder 
 
 - [x] fix: deprecated petal cutout renderer
 - [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome so it's ok for now
@@ -215,7 +215,7 @@
 ### tree on tree forest
 -----------------------
 - [x] trees on trees ha
-- [ ] make it very rare
+- [x] make it very rare
 - [ ] make it more like the dev screenshot and less intentional
 ![img_2.png](img_2.png)
 
@@ -299,7 +299,7 @@
 - [ ] maybe make the particles not generate in the ground (who cares honestly)
 ----------------------
 
-### Thorny vine biomes
+### Thorny vine biome
 -----------------------
 - [ ] thorny vine plant all over the floor
 ----------------------
@@ -327,8 +327,7 @@
 
 ### exposed coral reef
 ----------------------
-- [ ] salt
-- [ ] earth cracks since it's so dry
+- [ ] eerie
 ----------------------
 
 ### polluted red biomes
@@ -349,4 +348,9 @@
 ### metal flower field
 ----------------------
 - [ ] it ouch
+----------------
+
+### funky colors
+----------------------
+- [ ] just some tree biome or even two with unused vanilla trunk and folliage placers 
 ----------------------

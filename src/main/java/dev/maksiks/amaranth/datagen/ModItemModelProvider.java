@@ -63,6 +63,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.ANTHOCYANIN_SAPLING);
 
         splatBlockItem(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
+
+        // pain
+        splatBlockItem(ModBlocks.SPIKY_ARCHES);
     }
 
 

@@ -35,7 +35,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.STRIPPED_MYSTIC_WOOD);
 
         blockWithItem(ModBlocks.MYSTIC_PLANKS);
-        saplingBlock(ModBlocks.MYSTIC_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.MYSTIC_SAPLING);
         leavesBlock(ModBlocks.MYSTIC_LEAVES);
 
         // TODO: Add a helper for this with some string manipulation
@@ -58,7 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.MYSTIC_TRAPDOOR, "_bottom");
 
         // stubby
-        saplingBlock(ModBlocks.STUBBY_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.STUBBY_SAPLING);
 
         // silver
         leavesBlock(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
@@ -66,7 +66,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.DARK_SILVER_BIRCH_LEAVES);
 
         // leaf litter is made manually
-        saplingBlock(ModBlocks.SILVER_BIRCH_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.SILVER_BIRCH_SAPLING);
 
         // desolate
         iceBlock(ModBlocks.SORROW_ICE);
@@ -78,12 +78,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.RED_MIXED_OAK_LEAVES);
         leavesBlock(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
 
-        saplingBlock(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
-        saplingBlock(ModBlocks.RED_MIXED_OAK_SAPLING);
-        saplingBlock(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.RED_MIXED_OAK_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
 
         // orderly
-        saplingBlock(ModBlocks.TRIMMED_TREE_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.TRIMMED_TREE_SAPLING);
 
         // anthocyanin
         logBlock(((RotatedPillarBlock) ModBlocks.ANTHOCYANIN_LOG.get()));
@@ -98,11 +98,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD);
 
         blockWithItem(ModBlocks.ANTHOCYANIN_PLANKS);
-        saplingBlock(ModBlocks.ANTHOCYANIN_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.ANTHOCYANIN_SAPLING);
         leavesBlock(ModBlocks.ANTHOCYANIN_LEAVES);
         leavesBlock(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
 
-        // TODO: Add a helper for this with some string manipulation
+        // TODO: Add a helper for this
         stairsBlock(ModBlocks.ANTHOCYANIN_STAIRS.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
         slabBlock(ModBlocks.ANTHOCYANIN_SLAB.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
 
@@ -124,16 +124,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.ANTHOCYANIN_TRAPDOOR, "_bottom");
         blockItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR, "_bottom");
 
-        flowerBlock(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
+        twoPlanesCutoutBlock(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
         // pot is made manually
+
+        // pain
+        twoPlanesCutoutBlock(ModBlocks.SPIKY_ARCHES);
     }
 
-    private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
-        simpleBlock(blockRegistryObject.get(),
-                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
-    }
-
-    private void flowerBlock(DeferredBlock<Block> blockRegistryObject) {
+    private void twoPlanesCutoutBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
                 models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
