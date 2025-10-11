@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "amaranth:queen_of_thorns",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 94627818,
+    "separation": 8,
+    "spacing": 32
+  }
+}

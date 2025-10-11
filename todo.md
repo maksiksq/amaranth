@@ -5,7 +5,7 @@
 - [ ] mc tree maker framework or something because it's kinda pain
 - [ ] framework for turn nbt into placed feature gen
 - [ ] a mod that makes players edible
-- [ ] a minecraft biome and terrablender biome guide, no one has to suffer through this shit again
+- [ ] a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also make it an example mod
 
 - [x] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in them ; terrablender builder 
 

@@ -1,18 +1,18 @@
 {
   "type": "minecraft:jigsaw",
 
-  "start_pool": "amaranth:orderly_duck/start_pool",
+  "start_pool": "amaranth:queen_of_thorns/start_pool",
 
   "size": 2,
 
-  "max_distance_from_center": 80,
+  "max_distance_from_center": 40,
 
-  "biomes": "#amaranth:has_structure/nowhere",
+  "biomes": "#amaranth:has_structure/queen_of_thorns",
 
   "step": "surface_structures",
 
   "start_height": {
-    "absolute": 0
+    "absolute": -1
   },
 
   "project_start_to_heightmap": "WORLD_SURFACE_WG",

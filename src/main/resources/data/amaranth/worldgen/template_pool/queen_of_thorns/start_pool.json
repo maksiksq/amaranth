@@ -1,0 +1,15 @@
+{
+  "name": "amaranth:queen_of_thorns/start_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "amaranth:queen_of_thorns",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
