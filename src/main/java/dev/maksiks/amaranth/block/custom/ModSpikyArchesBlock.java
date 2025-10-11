@@ -38,6 +38,8 @@ public class ModSpikyArchesBlock extends Block implements BonemealableBlock {
 
     // so mobs dont walk in
     // it's not as good as sweet berry bushes and idk how sweet berry bushes do this
+    // did test it with /tick sprint 1d and mobs didn't really die just get hurt until despawn
+    // so no accidental mob/lag farms at least
     @Override
     public PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob entity) {
         return PathType.DAMAGE_OTHER;
