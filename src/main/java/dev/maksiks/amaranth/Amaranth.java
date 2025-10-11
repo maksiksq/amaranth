@@ -98,8 +98,24 @@ public class Amaranth {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        // TODO: remove this when they get mad at me for spamming the log
+        LOGGER.info("TODO: remove this when they get mad at me for spamming the log");
+        LOGGER.info("""
+           
+            (\\ __ /)
+             (UwU)   ✧
+          ＿ノ ヽ ノ＼＿ 
+        /　`/ ⌒Ｙ⌒ Ｙ \\ \\ '\\
+      ( 　  (三ヽ人　 /　|  |
+     |　ﾉ⌒＼ ￣￣ヽ　 ノ  |
+      ヽ＿＿＿＞､＿＿／'
+          ｜( 王 ﾉ〈 
+           /ﾐ`ー―彡\\ 
+          |╰       ╯|   
+          |   /\\   |
+          |  /  \\  |
+          | /    \\ |
+""");
     }
 
     @EventBusSubscriber(modid = Amaranth.MOD_ID, value = Dist.CLIENT)

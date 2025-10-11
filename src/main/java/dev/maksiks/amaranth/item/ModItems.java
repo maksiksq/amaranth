@@ -50,7 +50,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
             () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
-                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(8))));
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(9))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
