@@ -22,6 +22,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Properties;
@@ -35,7 +37,7 @@ public class ModSpikyArchesBlock extends Block implements BonemealableBlock {
     }
 
     // so mobs dont walk in
-    // idk how sweet berry bushes do this
+    // it's not as good as sweet berry bushes and idk how sweet berry bushes do this
     @Override
     public PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob entity) {
         return PathType.DAMAGE_OTHER;
