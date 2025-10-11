@@ -11,8 +11,8 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
-public class SimpleBlockButNotAir extends SimpleBlockFeature {
-    public SimpleBlockButNotAir(Codec<SimpleBlockConfiguration> p_66808_) {
+public class SpikyArchesFill extends SimpleBlockFeature {
+    public SpikyArchesFill(Codec<SimpleBlockConfiguration> p_66808_) {
         super(p_66808_);
     }
 

@@ -27,7 +27,9 @@
 - [x]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
 - [x]  add overrides to terrablender's builder for exceptions
 - [x]  fix: desolate biome effects should not work underground
-- [ ]  refistribute the biomes according to the annotation
+- [ ]  redistribute the biomes according to the annotation
+- [ ]  do a 50/50 on some biomes if that's possible ???
+
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
 
