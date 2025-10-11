@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -30,7 +31,8 @@ public class SpikyArchesFill extends SimpleBlockFeature {
 
                 DoublePlantBlock.placeAt(worldgenlevel, blockstate, blockpos, 2);
             } else {
-                if (!worldgenlevel.getBlockState(blockpos.below()).isFaceSturdy(worldgenlevel, blockpos.below(), Direction.UP)
+                if ((!worldgenlevel.getBlockState(blockpos.below()).isFaceSturdy(worldgenlevel, blockpos.below(), Direction.UP)
+                        || worldgenlevel.getBlockState(blockpos.below()).is(Blocks.SAND))
                                 && !worldgenlevel.getBlockState(blockpos.below()).is(ModBlocks.SPIKY_ARCHES.get())) {
                     return false;
                 }
