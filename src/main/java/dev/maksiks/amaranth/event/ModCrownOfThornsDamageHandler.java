@@ -1,16 +1,19 @@
 package dev.maksiks.amaranth.event;
 
+import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.item.ModItems;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.MobDespawnEvent;
 
-public class ModCrownOfThornsHandler {
+@EventBusSubscriber(modid = Amaranth.MOD_ID)
+public class ModCrownOfThornsDamageHandler {
     @SubscribeEvent
-    public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
+    public static void onLivingIncomingDamageEvent(LivingIncomingDamageEvent event) {
         LivingEntity target = event.getEntity();
         var source = event.getSource();
 
