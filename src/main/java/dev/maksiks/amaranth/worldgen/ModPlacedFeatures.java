@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -41,6 +42,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> ANTHOCYANIN_PLACED_KEY = registerKey("anthocyanin_placed");
     public static final ResourceKey<PlacedFeature> ANTHOCYANIN_FLOWER_PLACED_KEY = registerKey("anthocyanin_flower_placed");
+
+    public static final ResourceKey<PlacedFeature> FIELDS_OF_PAIN_FILL_PLACED_KEY = registerKey("fields_of_pain_fill_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -148,6 +151,11 @@ public class ModPlacedFeatures {
 
         register(context, ANTHOCYANIN_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ANTHOCYANIN_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        // pain
+        register(context, FIELDS_OF_PAIN_FILL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FIELDS_OF_PAIN_FILL_KEY),
+                List.of(InSquarePlacement.spread(), CountPlacement.of(40), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

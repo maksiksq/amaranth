@@ -566,10 +566,12 @@ public class ModBiomes {
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         // we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
         globalOverworldGeneration(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.FIELDS_OF_PAIN_FILL_PLACED_KEY);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+        BiomeDefaultFeatures.addSavannaGrass(biomeBuilder);
+        BiomeDefaultFeatures.addSavannaExtraGrass(biomeBuilder);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
@@ -584,7 +586,7 @@ public class ModBiomes {
                         .waterColor(NORMAL_WATER_COLOR)
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
-                        .grassColorOverride(0x8CCC58)
+                        .grassColorOverride(0x58CC98)
 //                        .foliageColorOverride(0x59AE30)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)

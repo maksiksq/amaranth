@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
 import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
+import dev.maksiks.amaranth.worldgen.features.SimpleBlockButNotAir;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.*;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.AnthocyaninTrunkPlacer;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
@@ -69,6 +70,8 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> ANTHOCYANIN_KEY = registerKey("anthocyanin");
     public static ResourceKey<ConfiguredFeature<?, ?>> ANTHOCYANIN_FLOWER_KEY = registerKey("anthocyanin_flower");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> FIELDS_OF_PAIN_FILL_KEY = registerKey("fields_of_pain_fill");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -331,6 +334,24 @@ public class ModConfiguredFeatures {
                                         )
                                 )
                         )
+                )
+        );
+
+        // pain
+        register(
+                context,
+                FIELDS_OF_PAIN_FILL_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SIMPLE_BLOCK_BUT_NOT_AIR.get(),  new SimpleBlockConfiguration(
+                        new WeightedStateProvider(
+                                SimpleWeightedRandomList.<BlockState>builder()
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0), 1)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 1), 1)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 2), 1)
+                                        .build()
+                        )
+                ))
                 )
         );
     }

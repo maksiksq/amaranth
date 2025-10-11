@@ -27,4 +27,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ORDERLY_COURTS_RUINS =
             FEATURES.register("orderly_courts_ruins",
                     () -> new OrderlyCourtsRuins(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<SimpleBlockConfiguration>> SIMPLE_BLOCK_BUT_NOT_AIR =
+            FEATURES.register("simple_block_but_not_air",
+                    () -> new SimpleBlockButNotAir(SimpleBlockConfiguration.CODEC));
 }

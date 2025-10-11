@@ -132,7 +132,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // pot is made manually
 
         // pain
-        randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 3);
+        randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 4);
     }
 
     private void randomVariantTwoPlaneCutout(DeferredBlock<Block> blockRegistryObject, int variantCount) {
