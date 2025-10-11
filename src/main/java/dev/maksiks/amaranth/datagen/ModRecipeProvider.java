@@ -32,7 +32,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MAFIA_BLOB.get(), 1)
                 .requires(ModBlocks.MYSTIC_LEAVES.get())
-                .unlockedBy("has_hexfruit", has(ModBlocks.MYSTIC_LEAVES.get()))
+                .unlockedBy("has_mystic_leaves", has(ModBlocks.MYSTIC_LEAVES.get()))
                 .save(recipeOutput, "amaranth:mafia_blob_from_leaves");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.BEANIE_BLOB.get())
@@ -73,6 +73,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.THORN.get())
                 .requires(ModItems.THORN.get())
                 .requires(Items.VINE)
+                .unlockedBy("has_thorn", has(ModItems.THORN.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CROWN_OF_THORNS, 1)
+                .pattern("TTT")
+                .pattern("T T")
+                .pattern("   ")
+                .define('T', ModItems.THORN.get())
                 .unlockedBy("has_thorn", has(ModItems.THORN.get()))
                 .save(recipeOutput);
 
