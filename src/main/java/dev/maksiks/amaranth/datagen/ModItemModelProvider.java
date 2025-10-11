@@ -4,12 +4,17 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
+
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -68,9 +73,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         // pain
         splatBlockItem(ModBlocks.SPIKY_ARCHES);
         basicItem(ModItems.THORN.asItem());
+
+        basicItem(ModItems.CROWN_OF_THORNS.asItem());
     }
-
-
 
     private void splatBlockItem(DeferredBlock<Block> item) {
         withExistingParent(item.getId().getPath(),

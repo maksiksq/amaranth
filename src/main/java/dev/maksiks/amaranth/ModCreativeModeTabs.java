@@ -26,6 +26,7 @@ public class ModCreativeModeTabs {
 
                         // biome items
                         output.accept(ModItems.THORN);
+                        output.accept(ModItems.CROWN_OF_THORNS);
 
                         // food
                         output.accept(ModItems.HEXFRUIT);

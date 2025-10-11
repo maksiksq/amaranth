@@ -2,8 +2,10 @@ package dev.maksiks.amaranth.item;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
+import dev.maksiks.amaranth.item.custom.ModCrownOfThornsItem;
 import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -46,6 +48,9 @@ public class ModItems {
     // pain
     public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
+            () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(8))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
