@@ -29,12 +29,12 @@ public class ModThickPumpkinBlock extends Block {
         this.registerDefaultState(
                 this.stateDefinition
                         .any()
-                        .setValue(NORTH, false)
-                        .setValue(EAST, false)
-                        .setValue(SOUTH, false)
-                        .setValue(WEST, false)
-                        .setValue(UP, false)
-                        .setValue(DOWN, false)
+                        .setValue(NORTH, true)
+                        .setValue(EAST, true)
+                        .setValue(SOUTH, true)
+                        .setValue(WEST, true)
+                        .setValue(UP, true)
+                        .setValue(DOWN, true)
         );
     }
 

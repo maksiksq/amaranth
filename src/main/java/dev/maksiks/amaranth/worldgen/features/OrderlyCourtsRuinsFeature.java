@@ -26,9 +26,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import java.util.List;
 
-public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
+import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.canPlaceBigThingAt;
 
-    public OrderlyCourtsRuins(Codec<NoneFeatureConfiguration> codec) {
+public class OrderlyCourtsRuinsFeature extends Feature<NoneFeatureConfiguration> {
+
+    public OrderlyCourtsRuinsFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
@@ -122,7 +124,7 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level = context.level();
         BlockPos origin = context.origin();
 
-        if (!canPlaceStructureAt(level, origin)) {
+        if (!canPlaceBigThingAt(level, origin)) {
             return false;
         }
 
@@ -199,7 +201,6 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
                 BlockPos checkPos = pos.offset(x, 0, z);
                 BlockPos groundPos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, checkPos);
 
-                // it's deprecated but i have 0 idea what to replace it with
                 BlockPos belowPos = groundPos.below();
                 BlockState groundBlock = level.getBlockState(belowPos);
                 if (!groundBlock.isFaceSturdy(level, belowPos, Direction.UP, SupportType.FULL)) {
@@ -213,79 +214,6 @@ public class OrderlyCourtsRuins extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
-        return true;
-    }
-
-    private static boolean canPlaceStructureAt(WorldGenLevel level, BlockPos pos) {
-        BlockPos surfacePos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
-
-        // above bow'lho'volher check
-        if (level.getFluidState(surfacePos).is(FluidTags.WATER) ||
-                level.getFluidState(surfacePos.above()).is(FluidTags.WATER)) {
-            return false;
-        }
-
-        // near bow'lho'volher check
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
-                BlockPos checkPos = surfacePos.offset(x, 0, z);
-                if (level.getFluidState(checkPos).is(FluidTags.WATER)) {
-                    return false;
-                }
-            }
-        }
-
-        // sea level and space check
-
-        // .getSeaLevel() is deprecated but i have no idea what to replace it with
-        // maybe it's just a solid 63? Either way let it be for now
-        int y = surfacePos.getY();
-        if (y < level.getSeaLevel() - 10 || y > level.getSeaLevel() + 100) {
-            return false;
-        }
-
-        // slope check
-        int minHeight = Integer.MAX_VALUE;
-        int maxHeight = Integer.MIN_VALUE;
-
-        for (int x = -2; x <= 2; x++) {
-            for (int z = -2; z <= 2; z++) {
-                BlockPos checkPos = pos.offset(x, 0, z);
-                int height = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, checkPos).getY();
-                minHeight = Math.min(minHeight, height);
-                maxHeight = Math.max(maxHeight, height);
-            }
-        }
-
-        // (arbitrary)
-        if (maxHeight - minHeight > 8) {
-            return false;
-        }
-
-        // above trees check
-        BlockPos surfaceBelowPos = surfacePos.below();
-        BlockState groundBlock = level.getBlockState(surfaceBelowPos);
-        if (!groundBlock.isFaceSturdy(level, surfaceBelowPos, Direction.UP, SupportType.FULL) || groundBlock.is(BlockTags.LEAVES)) {
-            return false;
-        }
-
-        // air above check
-        for (int i = 1; i <= 10; i++) {
-            BlockPos airPos = surfacePos.above(i);
-            BlockState state = level.getBlockState(airPos);
-            if (!state.isAir() && !state.is(BlockTags.REPLACEABLE)) {
-                return false;
-            }
-        }
-
-        // floatie check
-        for (int i = 1; i <= 3; i++) {
-            BlockPos belowPos = surfacePos.below(i);
-            if (level.getBlockState(belowPos).isAir()) {
-                return false;
-            }
-        }
-
         return true;
     }
 }

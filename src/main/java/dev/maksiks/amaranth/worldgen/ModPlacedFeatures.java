@@ -45,6 +45,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> FIELDS_OF_PAIN_FILL_PLACED_KEY = registerKey("fields_of_pain_fill_placed");
 
+    public static final ResourceKey<PlacedFeature> THICK_PUMPKIN_PLACED_KEY = registerKey("thick_pumpkin_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -155,6 +157,17 @@ public class ModPlacedFeatures {
         // pain
         register(context, FIELDS_OF_PAIN_FILL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FIELDS_OF_PAIN_FILL_KEY),
                 List.of(InSquarePlacement.spread(), CountPlacement.of(40), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())
+        );
+
+        // thrumletons
+        register(context, THICK_PUMPKIN_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THICK_PUMPKIN_KEY),
+                List.of(
+                        CountPlacement.of(2),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome(),
+                        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+                )
         );
     }
 

@@ -17,9 +17,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DesolateSpike extends Feature<NoneFeatureConfiguration> {
+public class DesolateSpikeFeature extends Feature<NoneFeatureConfiguration> {
 
-    public DesolateSpike(Codec<NoneFeatureConfiguration> codec) {
+    public DesolateSpikeFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 

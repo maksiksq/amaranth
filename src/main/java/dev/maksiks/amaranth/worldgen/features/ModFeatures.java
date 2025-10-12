@@ -11,15 +11,20 @@ public class ModFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES =
             DeferredRegister.create(BuiltInRegistries.FEATURE, "amaranth");
 
-    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> DESOLATE_SPIKE =
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> DESOLATE_SPIKE_FEATURE =
             FEATURES.register("desolate_spike",
-                    () -> new DesolateSpike(NoneFeatureConfiguration.CODEC));
+                    () -> new DesolateSpikeFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ORDERLY_COURTS_RUINS =
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ORDERLY_COURTS_RUINS_FEATURE =
             FEATURES.register("orderly_courts_ruins",
-                    () -> new OrderlyCourtsRuins(NoneFeatureConfiguration.CODEC));
+                    () -> new OrderlyCourtsRuinsFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final DeferredHolder<Feature<?>, Feature<SimpleBlockConfiguration>> SPIKY_ARCHES_FILL =
+    public static final DeferredHolder<Feature<?>, Feature<SimpleBlockConfiguration>> SPIKY_ARCHES_FILL_FEATURE =
             FEATURES.register("spiky_arches_fill",
-                    () -> new SpikyArchesFill(SimpleBlockConfiguration.CODEC));
+                    () -> new SpikyArchesFillFeature(SimpleBlockConfiguration.CODEC));
+
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> THICK_PUMPKIN_FEATURE =
+            FEATURES.register("thick_pumpkin",
+                    () -> new ThickPumpkinFeature(NoneFeatureConfiguration.CODEC));
 }

@@ -65,6 +65,8 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> FIELDS_OF_PAIN_FILL_KEY = registerKey("fields_of_pain_fill");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> THICK_PUMPKIN_KEY = registerKey("thick_pumpkin");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -211,7 +213,7 @@ public class ModConfiguredFeatures {
 
         // desolate
         register(context, DESOLATE_SPIKE_KEY,
-                ModFeatures.DESOLATE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE);
+                ModFeatures.DESOLATE_SPIKE_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
         // mixed
         register(context, PURPLE_MIXED_OAK_KEY, Feature.TREE,
@@ -278,7 +280,7 @@ public class ModConfiguredFeatures {
 
         // orderly courts ruins
         register(context, ORDERLY_COURTS_RUINS_KEY,
-                ModFeatures.ORDERLY_COURTS_RUINS.get(), NoneFeatureConfiguration.INSTANCE);
+                ModFeatures.ORDERLY_COURTS_RUINS_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
         // tree on tree
         register(context, TREE_ON_TREE_TREE_KEY, Feature.TREE,
@@ -335,7 +337,7 @@ public class ModConfiguredFeatures {
                 FIELDS_OF_PAIN_FILL_KEY,
                 Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL.get(),  new SimpleBlockConfiguration(
+                        22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL_FEATURE.get(),  new SimpleBlockConfiguration(
                         new WeightedStateProvider(
                                 SimpleWeightedRandomList.<BlockState>builder()
                                         .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0), 4)
@@ -347,6 +349,9 @@ public class ModConfiguredFeatures {
                 ))
                 )
         );
+
+        register(context, THICK_PUMPKIN_KEY,
+                ModFeatures.THICK_PUMPKIN_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

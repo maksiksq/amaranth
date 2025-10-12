@@ -30,6 +30,8 @@
 - [x]  fix: desolate biome effects should not work underground
 - [x]  redistribute the biomes according to the annotation
 - [ ]  do a 50/50 on some biomes if that would work reasonably ???
+- [ ]  melon helmet
+- [ ]  finish: pumpkin
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
@@ -371,5 +373,7 @@
 - [x] gigantic pumpkins that connect
 - [ ] make the pumpkins actually connect
 - [ ] make the pumpkins actually growable
+- [ ] add marigolds
+- [ ] add cosmos flowers
 - [ ] pump kin (GET IT??) 
 ----------------------
