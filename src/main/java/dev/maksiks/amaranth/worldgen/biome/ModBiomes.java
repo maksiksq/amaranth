@@ -34,8 +34,10 @@ public class ModBiomes {
     public static final ResourceKey<Biome> DUSTY_FLATS = register("dusty_flats");
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
     public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
-//    public static final ResourceKey<Biome> WASTELAND = register("wasteland");
-//    public static final ResourceKey<Biome> CHAPARRAL = register("chaparral");
+    public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
+//    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
+//    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
+//    public static final ResourceKey<Biome> DWARVISH_LEFTOVERS = register("dwarvish_leftovers");
 
     protected static final int NORMAL_WATER_COLOR = 4159204;
     protected static final int NORMAL_WATER_FOG_COLOR = 329011;
@@ -62,6 +64,7 @@ public class ModBiomes {
         context.register(DUSTY_FLATS, dustyFlats(context));
         context.register(ANTHOCYANIN_FOREST, anthocyaninForest(context));
         context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
+        context.register(THRUMLETONS, thrumlethons(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -586,6 +589,46 @@ public class ModBiomes {
                         .waterFogColor(NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x58CC98)
+//                        .foliageColorOverride(0x59AE30)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // thrumlethons
+    public static Biome thrumlethons(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        // TODO: insert pump kin here
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        // TODO: insert pumpkins here
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        BiomeDefaultFeatures.addSavannaGrass(biomeBuilder);
+        BiomeDefaultFeatures.addSavannaExtraGrass(biomeBuilder);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(0.6F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x32D17F)
 //                        .foliageColorOverride(0x59AE30)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)

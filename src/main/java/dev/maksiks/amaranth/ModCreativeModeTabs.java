@@ -63,6 +63,9 @@ public class ModCreativeModeTabs {
                         // flowers
                         output.accept(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
 
+                        // full biome vegetation blocks
+                        output.accept(ModBlocks.THICK_PUMPKIN);
+
                         // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
                         output.accept(ModBlocks.ANTHOCYANIN_LOG);

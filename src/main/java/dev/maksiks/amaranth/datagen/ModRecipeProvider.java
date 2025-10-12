@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -82,6 +81,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("   ")
                 .define('T', ModItems.THORN.get())
                 .unlockedBy("has_thorn", has(ModItems.THORN.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.THICK_PUMPKIN.asItem(), 3)
+                .requires(Blocks.PUMPKIN)
+                .requires(Blocks.PUMPKIN)
+                .requires(Blocks.PUMPKIN)
+                .requires(Blocks.PUMPKIN)
+                .unlockedBy("has_pumpkin", has(ModBlocks.THICK_PUMPKIN.get()))
                 .save(recipeOutput);
 
         // yoink a custom method for smelting later so it's inside neo's folder because it's hardcoded to be in mc

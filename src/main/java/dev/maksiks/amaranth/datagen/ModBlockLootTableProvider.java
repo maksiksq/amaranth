@@ -8,22 +8,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -146,6 +140,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                         LootItem.lootTableItem(ModItems.THORN)
                         .when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.33F, 0.55F, 0.77F, 1.0F))
                 ));
+
+        // thrumletons
+        this.dropSelf(ModBlocks.THICK_PUMPKIN.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

@@ -186,6 +186,11 @@ public class ModBlocks {
             () -> new ModSpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
 
+    // thrumletons
+    public static final DeferredBlock<Block> THICK_PUMPKIN = registerBlock("thick_pumpkin",
+            () -> new ModThickPumpkinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PUMPKIN)));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

@@ -85,5 +85,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.FLOWERS).add(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get());
         this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS.get());
+
+        // thrumletons
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.THICK_PUMPKIN.get());
     }
 }

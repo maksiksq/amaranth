@@ -95,7 +95,7 @@ public class ModBiomeSelectors {
                 // freezing
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 // cool
-                {Region.DEFERRED_PLACEHOLDER, ModBiomes.MYSTIC_FOREST, Region.DEFERRED_PLACEHOLDER, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, ModBiomes.MYSTIC_FOREST, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
                 // mid
                 {ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
                 // warm

@@ -3,6 +3,7 @@
 - [ ] Completely unsolicited dani reference because i felt nostalgic ; milk
 - 
 - [ ] mc tree maker framework or something because it's kinda pain
+- [ ] unrelated but make like an actually good color picker website cuz im annoyed
 - [ ] framework for turn nbt into placed feature gen
 - [ ] a mod that makes players edible
 - [ ] a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also make it an example mod
@@ -27,8 +28,8 @@
 - [x]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
 - [x]  add overrides to terrablender's builder for exceptions
 - [x]  fix: desolate biome effects should not work underground
-- [ ]  redistribute the biomes according to the annotation
-- [ ]  do a 50/50 on some biomes if that's possible ???
+- [x]  redistribute the biomes according to the annotation
+- [ ]  do a 50/50 on some biomes if that would work reasonably ???
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
@@ -362,4 +363,10 @@
 ### witchy forest
 ----------------------
 - [ ] the witchy tree from the survival world 
+----------------------
+
+### pumpkin fields (thrumletons)
+----------------------
+- [ ] gigantic pumpkins that connect
+- [ ] pump kin (GET IT??) 
 ----------------------

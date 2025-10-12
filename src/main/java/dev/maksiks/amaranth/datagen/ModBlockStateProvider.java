@@ -2,17 +2,14 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -133,6 +130,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // pain
         randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 4);
+
+        // thrumletons
+        // TODO: hell incoming soon
+        blockWithItem(ModBlocks.THICK_PUMPKIN);
     }
 
     private void randomVariantTwoPlaneCutout(DeferredBlock<Block> blockRegistryObject, int variantCount) {
