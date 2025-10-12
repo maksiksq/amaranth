@@ -198,9 +198,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         models().withExistingParent(name, mcLoc("block/cube"))
                 .texture("north", inner)
-                .texture("south", inner)
+                .texture("south", side)
                 .texture("east", side)
-                .texture("west", side)
+                .texture("west", inner)
                 .texture("up", end)
                 .texture("down", end);
 
