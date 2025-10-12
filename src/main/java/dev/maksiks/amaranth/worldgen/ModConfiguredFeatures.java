@@ -66,6 +66,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> FIELDS_OF_PAIN_FILL_KEY = registerKey("fields_of_pain_fill");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> THICK_PUMPKIN_KEY = registerKey("thick_pumpkin");
+    public static ResourceKey<ConfiguredFeature<?, ?>> THRUMLETONS_FLOWER_KEY = registerKey("thrumletons_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -352,6 +353,29 @@ public class ModConfiguredFeatures {
 
         register(context, THICK_PUMPKIN_KEY,
                 ModFeatures.THICK_PUMPKIN_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
+
+        register(
+                context,
+                THRUMLETONS_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        42,
+                        16,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new WeightedStateProvider(
+                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                        // sunflowers separately
+                                                        .add(Blocks.OXEYE_DAISY.defaultBlockState(), 5)
+                                                        .add(Blocks.AZURE_BLUET.defaultBlockState(), 3)
+                                                        .build()
+                                        )
+                                )
+                        )
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

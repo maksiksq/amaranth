@@ -46,6 +46,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FIELDS_OF_PAIN_FILL_PLACED_KEY = registerKey("fields_of_pain_fill_placed");
 
     public static final ResourceKey<PlacedFeature> THICK_PUMPKIN_PLACED_KEY = registerKey("thick_pumpkin_placed");
+    public static final ResourceKey<PlacedFeature> THRUMLETONS_FLOWER_PLACED_KEY = registerKey("thrumletons_flower_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -169,6 +170,10 @@ public class ModPlacedFeatures {
                         HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
                 )
         );
+
+        register(context, THRUMLETONS_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THRUMLETONS_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

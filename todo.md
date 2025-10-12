@@ -32,6 +32,7 @@
 - [ ]  do a 50/50 on some biomes if that would work reasonably ???
 - [ ]  melon helmet
 - [ ]  finish: pumpkin
+- [ ]  fix: FULL SET
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
