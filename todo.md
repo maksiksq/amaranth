@@ -367,6 +367,9 @@
 
 ### pumpkin fields (thrumletons)
 ----------------------
-- [ ] gigantic pumpkins that connect
+- [ ] TODO: come back to it later with custom block flooring, and in general more green, it's a really good idea
+- [x] gigantic pumpkins that connect
+- [ ] make the pumpkins actually connect
+- [ ] make the pumpkins actually growable
 - [ ] pump kin (GET IT??) 
 ----------------------

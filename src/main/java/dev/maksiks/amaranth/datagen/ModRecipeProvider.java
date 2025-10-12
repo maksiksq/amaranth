@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -88,8 +89,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Blocks.PUMPKIN)
                 .requires(Blocks.PUMPKIN)
                 .requires(Blocks.PUMPKIN)
-                .unlockedBy("has_pumpkin", has(ModBlocks.THICK_PUMPKIN.get()))
+                .unlockedBy("has_pumpkin", has(Blocks.PUMPKIN.asItem()))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.PUMPKIN_SEEDS, 12)
+                .requires(ModBlocks.THICK_PUMPKIN.asItem())
+                .unlockedBy("has_thick_pumpkin", has(ModBlocks.THICK_PUMPKIN.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "pumpkin_seeds_from_thick_pumpkin"));
+
+        // who in the world will ever need this
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.PUMPKIN_PIE, 4)
+                .requires(ModBlocks.THICK_PUMPKIN.asItem())
+                .requires(Items.SUGAR)
+                .requires(Items.SUGAR)
+                .requires(Items.SUGAR)
+                .requires(Items.EGG)
+                .requires(Items.EGG)
+                .requires(Items.EGG)
+                .unlockedBy("has_thick_pumpkin", has(ModBlocks.THICK_PUMPKIN.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "pumpkin_pie_from_thick_pumpkin"));
 
         // yoink a custom method for smelting later so it's inside neo's folder because it's hardcoded to be in mc
 
