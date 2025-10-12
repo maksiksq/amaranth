@@ -84,7 +84,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_thorn", has(ModItems.THORN.get()))
                 .save(recipeOutput);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.THICK_PUMPKIN.asItem(), 3)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.THICK_PUMPKIN.asItem(), 1)
                 .requires(Blocks.PUMPKIN)
                 .requires(Blocks.PUMPKIN)
                 .requires(Blocks.PUMPKIN)
@@ -98,7 +98,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "pumpkin_seeds_from_thick_pumpkin"));
 
         // who in the world will ever need this
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.PUMPKIN_PIE, 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.PUMPKIN_PIE, 5)
                 .requires(ModBlocks.THICK_PUMPKIN.asItem())
                 .requires(Items.SUGAR)
                 .requires(Items.SUGAR)
