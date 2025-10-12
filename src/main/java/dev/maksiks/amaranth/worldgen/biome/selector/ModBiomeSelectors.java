@@ -95,7 +95,7 @@ public class ModBiomeSelectors {
                 // freezing
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 // cool
-                {Region.DEFERRED_PLACEHOLDER, ModBiomes.MYSTIC_FOREST, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
                 // mid
                 {ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
                 // warm
@@ -107,7 +107,7 @@ public class ModBiomeSelectors {
         public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_2_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes/middle_biomes_2_amaranth", "", new ResourceKey[][]{
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-                {Region.DEFERRED_PLACEHOLDER, ModBiomes.FIELDS_OF_PAIN, ModBiomes.ORDERLY_COURTS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.ORDERLY_COURTS, ModBiomes.MYSTIC_FOREST, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {ModBiomes.DUSTY_FLATS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
         });
@@ -115,7 +115,7 @@ public class ModBiomeSelectors {
         public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_3_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes/middle_biomes_2_amaranth", "", new ResourceKey[][]{
                 {ModBiomes.DESOLATE_ICE_FIELDS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.FIELDS_OF_PAIN, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.SHROOMLANDS},
                 {Region.DEFERRED_PLACEHOLDER, ModBiomes.DUSTY_FLATS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
         });
