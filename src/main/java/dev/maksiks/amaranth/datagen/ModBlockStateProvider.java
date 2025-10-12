@@ -160,14 +160,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .from(0, 0, 0).to(16, 16, 16)
                     .face(dir).texture("#texture").end()
                     .end()
-                    .texture("texture", faceTex);
+                    .texture("texture", faceTex)
+                    .texture("particle", faceTex);
 
             var innerModel = models().withExistingParent(baseName + "_" + dirName + "_inner", mcLoc("block/block"))
                     .element()
                     .from(0, 0, 0).to(16, 16, 16)
                     .face(dir).texture("#texture").end()
                     .end()
-                    .texture("texture", inner);
+                    .texture("texture", inner)
+                    .texture("particle", inner);
 
             BooleanProperty prop = switch (dir) {
                 case NORTH -> BlockStateProperties.NORTH;
