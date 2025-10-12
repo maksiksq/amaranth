@@ -2,11 +2,14 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -132,8 +135,76 @@ public class ModBlockStateProvider extends BlockStateProvider {
         randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 4);
 
         // thrumletons
-        // TODO: hell incoming soon
-        blockWithItem(ModBlocks.THICK_PUMPKIN);
+        // TODO: more blockstates
+        thickPumpkinBlock(ModBlocks.THICK_PUMPKIN);
+        thickPumpkinBlockItem(ModBlocks.THICK_PUMPKIN);
+    }
+
+    private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {
+        Block block = blockRegistryObject.get();
+        String baseName = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath();
+
+        ResourceLocation side = modLoc("block/" + baseName + "_side");
+        ResourceLocation end = modLoc("block/" + baseName + "_end");
+        ResourceLocation inner = modLoc("block/thick_pumpkin_inner");
+
+        var builder = getMultipartBuilder(block);
+
+        for (Direction dir : Direction.values()) {
+            ResourceLocation faceTex = (dir == Direction.UP || dir == Direction.DOWN) ? end : side;
+
+            String dirName = dir.getName();
+
+            var outerModel = models().withExistingParent(baseName + "_" + dirName, mcLoc("block/block"))
+                    .element()
+                    .from(0, 0, 0).to(16, 16, 16)
+                    .face(dir).texture("#texture").end()
+                    .end()
+                    .texture("texture", faceTex);
+
+            var innerModel = models().withExistingParent(baseName + "_" + dirName + "_inner", mcLoc("block/block"))
+                    .element()
+                    .from(0, 0, 0).to(16, 16, 16)
+                    .face(dir).texture("#texture").end()
+                    .end()
+                    .texture("texture", inner);
+
+            BooleanProperty prop = switch (dir) {
+                case NORTH -> BlockStateProperties.NORTH;
+                case SOUTH -> BlockStateProperties.SOUTH;
+                case EAST  -> BlockStateProperties.EAST;
+                case WEST  -> BlockStateProperties.WEST;
+                case UP    -> BlockStateProperties.UP;
+                case DOWN  -> BlockStateProperties.DOWN;
+            };
+
+            builder
+                    .part().modelFile(outerModel)
+                    .addModel()
+                    .condition(prop, Boolean.TRUE)
+                    .end()
+                    .part().modelFile(innerModel)
+                    .addModel()
+                    .condition(prop, Boolean.FALSE)
+                    .end();
+        }
+    }
+
+    private void thickPumpkinBlockItem(DeferredBlock<Block> block) {
+        String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+        ResourceLocation side = modLoc("block/thick_pumpkin_side");
+        ResourceLocation end = modLoc("block/thick_pumpkin_end");
+        ResourceLocation inner = modLoc("block/thick_pumpkin_inner");
+
+        models().withExistingParent(name, mcLoc("block/cube"))
+                .texture("north", inner)
+                .texture("south", inner)
+                .texture("east", side)
+                .texture("west", side)
+                .texture("up", end)
+                .texture("down", end);
+
+        simpleBlockItem(block.get(), models().getExistingFile(modLoc(name)));
     }
 
     private void randomVariantTwoPlaneCutout(DeferredBlock<Block> blockRegistryObject, int variantCount) {
