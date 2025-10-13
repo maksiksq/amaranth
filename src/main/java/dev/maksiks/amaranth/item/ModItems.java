@@ -4,17 +4,18 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.item.custom.ModCrownOfThornsItem;
 import dev.maksiks.amaranth.sound.ModSounds;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Amaranth.MOD_ID);
@@ -33,7 +34,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.HEXFRUIT)));
 
     public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = ITEMS.register("shroom_boi_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.SHROOM_BOI, 0xf75d57, 0xf1f1f1,
+            () -> new SpawnEggItem(ModEntities.SHROOM_BOI.get(), 0xf75d57, 0xf1f1f1,
                     new Item.Properties()));
 
     public static final DeferredItem<Item> EMPTY_TEA_CUP = ITEMS.register("empty_tea_cup",
@@ -49,8 +50,27 @@ public class ModItems {
     public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
-            () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
-                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(9))));
+            () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorType.HELMET,
+                    new Item.Properties()));
+
+    @FunctionalInterface
+    private interface ItemFactory<T extends Item> {
+        T create(Item.Properties properties);
+    }
+
+    private static <T extends Item> DeferredItem<T> registerItem(String name, ItemFactory<T> factory) {
+        return ITEMS.register(name, () -> factory.create(
+                new Item.Properties().setId(
+                        ResourceKey.create(Registries.ITEM,
+                                ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name))
+                )
+        ));
+    }
+
+    // without seId
+    private static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<T> supplier) {
+        return ITEMS.register(name, supplier);
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

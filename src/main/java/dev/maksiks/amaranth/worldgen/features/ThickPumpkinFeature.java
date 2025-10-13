@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -112,7 +113,7 @@ public class ThickPumpkinFeature extends Feature<NoneFeatureConfiguration> {
                 BlockPos below = pos.below();
                 boolean topPlaced = false;
 
-                while (below.getY() > level.getMinBuildHeight() && level.getBlockState(below).canBeReplaced()) {
+                while (below.getY() > level.getMinY() && level.getBlockState(below).canBeReplaced()) {
                     if (!topPlaced) {
                         level.setBlock(below, Blocks.GRASS_BLOCK.defaultBlockState(), 2);
                         topPlaced = true;

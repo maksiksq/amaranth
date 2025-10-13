@@ -3,10 +3,10 @@ package dev.maksiks.amaranth.datagen;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModItems;
+import dev.maksiks.amaranth.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -45,6 +45,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.CROWN_OF_THORNS.get());
         this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
                 .add(ModItems.CROWN_OF_THORNS.get());
+
+        this.tag(ModTags.Items.THORN_REPAIR)
+                .add(ModItems.THORN.get());
 
     }
 }

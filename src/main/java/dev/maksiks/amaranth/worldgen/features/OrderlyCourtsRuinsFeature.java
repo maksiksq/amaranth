@@ -179,10 +179,10 @@ public class OrderlyCourtsRuinsFeature extends Feature<NoneFeatureConfiguration>
         ChunkPos chunkPos = new ChunkPos(origin);
         BoundingBox boundingBox = new BoundingBox(
                 chunkPos.getMinBlockX() - 16,
-                level.getMinBuildHeight(),
+                level.getMinY(),
                 chunkPos.getMinBlockZ() - 16,
                 chunkPos.getMaxBlockX() + 16,
-                level.getMaxBuildHeight(),
+                level.getMaxY(),
                 chunkPos.getMaxBlockZ() + 16
         );
 

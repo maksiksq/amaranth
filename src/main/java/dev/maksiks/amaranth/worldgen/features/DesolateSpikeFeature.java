@@ -196,10 +196,10 @@ public class DesolateSpikeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private boolean canPlaceBlockAt(WorldGenLevel level, BlockPos pos) {
-        if (pos.getY() < level.getMinBuildHeight()) {
+        if (pos.getY() < level.getMinY()) {
             return false;
         }
-        if (pos.getY() >= level.getMaxBuildHeight()) {
+        if (pos.getY() >= level.getMaxY()) {
             return false;
         }
 

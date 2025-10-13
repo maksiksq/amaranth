@@ -210,6 +210,7 @@ public class ModBlocks {
         return toReturn;
     }
 
+    // without seId
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

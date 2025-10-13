@@ -3,6 +3,8 @@ package dev.maksiks.amaranth.entity;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -17,7 +19,7 @@ public class ModEntities {
 
     public static final Supplier<EntityType<ShroomBoiEntity>> SHROOM_BOI =
             ENTITY_TYPES.register("shroom_boi", () -> EntityType.Builder.of(ShroomBoiEntity::new, MobCategory.CREATURE)
-                    .sized(0.6f, 1.0f).build(Amaranth.MOD_ID + ":shroom_boi"));
+                    .sized(0.6f, 1.0f).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ":shroom_boi"))));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
