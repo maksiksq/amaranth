@@ -20,38 +20,36 @@ import java.util.function.Supplier;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Amaranth.MOD_ID);
 
-    public static final DeferredItem<Item> MAFIA_BLOB = ITEMS.register("mafia_blob",
-            () -> new Item(new Item.Properties()) {
+    public static final DeferredItem<Item> MAFIA_BLOB = registerItem("mafia_blob",
+            props -> new Item(props) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.amaranth.mafia_blob.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
-    public static final DeferredItem<Item> BEANIE_BLOB = ITEMS.register("beanie_blob",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> HEXFRUIT = ITEMS.register("hexfruit",
-            () -> new Item(new Item.Properties().food(ModFoodProperties.HEXFRUIT)));
+    public static final DeferredItem<Item> BEANIE_BLOB = registerItem("beanie_blob",
+            Item::new);
+    public static final DeferredItem<Item> HEXFRUIT = registerItem("hexfruit",
+            props -> new Item(props.food(ModFoodProperties.HEXFRUIT, ModFoodProperties.HEXFRUIT_EFFECT)));
 
-    public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = ITEMS.register("shroom_boi_spawn_egg",
-            () -> new SpawnEggItem(ModEntities.SHROOM_BOI.get(), 0xf75d57, 0xf1f1f1,
-                    new Item.Properties()));
+    public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = registerItem("shroom_boi_spawn_egg",
+            props -> new SpawnEggItem(ModEntities.SHROOM_BOI.get(), 0xf75d57, 0xf1f1f1, props));
 
-    public static final DeferredItem<Item> EMPTY_TEA_CUP = ITEMS.register("empty_tea_cup",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> MUSHROOM_TEA = ITEMS.register("mushroom_tea",
-            () -> new Item(new Item.Properties().food(ModFoodProperties.MUSHROOM_TEA)));
+    public static final DeferredItem<Item> EMPTY_TEA_CUP = registerItem("empty_tea_cup",
+            Item::new);
+    public static final DeferredItem<Item> MUSHROOM_TEA = registerItem("mushroom_tea",
+            props -> new Item(props.food(ModFoodProperties.MUSHROOM_TEA)));
 
     // discs
-    public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
-            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
+    public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = registerItem("palette_overload_music_disc",
+            props -> new Item(props.jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
 
     // pain
-    public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
-            () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorType.HELMET,
-                    new Item.Properties()));
+    public static final DeferredItem<Item> THORN = registerItem("thorn",
+            Item::new);
+    public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = registerItem("crown_of_thorns",
+            props -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorType.HELMET, props));
 
     @FunctionalInterface
     private interface ItemFactory<T extends Item> {
@@ -67,7 +65,7 @@ public class ModItems {
         ));
     }
 
-    // without seId
+    // without setId if i need it
     private static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
     }

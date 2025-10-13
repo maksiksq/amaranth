@@ -5,7 +5,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -16,14 +15,15 @@ public class ModSpawnPlacements {
         return level.getRawBrightness(pos, 0) > 8;
     }
 
-    public static boolean canSpawnOnGroundOrMycelium(
-            EntityType<? extends Mob> type,
-            LevelAccessor level,
-            MobSpawnType reason,
-            BlockPos pos,
-            RandomSource random
-    ) {
-        boolean flag = MobSpawnType.ignoresLightRequirements(reason) || isBrightEnoughToSpawn(level, pos);
-        return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) || level.getBlockState(pos.below()).is(Blocks.MYCELIUM) && flag;
-    }
+    // unused anyway
+//    public static boolean canSpawnOnGroundOrMycelium(
+//            EntityType<? extends Mob> type,
+//            LevelAccessor level,
+//            MobSpawnType reason,
+//            BlockPos pos,
+//            RandomSource random
+//    ) {
+//        boolean flag = MobSpawnType.ignoresLightRequirements(reason) || isBrightEnoughToSpawn(level, pos);
+//        return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) || level.getBlockState(pos.below()).is(Blocks.MYCELIUM) && flag;
+//    }
 }

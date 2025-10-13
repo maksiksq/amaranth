@@ -19,7 +19,7 @@ public class ModEntities {
 
     public static final Supplier<EntityType<ShroomBoiEntity>> SHROOM_BOI =
             ENTITY_TYPES.register("shroom_boi", () -> EntityType.Builder.of(ShroomBoiEntity::new, MobCategory.CREATURE)
-                    .sized(0.6f, 1.0f).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ":shroom_boi"))));
+                    .sized(0.6f, 1.0f).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "shroom_boi"))));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

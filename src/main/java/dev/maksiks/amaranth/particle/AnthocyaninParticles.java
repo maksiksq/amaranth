@@ -1,10 +1,10 @@
 package dev.maksiks.amaranth.particle;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.ParticleStatus;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ParticleStatus;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 

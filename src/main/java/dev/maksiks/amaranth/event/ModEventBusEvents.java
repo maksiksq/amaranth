@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.entity.ModSpawnPlacements;
 import dev.maksiks.amaranth.entity.client.ShroomBoiModel;
+import dev.maksiks.amaranth.entity.client.ShroomBoiRenderer;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -61,5 +62,10 @@ public class ModEventBusEvents {
                     ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS
             );
         });
+    }
+
+    @SubscribeEvent // on the mod event bus only on the physical client
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.SHROOM_BOI.get(), ShroomBoiRenderer::new);
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -69,7 +70,7 @@ public class ShroomBoiEntity extends Animal {
 
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        return ModEntities.SHROOM_BOI.get().create(level);
+        return ModEntities.SHROOM_BOI.get().create(level, EntitySpawnReason.BREEDING);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class ShroomBoiEntity extends Animal {
                     this.eatingProgress = 0;
                     this.timeSinceLastInteraction = 0;
 
-                    this.playSound(SoundEvents.GENERIC_EAT, 0.5F + 0.5F * (float) this.random.nextInt(2),
+                    this.playSound(SoundEvents.GENERIC_EAT.value(), 0.5F + 0.5F * (float) this.random.nextInt(2),
                             (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                     this.gameEvent(GameEvent.EAT);
                 } else if (this.eatingPlayer == player) {
@@ -130,7 +131,7 @@ public class ShroomBoiEntity extends Animal {
                 this.spawnEatingParticles();
 
                 if (this.eatingProgress % 10 == 0) {
-                    this.playSound(SoundEvents.GENERIC_EAT, 0.3F,
+                    this.playSound(SoundEvents.GENERIC_EAT.value(), 0.3F,
                             (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 }
             }

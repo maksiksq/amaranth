@@ -21,7 +21,7 @@ public class ModSounds {
     public static final Supplier<SoundEvent> ARCTIC_WIND_THRONGLED = registerSoundEvent("arctic_wind_throngled");
 
     public static Holder.Reference<SoundEvent> getSoundHolder(Supplier<SoundEvent> supplier) {
-        return BuiltInRegistries.SOUND_EVENT.getHolderOrThrow(
+        return BuiltInRegistries.SOUND_EVENT.getOrThrow(
                 BuiltInRegistries.SOUND_EVENT.getResourceKey(supplier.get())
                         .orElseThrow()
         );

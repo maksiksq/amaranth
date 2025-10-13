@@ -55,12 +55,13 @@ public class ModBlocks {
             ModFlammableLeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES));
 
     public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+            props -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING));
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
-            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
-    public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
+            props -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), props),
+            normalWoodProps.get()); public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
             SlabBlock::new, normalWoodProps.get());
 
     public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
@@ -85,9 +86,9 @@ public class ModBlocks {
 
     // stubby
     public static final DeferredBlock<Block> STUBBY_SAPLING = registerBlock("stubby_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.STUBBY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+            p -> new SaplingBlock(ModTreeGrowers.STUBBY_GROWER, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING));
 
-    // silver birch
     public static final DeferredBlock<Block> SILVERY_SILVER_BIRCH_LEAVES = registerBlock("silvery_silver_birch_leaves",
             ModSilverBirchLeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES));
 
@@ -98,7 +99,8 @@ public class ModBlocks {
             ModSilverBirchLeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES));
 
     public static final DeferredBlock<Block> SILVER_BIRCH_SAPLING = registerBlock("silver_birch_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+            p -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING));
 
     public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
             ModGoldenLeafLitterBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS));
@@ -120,17 +122,19 @@ public class ModBlocks {
             ModFlammableLeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES));
 
     public static final DeferredBlock<Block> PURPLE_MIXED_OAK_SAPLING = registerBlock("purple_mixed_oak_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.PURPLE_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
-
+            props -> new SaplingBlock(ModTreeGrowers.PURPLE_MIXED_OAK_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
     public static final DeferredBlock<Block> RED_MIXED_OAK_SAPLING = registerBlock("red_mixed_oak_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.RED_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
-
+            props -> new SaplingBlock(ModTreeGrowers.RED_MIXED_OAK_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
     public static final DeferredBlock<Block> YELLOW_MIXED_OAK_SAPLING = registerBlock("yellow_mixed_oak_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.YELLOW_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+            props -> new SaplingBlock(ModTreeGrowers.YELLOW_MIXED_OAK_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
 
     // orderly courts
     public static final DeferredBlock<Block> TRIMMED_TREE_SAPLING = registerBlock("trimmed_tree_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.TRIMMED_TREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+            props -> new SaplingBlock(ModTreeGrowers.TRIMMED_TREE_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
 
     // anthocyanin
     public static final DeferredBlock<Block> ANTHOCYANIN_LOG = registerBlock("anthocyanin_log",
@@ -151,11 +155,13 @@ public class ModBlocks {
             ModAnthocyaninLeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES));
 
     public static final DeferredBlock<Block> ANTHOCYANIN_SAPLING = registerBlock("anthocyanin_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+            props -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING));
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> ANTHOCYANIN_STAIRS = registerBlock("anthocyanin_stairs",
-            () -> new StairBlock(ModBlocks.ANTHOCYANIN_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+            props -> new StairBlock(ModBlocks.ANTHOCYANIN_PLANKS.get().defaultBlockState(), props),
+            normalWoodProps.get());
     public static final DeferredBlock<SlabBlock> ANTHOCYANIN_SLAB = registerBlock("anthocyanin_slab",
             SlabBlock::new, normalWoodProps.get());
 
@@ -179,10 +185,12 @@ public class ModBlocks {
             props -> new TrapDoorBlock(BlockSetType.SPRUCE, props), normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never));
 
     public static final DeferredBlock<Block> MALACHITE_VIPERS_BUGLOSS = registerBlock("malachite_vipers_bugloss",
-            () -> new FlowerBlock(MobEffects.POISON, 0.35F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+            props -> new FlowerBlock(MobEffects.POISON, 0.35F, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY));
 
     public static final DeferredBlock<FlowerPotBlock> POTTED_MALACHITE_VIPERS_BUGLOSS = registerBlock("potted_malachite_vipers_bugloss",
-            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MALACHITE_VIPERS_BUGLOSS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+            props -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MALACHITE_VIPERS_BUGLOSS, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY));
 
     // pain
     public static final DeferredBlock<Block> SPIKY_ARCHES = registerBlock("spiky_arches",
@@ -210,13 +218,14 @@ public class ModBlocks {
         return toReturn;
     }
 
-    // without seId
+    // without setId if i need it
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
+    // do they now need separate translation keys or am i stupid
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name)))));
     }

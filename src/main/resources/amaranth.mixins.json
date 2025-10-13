@@ -9,6 +9,5 @@
     "requireAnnotations": true
   },
   "client": [
-    "SkyRendererMixin"
   ]
 }

@@ -10,12 +10,11 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class ShroomBoiModel<T extends ShroomBoiEntity> extends EntityModel<T> {
+public class ShroomBoiModel extends EntityModel<ShroomBoiRenderState>   {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("amaranth", "shroom_boi"), "main");
     private final ModelPart body;
     private final ModelPart legr;
@@ -27,6 +26,7 @@ public class ShroomBoiModel<T extends ShroomBoiEntity> extends EntityModel<T> {
     private final ModelPart legl;
 
     public ShroomBoiModel(ModelPart root) {
+        super(root);
         this.body = root.getChild("body");
         this.legr = this.body.getChild("legr");
         this.hatangietorso = this.body.getChild("hatangietorso");
@@ -130,22 +130,12 @@ public class ShroomBoiModel<T extends ShroomBoiEntity> extends EntityModel<T> {
         this.hatangietorso.xRot = headPitch *  ((float)Math.PI / 180f);
     }
 
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-	}
-
     @Override
-    public ModelPart root() {
-        return body;
-    }
-
-    @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(ShroomBoiRenderState state) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
-        this.applyHeadRotation(netHeadYaw, headPitch);
+        this.applyHeadRotation(state.yRot, state.xRot);
 
-        this.animateWalk(ShroomBoiAnimations.ANIM_SHROOM_BOI_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, ShroomBoiAnimations.ANIM_SHROOM_BOI_IDLE, ageInTicks, 1f);
+        this.animateWalk(ShroomBoiAnimations.ANIM_SHROOM_BOI_WALK, state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.5f);
+        this.animate(state.idleAnimationState, ShroomBoiAnimations.ANIM_SHROOM_BOI_IDLE, state.ageInTicks, 1f);
     }
 }
