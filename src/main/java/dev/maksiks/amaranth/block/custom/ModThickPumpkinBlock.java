@@ -3,9 +3,12 @@ package dev.maksiks.amaranth.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -57,10 +60,19 @@ public class ModThickPumpkinBlock extends Block {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(
+            BlockState state,
+            LevelReader level,
+            ScheduledTickAccess scheduled,
+            BlockPos currentPos,
+            Direction facing,
+            BlockPos facingPos,
+            BlockState facingState,
+            RandomSource random
+    ) {
         return facingState.is(this)
                 ? state.setValue(PROPERTY_BY_DIRECTION.get(facing), false)
-                : super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+                : super.updateShape(state, level, scheduled, currentPos,  facing, facingPos, facingState, random);
     }
 
     @Override
