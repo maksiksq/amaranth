@@ -1,2 +1,2 @@
 this is gonna be a mod, just wait for it
-https://media.discordapp.net/attachments/1321977866010759273/1417927110667796480/2025-09-17_20.35.26.png?ex=68f08446&is=68ef32c6&hm=9e4f6f4dde0ef10382ac75fa364b64f9f42d5bdc29a36dccc2d24d48a9015adc&
+https://github.com/maksiksq/amaranth/blob/master/2025-09-17_20.35.26-1.png
