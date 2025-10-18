@@ -55,7 +55,7 @@ public class ModSpikyArchesBlock extends Block implements BonemealableBlock {
         return this.defaultBlockState().setValue(VARIANT, variant);
     }
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean somethingIdkMojangWhatIsThisItDoesNothing) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75, 0.8F));
                     // would do thorns for the funny death message but the sfx is annoying

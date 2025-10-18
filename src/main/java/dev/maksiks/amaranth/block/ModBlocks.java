@@ -67,7 +67,7 @@ public class ModBlocks {
     public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
             props -> new PressurePlateBlock(BlockSetType.SPRUCE, props), normalWoodProps.get());
     public static final DeferredBlock<ButtonBlock> MYSTIC_BUTTON = registerBlock("mystic_button",
-            props -> new ButtonBlock(BlockSetType.SPRUCE, 30, props.noCollission()), normalWoodProps.get());
+            props -> new ButtonBlock(BlockSetType.SPRUCE, 30, props.noCollision()), normalWoodProps.get());
 
     public static final DeferredBlock<FenceBlock> MYSTIC_FENCE = registerBlock("mystic_fence",
             FenceBlock::new, normalWoodProps.get());
@@ -168,7 +168,7 @@ public class ModBlocks {
     public static final DeferredBlock<PressurePlateBlock> ANTHOCYANIN_PRESSURE_PLATE = registerBlock("anthocyanin_pressure_plate",
             props -> new PressurePlateBlock(BlockSetType.SPRUCE, props), normalWoodProps.get());
     public static final DeferredBlock<ButtonBlock> ANTHOCYANIN_BUTTON = registerBlock("anthocyanin_button",
-            props -> new ButtonBlock(BlockSetType.SPRUCE, 30, props.noCollission()), normalWoodProps.get());
+            props -> new ButtonBlock(BlockSetType.SPRUCE, 30, props.noCollision()), normalWoodProps.get());
 
     public static final DeferredBlock<FenceBlock> ANTHOCYANIN_FENCE = registerBlock("anthocyanin_fence",
             FenceBlock::new, normalWoodProps.get());

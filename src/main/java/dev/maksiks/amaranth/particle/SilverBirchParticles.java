@@ -5,13 +5,14 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ParticleStatus;
+import net.minecraft.util.RandomSource;
 
 import javax.annotation.Nullable;
 
 import static dev.maksiks.amaranth.ClientConfig.HIDE_ALL_BIOME_PARTICLES;
 import static dev.maksiks.amaranth.ClientConfig.HIDE_BIOME_LEAF_PARTICLES;
 
-public class SilverBirchParticles extends TextureSheetParticle {
+public class SilverBirchParticles extends SingleQuadParticle {
     private static final int INITIAL_LIFETIME = 600;
     private float rotSpeed;
     private final float particleRandom;
@@ -39,7 +40,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
     }
 
     protected SilverBirchParticles(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
-        super(level, x, y, z);
+        super(level, x, y, z, spriteSet.first());
         this.setSprite(spriteSet.get(this.random.nextInt(12), 12));
         this.rotSpeed = (float)Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
         this.particleRandom = this.random.nextFloat();
@@ -53,8 +54,8 @@ public class SilverBirchParticles extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    protected Layer getLayer() {
+        return Layer.TRANSLUCENT;
     }
 
     @Override
@@ -120,7 +121,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
         @Nullable
         @Override
         public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel,
-                                       double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+                                       double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, RandomSource random) {
             return new SilverBirchParticles(clientLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
         }
     }

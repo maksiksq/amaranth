@@ -32,7 +32,7 @@ public class ModAnthocyaninLeavesBlock extends ModFlammableLeavesBlock {
             return;
         }
 
-        if (level.isClientSide && random.nextInt(4) == 0) {
+        if (level.isClientSide() && random.nextInt(4) == 0) {
             BlockPos below = pos.below();
             if (!isFaceFull(level.getBlockState(below).getCollisionShape(level, below), Direction.UP)) {
                 double radius = 2.0 + random.nextDouble() * 3.0;

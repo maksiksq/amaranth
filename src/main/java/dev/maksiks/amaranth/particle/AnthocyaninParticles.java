@@ -6,17 +6,17 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ParticleStatus;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.Nullable;
 
 import static dev.maksiks.amaranth.ClientConfig.*;
 
-public class AnthocyaninParticles extends TextureSheetParticle {
-
+public class AnthocyaninParticles extends SingleQuadParticle {
     private static final float[] COLOR = {0.65f, 0.85f, 1.0f};
 
     protected AnthocyaninParticles(ClientLevel level, double x, double y, double z,
                                    double vx, double vy, double vz, SpriteSet spriteSet) {
-        super(level, x, y, z, vx, vy, vz);
+        super(level, x, y, z, vx, vy, vz, spriteSet.first());
 
         this.setSprite(spriteSet.get(level.random.nextInt(4), 4));
 
@@ -62,8 +62,8 @@ public class AnthocyaninParticles extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    protected Layer getLayer() {
+        return Layer.TRANSLUCENT;
     }
 
     public static class Provider implements ParticleProvider<SimpleParticleType> {
@@ -77,7 +77,7 @@ public class AnthocyaninParticles extends TextureSheetParticle {
         @Override
         public Particle createParticle(SimpleParticleType type, ClientLevel level,
                                        double x, double y, double z,
-                                       double vx, double vy, double vz) {
+                                       double vx, double vy, double vz, RandomSource random) {
             return new AnthocyaninParticles(level, x, y, z, vx, vy, vz, sprites);
         }
     }

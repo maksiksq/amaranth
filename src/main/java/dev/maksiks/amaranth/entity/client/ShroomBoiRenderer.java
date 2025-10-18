@@ -4,11 +4,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
@@ -30,14 +32,14 @@ public class ShroomBoiRenderer extends MobRenderer<ShroomBoiEntity, ShroomBoiRen
     }
 
     @Override
-    public void render(ShroomBoiRenderState state, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if (state.isBaby) {
+    public void submit(ShroomBoiRenderState state, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
+      if (state.isBaby) {
             poseStack.scale(0.35f, 0.35f, 0.35f);
         } else {
             poseStack.scale(1f, 1f, 1f);
         }
 
-        super.render(state, poseStack, bufferSource, packedLight);
+        super.submit(state, poseStack, nodeCollector, cameraRenderState);
     }
 
 
