@@ -5,6 +5,7 @@ package dev.maksiks.amaranth.entity.client;// Made with Blockbench 4.12.6
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,6 +26,9 @@ public class ShroomBoiModel extends EntityModel<ShroomBoiRenderState>   {
     private final ModelPart torso;
     private final ModelPart legl;
 
+    private final KeyframeAnimation idlingAnimation;
+    private final KeyframeAnimation walkingAnimation;
+
     public ShroomBoiModel(ModelPart root) {
         super(root);
         this.body = root.getChild("body");
@@ -35,6 +39,9 @@ public class ShroomBoiModel extends EntityModel<ShroomBoiRenderState>   {
         this.cap = this.hatahangie.getChild("cap");
         this.torso = this.hatangietorso.getChild("torso");
         this.legl = this.body.getChild("legl");
+
+        this.idlingAnimation = ShroomBoiAnimations.ANIM_SHROOM_BOI_IDLE.bake(root);
+        this.walkingAnimation = ShroomBoiAnimations.ANIM_SHROOM_BOI_WALK.bake(root);
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -135,7 +142,7 @@ public class ShroomBoiModel extends EntityModel<ShroomBoiRenderState>   {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(state.yRot, state.xRot);
 
-        this.animateWalk(ShroomBoiAnimations.ANIM_SHROOM_BOI_WALK, state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.5f);
-        this.animate(state.idleAnimationState, ShroomBoiAnimations.ANIM_SHROOM_BOI_IDLE, state.ageInTicks, 1f);
+        this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.5f);
+        this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
     }
 }

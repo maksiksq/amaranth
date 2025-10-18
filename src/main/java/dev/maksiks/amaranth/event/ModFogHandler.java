@@ -86,7 +86,7 @@ public class ModFogHandler {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onFogRender(ViewportEvent.RenderFog event) {
         if (HIDE_DESOLATE_ICE_FIELDS_FOG.getAsBoolean()) return;
-        if (event.isCanceled()) return;
+//        if (event.isCanceled()) return;
 
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
@@ -107,8 +107,8 @@ public class ModFogHandler {
         event.setNearPlaneDistance(currentNear);
         event.setFarPlaneDistance(currentFar);
 
-        if (isInDesolateIceFieldsAndValid() || isTransitioning()) {
-            event.setCanceled(true);
-        }
+//        if (isInDesolateIceFieldsAndValid() || isTransitioning()) {
+//            event.setCanceled(true);
+//        }
     }
 }
