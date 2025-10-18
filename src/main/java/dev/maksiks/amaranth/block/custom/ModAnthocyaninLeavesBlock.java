@@ -12,10 +12,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import static dev.maksiks.amaranth.ClientConfig.MINIMIZE_BIOME_AMBIENCE_PARTICLES;
 
 public class ModAnthocyaninLeavesBlock extends ModFlammableLeavesBlock {
-    public static final MapCodec<net.minecraft.world.level.block.CherryLeavesBlock> CODEC = simpleCodec(net.minecraft.world.level.block.CherryLeavesBlock::new);
+    public static final MapCodec<ModAnthocyaninLeavesBlock> CODEC = simpleCodec(ModAnthocyaninLeavesBlock::new);
 
     @Override
-    public MapCodec<net.minecraft.world.level.block.CherryLeavesBlock> codec() {
+    public MapCodec<ModAnthocyaninLeavesBlock> codec() {
         return CODEC;
     }
 
