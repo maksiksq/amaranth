@@ -33,8 +33,9 @@ public class ModItems {
     public static final DeferredItem<Item> HEXFRUIT = registerItem("hexfruit",
             props -> new Item(props.food(ModFoodProperties.HEXFRUIT, ModFoodProperties.HEXFRUIT_EFFECT)));
 
+    // maybe TODO: egg temp
     public static final DeferredItem<Item> SHROOM_BOI_SPAWN_EGG = registerItem("shroom_boi_spawn_egg",
-            props -> new SpawnEggItem(ModEntities.SHROOM_BOI.get(), 0xf75d57, 0xf1f1f1, props));
+            props -> new SpawnEggItem(ModEntities.SHROOM_BOI.get(), props));
 
     public static final DeferredItem<Item> EMPTY_TEA_CUP = registerItem("empty_tea_cup",
             Item::new);

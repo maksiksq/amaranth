@@ -60,7 +60,8 @@ public class ShroomBoiEntity extends Animal {
         return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.FOLLOW_RANGE, 24D);
+                .add(Attributes.FOLLOW_RANGE, 24D)
+                .add(Attributes.TEMPT_RANGE, 10D);
     }
 
     @Override

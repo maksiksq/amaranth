@@ -1,17 +1,21 @@
 package dev.maksiks.amaranth.item;
 
-import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.tags.ModTags;
 import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 
 import java.util.EnumMap;
 
 public class ModArmorMaterials {
+    public static ResourceKey<EquipmentAsset> CROWN_OF_THORNS = EquipmentAssets.createId("crown_of_thorns");
+
     public static final ArmorMaterial CROWN_OF_THORNS_MATERIAL = new ArmorMaterial(
             109,
             Util.make(new EnumMap<>(ArmorType.class), attribute -> {
@@ -22,5 +26,5 @@ public class ModArmorMaterials {
             0f,
             0.05f,
             ModTags.Items.THORN_REPAIR,
-            ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "crown_of_thorns"));
+            CROWN_OF_THORNS);
 }

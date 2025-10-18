@@ -13,10 +13,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ModSilverBirchLeavesBlock extends ModFlammableLeavesBlock {
-    public static final MapCodec<net.minecraft.world.level.block.CherryLeavesBlock> CODEC = simpleCodec(net.minecraft.world.level.block.CherryLeavesBlock::new);
+    public static final MapCodec<ModSilverBirchLeavesBlock> CODEC = simpleCodec(ModSilverBirchLeavesBlock::new);
 
     @Override
-    public MapCodec<net.minecraft.world.level.block.CherryLeavesBlock> codec() {
+    public MapCodec<ModSilverBirchLeavesBlock> codec() {
         return CODEC;
     }
 

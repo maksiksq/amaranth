@@ -13,11 +13,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class ModRecipeProvider extends RecipeProvider {
     protected ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
         super(provider, recipeOutput);
     }

@@ -4,13 +4,10 @@ import com.mojang.serialization.MapCodec;
 import dev.maksiks.amaranth.particle.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.function.Function;
 
 import static dev.maksiks.amaranth.ClientConfig.MINIMIZE_BIOME_AMBIENCE_PARTICLES;
 
