@@ -3,13 +3,14 @@ package dev.maksiks.amaranth.datagen;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
+import dev.maksiks.amaranth.block.custom.ModThickPumpkinBlock;
 import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.model.generators.template.ExtendedModelTemplateBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.stream.Stream;
@@ -166,15 +168,11 @@ public class ModModelProvider extends ModelProvider {
         // pot is made manually
 
         // pain
-//        randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, blockModels, 4);
-        blockModels.createCrossBlock(ModBlocks.SPIKY_ARCHES.get(), BlockModelGenerators.PlantType.TINTED);
+        randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, blockModels, 4);
 
         // thrumletons
-        // TODO: more blockstates
-//        thickPumpkinBlock(ModBlocks.THICK_PUMPKIN, blockModels);
-        blockModels.createTrivialCube(ModBlocks.THICK_PUMPKIN.get());
-
-//        thickPumpkinBlockItem(ModBlocks.THICK_PUMPKIN, blockModels);
+        thickPumpkinBlock(ModBlocks.THICK_PUMPKIN, blockModels);
+        thickPumpkinBlockItem(ModBlocks.THICK_PUMPKIN, blockModels);
     }
 
     private void saplingItem(DeferredBlock<Block> block, ItemModelGenerators itemModels) {
@@ -184,108 +182,137 @@ public class ModModelProvider extends ModelProvider {
         );
     }
 
-    // TODO: figure these out once they stop changing these
-//    private void randomVariantTwoPlaneCutout(DeferredBlock<Block> block,
-//                                             BlockModelGenerators blockModels, int variantCount) {
-//        Block blk = block.get();
-//        String baseName = BuiltInRegistries.BLOCK.getKey(blk).getPath();
-//
-//        for (int i = 0; i < variantCount; i++) {
-//            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
-//                    Amaranth.MOD_ID, "block/" + baseName + "_" + i);
-//
-//            ModelTemplates.CROSS.create(
-//                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, baseName + "_" + i),
-//                    TextureMapping.cross(texture),
-//                    blockModels.modelOutput
-//            );
-//        }
-//
-//        var dispatch = PropertyDispatch.initial(ModSpikyArchesBlock.VARIANT);
-//        for (int i = 0; i < variantCount; i++) {
-//            ResourceLocation model = ResourceLocation.fromNamespaceAndPath(
-//                    Amaranth.MOD_ID, baseName + "_" + i);
-//
-//            dispatch = dispatch.select(i, Variant.variant().with(VariantProperties.MODEL, model));
-//        }
-//
-//        var generator = MultiVariantGenerator.dispatch(blk).with(dispatch);
-//
-//        blockModels.blockStateOutput.accept(generator);
-//    }
-//
-//    private void thickPumpkinBlock(DeferredBlock<Block> block,
-//                                   BlockModelGenerators blockModels) {
-//        Block blk = block.get();
-//        String baseName = BuiltInRegistries.BLOCK.getKey(blk).getPath();
-//
-//        ResourceLocation side = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + baseName + "_side");
-//        ResourceLocation end = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + baseName + "_end");
-//        ResourceLocation inner = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_inner");
-//
-//        for (Direction dir : Direction.values()) {
-//            ResourceLocation faceTex = (dir == Direction.UP || dir == Direction.DOWN) ? end : side;
-//            String dirName = dir.getName();
-//
-//            ModelTemplates.CUBE_ALL.create(
-//                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, baseName + "_" + dirName),
-//                    TextureMapping.cube(faceTex),
-//                    blockModels.modelOutput
-//            );
-//
-//            ModelTemplates.CUBE_ALL.create(
-//                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, baseName + "_" + dirName + "_inner"),
-//                    TextureMapping.cube(inner),
-//                    blockModels.modelOutput
-//            );
-//        }
-//
-//        var generator = MultiVariantGenerator.dispatch(blk);
-//
-//        for (Direction dir : Direction.values()) {
-//            BooleanProperty prop = switch (dir) {
-//                case NORTH -> BlockStateProperties.NORTH;
-//                case SOUTH -> BlockStateProperties.SOUTH;
-//                case EAST  -> BlockStateProperties.EAST;
-//                case WEST  -> BlockStateProperties.WEST;
-//                case UP    -> BlockStateProperties.UP;
-//                case DOWN  -> BlockStateProperties.DOWN;
-//            };
-//
-//            String dirName = dir.getName();
-//
-//            ResourceLocation outerModel = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, baseName + "_" + dirName);
-//            ResourceLocation innerModel = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, baseName + "_" + dirName + "_inner");
-//
-//            generator.with(PropertyDispatch.initial(prop)
-//                    .select(true, Variant.variant().with(VariantProperties.MODEL, outerModel))
-//                    .select(false, Variant.variant().with(VariantProperties.MODEL, innerModel)));
-//        }
-//
-//        blockModels.blockStateOutput.accept(generator);
-//    }
-//
-//    private void thickPumpkinBlockItem(DeferredBlock<Block> block,
-//                                       BlockModelGenerators blockModels) {
-//        String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
-//
-//        ResourceLocation side = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_side");
-//        ResourceLocation end = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_end");
-//        ResourceLocation inner = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_inner");
-//
-//        ModelTemplates.CUBE.create(
-//                ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name),
-//                new TextureMapping()
-//                        .put(TextureSlot.NORTH, inner)
-//                        .put(TextureSlot.SOUTH, side)
-//                        .put(TextureSlot.EAST, side)
-//                        .put(TextureSlot.WEST, inner)
-//                        .put(TextureSlot.UP, end)
-//                        .put(TextureSlot.DOWN, end)
-//                        .put(TextureSlot.PARTICLE, side),
-//                blockModels.modelOutput
-//        );
-//    }
+    private void randomVariantTwoPlaneCutout(DeferredBlock<Block> block,
+                                             BlockModelGenerators blockModels, int variantCount) {
+        Block blk = block.get();
+        String baseName = BuiltInRegistries.BLOCK.getKey(blk).getPath();
+
+        for (int i = 0; i < variantCount; i++) {
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
+                    Amaranth.MOD_ID, "block/" + baseName + "_" + i);
+
+            ModelTemplates.CROSS.create(
+                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + baseName + "_" + i),
+                    TextureMapping.cross(texture),
+                    blockModels.modelOutput
+            );
+        }
+
+        var propertyDispatch = PropertyDispatch.initial(ModSpikyArchesBlock.VARIANT);
+
+        for (int i = 0; i < variantCount; i++) {
+            ResourceLocation modelLocation = ResourceLocation.fromNamespaceAndPath(
+                    Amaranth.MOD_ID, "block/" + baseName + "_" + i);
+
+            propertyDispatch = propertyDispatch.select(i, BlockModelGenerators.variant(new Variant(modelLocation)));
+        }
+
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(blk).with(propertyDispatch)
+        );
+    }
+
+    private void thickPumpkinBlock(DeferredBlock<Block> block,
+                                   BlockModelGenerators blockModels) {
+        Block blk = block.get();
+        String baseName = BuiltInRegistries.BLOCK.getKey(blk).getPath();
+
+        ResourceLocation side = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + baseName + "_side");
+        ResourceLocation end = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + baseName + "_end");
+        ResourceLocation inner = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_inner");
+
+        TextureSlot texture = TextureSlot.create("texture");
+
+        MultiPartGenerator multiPartGenerator = MultiPartGenerator.multiPart(blk);
+
+        for (Direction dir : Direction.values()) {
+            ResourceLocation faceTex = (dir == Direction.UP || dir == Direction.DOWN) ? end : side;
+            String dirName = dir.getName();
+
+            ResourceLocation outerModelLoc = ResourceLocation.fromNamespaceAndPath(
+                    Amaranth.MOD_ID, "block/" + baseName + "_" + dirName);
+
+            ExtendedModelTemplateBuilder.builder()
+                    .parent(ResourceLocation.withDefaultNamespace("block/block"))
+                    .requiredTextureSlot(texture)
+                    .requiredTextureSlot(TextureSlot.PARTICLE)
+                    .element(builder -> {
+                        builder.from(0, 0, 0).to(16, 16, 16);
+                        builder.face(dir, face -> face.texture(texture).cullface(dir));
+                    })
+                    .build()
+                    .create(
+                            outerModelLoc,
+                            new TextureMapping()
+                                    .put(texture, faceTex)
+                                    .put(TextureSlot.PARTICLE, side),
+                            blockModels.modelOutput
+                    );
+
+            ResourceLocation innerModelLoc = ResourceLocation.fromNamespaceAndPath(
+                    Amaranth.MOD_ID, "block/" + baseName + "_" + dirName + "_inner");
+
+            ExtendedModelTemplateBuilder.builder()
+                    .parent(ResourceLocation.withDefaultNamespace("block/block"))
+                    .requiredTextureSlot(texture)
+                    .requiredTextureSlot(TextureSlot.PARTICLE)
+                    .element(builder -> {
+                        builder.from(0, 0, 0).to(16, 16, 16);
+                        builder.face(dir, face -> face.texture(texture).cullface(dir));
+                    })
+                    .build()
+                    .create(
+                            innerModelLoc,
+                            new TextureMapping()
+                                    .put(texture, inner)
+                                    .put(TextureSlot.PARTICLE, inner),
+                            blockModels.modelOutput
+                    );
+
+            BooleanProperty prop = ModThickPumpkinBlock.PROPERTY_BY_DIRECTION.get(dir);
+
+            multiPartGenerator = multiPartGenerator.with(
+                    BlockModelGenerators.condition().term(prop, true),
+                    BlockModelGenerators.variant(new Variant(outerModelLoc))
+            );
+
+            multiPartGenerator = multiPartGenerator.with(
+                    BlockModelGenerators.condition().term(prop, false),
+                    BlockModelGenerators.variant(new Variant(innerModelLoc))
+            );
+        }
+
+        blockModels.blockStateOutput.accept(multiPartGenerator);
+    }
+
+    private void thickPumpkinBlockItem(DeferredBlock<Block> block,
+                                       BlockModelGenerators blockModels) {
+        String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+
+        ResourceLocation side = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_side");
+        ResourceLocation end = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_end");
+        ResourceLocation inner = ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/thick_pumpkin_inner");
+
+        ModelTemplates.CUBE.create(
+                ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "item/" + name),
+                new TextureMapping()
+                        .put(TextureSlot.NORTH, inner)
+                        .put(TextureSlot.SOUTH, side)
+                        .put(TextureSlot.EAST, side)
+                        .put(TextureSlot.WEST, inner)
+                        .put(TextureSlot.UP, end)
+                        .put(TextureSlot.DOWN, end)
+                        .put(TextureSlot.PARTICLE, side),
+                blockModels.modelOutput
+        );
+
+        blockModels.itemModelOutput.accept(
+                block.asItem(),
+                ItemModelUtils.plainModel(
+                        ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "item/" + name)
+                )
+        );
+    }
 
     @Override
     protected Stream<? extends Holder<Block>> getKnownBlocks() {

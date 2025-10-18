@@ -25,7 +25,7 @@ public class ModThickPumpkinBlock extends Block {
     public static final BooleanProperty WEST = PipeBlock.WEST;
     public static final BooleanProperty UP = PipeBlock.UP;
     public static final BooleanProperty DOWN = PipeBlock.DOWN;
-    private static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION = PipeBlock.PROPERTY_BY_DIRECTION;
+    public static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION = PipeBlock.PROPERTY_BY_DIRECTION;
 
     public ModThickPumpkinBlock(BlockBehaviour.Properties properties) {
         super(properties);
