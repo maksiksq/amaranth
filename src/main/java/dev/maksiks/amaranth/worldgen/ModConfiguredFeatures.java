@@ -19,7 +19,7 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.InclusiveRange;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -126,7 +126,7 @@ public class ModConfiguredFeatures {
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         new WeightedStateProvider(
-                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                WeightedList.<BlockState>builder()
                                                         .add(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(), 5)
                                                         .add(Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(), 2)
                                                         .add(Blocks.LARGE_AMETHYST_BUD.defaultBlockState(), 1)
@@ -152,7 +152,7 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.BIRCH_LOG),
                 new MysticTrunkPlacer(10, 2, 0),
 
-                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 1)
                         .add(ModBlocks.LIGHT_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 12)
                         .add(ModBlocks.DARK_SILVER_BIRCH_LEAVES.get().defaultBlockState(), 7)
@@ -193,7 +193,7 @@ public class ModConfiguredFeatures {
                 )
         );
 
-        SimpleWeightedRandomList.Builder<BlockState> goldenLeafLitterBuilder = SimpleWeightedRandomList.builder();
+        WeightedList.Builder<BlockState> goldenLeafLitterBuilder = WeightedList.builder();
 
         for (int i = 1; i <= 4; i++) {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
@@ -301,7 +301,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.ANTHOCYANIN_LOG.get()),
                         new AnthocyaninTrunkPlacer(6, 0, 0),
-                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        new WeightedStateProvider(WeightedList.<BlockState>builder()
                                 .add(ModBlocks.ANTHOCYANIN_LEAVES.get().defaultBlockState(), 4)
                                 .add(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get().defaultBlockState(), 1)
                                 .build()),
@@ -321,7 +321,7 @@ public class ModConfiguredFeatures {
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         new WeightedStateProvider(
-                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                WeightedList.<BlockState>builder()
                                                         .add(ModBlocks.MALACHITE_VIPERS_BUGLOSS.get().defaultBlockState(), 5)
                                                         .add(Blocks.BLUE_ORCHID.defaultBlockState(), 2)
                                                         .add(Blocks.CORNFLOWER.defaultBlockState(), 1)
@@ -340,7 +340,7 @@ public class ModConfiguredFeatures {
                 new RandomPatchConfiguration(
                         22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL_FEATURE.get(),  new SimpleBlockConfiguration(
                         new WeightedStateProvider(
-                                SimpleWeightedRandomList.<BlockState>builder()
+                                WeightedList.<BlockState>builder()
                                         .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0), 4)
                                         .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 1), 4)
                                         .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 2), 4)
@@ -366,7 +366,7 @@ public class ModConfiguredFeatures {
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         new WeightedStateProvider(
-                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                WeightedList.<BlockState>builder()
                                                         // sunflowers separately
                                                         .add(Blocks.OXEYE_DAISY.defaultBlockState(), 5)
                                                         .add(Blocks.AZURE_BLUET.defaultBlockState(), 3)

@@ -9,12 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ModItems {
@@ -23,9 +25,9 @@ public class ModItems {
     public static final DeferredItem<Item> MAFIA_BLOB = registerItem("mafia_blob",
             props -> new Item(props) {
                 @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.amaranth.mafia_blob.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> components, TooltipFlag tooltipFlag) {
+                    components.accept(Component.translatable("tooltip.amaranth.mafia_blob.tooltip"));
+                    super.appendHoverText(stack, context, display, components, tooltipFlag);
                 }
             });
     public static final DeferredItem<Item> BEANIE_BLOB = registerItem("beanie_blob",
@@ -49,8 +51,8 @@ public class ModItems {
     // pain
     public static final DeferredItem<Item> THORN = registerItem("thorn",
             Item::new);
-    public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = registerItem("crown_of_thorns",
-            props -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorType.HELMET, props));
+    public static final DeferredItem<Item> CROWN_OF_THORNS = registerItem("crown_of_thorns",
+            props -> new ModCrownOfThornsItem(props.humanoidArmor(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorType.HELMET)));
 
     @FunctionalInterface
     private interface ItemFactory<T extends Item> {

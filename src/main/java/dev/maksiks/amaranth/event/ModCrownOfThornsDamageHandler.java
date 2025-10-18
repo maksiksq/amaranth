@@ -18,7 +18,7 @@ public class ModCrownOfThornsDamageHandler {
         var source = event.getSource();
 
         ItemStack headItem = target.getItemBySlot(EquipmentSlot.HEAD);
-        if (headItem.getItem() == ModItems.CROWN_OF_THORNS.get()) {
+        if (headItem.getItem() == ModItems.CROWN_OF_THORNS.asItem()) {
             if (source.getEntity() instanceof LivingEntity attacker && attacker.isAlive()) {
                 // essentially thorns 3 sorta
                 if (target.getRandom().nextFloat() < 0.45f) {

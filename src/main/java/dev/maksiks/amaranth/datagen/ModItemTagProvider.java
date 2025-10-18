@@ -39,11 +39,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.MUSHROOM_TEA.get());
 
         this.tag(ItemTags.ARMOR_ENCHANTABLE)
-                .add(ModItems.CROWN_OF_THORNS.get());
+                .add(ModItems.CROWN_OF_THORNS.asItem());
         this.tag(ItemTags.HEAD_ARMOR)
-                .add(ModItems.CROWN_OF_THORNS.get());
+                .add(ModItems.CROWN_OF_THORNS.asItem());
         this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
-                .add(ModItems.CROWN_OF_THORNS.get());
+                .add(ModItems.CROWN_OF_THORNS.asItem());
 
         this.tag(ModTags.Items.THORN_REPAIR)
                 .add(ModItems.THORN.get());

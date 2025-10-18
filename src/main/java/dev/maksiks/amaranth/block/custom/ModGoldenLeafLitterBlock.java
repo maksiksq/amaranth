@@ -3,10 +3,11 @@ package dev.maksiks.amaranth.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.PinkPetalsBlock;
+import net.minecraft.world.level.block.FlowerBedBlock;
+import net.minecraft.world.level.block.FlowerBedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ModGoldenLeafLitterBlock extends PinkPetalsBlock {
+public class ModGoldenLeafLitterBlock extends FlowerBedBlock {
     public ModGoldenLeafLitterBlock(Properties p_273335_) {
         super(p_273335_);
     }
