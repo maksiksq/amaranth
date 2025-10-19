@@ -35,7 +35,10 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
     public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
     public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
+    // note to self: MAKE THEM MORE UNHINGED ITS MORE FUN
+    public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
 //    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
+//    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
 //    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
 //    public static final ResourceKey<Biome> DWARVISH_LEFTOVERS = register("dwarvish_leftovers");
 
@@ -65,6 +68,7 @@ public class ModBiomes {
         context.register(ANTHOCYANIN_FOREST, anthocyaninForest(context));
         context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
         context.register(THRUMLETONS, thrumlethons(context));
+        context.register(SPARSEY_SPEARS, sparseySpears(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -632,6 +636,44 @@ public class ModBiomes {
                         .skyColor(7972607)
                         .grassColorOverride(0x32D17F)
 //                        .foliageColorOverride(0x59AE30)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // spears
+    public static Biome sparseySpears(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainVegetation(biomeBuilder);
+
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MIXED_OAK_PLACED_KEY);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(0.6F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x91bd59)
+                        .foliageColorOverride(0x77ab2f)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())

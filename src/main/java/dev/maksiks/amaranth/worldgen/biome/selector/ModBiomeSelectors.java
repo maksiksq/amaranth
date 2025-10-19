@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ModBiomeSelectors {
     /**
-     * Copied from Terrablender
+     * Copied from Terrablender !!!
      * @param oceans               - Appearing on terrain below sea level, here is the "ocean_biomes" layout:
      *                             [ DEEP-ICY, DEEP-COLD, DEEP-NEUTRAL, DEEP-WARM, DEEP-HOT ]
      *                             [ SHALLOW-ICY, SHALLOW-COLD, SHALLOW-NEUTRAL, SHALLOW-WARM, SHALLOW-HOT ],
@@ -188,7 +188,7 @@ public class ModBiomeSelectors {
         public static final List<List<ResourceKey<Biome>>> SHATTERED_BIOMES_AMARANTH = ModBiomeSelectorUtils.create("shattered_biomes/shattered_biomes_amaranth", "", new ResourceKey[][]{
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, ModBiomes.SPARSEY_SPEARS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID},
                 {Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID}
         });
