@@ -147,7 +147,7 @@ public class ModBiomeSelectors {
         public static final List<List<ResourceKey<Biome>>> PLATEAU_BIOMES_AMARANTH = ModBiomeSelectorUtils.create("plateau_biomes/plateau_biomes_amaranth", "", new ResourceKey[][]{
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.SPARSEY_SPEARS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
         });
@@ -185,10 +185,12 @@ public class ModBiomeSelectors {
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID}
         });
 
+        // TODO: REMOVE VOIDS FROM SHATTERED AND ETC TO PREVENT SMALL OUTCRPOPPINGS
+
         public static final List<List<ResourceKey<Biome>>> SHATTERED_BIOMES_AMARANTH = ModBiomeSelectorUtils.create("shattered_biomes/shattered_biomes_amaranth", "", new ResourceKey[][]{
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-                {Region.DEFERRED_PLACEHOLDER, ModBiomes.SPARSEY_SPEARS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+                {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
                 {Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID},
                 {Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID}
         });

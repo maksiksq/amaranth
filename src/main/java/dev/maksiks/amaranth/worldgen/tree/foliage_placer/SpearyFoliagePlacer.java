@@ -7,9 +7,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -71,6 +74,25 @@ public class SpearyFoliagePlacer extends FoliagePlacer {
 
         // 1 splat 43/57 + 7/93 diagonals
         splat(random, (pos, rand) -> tryPlaceLeaf(level, blockSetter, rand, config, pos), trunkPos, new AtomicInteger(-trunkBottomExtent), 43, true, 7).place();
+
+        // checking if side is empty, if yes placing 1 at random
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            boolean allEmpty = true;
+
+            for (int i = 1; i <= trunkBottomExtent; i++) {
+                BlockPos offsetPos = trunkPos.relative(direction).below(i);
+
+                if (!level.isStateAtPosition(offsetPos, BlockState::isAir)) {
+                    allEmpty = false;
+                    break;
+                }
+            }
+
+            if (allEmpty) {
+                BlockPos leafPos = trunkPos.relative(direction).below(random.nextInt(3));
+                tryPlaceLeaf(level, blockSetter, random, config, leafPos);
+            }
+        }
     }
 
 

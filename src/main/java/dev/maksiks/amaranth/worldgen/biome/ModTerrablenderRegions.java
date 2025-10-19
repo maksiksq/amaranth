@@ -41,7 +41,7 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(ModBiomeSelectors.OCEANS_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MIDDLE_BIOMES_VARIANT_AMARANTH),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_AMARANTH),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_2_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.PLATEAU_BIOMES_VARIANT_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.SHATTERED_BIOMES_AMARANTH),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.BEACH_BIOMES_AMARANTH),

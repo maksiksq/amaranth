@@ -69,6 +69,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> THRUMLETONS_FLOWER_KEY = registerKey("thrumletons_flower");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_KEY = registerKey("speary");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_FLOWER_KEY = registerKey("speary_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -390,6 +391,30 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.AZALEA_LEAVES),
                         new SpearyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        // speary
+        register(
+                context,
+                SPEARY_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        34,
+                        16,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        new WeightedStateProvider(
+                                                SimpleWeightedRandomList.<BlockState>builder()
+                                                        .add(Blocks.OXEYE_DAISY.defaultBlockState(), 1)
+                                                        .add(Blocks.AZURE_BLUET.defaultBlockState(), 1)
+                                                        .add(Blocks.POPPY.defaultBlockState(), 1)
+                                                        .build()
+                                        )
+                                )
+                        )
+                )
         );
     }
 
