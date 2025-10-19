@@ -64,10 +64,13 @@ public class SpearyFoliagePlacer extends FoliagePlacer {
                 splat(random, (pos, rand) -> tryPlaceLeaf(level, blockSetter, rand, config, pos), trunkPos, new AtomicInteger(i-1), 43, true, 7).place();
         }
 
-        // 2-3 splat 80/20 + 7/93 diagonals
-        for (int i = trunkBottomExtent; i > 0; i--) {
+        // 1-2 splat 80/20 + 7/93 diagonals
+        for (int i = trunkBottomExtent-1; i > 0; i--) {
             splat(random, (pos, rand) -> tryPlaceLeaf(level, blockSetter, rand, config, pos), trunkPos, new AtomicInteger(-i), 80, true, 7).place();
         }
+
+        // 1 splat 43/57 + 7/93 diagonals
+        splat(random, (pos, rand) -> tryPlaceLeaf(level, blockSetter, rand, config, pos), trunkPos, new AtomicInteger(-trunkBottomExtent), 43, true, 7).place();
     }
 
 
