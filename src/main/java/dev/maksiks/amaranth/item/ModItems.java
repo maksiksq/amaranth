@@ -5,10 +5,7 @@ import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.item.custom.ModCrownOfThornsItem;
 import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -43,7 +40,7 @@ public class ModItems {
 
     // discs
     public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
-            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
+            () -> new Item(new Item.Properties().rarity(Rarity.RARE).jukeboxPlayable(ModSounds.PALETTE_OVERLOAD_KEY).stacksTo(1)));
 
     // pain
     public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
