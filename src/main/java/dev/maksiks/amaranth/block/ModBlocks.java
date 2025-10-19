@@ -74,7 +74,7 @@ public class ModBlocks {
     public static final DeferredBlock<FenceGateBlock> MYSTIC_FENCE_GATE = registerBlock("mystic_fence_gate",
             props -> new FenceGateBlock(WoodType.SPRUCE, props), normalWoodProps.get());
 
-    public static final DeferredBlock<DoorBlock> MYSTIC_DOOR = registerBlock("mystic_door",
+    public static final DeferredBlock<Block> MYSTIC_DOOR = registerBlock("mystic_door",
             props -> new DoorBlock(BlockSetType.SPRUCE, props), BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never));
     public static final DeferredBlock<TrapDoorBlock> MYSTIC_TRAPDOOR = registerBlock("mystic_trapdoor",
             props -> new TrapDoorBlock(BlockSetType.SPRUCE, props), normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never));
@@ -175,9 +175,9 @@ public class ModBlocks {
     public static final DeferredBlock<FenceGateBlock> ANTHOCYANIN_FENCE_GATE = registerBlock("anthocyanin_fence_gate",
             props -> new FenceGateBlock(WoodType.SPRUCE, props), normalWoodProps.get());
 
-    public static final DeferredBlock<DoorBlock> ANTHOCYANIN_DOOR = registerBlock("anthocyanin_door",
+    public static final DeferredBlock<Block> ANTHOCYANIN_DOOR = registerBlock("anthocyanin_door",
             props -> new DoorBlock(BlockSetType.SPRUCE, props), BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never));
-    public static final DeferredBlock<DoorBlock> ORNAMENTED_ANTHOCYANIN_DOOR = registerBlock("ornamented_anthocyanin_door",
+    public static final DeferredBlock<Block> ORNAMENTED_ANTHOCYANIN_DOOR = registerBlock("ornamented_anthocyanin_door",
             props -> new DoorBlock(BlockSetType.SPRUCE, props), BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never));
     public static final DeferredBlock<TrapDoorBlock> ANTHOCYANIN_TRAPDOOR = registerBlock("anthocyanin_trapdoor",
             props -> new TrapDoorBlock(BlockSetType.SPRUCE, props), normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never));
