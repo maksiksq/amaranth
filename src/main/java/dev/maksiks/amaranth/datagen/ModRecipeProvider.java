@@ -110,6 +110,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "pumpkin_pie_from_thick_pumpkin"));
 
         // yoink a custom method for smelting later so it's inside neo's folder because it's hardcoded to be in mc
+        // mystic
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MYSTIC_PLANKS.asItem(), 4)
+                .requires(ModBlocks.MYSTIC_LOG.get())
+                .unlockedBy("has_mystic_log", has(ModBlocks.MYSTIC_LOG.asItem()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MYSTIC_WOOD.asItem(), 3)
+                .requires(ModBlocks.MYSTIC_LOG.get())
+                .requires(ModBlocks.MYSTIC_LOG.get())
+                .requires(ModBlocks.MYSTIC_LOG.get())
+                .requires(ModBlocks.MYSTIC_LOG.get())
+                .unlockedBy("has_mystic_log", has(ModBlocks.MYSTIC_LOG.asItem()))
+                .save(recipeOutput);
 
         stairBuilder(ModBlocks.MYSTIC_STAIRS.get(), Ingredient.of(ModBlocks.MYSTIC_PLANKS.get())).group("mystic")
                 .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get()))
@@ -131,6 +144,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_mystic_planks", has(ModBlocks.MYSTIC_PLANKS.get())).save(recipeOutput);
 
         // anthocyanin
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANTHOCYANIN_PLANKS.asItem(), 4)
+                .requires(ModBlocks.ANTHOCYANIN_LOG.get())
+                .unlockedBy("has_anthocyanin_log", has(ModBlocks.ANTHOCYANIN_LOG.asItem()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANTHOCYANIN_WOOD.asItem(), 3)
+                .requires(ModBlocks.ANTHOCYANIN_LOG.get())
+                .requires(ModBlocks.ANTHOCYANIN_LOG.get())
+                .requires(ModBlocks.ANTHOCYANIN_LOG.get())
+                .requires(ModBlocks.ANTHOCYANIN_LOG.get())
+                .unlockedBy("has_anthocyanin_log", has(ModBlocks.ANTHOCYANIN_LOG.asItem()))
+                .save(recipeOutput);
+
         stairBuilder(ModBlocks.ANTHOCYANIN_STAIRS.get(), Ingredient.of(ModBlocks.ANTHOCYANIN_PLANKS.get())).group("anthocyanin")
                 .unlockedBy("has_anthocyanin_planks", has(ModBlocks.ANTHOCYANIN_PLANKS.get()))
                 .save(recipeOutput);
