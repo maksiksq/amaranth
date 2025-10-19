@@ -143,6 +143,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // thrumletons
         this.dropSelf(ModBlocks.THICK_PUMPKIN.get());
+
+        // speary
+        this.dropSelf(ModBlocks.SPEARY_SAPLING.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

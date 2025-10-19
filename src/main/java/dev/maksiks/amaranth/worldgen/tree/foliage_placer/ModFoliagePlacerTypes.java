@@ -30,4 +30,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AnthocyaninFoliagePlacer>> ANTHOCYANIN_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("anthocyanin_foliage_placer", () -> new FoliagePlacerType<>(AnthocyaninFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<SpearyFoliagePlacer>> SPEARY_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("speary_foliage_placer", () -> new FoliagePlacerType<>(SpearyFoliagePlacer.CODEC));
 }

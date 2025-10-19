@@ -77,6 +77,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.THORN.asItem());
 
         basicItem(ModItems.CROWN_OF_THORNS.asItem());
+
+        // speary
+        splatBlockItem(ModBlocks.SPEARY_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

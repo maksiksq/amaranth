@@ -138,6 +138,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // TODO: more blockstates
         thickPumpkinBlock(ModBlocks.THICK_PUMPKIN);
         thickPumpkinBlockItem(ModBlocks.THICK_PUMPKIN);
+
+        // speary
+        twoPlanesCutoutBlock(ModBlocks.SPEARY_SAPLING);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

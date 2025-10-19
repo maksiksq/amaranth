@@ -48,6 +48,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> THICK_PUMPKIN_PLACED_KEY = registerKey("thick_pumpkin_placed");
     public static final ResourceKey<PlacedFeature> THRUMLETONS_FLOWER_PLACED_KEY = registerKey("thrumletons_flower_placed");
 
+    public static final ResourceKey<PlacedFeature> SPEARY_PLACED_KEY = registerKey("speary_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -174,6 +176,11 @@ public class ModPlacedFeatures {
         register(context, THRUMLETONS_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THRUMLETONS_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
+        // speary
+        register(context, SPEARY_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SPEARY_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                        ModBlocks.SPEARY_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

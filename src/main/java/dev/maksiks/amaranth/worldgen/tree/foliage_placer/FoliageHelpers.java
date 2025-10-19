@@ -29,6 +29,11 @@ public class FoliageHelpers {
             Direction.SOUTH, Direction.WEST
     };
 
+    //
+    // TODO: REMAKE
+    // why is everything 1 block above
+    //
+
     // checks if there is a neighbouring leaf or log block
     public static boolean checkIfDetached(LevelSimulatedReader level, BlockPos pos) {
         for (Direction dir : Direction.values()) {

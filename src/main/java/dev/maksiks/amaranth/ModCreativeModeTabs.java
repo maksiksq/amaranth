@@ -55,6 +55,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
                         output.accept(ModBlocks.TRIMMED_TREE_SAPLING);
                         output.accept(ModBlocks.ANTHOCYANIN_SAPLING);
+                        output.accept(ModBlocks.SPEARY_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);

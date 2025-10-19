@@ -68,6 +68,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> THICK_PUMPKIN_KEY = registerKey("thick_pumpkin");
     public static ResourceKey<ConfiguredFeature<?, ?>> THRUMLETONS_FLOWER_KEY = registerKey("thrumletons_flower");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_KEY = registerKey("speary");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -375,6 +377,19 @@ public class ModConfiguredFeatures {
                                 )
                         )
                 )
+        );
+
+        // speary
+        register(
+                context,
+                SPEARY_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.OAK_LOG),
+                        new StraightTrunkPlacer(3, 2, 0),
+                        BlockStateProvider.simple(Blocks.AZALEA_LEAVES),
+                        new SpearyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
 

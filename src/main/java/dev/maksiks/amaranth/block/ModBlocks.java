@@ -190,6 +190,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> THICK_PUMPKIN = registerBlock("thick_pumpkin",
             () -> new ModThickPumpkinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PUMPKIN)));
 
+    // speary
+    public static final DeferredBlock<Block> SPEARY_SAPLING = registerBlock("speary_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.SPEARY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
