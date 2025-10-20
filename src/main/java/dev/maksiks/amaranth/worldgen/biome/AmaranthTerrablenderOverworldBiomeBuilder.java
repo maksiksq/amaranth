@@ -1,20 +1,24 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
+import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import terrablender.api.TerrablenderOverworldBiomeBuilder;
 
 import java.util.function.Consumer;
 
-public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldBiomeBuilder {
-    public ModTerrablenderOverworldBiomeBuilder(ResourceKey<Biome>[][] oceans, ResourceKey<Biome>[][] middle, ResourceKey<Biome>[][] middleVariant,
-                                                ResourceKey<Biome>[][] plateau, ResourceKey<Biome>[][] plateauVariant, ResourceKey<Biome>[][] shattered,
-                                                ResourceKey<Biome>[][] beach, ResourceKey<Biome>[][] peak, ResourceKey<Biome>[][] peakVariant,
-                                                ResourceKey<Biome>[][] slope, ResourceKey<Biome>[][] slopeVariant) {
+public class AmaranthTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldBiomeBuilder {
+    public AmaranthTerrablenderOverworldBiomeBuilder(ResourceKey<Biome>[][] oceans, ResourceKey<Biome>[][] middle, ResourceKey<Biome>[][] middleVariant,
+                                                     ResourceKey<Biome>[][] plateau, ResourceKey<Biome>[][] plateauVariant, ResourceKey<Biome>[][] shattered,
+                                                     ResourceKey<Biome>[][] beach, ResourceKey<Biome>[][] peak, ResourceKey<Biome>[][] peakVariant,
+                                                     ResourceKey<Biome>[][] slope, ResourceKey<Biome>[][] slopeVariant) {
         super(oceans, middle, middleVariant, plateau, plateauVariant, shattered, beach, peak, peakVariant, slope, slopeVariant);
     }
+
+    private final Climate.Parameter FULL_RANGE = Climate.Parameter.span(-1.0F, 1.0F);
 
     public void addBiomesPublic(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> wrappedMapper = pair -> {
@@ -26,6 +30,8 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
         };
 
         super.addBiomes(wrappedMapper);
+
+        addUndergroundBiomes(wrappedMapper);
     }
 
     private Climate.ParameterPoint adjustParameters(Climate.ParameterPoint point, ResourceKey<Biome> biome) {
@@ -45,6 +51,34 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
 //        }
 
         return point;
+    }
+
+    private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
+        mapper.accept(Pair.of(
+                new Climate.ParameterPoint(
+                        this.FULL_RANGE,
+                        this.FULL_RANGE,
+                        this.FULL_RANGE,
+                        this.FULL_RANGE,
+                        Climate.Parameter.span(0.2F, 0.9F),
+                        Climate.Parameter.span(0.8F, 0.9F),
+                        0L
+                ),
+                ModBiomes.DWARVEN_RUINS
+        ));
+
+//        mapper.accept(Pair.of(
+//                new Climate.ParameterPoint(
+//                        Climate.Parameter.span(-1.0F, -0.5F),
+//                        this.FULL_RANGE,
+//                        this.FULL_RANGE,
+//                        Climate.Parameter.span(this.erosions[0], this.erosions[1]),
+//                        Climate.Parameter.point(1.1F),
+//                        this.FULL_RANGE,
+//                        0L
+//                ),
+//                ModBiomes.YOUR_CUSTOM_DEEP_BIOME
+//        ));
     }
 
 

@@ -33,6 +33,7 @@
 - [ ]  melon helmet
 - [ ]  finish: pumpkin
 - [ ]  fix: FULL SET
+- [ ]  fix: maybe use offset to prevent patchiness?
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn

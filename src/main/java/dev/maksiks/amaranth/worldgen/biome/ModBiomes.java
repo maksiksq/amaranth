@@ -11,6 +11,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
+import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -35,12 +36,15 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
     public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
     public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
-    // note to self: MAKE THEM MORE UNHINGED ITS MORE FUN
     public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
-//    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
-//    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
-//    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
-//    public static final ResourceKey<Biome> DWARVISH_LEFTOVERS = register("dwarvish_leftovers");
+    //    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
+    //    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
+    //    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
+    //    public static final ResourceKey<Biome> DWARVISH_LEFTOVERS = register("dwarvish_leftovers");
+    // note to self: MAKE THEM MORE UNHINGED ITS MORE FUN
+
+    // underground
+    public static final ResourceKey<Biome> DWARVEN_RUINS = register("dwarven_ruins");
 
     protected static final int NORMAL_WATER_COLOR = 4159204;
     protected static final int NORMAL_WATER_FOG_COLOR = 329011;
@@ -69,6 +73,9 @@ public class ModBiomes {
         context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
         context.register(THRUMLETONS, thrumlethons(context));
         context.register(SPARSEY_SPEARS, sparseySpears(context));
+
+        // underground
+        context.register(DWARVEN_RUINS, dwarvenRuins(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -678,6 +685,47 @@ public class ModBiomes {
                         .foliageColorOverride(0x77ab2f)
                         .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    //
+    // UNDERGROUND
+    //
+
+    // dwarven
+    public static Biome dwarvenRuins(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        spawnBuilder.addSpawn(MobCategory.AXOLOTLS, new MobSpawnSettings.SpawnerData(EntityType.AXOLOTL, 10, 4, 6));
+        spawnBuilder.addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.TROPICAL_FISH, 25, 8, 8));
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addLushCavesSpecialOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addLushCavesVegetationFeatures(biomeBuilder);
+
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_LUSH_CAVES);
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.5f)
+                .temperature(0.5f)
+                .mobSpawnSettings(spawnBuilder.build())
+                .generationSettings(biomeBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(NORMAL_WATER_COLOR)
+                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .skyColor(0x3E3942)
+                        .grassColorOverride(0x8eb971)
+                        .foliageColorOverride(0x71a74d)
+                        .fogColor(0x121414)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(music)
                         .build())
                 .build();
     }

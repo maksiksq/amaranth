@@ -112,10 +112,10 @@ public class ModTerrablenderRegions extends Region {
 
     private static int count = 0;
 
-    private final Set<ResourceKey<Biome>> bwgKeys = new ObjectOpenHashSet<>();
+    private final Set<ResourceKey<Biome>> amaranthKeys = new ObjectOpenHashSet<>();
     private final Map<ResourceKey<Biome>, ResourceKey<Biome>> swapper;
     private final Map<ResourceKey<Biome>, ResourceKey<Biome>> globalSwapper;
-    private final ModTerrablenderOverworldBiomeBuilder terrablenderOverworldBiomeBuilder;
+    private final AmaranthTerrablenderOverworldBiomeBuilder terrablenderOverworldBiomeBuilder;
 
     public ModTerrablenderRegions(int overworldWeight,
                                   ResourceKey<Biome>[][] oceans, ResourceKey<Biome>[][] middleBiomes,
@@ -135,7 +135,6 @@ public class ModTerrablenderRegions extends Region {
         beachBiomes = sanitize("beach_biomes", this.getName(), count, beachBiomes, noVoidBiomes, true);
         slopeBiomes = sanitize("slope_biomes", this.getName(), count, slopeBiomes, noVoidBiomes, true);
 
-        // these can contain the void somehow? not sure how this works
         middleBiomesVariant = sanitize("middle_biomes_variant", this.getName(), count, middleBiomesVariant, noVoidBiomes, false);
         plateauBiomesVariant = sanitize("plateau_biomes_variant", this.getName(), count, plateauBiomesVariant, noVoidBiomes, false);
         shatteredBiomes = sanitize("shattered_biomes", this.getName(), count, shatteredBiomes, noVoidBiomes, false);
@@ -143,7 +142,7 @@ public class ModTerrablenderRegions extends Region {
         peakBiomesVariant = sanitize("peak_biomes_variant", this.getName(), count, peakBiomesVariant, noVoidBiomes, false);
         slopeBiomesVariant = sanitize("slope_biomes_variant", this.getName(), count, slopeBiomesVariant, noVoidBiomes, false);
 
-        this.terrablenderOverworldBiomeBuilder = new ModTerrablenderOverworldBiomeBuilder(
+        this.terrablenderOverworldBiomeBuilder = new AmaranthTerrablenderOverworldBiomeBuilder(
                 oceans, middleBiomes, middleBiomesVariant,
                 plateauBiomes, plateauBiomesVariant, shatteredBiomes,
                 beachBiomes, peakBiomes, peakBiomesVariant, slopeBiomes, slopeBiomesVariant
@@ -151,7 +150,7 @@ public class ModTerrablenderRegions extends Region {
 
         forEachBiome((biomeResourceKey -> {
             if (biomeResourceKey != null) {
-                bwgKeys.add(biomeResourceKey);
+                amaranthKeys.add(biomeResourceKey);
                 if (swapper.containsValue(biomeResourceKey)) {
                     throw new IllegalArgumentException("Swapper cannot contain elements found in the temperature arrays.");
                 }
@@ -182,7 +181,7 @@ public class ModTerrablenderRegions extends Region {
                 totalPairs.increment();
                 boolean mapped = false;
                 boolean alreadyMappedOutsideSwapper = false;
-                if (this.bwgKeys.contains(biomeKey)) {
+                if (this.amaranthKeys.contains(biomeKey)) {
                     mapper.accept(new Pair<>(parameterPoint, this.globalSwapper.getOrDefault(biomeKey, biomeKey)));
                     amaranthMapperAccepted.increment();
                     alreadyMappedOutsideSwapper = true;
@@ -212,7 +211,7 @@ public class ModTerrablenderRegions extends Region {
         int mapperAcceptValue = amaranthMapperAccepted.intValue();
         boolean sanityCheck = totalPairsValue != mapperAcceptValue;
         if (sanityCheck) {
-            throw new UnsupportedOperationException(String.format("Not all biome parameter points were accepted for BWG Terrablender biome region: %s. %s/%s were accepted.", this.getName().toString(), totalPairsValue, mapperAcceptValue));
+            throw new UnsupportedOperationException(String.format("Not all biome parameter points were accepted for an Amaranth Terrablender biome region: %s. %s/%s were accepted.", this.getName().toString(), totalPairsValue, mapperAcceptValue));
         }
     }
 }
