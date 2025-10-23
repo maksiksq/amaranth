@@ -1,10 +1,8 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
-import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import terrablender.api.TerrablenderOverworldBiomeBuilder;
 
@@ -37,18 +35,17 @@ public class AmaranthTerrablenderOverworldBiomeBuilder extends TerrablenderOverw
     private Climate.ParameterPoint adjustParameters(Climate.ParameterPoint point, ResourceKey<Biome> biome) {
         if (biome == null) return point;
 
-// unused for now but experimenting if i do need it
-//        if (biome.equals(ModBiomes.DESOLATE_ICE_FIELDS)) {
-//            return new Climate.ParameterPoint(
-//                    point.temperature(),
-//                    point.humidity(),
-//                    point.continentalness(),
-//                    point.erosion(),
-//                    Climate.Parameter.span(-0.25F, 0.0F),
-//                    point.weirdness(),
-//                    point.offset()
-//            );
-//        }
+        if (biome.equals(ModBiomes.PASTEL_PARCEL)) {
+            return new Climate.ParameterPoint(
+                    point.temperature(),
+                    point.humidity(),
+                    point.continentalness(),
+                    point.erosion(),
+                    point.depth(),
+                    point.weirdness(),
+                    5L
+            );
+        }
 
         return point;
     }
@@ -64,7 +61,7 @@ public class AmaranthTerrablenderOverworldBiomeBuilder extends TerrablenderOverw
                         Climate.Parameter.span(0.8F, 0.9F),
                         0L
                 ),
-                ModBiomes.DWARVEN_RUINS
+                ModBiomes.DWARVEN_LEFTOVERS
         ));
 
 //        mapper.accept(Pair.of(
@@ -77,7 +74,7 @@ public class AmaranthTerrablenderOverworldBiomeBuilder extends TerrablenderOverw
 //                        this.FULL_RANGE,
 //                        0L
 //                ),
-//                ModBiomes.YOUR_CUSTOM_DEEP_BIOME
+//                ModBiomes.CUSTOM_DEEP_BIOME
 //        ));
     }
 

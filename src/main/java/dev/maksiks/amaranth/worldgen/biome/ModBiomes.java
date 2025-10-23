@@ -2,7 +2,6 @@ package dev.maksiks.amaranth.worldgen.biome;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
-import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -23,6 +22,7 @@ import javax.annotation.Nullable;
 
 public class ModBiomes {
     public static final ResourceKey<Biome> TEST_BIOME = register("test_biome");
+    // dev ^
     public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
     public static final ResourceKey<Biome> STUBBY_WOODLAND = register("stubby_woodland");
     public static final ResourceKey<Biome> SILVER_BIRCH_FOREST = register("silver_birch_forest");
@@ -32,22 +32,27 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ORDERLY_COURTS_RUINS = register("orderly_courts_ruins");
     public static final ResourceKey<Biome> TREE_ON_TREE_FOREST = register("tree_on_tree_forest");
     public static final ResourceKey<Biome> SHROOMLANDS = register("shroomlands");
+    // in dev ^
     public static final ResourceKey<Biome> DUSTY_FLATS = register("dusty_flats");
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
     public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
     public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
+    // in dev ^
     public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
     //    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
+    // in dev ^
     //    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
-    //    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
-    //    public static final ResourceKey<Biome> DWARVISH_LEFTOVERS = register("dwarvish_leftovers");
+    // in dev ^
+    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
+    // in dev ^
     // note to self: MAKE THEM MORE UNHINGED ITS MORE FUN
 
     // underground
-    public static final ResourceKey<Biome> DWARVEN_RUINS = register("dwarven_ruins");
+    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
+    // in dev ^
 
-    protected static final int NORMAL_WATER_COLOR = 4159204;
-    protected static final int NORMAL_WATER_FOG_COLOR = 329011;
+    protected static final int FAIRLY_NORMAL_WATER_COLOR = 4159204;
+    protected static final int FAILRY_NORMAL_WATER_FOG_COLOR = 329011;
     private static final int OVERWORLD_FOG_COLOR = 12638463;
     @Nullable
     private static final Music NORMAL_MUSIC = null;
@@ -73,9 +78,10 @@ public class ModBiomes {
         context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
         context.register(THRUMLETONS, thrumlethons(context));
         context.register(SPARSEY_SPEARS, sparseySpears(context));
+        context.register(PASTEL_PARCEL, pastelParcel(context));
 
         // underground
-        context.register(DWARVEN_RUINS, dwarvenRuins(context));
+        context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -160,7 +166,7 @@ public class ModBiomes {
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .waterColor(0x8f3fe4)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(0xa53fe4)
                         .grassColorOverride(0x8b5ac0)
                         .foliageColorOverride(0x8754ba)
@@ -200,8 +206,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xccfc255)
                         .foliageColorOverride(0xAEA42A)
@@ -239,8 +245,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xFFD000)
                         .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
@@ -277,7 +283,7 @@ public class ModBiomes {
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .waterColor(0x050505)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(0x3E3942)
                         .grassColorOverride(0x5C5C5C)
                         .foliageColorOverride(0x4D4D4D)
@@ -317,8 +323,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x7fdb3d)
                         .foliageColorOverride(0x59AE30)
@@ -358,8 +364,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xA0D446)
                         .foliageColorOverride(0x6EDE0D)
@@ -399,8 +405,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xA0D446)
                         .foliageColorOverride(0x6EDE0D)
@@ -439,8 +445,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x66CC1F)
                         .foliageColorOverride(0x66CC1F)
@@ -480,8 +486,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0xb791cc)
                         .foliageColorOverride(0xb791cc)
@@ -516,8 +522,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x6b6b6b)
                         .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
@@ -557,8 +563,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x00AAFF)
                         .foliageColorOverride(0x00AAFF)
@@ -596,8 +602,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x58CC98)
 //                        .foliageColorOverride(0x59AE30)
@@ -638,8 +644,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x32D17F)
 //                        .foliageColorOverride(0x59AE30)
@@ -678,8 +684,8 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
                         .grassColorOverride(0x83bd59)
                         .foliageColorOverride(0x77ab2f)
@@ -694,7 +700,7 @@ public class ModBiomes {
     //
 
     // dwarven
-    public static Biome dwarvenRuins(BootstrapContext<Biome> context) {
+    public static Biome dwarvenLeftovers(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         spawnBuilder.addSpawn(MobCategory.AXOLOTLS, new MobSpawnSettings.SpawnerData(EntityType.AXOLOTL, 10, 4, 6));
@@ -718,12 +724,58 @@ public class ModBiomes {
                 .mobSpawnSettings(spawnBuilder.build())
                 .generationSettings(biomeBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(NORMAL_WATER_COLOR)
-                        .waterFogColor(NORMAL_WATER_FOG_COLOR)
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(0x3E3942)
                         .grassColorOverride(0x8eb971)
                         .foliageColorOverride(0x71a74d)
                         .fogColor(0x121414)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(music)
+                        .build())
+                .build();
+    }
+
+    // pastel
+
+    // TODO: replace cherry groves for worldgen instead of params
+    public static Biome pastelParcel(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.PIG, 1, 1, 2))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 2, 2, 6))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 2, 2, 4));
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+//      TODO: pastel parcel veg
+//      BiomeDefaultFeatures.addCherryGroveVegetation(biomegenerationsettings$builder);
+
+//      TODO: pastel parcel trees
+//      biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MIXED_OAK_PLACED_KEY);
+
+        BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
+        BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_CHERRY_GROVE);
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.5F)
+                .downfall(0.8F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(6141935)
+                        .waterFogColor(6141935)
+                        .skyColor(7972607)
+                        .grassColorOverride(0xd9a0eb)
+                        .foliageColorOverride(0xd5a2e8)
+                        .fogColor(12638463)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .backgroundMusic(music)
                         .build())

@@ -33,6 +33,7 @@
 - [ ]  melon helmet
 - [ ]  finish: pumpkin
 - [ ]  fix: FULL SET
+- [ ]  fix: unchecked operation somewhere
 - [ ]  fix: maybe use offset to prevent patchiness?
 
 
