@@ -189,5 +189,52 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_anthocyanin_door", has(ModBlocks.ANTHOCYANIN_DOOR.get()))
                 .unlockedBy("has_blooming_anthocyanin_leaves", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
                 .save(recipeOutput);
+        
+        // pastel
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_PLANKS.asItem(), 4)
+                .requires(ModBlocks.WISTERIA_LOG.get())
+                .unlockedBy("has_wisteria_log", has(ModBlocks.WISTERIA_LOG.asItem()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_WOOD.asItem(), 3)
+                .requires(ModBlocks.WISTERIA_LOG.get())
+                .requires(ModBlocks.WISTERIA_LOG.get())
+                .requires(ModBlocks.WISTERIA_LOG.get())
+                .requires(ModBlocks.WISTERIA_LOG.get())
+                .unlockedBy("has_wisteria_log", has(ModBlocks.WISTERIA_LOG.asItem()))
+                .save(recipeOutput);
+
+        stairBuilder(ModBlocks.WISTERIA_STAIRS.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get()))
+                .save(recipeOutput);
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_SLAB.get(), ModBlocks.WISTERIA_PLANKS.get());
+
+        buttonBuilder(ModBlocks.WISTERIA_BUTTON.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+        pressurePlate(recipeOutput, ModBlocks.WISTERIA_PRESSURE_PLATE.get(), ModBlocks.WISTERIA_PLANKS.get());
+
+        fenceBuilder(ModBlocks.WISTERIA_FENCE.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+        fenceGateBuilder(ModBlocks.WISTERIA_FENCE_GATE.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+
+        doorBuilder(ModBlocks.WISTERIA_DOOR.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocks.WISTERIA_TRAPDOOR.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
+                .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get(), 1)
+                .requires(ModBlocks.WISTERIA_TRAPDOOR.get())
+                .requires(ModBlocks.WISTERIA_LEAVES.get())
+                .unlockedBy("has_wisteria_trapdoor", has(ModBlocks.WISTERIA_TRAPDOOR.get()))
+                .unlockedBy("has_wisteria_leaves", has(ModBlocks.WISTERIA_LEAVES.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(), 1)
+                .requires(ModBlocks.WISTERIA_DOOR.get())
+                .requires(ModBlocks.WISTERIA_LEAVES.get())
+                .unlockedBy("has_wisteria_door", has(ModBlocks.WISTERIA_DOOR.get()))
+                .unlockedBy("has_wisteria_leaves", has(ModBlocks.WISTERIA_LEAVES.get()))
+                .save(recipeOutput);
     }
 }

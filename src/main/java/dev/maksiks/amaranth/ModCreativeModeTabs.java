@@ -45,6 +45,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
                         output.accept(ModBlocks.ANTHOCYANIN_LEAVES);
                         output.accept(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
+                        output.accept(ModBlocks.WISTERIA_LEAVES);
 
                         // saplings
                         output.accept(ModBlocks.MYSTIC_SAPLING);
@@ -56,6 +57,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.TRIMMED_TREE_SAPLING);
                         output.accept(ModBlocks.ANTHOCYANIN_SAPLING);
                         output.accept(ModBlocks.SPEARY_SAPLING);
+                        output.accept(ModBlocks.WISTERIA_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
@@ -70,37 +72,52 @@ public class ModCreativeModeTabs {
                         // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
                         output.accept(ModBlocks.ANTHOCYANIN_LOG);
+                        output.accept(ModBlocks.WISTERIA_LOG);
                         output.accept(ModBlocks.MYSTIC_WOOD);
                         output.accept(ModBlocks.ANTHOCYANIN_WOOD);
+                        output.accept(ModBlocks.WISTERIA_WOOD);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_LOG);
                         output.accept(ModBlocks.STRIPPED_ANTHOCYANIN_LOG);
+                        output.accept(ModBlocks.STRIPPED_WISTERIA_LOG);
                         output.accept(ModBlocks.STRIPPED_MYSTIC_WOOD);
                         output.accept(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD);
+                        output.accept(ModBlocks.STRIPPED_WISTERIA_WOOD);
 
                         output.accept(ModBlocks.MYSTIC_PLANKS);
                         output.accept(ModBlocks.ANTHOCYANIN_PLANKS);
+                        output.accept(ModBlocks.WISTERIA_PLANKS);
 
                         output.accept(ModBlocks.MYSTIC_STAIRS);
                         output.accept(ModBlocks.ANTHOCYANIN_STAIRS);
+                        output.accept(ModBlocks.WISTERIA_STAIRS);
                         output.accept(ModBlocks.MYSTIC_SLAB);
                         output.accept(ModBlocks.ANTHOCYANIN_SLAB);
+                        output.accept(ModBlocks.WISTERIA_SLAB);
 
                         output.accept(ModBlocks.MYSTIC_PRESSURE_PLATE);
                         output.accept(ModBlocks.ANTHOCYANIN_PRESSURE_PLATE);
+                        output.accept(ModBlocks.WISTERIA_PRESSURE_PLATE);
                         output.accept(ModBlocks.MYSTIC_BUTTON);
                         output.accept(ModBlocks.ANTHOCYANIN_BUTTON);
+                        output.accept(ModBlocks.WISTERIA_BUTTON);
 
                         output.accept(ModBlocks.MYSTIC_FENCE);
                         output.accept(ModBlocks.ANTHOCYANIN_FENCE);
+                        output.accept(ModBlocks.WISTERIA_FENCE);
                         output.accept(ModBlocks.MYSTIC_FENCE_GATE);
                         output.accept(ModBlocks.ANTHOCYANIN_FENCE_GATE);
+                        output.accept(ModBlocks.WISTERIA_FENCE_GATE);
 
                         output.accept(ModBlocks.MYSTIC_DOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_DOOR);
                         output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR);
+                        output.accept(ModBlocks.WISTERIA_DOOR);
+                        output.accept(ModBlocks.ORNAMENTED_WISTERIA_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_TRAPDOOR);
                         output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR);
+                        output.accept(ModBlocks.WISTERIA_TRAPDOOR);
+                        output.accept(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR);
 
                         // rocks
                         output.accept(ModBlocks.SORROW_ICE);

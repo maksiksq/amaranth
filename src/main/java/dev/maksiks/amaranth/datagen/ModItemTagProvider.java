@@ -29,11 +29,16 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.ANTHOCYANIN_LOG.get().asItem())
                 .add(ModBlocks.ANTHOCYANIN_WOOD.get().asItem())
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get().asItem())
-                .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get().asItem());
+                .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get().asItem())
+                .add(ModBlocks.WISTERIA_LOG.get().asItem())
+                .add(ModBlocks.WISTERIA_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_WISTERIA_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_WISTERIA_WOOD.get().asItem());
 
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.MYSTIC_PLANKS.get().asItem())
-                .add(ModBlocks.ANTHOCYANIN_PLANKS.get().asItem());
+                .add(ModBlocks.ANTHOCYANIN_PLANKS.get().asItem())
+                .add(ModBlocks.WISTERIA_PLANKS.get().asItem());
 
         // uh
         this.tag(ItemTags.GOAT_FOOD)

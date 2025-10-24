@@ -146,6 +146,34 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // speary
         this.dropSelf(ModBlocks.SPEARY_SAPLING.get());
+
+        // pastel
+        this.dropSelf(ModBlocks.WISTERIA_LOG.get());
+        this.dropSelf(ModBlocks.WISTERIA_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_WISTERIA_LOG.get());
+        this.dropSelf(ModBlocks.STRIPPED_WISTERIA_WOOD.get());
+        this.dropSelf(ModBlocks.WISTERIA_PLANKS.get());
+        this.dropSelf(ModBlocks.WISTERIA_SAPLING.get());
+
+        this.add(ModBlocks.WISTERIA_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.WISTERIA_LEAVES.get(), ModBlocks.WISTERIA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.dropSelf(ModBlocks.WISTERIA_STAIRS.get());
+        this.add(ModBlocks.WISTERIA_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.WISTERIA_SLAB.get()));
+
+        this.dropSelf(ModBlocks.WISTERIA_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.WISTERIA_BUTTON.get());
+
+        this.dropSelf(ModBlocks.WISTERIA_FENCE.get());
+        this.dropSelf(ModBlocks.WISTERIA_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.WISTERIA_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get());
+
+        this.add(ModBlocks.WISTERIA_DOOR.get(),
+                block -> createDoorTable(ModBlocks.WISTERIA_DOOR.get()));
+        this.add(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(),
+                block -> createDoorTable(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get()));
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

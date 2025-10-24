@@ -141,6 +141,44 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // speary
         twoPlanesCutoutBlock(ModBlocks.SPEARY_SAPLING);
+        
+        // pastel
+        logBlock(((RotatedPillarBlock) ModBlocks.WISTERIA_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.WISTERIA_WOOD.get()), blockTexture(ModBlocks.WISTERIA_LOG.get()), blockTexture(ModBlocks.WISTERIA_LOG.get()));
+
+        logBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_WISTERIA_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_WISTERIA_WOOD.get()), blockTexture(ModBlocks.STRIPPED_WISTERIA_LOG.get()), blockTexture(ModBlocks.STRIPPED_WISTERIA_LOG.get()));
+
+        blockItem(ModBlocks.WISTERIA_LOG);
+        blockItem(ModBlocks.WISTERIA_WOOD);
+        blockItem(ModBlocks.STRIPPED_WISTERIA_LOG);
+        blockItem(ModBlocks.STRIPPED_WISTERIA_WOOD);
+
+        blockWithItem(ModBlocks.WISTERIA_PLANKS);
+        twoPlanesCutoutBlock(ModBlocks.WISTERIA_SAPLING);
+        leavesBlock(ModBlocks.WISTERIA_LEAVES);
+
+        // TODO: Add a helper for this
+        stairsBlock(ModBlocks.WISTERIA_STAIRS.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
+        slabBlock(ModBlocks.WISTERIA_SLAB.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
+
+        buttonBlock(ModBlocks.WISTERIA_BUTTON.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
+        pressurePlateBlock(ModBlocks.WISTERIA_PRESSURE_PLATE.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
+
+        fenceBlock(ModBlocks.WISTERIA_FENCE.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
+        fenceGateBlock(ModBlocks.WISTERIA_FENCE_GATE.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
+
+        doorBlockWithRenderType(ModBlocks.WISTERIA_DOOR.get(), modLoc("block/wisteria_door_bottom"), modLoc("block/wisteria_door_top"), "cutout");
+        doorBlockWithRenderType(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(), modLoc("block/ornamented_wisteria_door_bottom"), modLoc("block/ornamented_wisteria_door_top"), "cutout");
+        trapdoorBlockWithRenderType(ModBlocks.WISTERIA_TRAPDOOR.get(), modLoc("block/wisteria_trapdoor"), true, "cutout");
+        trapdoorBlockWithRenderType(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get(), modLoc("block/ornamented_wisteria_trapdoor"), true, "cutout");
+
+        blockItem(ModBlocks.WISTERIA_STAIRS);
+        blockItem(ModBlocks.WISTERIA_SLAB);
+        blockItem(ModBlocks.WISTERIA_PRESSURE_PLATE);
+        blockItem(ModBlocks.WISTERIA_FENCE_GATE);
+        blockItem(ModBlocks.WISTERIA_TRAPDOOR, "_bottom");
+        blockItem(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR, "_bottom");
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

@@ -194,6 +194,51 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SPEARY_SAPLING = registerBlock("speary_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SPEARY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
+    // pastel
+    public static final DeferredBlock<Block> WISTERIA_LOG = registerBlock("wisteria_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+    public static final DeferredBlock<Block> WISTERIA_WOOD = registerBlock("wisteria_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+    public static final DeferredBlock<Block> STRIPPED_WISTERIA_LOG = registerBlock("stripped_wisteria_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+    public static final DeferredBlock<Block> STRIPPED_WISTERIA_WOOD = registerBlock("stripped_wisteria_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+
+    public static final DeferredBlock<Block> WISTERIA_PLANKS = registerBlock("wisteria_planks",
+            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+
+    public static final DeferredBlock<Block> WISTERIA_LEAVES = registerBlock("wisteria_leaves",
+            () -> new ModAnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+
+    public static final DeferredBlock<Block> WISTERIA_SAPLING = registerBlock("wisteria_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
+    // non-full block stuff
+    public static final DeferredBlock<StairBlock> WISTERIA_STAIRS = registerBlock("wisteria_stairs",
+            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+    public static final DeferredBlock<SlabBlock> WISTERIA_SLAB = registerBlock("wisteria_slab",
+            () -> new SlabBlock(normalWoodProps.get()));
+
+    public static final DeferredBlock<PressurePlateBlock> WISTERIA_PRESSURE_PLATE = registerBlock("wisteria_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
+    public static final DeferredBlock<ButtonBlock> WISTERIA_BUTTON = registerBlock("wisteria_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
+
+    public static final DeferredBlock<FenceBlock> WISTERIA_FENCE = registerBlock("wisteria_fence",
+            () -> new FenceBlock(normalWoodProps.get()));
+    public static final DeferredBlock<FenceGateBlock> WISTERIA_FENCE_GATE = registerBlock("wisteria_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps.get()));
+
+    public static final DeferredBlock<DoorBlock> WISTERIA_DOOR = registerBlock("wisteria_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<DoorBlock> ORNAMENTED_WISTERIA_DOOR = registerBlock("ornamented_wisteria_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<TrapDoorBlock> WISTERIA_TRAPDOOR = registerBlock("wisteria_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<TrapDoorBlock> ORNAMENTED_WISTERIA_TRAPDOOR = registerBlock("ornamented_wisteria_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

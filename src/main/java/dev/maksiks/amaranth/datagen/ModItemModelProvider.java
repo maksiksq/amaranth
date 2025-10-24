@@ -80,6 +80,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // speary
         splatBlockItem(ModBlocks.SPEARY_SAPLING);
+
+        // pastel
+        buttonItem(ModBlocks.WISTERIA_BUTTON, ModBlocks.WISTERIA_PLANKS);
+        fenceItem(ModBlocks.WISTERIA_FENCE, ModBlocks.WISTERIA_PLANKS);
+
+        basicItem(ModBlocks.WISTERIA_DOOR.asItem());
+        basicItem(ModBlocks.ORNAMENTED_WISTERIA_DOOR.asItem());
+
+        splatBlockItem(ModBlocks.WISTERIA_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {
