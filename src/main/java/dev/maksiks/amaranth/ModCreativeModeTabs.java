@@ -73,6 +73,7 @@ public class ModCreativeModeTabs {
                         // woods and stuff
                         output.accept(ModBlocks.MYSTIC_LOG);
                         output.accept(ModBlocks.ANTHOCYANIN_LOG);
+                        output.accept(ModBlocks.JUICY_WISTERIA_LOG);
                         output.accept(ModBlocks.WISTERIA_LOG);
                         output.accept(ModBlocks.MYSTIC_WOOD);
                         output.accept(ModBlocks.ANTHOCYANIN_WOOD);

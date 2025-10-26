@@ -49,6 +49,11 @@ public class ModItems {
             () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(9))));
 
+    // pastel
+    public static final DeferredItem<Item> WISTERIA_JUICE = ITEMS.register("wisteria_juice",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.MUSHROOM_TEA)));
+
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

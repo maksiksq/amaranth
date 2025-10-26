@@ -141,14 +141,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // speary
         twoPlanesCutoutBlock(ModBlocks.SPEARY_SAPLING);
-        
+
         // pastel
+        axisBlock((RotatedPillarBlock) ModBlocks.JUICY_WISTERIA_LOG.get(), modLoc("block/wisteria_log"), modLoc("block/juicy_wisteria_log_top"));
         logBlock(((RotatedPillarBlock) ModBlocks.WISTERIA_LOG.get()));
         axisBlock(((RotatedPillarBlock) ModBlocks.WISTERIA_WOOD.get()), blockTexture(ModBlocks.WISTERIA_LOG.get()), blockTexture(ModBlocks.WISTERIA_LOG.get()));
 
         logBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_WISTERIA_LOG.get()));
         axisBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_WISTERIA_WOOD.get()), blockTexture(ModBlocks.STRIPPED_WISTERIA_LOG.get()), blockTexture(ModBlocks.STRIPPED_WISTERIA_LOG.get()));
 
+        blockItem(ModBlocks.JUICY_WISTERIA_LOG);
         blockItem(ModBlocks.WISTERIA_LOG);
         blockItem(ModBlocks.WISTERIA_WOOD);
         blockItem(ModBlocks.STRIPPED_WISTERIA_LOG);

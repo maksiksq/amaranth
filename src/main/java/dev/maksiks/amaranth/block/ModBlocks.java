@@ -195,6 +195,8 @@ public class ModBlocks {
             () -> new SaplingBlock(ModTreeGrowers.SPEARY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
     // pastel
+    public static final DeferredBlock<Block> JUICY_WISTERIA_LOG = registerBlock("juicy_wisteria_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> WISTERIA_LOG = registerBlock("wisteria_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> WISTERIA_WOOD = registerBlock("wisteria_wood",

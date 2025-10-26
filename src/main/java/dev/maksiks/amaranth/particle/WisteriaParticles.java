@@ -62,8 +62,6 @@ public class WisteriaParticles extends TextureSheetParticle {
     public void tick() {
         ParticleStatus setting = Minecraft.getInstance().options.particles().get();
 
-        Amaranth.LOGGER.info("ticking wisteria particle");
-
         // if you have minimal particles, you won't see these
         // i think the override being false should remove them but uhm, I guess it doesn't?
         // + config

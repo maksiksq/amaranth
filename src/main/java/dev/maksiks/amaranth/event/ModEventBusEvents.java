@@ -13,16 +13,20 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
 public class ModEventBusEvents {
@@ -61,5 +65,15 @@ public class ModEventBusEvents {
                     ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS
             );
         });
+    }
+
+    @SubscribeEvent
+    public static void onCrafted(PlayerEvent.ItemCraftedEvent event) {
+        if (event.getCrafting().is(ModBlocks.WISTERIA_LOG.asItem())) {
+            ItemStack secondary = new ItemStack(Items.GLASS_BOTTLE);
+            if (!event.getEntity().getInventory().add(secondary)) {
+                event.getEntity().drop(secondary, false);
+            }
+        }
     }
 }

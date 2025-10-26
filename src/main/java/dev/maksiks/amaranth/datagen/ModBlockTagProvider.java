@@ -37,6 +37,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get())
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get())
                 .add(ModBlocks.WISTERIA_LOG.get())
+                // notice no juice log
                 .add(ModBlocks.WISTERIA_WOOD.get())
                 .add(ModBlocks.STRIPPED_WISTERIA_LOG.get())
                 .add(ModBlocks.STRIPPED_WISTERIA_WOOD.get());

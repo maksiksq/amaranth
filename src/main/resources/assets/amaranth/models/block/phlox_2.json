@@ -1,9 +1,76 @@
 {
+  "format_version": "1.21.6",
+  "credit": "Made with Blockbench",
   "parent": "minecraft:block/flowerbed_2",
+  "ambientocclusion": false,
+  "render_type": "cutout",
   "textures": {
+    "particle": "amaranth:block/phlox",
     "flowerbed": "amaranth:block/phlox",
-    "stem": "minecraft:block/pink_petals_stem",
-    "particle": "#flowerbed"
+    "stem": "amaranth:block/phlox_stem"
   },
-  "render_type": "cutout"
+  "elements": [
+    {
+      "from": [0, 1, 8],
+      "to": [8, 1, 16],
+      "faces": {
+        "up": {"uv": [0, 8, 8, 16], "texture": "#flowerbed"},
+        "down": {"uv": [0, 16, 8, 8], "texture": "#flowerbed"}
+      }
+    },
+    {
+      "from": [11.15, 0, 5.25],
+      "to": [12.15, 1, 5.25],
+      "rotation": {"angle": -45, "axis": "y", "origin": [1, 0, 1]},
+      "faces": {
+        "north": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "south": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    },
+    {
+      "from": [7.65, 0, 3.75],
+      "to": [7.65, 1, 4.75],
+      "rotation": {"angle": -45, "axis": "y", "origin": [-3, 0, 0]},
+      "faces": {
+        "east": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "west": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    },
+    {
+      "from": [7.15, 0, 4.25],
+      "to": [8.15, 1, 4.25],
+      "rotation": {"angle": -45, "axis": "y", "origin": [-3, 0, 0]},
+      "faces": {
+        "north": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "south": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    },
+    {
+      "from": [8.65, 0, 7.75],
+      "to": [8.65, 1, 8.75],
+      "rotation": {"angle": -45, "axis": "y", "origin": [-2, 0, 4]},
+      "faces": {
+        "east": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "west": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    },
+    {
+      "from": [8.15, 0, 8.25],
+      "to": [9.15, 1, 8.25],
+      "rotation": {"angle": -45, "axis": "y", "origin": [-2, 0, 4]},
+      "faces": {
+        "north": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "south": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    },
+    {
+      "from": [11.65, 0, 4.75],
+      "to": [11.65, 1, 5.75],
+      "rotation": {"angle": -45, "axis": "y", "origin": [1, 0, 1]},
+      "faces": {
+        "east": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0},
+        "west": {"uv": [0, 6, 1, 7], "texture": "#stem", "tintindex": 0}
+      }
+    }
+  ]
 }

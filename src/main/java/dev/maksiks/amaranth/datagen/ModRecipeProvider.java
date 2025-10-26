@@ -192,8 +192,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         
         // pastel
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_PLANKS.asItem(), 4)
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .unlockedBy("has_juicy_wisteria_log", has(ModBlocks.JUICY_WISTERIA_LOG.asItem()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_PLANKS.asItem(), 4)
                 .requires(ModBlocks.WISTERIA_LOG.get())
                 .unlockedBy("has_wisteria_log", has(ModBlocks.WISTERIA_LOG.asItem()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "wisteria_planks_from_juiceless_log"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_LOG.asItem())
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .requires(Items.GLASS_BOTTLE)
+                .unlockedBy("has_juicy_wisteria_log", has(ModBlocks.JUICY_WISTERIA_LOG.asItem()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_WOOD.asItem(), 3)
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
+                .unlockedBy("has_juicy_wisteria_log", has(ModBlocks.JUICY_WISTERIA_LOG.asItem()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_WOOD.asItem(), 3)
@@ -202,7 +221,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.WISTERIA_LOG.get())
                 .requires(ModBlocks.WISTERIA_LOG.get())
                 .unlockedBy("has_wisteria_log", has(ModBlocks.WISTERIA_LOG.asItem()))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "wisteria_wood_from_juiceless_log"));
 
         stairBuilder(ModBlocks.WISTERIA_STAIRS.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
                 .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get()))

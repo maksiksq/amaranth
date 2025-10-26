@@ -31,6 +31,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_LOG.get().asItem())
                 .add(ModBlocks.STRIPPED_ANTHOCYANIN_WOOD.get().asItem())
                 .add(ModBlocks.WISTERIA_LOG.get().asItem())
+                // notice no juice log
                 .add(ModBlocks.WISTERIA_WOOD.get().asItem())
                 .add(ModBlocks.STRIPPED_WISTERIA_LOG.get().asItem())
                 .add(ModBlocks.STRIPPED_WISTERIA_WOOD.get().asItem());

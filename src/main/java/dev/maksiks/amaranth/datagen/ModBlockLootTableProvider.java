@@ -148,6 +148,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SPEARY_SAPLING.get());
 
         // pastel
+        this.dropSelf(ModBlocks.JUICY_WISTERIA_LOG.get());
         this.dropSelf(ModBlocks.WISTERIA_LOG.get());
         this.dropSelf(ModBlocks.WISTERIA_WOOD.get());
         this.dropSelf(ModBlocks.STRIPPED_WISTERIA_LOG.get());
