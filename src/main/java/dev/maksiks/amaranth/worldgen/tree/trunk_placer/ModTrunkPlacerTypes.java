@@ -18,4 +18,6 @@ public class ModTrunkPlacerTypes{
             TRUNK_PLACER_TYPES.register("tree_on_tree_tree_trunk_placer", () -> new TrunkPlacerType<>(TreeOnTreeTreeTrunkPlacer.CODEC));
     public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<AnthocyaninTrunkPlacer>> ANTHOCYANIN_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("anthocyanin_trunk_placer", () -> new TrunkPlacerType<>(AnthocyaninTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<WisteriaTrunkPlacer>> WISTERIA_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("wisteria_trunk_placer", () -> new TrunkPlacerType<>(WisteriaTrunkPlacer.CODEC));
 }

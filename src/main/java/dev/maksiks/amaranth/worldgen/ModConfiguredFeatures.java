@@ -6,10 +6,7 @@ import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
 import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.*;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placer.AnthocyaninTrunkPlacer;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placer.MysticTrunkPlacer;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placer.StubbyTrunkPlacer;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placer.TreeOnTreeTreeTrunkPlacer;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -437,7 +434,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.JUICY_WISTERIA_LOG.get()),
                         // + juiceless log inside
-                        new CherryTrunkPlacer(
+                        new WisteriaTrunkPlacer(
                                 7,
                                 1,
                                 0,
@@ -449,7 +446,7 @@ public class ModConfiguredFeatures {
                                 UniformInt.of(-1, 0)
                         ),
                         BlockStateProvider.simple(ModBlocks.WISTERIA_LEAVES.get()),
-                        new CherryFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), ConstantInt.of(5), 0.25F, 0.5F, 0.16666667F, 0.33333334F),
+                        new CherryFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), ConstantInt.of(5), 0.5F, 0.5F, 0.4F, 0.33333334F),
                         new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         SimpleWeightedRandomList.Builder<BlockState> wisteriaBuilder = SimpleWeightedRandomList.builder();
