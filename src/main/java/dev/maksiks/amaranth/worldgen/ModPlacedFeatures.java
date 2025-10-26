@@ -201,7 +201,7 @@ public class ModPlacedFeatures {
                 WISTERIA_FLOWER_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.WISTERIA_FLOWER_KEY),
                 List.of(
-                        NoiseThresholdCountPlacement.of(-0.8, 5, 10),
+                        NoiseThresholdCountPlacement.of(-0.8, 10, 20),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP,
                         BiomeFilter.biome()
