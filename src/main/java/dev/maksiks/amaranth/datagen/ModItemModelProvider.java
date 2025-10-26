@@ -89,6 +89,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.ORNAMENTED_WISTERIA_DOOR.asItem());
 
         splatBlockItem(ModBlocks.WISTERIA_SAPLING);
+
+        splatBlockItem(ModBlocks.PHLOX);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

@@ -1,5 +1,6 @@
 package dev.maksiks.amaranth.particle;
 
+import dev.maksiks.amaranth.Amaranth;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.ParticleStatus;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -11,7 +12,7 @@ import javax.annotation.Nullable;
 import static dev.maksiks.amaranth.ClientConfig.HIDE_ALL_BIOME_PARTICLES;
 import static dev.maksiks.amaranth.ClientConfig.HIDE_BIOME_LEAF_PARTICLES;
 
-public class SilverBirchParticles extends TextureSheetParticle {
+public class WisteriaParticles extends TextureSheetParticle {
     private static final int INITIAL_LIFETIME = 600;
     private float rotSpeed;
     private final float particleRandom;
@@ -38,7 +39,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
         return windDirection * smooth;
     }
 
-    protected SilverBirchParticles(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
+    protected WisteriaParticles(ClientLevel level, double x, double y, double z, SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(level, x, y, z);
         this.setSprite(spriteSet.get(this.random.nextInt(12), 12));
         this.rotSpeed = (float)Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
@@ -60,6 +61,8 @@ public class SilverBirchParticles extends TextureSheetParticle {
     @Override
     public void tick() {
         ParticleStatus setting = Minecraft.getInstance().options.particles().get();
+
+        Amaranth.LOGGER.info("ticking wisteria particle");
 
         // if you have minimal particles, you won't see these
         // i think the override being false should remove them but uhm, I guess it doesn't?
@@ -83,6 +86,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
 
             double wind = getGlobalWindFactor(this.level);
 
+            // speed
             double weatherHorizontalMult =
                     this.level.isThundering() ? 3 :
                             this.level.isRaining() ? 2 : 1;
@@ -91,9 +95,9 @@ public class SilverBirchParticles extends TextureSheetParticle {
                     this.level.isThundering() ? 8.5 :
                             this.level.isRaining() ? 5 : 1;
 
-            this.xd += d0 * 0.0025F * wind * weatherHorizontalMult;
-            this.zd += d1 * 0.0025F * wind * weatherHorizontalMult;
-            this.yd = this.yd - (double)this.gravity * weatherVerticalMult;
+            this.xd += d0 * 0.01F * wind * weatherHorizontalMult;
+            this.zd += d1 * 0.01F * wind * weatherHorizontalMult;
+            this.yd = this.yd - (double)this.gravity * weatherVerticalMult * 4;
             this.rotSpeed = this.rotSpeed + this.spinAcceleration / 20.0F;
             this.oRoll = this.roll;
             this.roll = this.roll + this.rotSpeed / 20.0F;
@@ -121,7 +125,7 @@ public class SilverBirchParticles extends TextureSheetParticle {
         @Override
         public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel,
                                        double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new SilverBirchParticles(clientLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
+            return new WisteriaParticles(clientLevel, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
         }
     }
 }

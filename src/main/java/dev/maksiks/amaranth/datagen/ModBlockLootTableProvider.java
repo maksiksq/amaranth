@@ -174,6 +174,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createDoorTable(ModBlocks.WISTERIA_DOOR.get()));
         this.add(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(),
                 block -> createDoorTable(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get()));
+
+        this.add(ModBlocks.PHLOX.get(),
+                block -> createPetalsDrops(ModBlocks.PHLOX.get()));
+
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

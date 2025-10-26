@@ -208,7 +208,7 @@ public class ModBlocks {
             () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     public static final DeferredBlock<Block> WISTERIA_LEAVES = registerBlock("wisteria_leaves",
-            () -> new ModAnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new ModWisteriaLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> WISTERIA_SAPLING = registerBlock("wisteria_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
@@ -237,6 +237,9 @@ public class ModBlocks {
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
     public static final DeferredBlock<TrapDoorBlock> ORNAMENTED_WISTERIA_TRAPDOOR = registerBlock("ornamented_wisteria_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
+
+    public static final DeferredBlock<Block> PHLOX = registerBlock("phlox",
+            () -> new PinkPetalsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
