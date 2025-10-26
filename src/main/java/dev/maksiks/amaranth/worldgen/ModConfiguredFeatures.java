@@ -15,23 +15,33 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.InclusiveRange;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.CherryTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
@@ -70,6 +80,9 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_KEY = registerKey("speary");
     public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_FLOWER_KEY = registerKey("speary_flower");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> WISTERIA_KEY = registerKey("wisteria");
+    public static ResourceKey<ConfiguredFeature<?, ?>> WISTERIA_FLOWER_KEY = registerKey("wisteria_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -393,7 +406,6 @@ public class ModConfiguredFeatures {
                         new TwoLayersFeatureSize(1, 0, 1)).build()
         );
 
-        // speary
         register(
                 context,
                 SPEARY_FLOWER_KEY,
@@ -414,6 +426,48 @@ public class ModConfiguredFeatures {
                                         )
                                 )
                         )
+                )
+        );
+
+        // pastel
+        register(
+                context,
+                WISTERIA_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.JUICY_WISTERIA_LOG.get()),
+                        // + juiceless log inside
+                        new CherryTrunkPlacer(
+                                7,
+                                1,
+                                0,
+                                new WeightedListInt(
+                                        SimpleWeightedRandomList.<IntProvider>builder().add(ConstantInt.of(1), 1).add(ConstantInt.of(2), 1).add(ConstantInt.of(3), 1).build()
+                                ),
+                                UniformInt.of(2, 4),
+                                UniformInt.of(-4, -3),
+                                UniformInt.of(-1, 0)
+                        ),
+                        BlockStateProvider.simple(ModBlocks.WISTERIA_LEAVES.get()),
+                        new CherryFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), ConstantInt.of(5), 0.25F, 0.5F, 0.16666667F, 0.33333334F),
+                        new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
+
+        SimpleWeightedRandomList.Builder<BlockState> wisteriaBuilder = SimpleWeightedRandomList.builder();
+
+        for (int i = 1; i <= 4; i++) {
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                wisteriaBuilder.add(
+                        ModBlocks.PHLOX.get().defaultBlockState().setValue(PinkPetalsBlock.AMOUNT, Integer.valueOf(i)).setValue(PinkPetalsBlock.FACING, direction), 1
+                );
+            }
+        }
+
+        register(
+                context,
+                WISTERIA_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaBuilder)))
                 )
         );
     }

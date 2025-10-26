@@ -31,4 +31,7 @@ public class ModTreeGrowers {
 
     public static final TreeGrower SPEARY_GROWER = new TreeGrower(Amaranth.MOD_ID + ":speary",
             Optional.empty(), Optional.of(ModConfiguredFeatures.SPEARY_KEY), Optional.empty());
+
+    public static final TreeGrower WISTERIA_GROWER = new TreeGrower(Amaranth.MOD_ID + ":wisteria",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.WISTERIA_KEY), Optional.empty());
 }

@@ -10,6 +10,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -50,6 +51,9 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> SPEARY_PLACED_KEY = registerKey("speary_placed");
     public static final ResourceKey<PlacedFeature> SPEARY_FLOWER_PLACED_KEY = registerKey("speary_flower_placed");
+
+    public static final ResourceKey<PlacedFeature> WISTERIA_PLACED_KEY = registerKey("wisteria_placed");
+    public static final ResourceKey<PlacedFeature> WISTERIA_FLOWER_PLACED_KEY = registerKey("wisteria_flower_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -183,10 +187,26 @@ public class ModPlacedFeatures {
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
                         ModBlocks.SPEARY_SAPLING.get()));
 
-
         register(context, SPEARY_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SPEARY_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, CountPlacement.of(5), BiomeFilter.biome()));
 
+        // wisteria
+        register(context, WISTERIA_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WISTERIA_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
+                        ModBlocks.WISTERIA_SAPLING.get()));
+
+        register(
+                context,
+                WISTERIA_FLOWER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.WISTERIA_FLOWER_KEY),
+                List.of(
+                        NoiseThresholdCountPlacement.of(-0.8, 5, 10),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
