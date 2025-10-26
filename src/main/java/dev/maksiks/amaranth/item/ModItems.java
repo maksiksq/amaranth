@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.item;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.item.custom.ModCrownOfThornsItem;
+import dev.maksiks.amaranth.item.custom.ModWisteriaJuiceItem;
 import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -51,7 +52,7 @@ public class ModItems {
 
     // pastel
     public static final DeferredItem<Item> WISTERIA_JUICE = ITEMS.register("wisteria_juice",
-            () -> new Item(new Item.Properties().food(ModFoodProperties.MUSHROOM_TEA)));
+            () -> new ModWisteriaJuiceItem(new Item.Properties().food(ModFoodProperties.WISTERIA_JUICE)));
 
 
     public static void register(IEventBus eventBus) {

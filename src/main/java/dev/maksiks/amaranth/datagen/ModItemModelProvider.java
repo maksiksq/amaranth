@@ -91,6 +91,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.WISTERIA_SAPLING);
 
         splatBlockItem(ModBlocks.PHLOX);
+
+        basicItem(ModItems.WISTERIA_JUICE.get());
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

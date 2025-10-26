@@ -6,6 +6,7 @@ import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.entity.ModSpawnPlacements;
 import dev.maksiks.amaranth.entity.client.ShroomBoiModel;
 import dev.maksiks.amaranth.entity.custom.ShroomBoiEntity;
+import dev.maksiks.amaranth.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -70,7 +71,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void onCrafted(PlayerEvent.ItemCraftedEvent event) {
         if (event.getCrafting().is(ModBlocks.WISTERIA_LOG.asItem())) {
-            ItemStack secondary = new ItemStack(Items.GLASS_BOTTLE);
+            ItemStack secondary = new ItemStack(ModItems.WISTERIA_JUICE.asItem());
             if (!event.getEntity().getInventory().add(secondary)) {
                 event.getEntity().drop(secondary, false);
             }
