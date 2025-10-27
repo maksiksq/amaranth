@@ -20,6 +20,8 @@
   "item.amaranth.crown_of_thorns": "Crown of Thorns",
   "tooltip.amaranth.crown_of_thorns.tooltip": "§8§oIt hurts back.§r",
 
+  "item.amaranth.wisteria_juice": "Wisteria Juice",
+
   "block.amaranth.marble": "Marble",
 
   "block.amaranth.mystic_leaves": "Mystic Leaves",
@@ -95,6 +97,31 @@
   "block.amaranth.spiky_arches": "Spiky Arches",
 
   "block.amaranth.speary_sapling": "Speary Sapling",
+
+  "block.amaranth.wisteria_leaves": "Wisteria Leaves",
+  "block.amaranth.juicy_wisteria_log": "Juicy Wisteria Log",
+  "block.amaranth.wisteria_log": "Wisteria Log",
+  "block.amaranth.stripped_wisteria_log": "Stripped Wisteria Log",
+  "block.amaranth.wisteria_planks": "Wisteria Planks",
+  "block.amaranth.wisteria_wood": "Wisteria Wood",
+  "block.amaranth.stripped_wisteria_wood": "Stripped Wisteria Wood",
+  "block.amaranth.wisteria_sapling": "Wisteria Sapling",
+
+  "block.amaranth.wisteria_stairs": "Wisteria Stairs",
+  "block.amaranth.wisteria_slab": "Wisteria Slab",
+
+  "block.amaranth.wisteria_button": "Wisteria Button",
+  "block.amaranth.wisteria_pressure_plate": "Wisteria Pressure Plate",
+
+  "block.amaranth.wisteria_fence": "Wisteria Fence",
+  "block.amaranth.wisteria_fence_gate": "Wisteria Fence Gate",
+
+  "block.amaranth.wisteria_door": "Wisteria Door",
+  "block.amaranth.ornamented_wisteria_door": "Ornamented Wisteria Door",
+  "block.amaranth.wisteria_trapdoor": "Wisteria Trapdoor",
+  "block.amaranth.ornamented_wisteria_trapdoor": "Ornamented Wisteria Trapdoor",
+
+  "block.amaranth.phlox": "Phlox",
 
   "entity.amaranth.shroom_boi": "Shroom Boi"
 }
