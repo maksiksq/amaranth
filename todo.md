@@ -35,6 +35,7 @@
 - [ ]  fix: FULL SET
 - [ ]  fix: unchecked operation somewhere
 - [ ]  fix: maybe use offset to prevent patchiness?
+- [ ]  fix: logs not stripping
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
