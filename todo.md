@@ -35,7 +35,7 @@
 - [ ]  fix: FULL SET
 - [ ]  fix: unchecked operation somewhere
 - [ ]  fix: maybe use offset to prevent patchiness?
-- [ ]  fix: logs not stripping
+- [x]  fix: logs not stripping
 - [ ]  fix: potted blocks for saplings
 
 
@@ -173,8 +173,10 @@
 
 -------------------------
 
-- [ ] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
-- [ ] Pastelwood
+- [ ] papers maybe
+- [ ] better gen
+- [x] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
+- [x] Pastelwood
 
 -------------------------
 
