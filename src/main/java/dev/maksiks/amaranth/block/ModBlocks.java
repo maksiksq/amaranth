@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.custom.*;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -17,6 +18,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -253,6 +256,16 @@ public class ModBlocks {
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
+
+    public static Map<DeferredBlock<Block>, DeferredBlock<Block>> MOD_STRIPPABLES = Map.of(
+            MYSTIC_LOG, STRIPPED_MYSTIC_LOG,
+            MYSTIC_WOOD, STRIPPED_MYSTIC_WOOD,
+            ANTHOCYANIN_LOG, STRIPPED_ANTHOCYANIN_LOG,
+            ANTHOCYANIN_WOOD, STRIPPED_ANTHOCYANIN_WOOD,
+            WISTERIA_LOG, STRIPPED_WISTERIA_LOG,
+            WISTERIA_WOOD, STRIPPED_WISTERIA_WOOD,
+            JUICY_WISTERIA_LOG, STRIPPED_WISTERIA_LOG
+    );
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
