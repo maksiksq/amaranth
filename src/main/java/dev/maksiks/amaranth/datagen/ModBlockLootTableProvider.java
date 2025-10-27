@@ -169,12 +169,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WISTERIA_FENCE.get());
         this.dropSelf(ModBlocks.WISTERIA_FENCE_GATE.get());
         this.dropSelf(ModBlocks.WISTERIA_TRAPDOOR.get());
-        this.dropSelf(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get());
 
         this.add(ModBlocks.WISTERIA_DOOR.get(),
                 block -> createDoorTable(ModBlocks.WISTERIA_DOOR.get()));
-        this.add(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(),
-                block -> createDoorTable(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get()));
 
         this.add(ModBlocks.PHLOX.get(),
                 block -> createPetalsDrops(ModBlocks.PHLOX.get()));

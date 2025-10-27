@@ -86,7 +86,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         fenceItem(ModBlocks.WISTERIA_FENCE, ModBlocks.WISTERIA_PLANKS);
 
         basicItem(ModBlocks.WISTERIA_DOOR.asItem());
-        basicItem(ModBlocks.ORNAMENTED_WISTERIA_DOOR.asItem());
 
         splatBlockItem(ModBlocks.WISTERIA_SAPLING);
 

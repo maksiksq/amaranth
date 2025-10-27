@@ -115,12 +115,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ANTHOCYANIN_DOOR);
                         output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_DOOR);
                         output.accept(ModBlocks.WISTERIA_DOOR);
-                        output.accept(ModBlocks.ORNAMENTED_WISTERIA_DOOR);
                         output.accept(ModBlocks.MYSTIC_TRAPDOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_TRAPDOOR);
                         output.accept(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR);
                         output.accept(ModBlocks.WISTERIA_TRAPDOOR);
-                        output.accept(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR);
 
                         // rocks
                         output.accept(ModBlocks.SORROW_ICE);

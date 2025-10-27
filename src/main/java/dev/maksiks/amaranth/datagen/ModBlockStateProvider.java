@@ -171,16 +171,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         fenceGateBlock(ModBlocks.WISTERIA_FENCE_GATE.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
 
         doorBlockWithRenderType(ModBlocks.WISTERIA_DOOR.get(), modLoc("block/wisteria_door_bottom"), modLoc("block/wisteria_door_top"), "cutout");
-        doorBlockWithRenderType(ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(), modLoc("block/ornamented_wisteria_door_bottom"), modLoc("block/ornamented_wisteria_door_top"), "cutout");
         trapdoorBlockWithRenderType(ModBlocks.WISTERIA_TRAPDOOR.get(), modLoc("block/wisteria_trapdoor"), true, "cutout");
-        trapdoorBlockWithRenderType(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get(), modLoc("block/ornamented_wisteria_trapdoor"), true, "cutout");
 
         blockItem(ModBlocks.WISTERIA_STAIRS);
         blockItem(ModBlocks.WISTERIA_SLAB);
         blockItem(ModBlocks.WISTERIA_PRESSURE_PLATE);
         blockItem(ModBlocks.WISTERIA_FENCE_GATE);
         blockItem(ModBlocks.WISTERIA_TRAPDOOR, "_bottom");
-        blockItem(ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR, "_bottom");
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

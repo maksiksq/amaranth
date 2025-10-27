@@ -236,11 +236,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<DoorBlock> WISTERIA_DOOR = registerBlock("wisteria_door",
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
-    public static final DeferredBlock<DoorBlock> ORNAMENTED_WISTERIA_DOOR = registerBlock("ornamented_wisteria_door",
-            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
     public static final DeferredBlock<TrapDoorBlock> WISTERIA_TRAPDOOR = registerBlock("wisteria_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
-    public static final DeferredBlock<TrapDoorBlock> ORNAMENTED_WISTERIA_TRAPDOOR = registerBlock("ornamented_wisteria_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
 
     public static final DeferredBlock<Block> PHLOX = registerBlock("phlox",

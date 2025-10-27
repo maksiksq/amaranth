@@ -241,19 +241,5 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
         trapdoorBuilder(ModBlocks.WISTERIA_TRAPDOOR.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
                 .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_WISTERIA_TRAPDOOR.get(), 1)
-                .requires(ModBlocks.WISTERIA_TRAPDOOR.get())
-                .requires(ModBlocks.WISTERIA_LEAVES.get())
-                .unlockedBy("has_wisteria_trapdoor", has(ModBlocks.WISTERIA_TRAPDOOR.get()))
-                .unlockedBy("has_wisteria_leaves", has(ModBlocks.WISTERIA_LEAVES.get()))
-                .save(recipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_WISTERIA_DOOR.get(), 1)
-                .requires(ModBlocks.WISTERIA_DOOR.get())
-                .requires(ModBlocks.WISTERIA_LEAVES.get())
-                .unlockedBy("has_wisteria_door", has(ModBlocks.WISTERIA_DOOR.get()))
-                .unlockedBy("has_wisteria_leaves", has(ModBlocks.WISTERIA_LEAVES.get()))
-                .save(recipeOutput);
     }
 }
