@@ -173,7 +173,8 @@
 
 -------------------------
 
-- [ ] papers maybe
+- [ ] papers or hanging wisteria
+- [ ] maybe a variant with hanging light emitting fruit/papers?
 - [ ] better gen
 - [x] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
 - [x] Pastelwood
