@@ -173,16 +173,15 @@
 
 -------------------------
 
-- [ ] papers or hanging wisteria
-- [ ] maybe a variant with hanging light emitting fruit/papers?
-- [ ] better gen
 - [x] Different cherry trees but lilac and with papers hanging down the trees (![img.png](img.png))
 - [x] Pastelwood
+- [ ] better gen ; so it doesn't clash with cherry ; maybe just replace cherry occasionally? 
+- [ ] maybe a variant with hanging light emitting fruit/papers?
+- [ ] papers or hanging wisteria
 
 -------------------------
 
 ### Desolate cold biome 
-
 -------------------------
 
 - [x] Some sorta like really desolate black ice biome, it must be scawy (![img_1.png](img_1.png))
