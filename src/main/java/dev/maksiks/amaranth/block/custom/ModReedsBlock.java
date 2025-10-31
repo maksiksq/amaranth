@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.util.TriState;
 
 import javax.annotation.Nullable;
 
@@ -64,25 +65,47 @@ public class ModReedsBlock extends DoublePlantBlock implements SimpleWaterlogged
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        BlockState blockstate = level.getBlockState(pos.below());
-        if (blockstate.is(this)) {
-            return true;
-        } else {
-            net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(level, pos.below(), Direction.UP, state);
-            if (!soilDecision.isDefault()) return soilDecision.isTrue();
-            if (blockstate.is(BlockTags.DIRT) || blockstate.is(BlockTags.SAND)) {
-                BlockPos blockpos = pos.below();
+        DoubleBlockHalf half = state.getValue(HALF);
+        BlockPos belowPos = pos.below();
+        BlockState below = level.getBlockState(belowPos);
 
-                for (Direction direction : Direction.Plane.HORIZONTAL) {
-                    BlockState blockstate1 = level.getBlockState(blockpos.relative(direction));
-                    FluidState fluidstate = level.getFluidState(blockpos.relative(direction));
-                    if (state.canBeHydrated(level, pos, fluidstate, blockpos.relative(direction)) || blockstate1.is(Blocks.FROSTED_ICE)) {
-                        return true;
-                    }
+        if (half == DoubleBlockHalf.UPPER) {
+            return below.is(this) && below.getValue(HALF) == DoubleBlockHalf.LOWER;
+        }
+
+        // checking if the block is valid
+        TriState soilDecision = below.canSustainPlant(level, pos.below(), Direction.UP, state);
+        if (!soilDecision.isDefault()) return soilDecision.isTrue();
+        boolean validSoil =
+                below.is(BlockTags.DIRT) ||
+                        below.is(BlockTags.SAND) ||
+                        below.is(Blocks.GRAVEL) ||
+                        below.is(Blocks.CLAY) ||
+                        below.is(Blocks.MUD);
+        if (!validSoil) return false;
+
+        // in water
+        BlockPos abovePos = pos.above();
+        FluidState fluidHere = level.getFluidState(pos);
+        FluidState fluidAbove = level.getFluidState(abovePos);
+
+        boolean waterHere = fluidHere.is(Fluids.WATER);
+        boolean waterAbove = fluidAbove.is(Fluids.WATER);
+
+        if (waterHere && !waterAbove) {
+            return true;
+        }
+
+        // out of water
+        if (!waterHere) {
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                FluidState nearby = level.getFluidState(belowPos.relative(dir));
+                if (nearby.is(Fluids.WATER)) {
+                    return true;
                 }
             }
-
-            return false;
         }
+
+        return false;
     }
 }
