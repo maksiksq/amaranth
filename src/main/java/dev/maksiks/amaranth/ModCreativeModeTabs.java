@@ -64,6 +64,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
                         output.accept(ModBlocks.SPIKY_ARCHES);
                         output.accept(ModBlocks.PHLOX);
+                        output.accept(ModBlocks.REEDS);
 
                         // flowers
                         output.accept(ModBlocks.MALACHITE_VIPERS_BUGLOSS);

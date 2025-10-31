@@ -38,6 +38,8 @@
 - [ ]  fix: potted blocks for saplings
 - [ ]  fix: try to make a 50/50 replace later again
 - [ ]  fix: make disc obtainable
+- [ ]  fix: WATERFALLS
+- [ ]  fix: do some profiling to make sure i didnt add any performance pitfalls
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
@@ -385,4 +387,13 @@
 - [ ] add marigolds
 - [ ] add cosmos flowers
 - [ ] pump kin (GET IT??) 
+----------------------
+
+### mushlands
+----------------------
+- [ ] mud and other blocks
+- [ ] reeds
+- [ ] rice
+- [ ] more vegetation
+- [ ] shrooms
 ----------------------

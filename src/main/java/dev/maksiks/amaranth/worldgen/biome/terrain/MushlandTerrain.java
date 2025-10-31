@@ -14,9 +14,9 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import java.util.function.Function;
 
 public class MushlandTerrain {
-    // I can comfortably hardcode it to y64 because sea level
+    // I can comfortably hardcode it to y62 because sea level
     // plus my brain is already too fried to make it actually dynamic
-    private static final int TARGET_HEIGHT = 64;
+    private static final int TARGET_HEIGHT = 62;
     // higher = not steeper
     // lower = steeper
     private static final int BLEND_RADIUS = 5;
@@ -44,6 +44,9 @@ public class MushlandTerrain {
                 double blendFactor = calculateBlendFactor(biomeGetter, mutable, BLEND_RADIUS);
 
                 int finalHeight = (int) Mth.lerp(blendFactor, vanillaHeight, TARGET_HEIGHT);
+
+                // not going underwater
+                finalHeight = Math.max(finalHeight, TARGET_HEIGHT);
 
                 applyTerrainShape(chunk, mutable, worldX, worldZ, vanillaHeight, finalHeight);
             }
@@ -92,10 +95,6 @@ public class MushlandTerrain {
                                           int currentHeight,
                                           int targetHeight) {
         int seaLevel = chunk.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, worldX, worldZ);
-
-        if (currentHeight <= seaLevel && targetHeight > seaLevel) {
-            targetHeight = seaLevel; // capping it at sea level to avoid overhangs
-        }
 
         if (currentHeight > targetHeight) {
             for (int y = targetHeight + 1; y <= currentHeight; y++) {

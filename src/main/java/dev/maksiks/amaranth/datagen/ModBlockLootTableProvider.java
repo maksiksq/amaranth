@@ -2,20 +2,28 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.item.ModItems;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
@@ -176,6 +184,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PHLOX.get(),
                 block -> createPetalsDrops(ModBlocks.PHLOX.get()));
 
+        // TODO: reed item
+        this.add(ModBlocks.REEDS.get(), block -> this.createItemDoublePlantTable(ModItems.HEXFRUIT.get(), ModBlocks.REEDS.get(), DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+
+
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
@@ -186,6 +198,26 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         return this.hasShearsOrSilkTouch().invert();
     }
 
+
+    private <T extends Comparable<T> & StringRepresentable> LootTable.Builder createItemDoublePlantTable(
+            Item item, Block block, Property<T> property, T value
+    ) {
+        return LootTable.lootTable()
+                .withPool(
+                        this.applyExplosionCondition(
+                                block,
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1.0F))
+                                        .add(
+                                                LootItem.lootTableItem(item)
+                                                        .when(
+                                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, value))
+                                                        )
+                                        )
+                        )
+                );
+    }
 
     protected LootTable.Builder createFruitLeavesDrops(Block leavesBlock, Block saplingBlock, Item item, float... chances) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);

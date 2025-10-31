@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.*;
-import static net.minecraft.world.level.levelgen.SurfaceRules.stoneDepthCheck;
+import static net.minecraft.world.level.levelgen.SurfaceRules.*;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
@@ -40,6 +40,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource PRISMARINE = makeStateRule(Blocks.PRISMARINE);
     private static final SurfaceRules.RuleSource CYAN_CONCRETE = makeStateRule(Blocks.CYAN_CONCRETE);
     private static final SurfaceRules.RuleSource DARK_PRISMARINE = makeStateRule(Blocks.DARK_PRISMARINE);
+    private static final SurfaceRules.RuleSource WATER = makeStateRule(Blocks.WATER);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -49,9 +50,9 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.yBlockCheck(VerticalAnchor.absolute(layerY), 0),
+                                        yBlockCheck(VerticalAnchor.absolute(layerY), 0),
                                         SurfaceRules.ifTrue(
-                                                SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(layerY + 1), 0)),
+                                                SurfaceRules.not(yBlockCheck(VerticalAnchor.absolute(layerY + 1), 0)),
                                                 YELLOW_TERRACOTTA
                                         )
                                 )
@@ -91,16 +92,16 @@ public class ModSurfaceRules {
 
         // silver
         int[] silverLayers = {
-                61 + random.nextInt(2),
-                64 - random.nextInt(2),
-                69 + random.nextInt(2),
-                74 - random.nextInt(2),
-                78 + random.nextInt(2),
-                84 + random.nextInt(3),
-                96 + random.nextInt(5),
-                102 + random.nextInt(5),
-                120 + random.nextInt(5),
-                145 + random.nextInt(5)
+                62,
+                64,
+                70,
+                73,
+                80,
+                85,
+                98,
+                105,
+                125,
+                146
         };
 
         for (int layer : silverLayers) {
@@ -260,14 +261,19 @@ public class ModSurfaceRules {
         ));
 
         // mush
-
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                SurfaceRules.ifTrue(
+                        yBlockCheck(VerticalAnchor.absolute(62), 0),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.not(yBlockCheck(VerticalAnchor.absolute(63), 0)),
+                                WATER
+                        )
+                )
+        ));
 
         // vanilla default fallback
-        rules.add(
-                SurfaceRules.ifTrue(
-                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.MUSHLAND)),
-                        SurfaceRuleData.overworld())
-        );
+        SurfaceRuleData.overworld();
 
         return SurfaceRules.sequence(rules.toArray(SurfaceRules.RuleSource[]::new));
     }

@@ -92,12 +92,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         splatBlockItem(ModBlocks.PHLOX);
 
         basicItem(ModItems.WISTERIA_JUICE.get());
+
+        // mush
+        // TODO: reed item
+//        splatBlockItem(ModBlocks.REEDS, "_bottom");
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {
         withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + item.getId().getPath()));
+    }
+
+    private void splatBlockItem(DeferredBlock<Block> item, String appendix) {
+        withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "block/" + item.getId().getPath() + appendix));
     }
 
     public void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {

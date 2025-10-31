@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -178,6 +179,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.WISTERIA_PRESSURE_PLATE);
         blockItem(ModBlocks.WISTERIA_FENCE_GATE);
         blockItem(ModBlocks.WISTERIA_TRAPDOOR, "_bottom");
+
+        // mush
+        doubleFourPlaneCropBlock(ModBlocks.REEDS);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -266,11 +270,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
 
-
-
     private void twoPlanesCutoutBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
                 models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
+    private void doubleFourPlaneCropBlock(DeferredBlock<Block> block) {
+        Block b = block.get();
+        String name = BuiltInRegistries.BLOCK.getKey(b).getPath();
+
+        models().withExistingParent(name + "_bottom", mcLoc("block/crop"))
+                .texture("crop", modLoc("block/" + name + "_bottom"))
+                .renderType("cutout_mipped");
+
+        models().withExistingParent(name + "_top", mcLoc("block/crop"))
+                .texture("crop", modLoc("block/" + name + "_top"))
+                .renderType("cutout_mipped");
+
+        getVariantBuilder(b).forAllStates(state -> {
+            DoubleBlockHalf half = state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF);
+            String suffix = (half == DoubleBlockHalf.UPPER) ? "_top" : "_bottom";
+            return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc(name + suffix))).build();
+        });
     }
 
     private void leavesBlock(DeferredBlock<Block> blockRegistryObject) {
