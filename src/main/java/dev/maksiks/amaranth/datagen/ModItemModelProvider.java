@@ -95,6 +95,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // mush
         basicItem(ModBlocks.REEDS.asItem());
+        basicItem(ModItems.REED_BAR.get());
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

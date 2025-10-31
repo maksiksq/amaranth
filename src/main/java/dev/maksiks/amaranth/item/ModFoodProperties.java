@@ -27,5 +27,7 @@ public class ModFoodProperties {
             .build();
 
 
-
+    public static final FoodProperties REED_BAR = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3f)
+            .fast()
+            .build();
 }

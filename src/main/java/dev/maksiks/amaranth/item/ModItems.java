@@ -25,6 +25,7 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
     public static final DeferredItem<Item> BEANIE_BLOB = ITEMS.register("beanie_blob",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HEXFRUIT = ITEMS.register("hexfruit",
@@ -54,6 +55,9 @@ public class ModItems {
     public static final DeferredItem<Item> WISTERIA_JUICE = ITEMS.register("wisteria_juice",
             () -> new ModWisteriaJuiceItem(new Item.Properties().food(ModFoodProperties.WISTERIA_JUICE)));
 
+    // mush
+    public static final DeferredItem<Item> REED_BAR = ITEMS.register("reed_bar",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.REED_BAR)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

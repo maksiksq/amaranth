@@ -241,5 +241,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
         trapdoorBuilder(ModBlocks.WISTERIA_TRAPDOOR.get(), Ingredient.of(ModBlocks.WISTERIA_PLANKS.get())).group("wisteria")
                 .unlockedBy("has_wisteria_planks", has(ModBlocks.WISTERIA_PLANKS.get())).save(recipeOutput);
+
+        // mush
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.REED_BAR, 1)
+                .requires(Items.SUGAR_CANE)
+                .requires(Items.SUGAR)
+                .requires(ModBlocks.REEDS.asItem())
+                .unlockedBy("has_reeds", has(ModBlocks.REEDS.asItem()))
+                .save(recipeOutput);
     }
 }

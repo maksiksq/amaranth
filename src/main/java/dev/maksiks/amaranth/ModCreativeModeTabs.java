@@ -32,6 +32,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HEXFRUIT);
                         output.accept(ModItems.MUSHROOM_TEA);
                         output.accept(ModItems.WISTERIA_JUICE);
+                        output.accept(ModItems.REED_BAR);
 
                         // spawn eggs
                         output.accept(ModItems.SHROOM_BOI_SPAWN_EGG);

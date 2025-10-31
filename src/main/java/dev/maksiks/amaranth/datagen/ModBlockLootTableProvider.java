@@ -184,10 +184,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PHLOX.get(),
                 block -> createPetalsDrops(ModBlocks.PHLOX.get()));
 
-        // TODO: reed item
-        this.add(ModBlocks.REEDS.get(), block -> this.createItemDoublePlantTable(ModItems.HEXFRUIT.get(), ModBlocks.REEDS.get(), DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
-
-
+        // can be replaced with the vanilla one for reeds
+        this.add(ModBlocks.REEDS.get(), block -> this.createItemDoublePlantTable(ModBlocks.REEDS.asItem(), ModBlocks.REEDS.get(), DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
@@ -197,7 +195,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
         return this.hasShearsOrSilkTouch().invert();
     }
-
 
     private <T extends Comparable<T> & StringRepresentable> LootTable.Builder createItemDoublePlantTable(
             Item item, Block block, Property<T> property, T value
