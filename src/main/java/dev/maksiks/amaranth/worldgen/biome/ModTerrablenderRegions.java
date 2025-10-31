@@ -176,6 +176,7 @@ public class ModTerrablenderRegions extends Region {
         this.addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder -> {
                     if (regionId == 1) {
                         modifiedVanillaOverworldBuilder.replaceBiome(Biomes.CHERRY_GROVE, ModBiomes.PASTEL_PARCEL);
+                        modifiedVanillaOverworldBuilder.replaceBiome(Biomes.SWAMP, ModBiomes.MUSHLAND);
                     }
                 }
 

@@ -10,5 +10,8 @@
   },
   "client": [
     "SkyRendererMixin"
+  ],
+  "mixins": [
+    "ChunkStatusTasksMixin"
   ]
 }

@@ -3,19 +3,24 @@ package dev.maksiks.amaranth.worldgen.biome;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.AquaticPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import terrablender.api.ParameterUtils;
 
 import javax.annotation.Nullable;
@@ -39,13 +44,12 @@ public class ModBiomes {
     public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
     // in dev ^
     public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
-    //    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
-    // in dev ^
     //    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
     // in dev ^
     public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
     // in dev ^
-    // note to self: MAKE THEM MORE UNHINGED ITS MORE FUN
+    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
+    // in dev ^
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -79,9 +83,16 @@ public class ModBiomes {
         context.register(THRUMLETONS, thrumlethons(context));
         context.register(SPARSEY_SPEARS, sparseySpears(context));
         context.register(PASTEL_PARCEL, pastelParcel(context));
+        context.register(MUSHLAND, mushland(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
+    }
+
+    protected static int calculateSkyColor(float temperature) {
+        float $$1 = temperature / 3.0F;
+        $$1 = Mth.clamp($$1, -1.0F, 1.0F);
+        return Mth.hsvToRgb(0.62222224F - $$1 * 0.05F, 0.5F + $$1 * 0.1F, 1.0F);
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
@@ -737,8 +748,6 @@ public class ModBiomes {
     }
 
     // pastel
-
-    // TODO: replace cherry groves for worldgen instead of params
     public static Biome pastelParcel(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -775,6 +784,59 @@ public class ModBiomes {
                         .grassColorOverride(0x61db80)
                         .foliageColorOverride(0x61db80)
                         .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(music)
+                        .build())
+                .build();
+    }
+
+    // mush
+    public static Biome mushland(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder, 70);
+        spawnBuilder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.SLIME, 1, 1, 1));
+        spawnBuilder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.BOGGED, 30, 4, 4));
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FROG, 10, 2, 5));
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        BiomeDefaultFeatures.addFossilDecoration(biomeBuilder);
+        globalOverworldGeneration(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.FOREST_FLOWERS);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.FLOWER_SWAMP);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_NORMAL);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_WATERLILY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.BROWN_MUSHROOM_SWAMP);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.RED_MUSHROOM_SWAMP);
+
+        // shrooms
+        // reeds
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addSwampExtraVegetation(biomeBuilder);
+
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_SWAMP);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.8F)
+                .downfall(0.9F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(6388580)
+                        .waterFogColor(2302743)
+                        .fogColor(12638463)
+                        .skyColor(calculateSkyColor(0.8F))
+                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.SWAMP)
+//                        .grassColorOverride(0x7fdb3d)
+                        .foliageColorOverride(6975545)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .backgroundMusic(music)
                         .build())

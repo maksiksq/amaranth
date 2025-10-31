@@ -29,14 +29,15 @@
 - [x]  add overrides to terrablender's builder for exceptions
 - [x]  fix: desolate biome effects should not work underground
 - [x]  redistribute the biomes according to the annotation
-- [ ]  do a 50/50 on some biomes if that would work reasonably ???
+- [ ]  do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip
 - [ ]  melon helmet
 - [ ]  finish: pumpkin
-- [ ]  fix: FULL SET
 - [ ]  fix: unchecked operation somewhere
 - [ ]  fix: maybe use offset to prevent patchiness?
 - [x]  fix: logs not stripping
 - [ ]  fix: potted blocks for saplings
+- [ ]  fix: try to make a 50/50 replace later again
+- [ ]  fix: make disc obtainable
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
