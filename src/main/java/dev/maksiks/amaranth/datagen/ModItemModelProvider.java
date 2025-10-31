@@ -94,8 +94,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.WISTERIA_JUICE.get());
 
         // mush
-        // TODO: reed item
-//        splatBlockItem(ModBlocks.REEDS, "_bottom");
+        basicItem(ModBlocks.REEDS.asItem());
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {
