@@ -259,8 +259,15 @@ public class ModSurfaceRules {
                 )
         ));
 
+        // mush
+
+
         // vanilla default fallback
-        rules.add(SurfaceRuleData.overworld());
+        rules.add(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.not(SurfaceRules.isBiome(ModBiomes.MUSHLAND)),
+                        SurfaceRuleData.overworld())
+        );
 
         return SurfaceRules.sequence(rules.toArray(SurfaceRules.RuleSource[]::new));
     }
