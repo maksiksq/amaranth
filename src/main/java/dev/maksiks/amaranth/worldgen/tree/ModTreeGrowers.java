@@ -34,4 +34,9 @@ public class ModTreeGrowers {
 
     public static final TreeGrower WISTERIA_GROWER = new TreeGrower(Amaranth.MOD_ID + ":wisteria",
             Optional.empty(), Optional.of(ModConfiguredFeatures.WISTERIA_KEY), Optional.empty());
+
+    public static final TreeGrower RED_MINI_SHROOM_GROWER = new TreeGrower(Amaranth.MOD_ID + ":red_mini_shroom",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.RED_MINI_SHROOM_KEY), Optional.empty());
+    public static final TreeGrower BROWN_MINI_SHROOM_GROWER = new TreeGrower(Amaranth.MOD_ID + ":brown_mini_shroom",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.BROWN_MINI_SHROOM_KEY), Optional.empty());
 }

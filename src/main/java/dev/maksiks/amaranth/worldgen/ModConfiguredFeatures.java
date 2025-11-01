@@ -79,6 +79,9 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> MUSH_REEDS_KEY = registerKey("mush_reeds");
     public static ResourceKey<ConfiguredFeature<?, ?>> MUSH_REEDS_WATER_KEY = registerKey("mush_reeds_water");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> RED_MINI_SHROOM_KEY = registerKey("red_mini_shroom");
+    public static ResourceKey<ConfiguredFeature<?, ?>> BROWN_MINI_SHROOM_KEY = registerKey("brown_mini_shroom");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -482,6 +485,33 @@ public class ModConfiguredFeatures {
                 MUSH_REEDS_WATER_KEY,
                 ModFeatures.MUSH_REEDS_FEATURE.get(),
                 NoneFeatureConfiguration.INSTANCE
+        );
+
+        // linked with below, change both
+        register(
+                context,
+                RED_MINI_SHROOM_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.MUSHROOM_STEM),
+                        new ModififedForkingTrunkPlacer(3, 1, 2),
+                        BlockStateProvider.simple(Blocks.RED_MUSHROOM_BLOCK),
+                        new BlobFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(0, 0, 0)
+                ).build()
+        );
+
+        register(
+                context,
+                BROWN_MINI_SHROOM_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.MUSHROOM_STEM),
+                        new ModififedForkingTrunkPlacer(3, 1, 2),
+                        BlockStateProvider.simple(Blocks.BROWN_MUSHROOM_BLOCK),
+                        new BlobFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(0, 0, 0)
+                ).build()
         );
     }
 

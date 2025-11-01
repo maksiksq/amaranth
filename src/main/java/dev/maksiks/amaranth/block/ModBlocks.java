@@ -248,7 +248,7 @@ public class ModBlocks {
             () -> new ModReedsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ROSE_BUSH)));
 
     public static final DeferredBlock<Block> RED_MINI_SHROOM_SPORELING = registerBlock("red_mini_shroom_sporeling",
-            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER,
+            () -> new SaplingBlock(ModTreeGrowers.RED_MINI_SHROOM_GROWER,
                     BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
@@ -258,7 +258,7 @@ public class ModBlocks {
                     .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> BROWN_MINI_SHROOM_SPORELING = registerBlock("brown_mini_shroom_sporeling",
-            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER,
+            () -> new SaplingBlock(ModTreeGrowers.BROWN_MINI_SHROOM_GROWER,
                     BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()

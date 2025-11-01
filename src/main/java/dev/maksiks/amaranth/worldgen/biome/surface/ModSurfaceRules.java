@@ -1,14 +1,11 @@
 package dev.maksiks.amaranth.worldgen.biome.surface;
 
-import dev.maksiks.amaranth.block.ModBlocks;
-import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
-import dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises;
+import dev.maksiks.amaranth.worldgen.noise.ModNoises;
 import net.minecraft.data.worldgen.SurfaceRuleData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
@@ -16,7 +13,7 @@ import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.maksiks.amaranth.worldgen.levelgen.noise.ModNoises.*;
+import static dev.maksiks.amaranth.worldgen.noise.ModNoises.*;
 import static net.minecraft.world.level.levelgen.SurfaceRules.*;
 
 public class ModSurfaceRules {

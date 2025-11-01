@@ -56,6 +56,9 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> MUSH_REEDS_PLACED_KEY = registerKey("mush_reeds_placed");
     public static final ResourceKey<PlacedFeature> MUSH_REEDS_WATER_PLACED_KEY = registerKey("mush_reeds_water_placed");
 
+    public static final ResourceKey<PlacedFeature> RED_MINI_SHROOM_PLACED_KEY = registerKey("red_mini_shroom_placed");
+    public static final ResourceKey<PlacedFeature> BROWN_MINI_SHROOM_PLACED_KEY = registerKey("brown_mini_shroom_placed_key");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -223,6 +226,17 @@ public class ModPlacedFeatures {
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.MUSH_REEDS_WATER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
         );
+
+        register(context, RED_MINI_SHROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_MINI_SHROOM_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
+                        ModBlocks.RED_MINI_SHROOM_SPORELING.get()));
+
+        register(context, BROWN_MINI_SHROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BROWN_MINI_SHROOM_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
+                        ModBlocks.BROWN_MINI_SHROOM_SPORELING.get()));
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
