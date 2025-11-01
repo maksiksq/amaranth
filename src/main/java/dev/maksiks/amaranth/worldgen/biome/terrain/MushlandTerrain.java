@@ -43,6 +43,15 @@ public class MushlandTerrain {
 
                 double blendFactor = calculateBlendFactor(biomeGetter, mutable, BLEND_RADIUS);
 
+                if (blendFactor > 0.3) {
+                    for (int y = chunk.getMinBuildHeight(); y < TARGET_HEIGHT; y++) {
+                        mutable.set(worldX, y, worldZ);
+                        if (chunk.getBlockState(mutable).isAir()) {
+                            chunk.setBlockState(mutable, Blocks.WATER.defaultBlockState(), false);
+                        }
+                    }
+                }
+
                 int finalHeight = (int) Mth.lerp(blendFactor, vanillaHeight, TARGET_HEIGHT);
 
                 // not going underwater
