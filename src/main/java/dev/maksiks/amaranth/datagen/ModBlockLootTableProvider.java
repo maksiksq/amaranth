@@ -184,8 +184,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PHLOX.get(),
                 block -> createPetalsDrops(ModBlocks.PHLOX.get()));
 
-        // can be replaced with the vanilla one for reeds
         this.add(ModBlocks.REEDS.get(), block -> this.createItemDoublePlantTable(ModBlocks.REEDS.asItem(), ModBlocks.REEDS.get(), DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+
+        this.dropSelf(ModBlocks.RED_MINI_SHROOM_SPORELING.get());
+        this.dropSelf(ModBlocks.BROWN_MINI_SHROOM_SPORELING.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

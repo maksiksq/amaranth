@@ -182,6 +182,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // mush
         doubleFourPlaneCropBlock(ModBlocks.REEDS);
+
+        twoPlanesCutoutBlock(ModBlocks.RED_MINI_SHROOM_SPORELING);
+        twoPlanesCutoutBlock(ModBlocks.BROWN_MINI_SHROOM_SPORELING);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

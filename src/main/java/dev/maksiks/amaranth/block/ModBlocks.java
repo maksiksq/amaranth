@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -155,7 +156,7 @@ public class ModBlocks {
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> ANTHOCYANIN_STAIRS = registerBlock("anthocyanin_stairs",
-            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+            () -> new StairBlock(ModBlocks.ANTHOCYANIN_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
     public static final DeferredBlock<SlabBlock> ANTHOCYANIN_SLAB = registerBlock("anthocyanin_slab",
             () -> new SlabBlock(normalWoodProps.get()));
 
@@ -220,7 +221,7 @@ public class ModBlocks {
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> WISTERIA_STAIRS = registerBlock("wisteria_stairs",
-            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+            () -> new StairBlock(ModBlocks.WISTERIA_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
     public static final DeferredBlock<SlabBlock> WISTERIA_SLAB = registerBlock("wisteria_slab",
             () -> new SlabBlock(normalWoodProps.get()));
 
@@ -245,6 +246,27 @@ public class ModBlocks {
     // mush
     public static final DeferredBlock<Block> REEDS = registerBlock("reeds",
             () -> new ModReedsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ROSE_BUSH)));
+
+    public static final DeferredBlock<Block> RED_MINI_SHROOM_SPORELING = registerBlock("red_mini_shroom_sporeling",
+            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER,
+                    BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.MUD)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<Block> BROWN_MINI_SHROOM_SPORELING = registerBlock("brown_mini_shroom_sporeling",
+            () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER,
+                    BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.MUD)
+                    .pushReaction(PushReaction.DESTROY)));
+
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

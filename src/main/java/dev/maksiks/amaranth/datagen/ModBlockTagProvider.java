@@ -99,5 +99,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // thrumletons
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.THICK_PUMPKIN.get());
+
+        // mush
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.RED_MINI_SHROOM_SPORELING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.BROWN_MINI_SHROOM_SPORELING.get());
+
     }
 }
