@@ -12,7 +12,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -34,11 +33,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePl
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.CherryTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
@@ -79,7 +74,10 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> SPEARY_FLOWER_KEY = registerKey("speary_flower");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> WISTERIA_KEY = registerKey("wisteria");
-    public static ResourceKey<ConfiguredFeature<?, ?>> WISTERIA_FLOWER_KEY = registerKey("wisteria_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> PASTEL_FLOWER_KEY = registerKey("pastel_flower");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> MUSH_REEDS_KEY = registerKey("mush_reeds");
+    public static ResourceKey<ConfiguredFeature<?, ?>> MUSH_REEDS_WATER_KEY = registerKey("mush_reeds_water");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -351,7 +349,7 @@ public class ModConfiguredFeatures {
                 FIELDS_OF_PAIN_FILL_KEY,
                 Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL_FEATURE.get(),  new SimpleBlockConfiguration(
+                        22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL_FEATURE.get(), new SimpleBlockConfiguration(
                         new WeightedStateProvider(
                                 SimpleWeightedRandomList.<BlockState>builder()
                                         .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0), 4)
@@ -461,11 +459,29 @@ public class ModConfiguredFeatures {
 
         register(
                 context,
-                WISTERIA_FLOWER_KEY,
+                PASTEL_FLOWER_KEY,
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
                         96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaBuilder)))
                 )
+        );
+
+        // mush
+        register(
+                context,
+                MUSH_REEDS_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        512, 16, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+                        BlockStateProvider.simple(ModBlocks.REEDS.get())
+                )))
+        );
+
+        register(
+                context,
+                MUSH_REEDS_WATER_KEY,
+                ModFeatures.MUSH_REEDS_FEATURE.get(),
+                NoneFeatureConfiguration.INSTANCE
         );
     }
 

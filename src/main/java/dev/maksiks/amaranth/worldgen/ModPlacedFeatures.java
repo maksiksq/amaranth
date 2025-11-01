@@ -9,8 +9,6 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -53,7 +51,10 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SPEARY_FLOWER_PLACED_KEY = registerKey("speary_flower_placed");
 
     public static final ResourceKey<PlacedFeature> WISTERIA_PLACED_KEY = registerKey("wisteria_placed");
-    public static final ResourceKey<PlacedFeature> WISTERIA_FLOWER_PLACED_KEY = registerKey("wisteria_flower_placed");
+    public static final ResourceKey<PlacedFeature> PASTEL_FLOWER_PLACED_KEY = registerKey("pastel_flower_placed");
+
+    public static final ResourceKey<PlacedFeature> MUSH_REEDS_PLACED_KEY = registerKey("mush_reeds_placed");
+    public static final ResourceKey<PlacedFeature> MUSH_REEDS_WATER_PLACED_KEY = registerKey("mush_reeds_water_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -198,14 +199,29 @@ public class ModPlacedFeatures {
 
         register(
                 context,
-                WISTERIA_FLOWER_PLACED_KEY,
-                configuredFeatures.getOrThrow(ModConfiguredFeatures.WISTERIA_FLOWER_KEY),
+                PASTEL_FLOWER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PASTEL_FLOWER_KEY),
                 List.of(
                         NoiseThresholdCountPlacement.of(-0.8, 10, 20),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP,
                         BiomeFilter.biome()
                 )
+        );
+
+        // mush
+        register(
+                context,
+                MUSH_REEDS_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.MUSH_REEDS_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+        );
+
+        register(
+                context,
+                MUSH_REEDS_WATER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.MUSH_REEDS_WATER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
         );
     }
 

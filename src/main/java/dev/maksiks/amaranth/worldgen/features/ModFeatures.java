@@ -23,8 +23,11 @@ public class ModFeatures {
             FEATURES.register("spiky_arches_fill",
                     () -> new SpikyArchesFillFeature(SimpleBlockConfiguration.CODEC));
 
-
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> THICK_PUMPKIN_FEATURE =
             FEATURES.register("thick_pumpkin",
                     () -> new ThickPumpkinFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MUSH_REEDS_FEATURE =
+            FEATURES.register("mush_reeds",
+                    () -> new MushReedsWaterFeature(NoneFeatureConfiguration.CODEC));
 }

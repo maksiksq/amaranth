@@ -76,13 +76,7 @@ public class ModReedsBlock extends DoublePlantBlock implements SimpleWaterlogged
         // checking if the block is valid
         TriState soilDecision = below.canSustainPlant(level, pos.below(), Direction.UP, state);
         if (!soilDecision.isDefault()) return soilDecision.isTrue();
-        boolean validSoil =
-                below.is(BlockTags.DIRT) ||
-                        below.is(BlockTags.SAND) ||
-                        below.is(Blocks.GRAVEL) ||
-                        below.is(Blocks.CLAY) ||
-                        below.is(Blocks.MUD);
-        if (!validSoil) return false;
+        if (!isValidReedSoil(below)) return false;
 
         // in water
         BlockPos abovePos = pos.above();
@@ -107,5 +101,14 @@ public class ModReedsBlock extends DoublePlantBlock implements SimpleWaterlogged
         }
 
         return false;
+    }
+
+    public static boolean isValidReedSoil(BlockState state) {
+        return
+                state.is(BlockTags.DIRT) ||
+                state.is(BlockTags.SAND) ||
+                state.is(Blocks.GRAVEL) ||
+                state.is(Blocks.CLAY) ||
+                state.is(Blocks.MUD);
     }
 }

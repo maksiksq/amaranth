@@ -392,8 +392,14 @@
 ### mushlands
 ----------------------
 - [ ] mud and other blocks
-- [ ] reeds
-- [ ] rice
+- [x] reeds
+- [ ] a more watery noise
+- [ ] rice maybe
 - [ ] more vegetation
 - [ ] shrooms
+----------------------
+
+### exposed stalactites
+----------------------
+- [ ] rocky gen
 ----------------------
