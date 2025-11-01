@@ -41,6 +41,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource CYAN_CONCRETE = makeStateRule(Blocks.CYAN_CONCRETE);
     private static final SurfaceRules.RuleSource DARK_PRISMARINE = makeStateRule(Blocks.DARK_PRISMARINE);
     private static final SurfaceRules.RuleSource WATER = makeStateRule(Blocks.WATER);
+    private static final SurfaceRules.RuleSource MUD = makeStateRule(Blocks.MUD);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -268,6 +269,16 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 SurfaceRules.not(yBlockCheck(VerticalAnchor.absolute(63), 0)),
                                 WATER
+                        )
+                )
+        ));
+
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.MUSHLAND),
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.12D, 0.12D),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MUD)
                         )
                 )
         ));
