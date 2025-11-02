@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.neoforged.fml.common.Mod;
 import terrablender.api.Region;
 
 import java.util.List;
@@ -107,9 +108,9 @@ public class ModBiomeSelectors {
             // cool
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
             // mid
-            {ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
+            {ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
             // warm
-            {ModBiomes.STUBBY_WOODLAND, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+            {ModBiomes.STUBBY_WOODLAND, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.ANTHOCYANIN_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
             // hot
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER}
     });
@@ -179,12 +180,10 @@ public class ModBiomeSelectors {
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
     });
 
-    // pastel parcel replaces cherry grove in region 2 with a 50/50 chance per-region
     public static final List<List<ResourceKey<Biome>>> PLATEAU_BIOMES_VARIANT_AMARANTH = ModBiomeSelectorUtils.create("plateau_biomes_variant/plateau_biomes_variant_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+            {ModBiomes.PASTEL_PARCEL, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+            {ModBiomes.PASTEL_PARCEL, ModBiomes.PASTEL_PARCEL, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID},
     });

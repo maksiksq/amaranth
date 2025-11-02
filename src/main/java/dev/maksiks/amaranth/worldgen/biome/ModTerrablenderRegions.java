@@ -155,7 +155,7 @@ public class ModTerrablenderRegions extends Region {
         this.terrablenderOverworldBiomeBuilder = new AmaranthTerrablenderOverworldBiomeBuilder(
                 oceans, middleBiomes, middleBiomesVariant,
                 plateauBiomes, plateauBiomesVariant, shatteredBiomes,
-                beachBiomes, peakBiomes, peakBiomesVariant, slopeBiomes, slopeBiomesVariant
+                beachBiomes, peakBiomes, peakBiomesVariant, slopeBiomes, slopeBiomesVariant, regionId
         );
 
         forEachBiome((biomeResourceKey -> {
