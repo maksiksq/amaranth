@@ -197,3 +197,8 @@ idea {
         downloadJavadoc = true
     }
 }
+
+// Fix for template not templating after randomly moving around a folder
+tasks.named("createMinecraftArtifacts") {
+    dependsOn(tasks.named("generateModMetadata"))
+}

@@ -40,6 +40,7 @@
 - [ ]  fix: make disc obtainable
 - [ ]  fix: WATERFALLS
 - [ ]  fix: do some profiling to make sure i didnt add any performance pitfalls
+- [ ]  fix: anthocyanin should spawn near jungle
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn

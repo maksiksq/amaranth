@@ -173,15 +173,6 @@ public class ModTerrablenderRegions extends Region {
         MutableInt totalPairs = new MutableInt();
         MutableInt amaranthMapperAccepted = new MutableInt(0);
 
-        this.addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder -> {
-                    if (regionId == 1) {
-                        modifiedVanillaOverworldBuilder.replaceBiome(Biomes.CHERRY_GROVE, ModBiomes.PASTEL_PARCEL);
-                        modifiedVanillaOverworldBuilder.replaceBiome(Biomes.SWAMP, ModBiomes.MUSHLAND);
-                    }
-                }
-
-        );
-
         this.terrablenderOverworldBiomeBuilder.addBiomesPublic((parameterPointResourceKeyPair -> {
             Climate.ParameterPoint parameterPoint = parameterPointResourceKeyPair.getFirst();
             ResourceKey<Biome> biomeKey = parameterPointResourceKeyPair.getSecond();
@@ -227,6 +218,7 @@ public class ModTerrablenderRegions extends Region {
                 mapper.accept(new Pair<>(parameterPoint, Region.DEFERRED_PLACEHOLDER));
             }
         }));
+
         int totalPairsValue = totalPairs.intValue();
         int mapperAcceptValue = amaranthMapperAccepted.intValue();
         boolean sanityCheck = totalPairsValue != mapperAcceptValue;
