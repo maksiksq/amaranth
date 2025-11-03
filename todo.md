@@ -406,9 +406,12 @@
 ----------------------
 
 tutorial:
-for swamps vanilla doesnt use the arrays
-a small amount of regions is why BWG gen looks so fragmented
-no region blending lame
-all ways to do this
-separate article to just replace a biome/tweaks
-replacing the biome wont replace variants unless asked to
+- for swamps vanilla doesnt use the arrays
+- a small amount of regions is why BWG gen looks so fragmented
+- no region blending lame
+- all ways to do this
+- separate article to just replace a biome/tweaks
+- replacing the biome wont replace variants unless asked to
+- snowcapped
+- what each point does
+- all the other biome gen stuff

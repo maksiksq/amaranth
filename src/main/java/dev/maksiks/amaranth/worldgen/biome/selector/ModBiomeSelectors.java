@@ -118,7 +118,7 @@ public class ModBiomeSelectors {
     public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_2_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes/middle_biomes_2_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.ORDERLY_COURTS, ModBiomes.MYSTIC_FOREST, Region.DEFERRED_PLACEHOLDER},
+            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.MYSTIC_FOREST, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {ModBiomes.DUSTY_FLATS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
     });
@@ -150,16 +150,15 @@ public class ModBiomeSelectors {
     public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_VARIANT_2_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes_variant/middle_biomes_variant_2_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Biomes.THE_VOID},
             {Biomes.THE_VOID, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, ModBiomes.ORDERLY_COURTS_RUINS, Biomes.THE_VOID, Biomes.THE_VOID},
+            {Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Biomes.THE_VOID},
             {Biomes.THE_VOID, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID, Biomes.THE_VOID},
     });
 
-    // pastel biome replaces cherry biomes in region 2
     public static final List<List<ResourceKey<Biome>>> PLATEAU_BIOMES_AMARANTH = ModBiomeSelectorUtils.create("plateau_biomes/plateau_biomes_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.SPARSEY_SPEARS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.SPARSEY_SPEARS, ModBiomes.ORDERLY_COURTS, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
     });
@@ -183,7 +182,7 @@ public class ModBiomeSelectors {
     public static final List<List<ResourceKey<Biome>>> PLATEAU_BIOMES_VARIANT_AMARANTH = ModBiomeSelectorUtils.create("plateau_biomes_variant/plateau_biomes_variant_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {ModBiomes.PASTEL_PARCEL, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {ModBiomes.PASTEL_PARCEL, ModBiomes.PASTEL_PARCEL, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
+            {ModBiomes.PASTEL_PARCEL, ModBiomes.PASTEL_PARCEL, Region.DEFERRED_PLACEHOLDER, ModBiomes.ORDERLY_COURTS_RUINS, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Biomes.THE_VOID},
     });
