@@ -260,12 +260,15 @@ public class ModSurfaceRules {
 
         // mush
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
+                SurfaceRules.isBiome(ModBiomes.MUSHLAND),
                 SurfaceRules.ifTrue(
-                        yBlockCheck(VerticalAnchor.absolute(62), 0),
+                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.1D, 0.1D),
                         SurfaceRules.ifTrue(
-                                SurfaceRules.not(yBlockCheck(VerticalAnchor.absolute(63), 0)),
-                                WATER
+                                yBlockCheck(VerticalAnchor.absolute(62), 0),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.not(yBlockCheck(VerticalAnchor.absolute(63), 0)),
+                                        WATER
+                                )
                         )
                 )
         ));
