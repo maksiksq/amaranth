@@ -20,6 +20,8 @@ public class ModTrunkPlacerTypes{
             TRUNK_PLACER_TYPES.register("anthocyanin_trunk_placer", () -> new TrunkPlacerType<>(AnthocyaninTrunkPlacer.CODEC));
     public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<WisteriaTrunkPlacer>> WISTERIA_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("wisteria_trunk_placer", () -> new TrunkPlacerType<>(WisteriaTrunkPlacer.CODEC));
-   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<ModififedForkingTrunkPlacer>> NO_RADIUS_REDUCTION_FORKING_TRUNK_PLACER =
-            TRUNK_PLACER_TYPES.register("no_radius_reduction_forking_trunk_placer", () -> new TrunkPlacerType<>(ModififedForkingTrunkPlacer.CODEC));
+   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<ModififedForkingTrunkPlacer>> MODIFIED_FORKING_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("modified_forking_trunk_placer", () -> new TrunkPlacerType<>(ModififedForkingTrunkPlacer.CODEC));
+   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<WitchyTrunkPlacer>> WITCHY_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("witchy_trunk_placer", () -> new TrunkPlacerType<>(WitchyTrunkPlacer.CODEC));
 }

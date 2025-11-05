@@ -33,4 +33,7 @@ public class ModFoliagePlacerTypes{
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<SpearyFoliagePlacer>> SPEARY_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("speary_foliage_placer", () -> new FoliagePlacerType<>(SpearyFoliagePlacer.CODEC));
+
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<WitchyFoliagePlacer>> WITCHY_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("witchy_foliage_placer", () -> new FoliagePlacerType<>(WitchyFoliagePlacer.CODEC));
 }

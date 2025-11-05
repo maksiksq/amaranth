@@ -32,7 +32,7 @@ public class ModififedForkingTrunkPlacer extends TrunkPlacer {
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return ModTrunkPlacerTypes.NO_RADIUS_REDUCTION_FORKING_TRUNK_PLACER.get();
+        return ModTrunkPlacerTypes.MODIFIED_FORKING_TRUNK_PLACER.get();
     }
 
     @Override

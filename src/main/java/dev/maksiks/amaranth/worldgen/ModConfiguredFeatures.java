@@ -523,10 +523,13 @@ public class ModConfiguredFeatures {
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         // TODO: tree
-                        BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new StraightTrunkPlacer(3, 2, 0),
-                        BlockStateProvider.simple(Blocks.AZALEA_LEAVES),
-                        new SpearyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        BlockStateProvider.simple(Blocks.CHERRY_WOOD),
+                        new WitchyTrunkPlacer(0, 0, 0),
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Blocks.AZALEA_LEAVES.defaultBlockState(), 4)
+                                .add(Blocks.FLOWERING_AZALEA_LEAVES.defaultBlockState(), 1)
+                                .build()),
+                        new WitchyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
