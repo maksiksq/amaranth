@@ -184,10 +184,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PHLOX.get(),
                 block -> createPetalsDrops(ModBlocks.PHLOX.get()));
 
+        // mush
         this.add(ModBlocks.REEDS.get(), block -> this.createItemDoublePlantTable(ModBlocks.REEDS.asItem(), ModBlocks.REEDS.get(), DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
 
         this.dropSelf(ModBlocks.RED_MINI_SHROOM_SPORELING.get());
         this.dropSelf(ModBlocks.BROWN_MINI_SHROOM_SPORELING.get());
+
+        // witchy
+        this.dropSelf(ModBlocks.WITCHY_SAPLING.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

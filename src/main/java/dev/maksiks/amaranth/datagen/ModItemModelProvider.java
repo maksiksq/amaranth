@@ -99,6 +99,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         splatBlockItem(ModBlocks.RED_MINI_SHROOM_SPORELING);
         splatBlockItem(ModBlocks.BROWN_MINI_SHROOM_SPORELING);
+
+        // witchy
+        splatBlockItem(ModBlocks.WITCHY_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

@@ -185,6 +185,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         twoPlanesCutoutBlock(ModBlocks.RED_MINI_SHROOM_SPORELING);
         twoPlanesCutoutBlock(ModBlocks.BROWN_MINI_SHROOM_SPORELING);
+
+        // witchy
+        twoPlanesCutoutBlock(ModBlocks.WITCHY_SAPLING);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

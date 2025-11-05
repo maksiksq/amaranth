@@ -62,6 +62,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WISTERIA_SAPLING);
                         output.accept(ModBlocks.RED_MINI_SHROOM_SPORELING);
                         output.accept(ModBlocks.BROWN_MINI_SHROOM_SPORELING);
+                        output.accept(ModBlocks.WITCHY_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);

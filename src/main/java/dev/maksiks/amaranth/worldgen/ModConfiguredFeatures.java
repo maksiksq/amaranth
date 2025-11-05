@@ -82,6 +82,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> RED_MINI_SHROOM_KEY = registerKey("red_mini_shroom");
     public static ResourceKey<ConfiguredFeature<?, ?>> BROWN_MINI_SHROOM_KEY = registerKey("brown_mini_shroom");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> WITCHY_KEY = registerKey("witchy");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -512,6 +514,20 @@ public class ModConfiguredFeatures {
                         new BlobFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(0, 0, 0)
                 ).build()
+        );
+
+        // witchy
+        register(
+                context,
+                WITCHY_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        // TODO: tree
+                        BlockStateProvider.simple(Blocks.OAK_LOG),
+                        new StraightTrunkPlacer(3, 2, 0),
+                        BlockStateProvider.simple(Blocks.AZALEA_LEAVES),
+                        new SpearyFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
 

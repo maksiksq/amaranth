@@ -104,5 +104,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.RED_MINI_SHROOM_SPORELING.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.BROWN_MINI_SHROOM_SPORELING.get());
 
+        // witchy
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.WITCHY_SAPLING.get());
     }
 }

@@ -41,7 +41,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
     public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
     public static final ResourceKey<Biome> MUSHLAND = register("mushland");
-    public static final ResourceKey<Biome> WITCHY_FOREST = register("witchy_forest");
+    public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -76,6 +76,7 @@ public class ModBiomes {
         context.register(SPARSEY_SPEARS, sparseySpears(context));
         context.register(PASTEL_PARCEL, pastelParcel(context));
         context.register(MUSHLAND, mushland(context));
+        context.register(WITCHY_WOODS, witchyWoods(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
@@ -836,7 +837,7 @@ public class ModBiomes {
 
 
     // witchy
-    public static Biome witchyForest(BootstrapContext<Biome> context) {
+    public static Biome witchyWoods(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.farmAnimals(spawnBuilder);
@@ -852,8 +853,7 @@ public class ModBiomes {
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
 
-        // TODO: witchy trees
-//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MIXED_OAK_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.WITCHY_PLACED_KEY);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);

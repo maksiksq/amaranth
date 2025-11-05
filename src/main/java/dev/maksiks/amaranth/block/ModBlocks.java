@@ -267,7 +267,9 @@ public class ModBlocks {
                     .sound(SoundType.MUD)
                     .pushReaction(PushReaction.DESTROY)));
 
-
+    // witchy
+    public static final DeferredBlock<Block> WITCHY_SAPLING = registerBlock("witchy_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.WITCHY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

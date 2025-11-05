@@ -5,11 +5,9 @@ import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.neoforged.fml.common.Mod;
 import terrablender.api.Region;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ModBiomeSelectors {
     /**
@@ -118,7 +116,7 @@ public class ModBiomeSelectors {
     public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_2_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes/middle_biomes_2_amaranth", "", new ResourceKey[][]{
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.WITCHY_FOREST, Region.DEFERRED_PLACEHOLDER},
+            {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.WITCHY_WOODS, Region.DEFERRED_PLACEHOLDER},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
             {ModBiomes.DUSTY_FLATS, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
     });
