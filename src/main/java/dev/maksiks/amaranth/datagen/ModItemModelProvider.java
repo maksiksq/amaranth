@@ -102,6 +102,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // witchy
         splatBlockItem(ModBlocks.WITCHY_SAPLING);
+
+        // lupine
+        splatBlockItem(ModBlocks.LUPINE);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

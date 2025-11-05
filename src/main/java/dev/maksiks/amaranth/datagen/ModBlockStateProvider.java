@@ -188,6 +188,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // witchy
         twoPlanesCutoutBlock(ModBlocks.WITCHY_SAPLING);
+
+        // lupine
+        twoPlanesCutoutBlock(ModBlocks.LUPINE);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

@@ -192,6 +192,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // witchy
         this.dropSelf(ModBlocks.WITCHY_SAPLING.get());
+
+        // lupine
+        this.dropSelf(ModBlocks.LUPINE.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

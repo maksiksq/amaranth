@@ -423,6 +423,8 @@
 ### lupine fields
 ----------------------
 - [ ] iceland
+- [x] lupine
+- [ ] remake lupine texture to be more minecrafty
 ----------------------
 
 tutorial:

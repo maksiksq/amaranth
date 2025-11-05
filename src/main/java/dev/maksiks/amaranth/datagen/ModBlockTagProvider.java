@@ -106,5 +106,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // witchy
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.WITCHY_SAPLING.get());
+
+        // lupine
+        this.tag(BlockTags.FLOWERS).add(ModBlocks.LUPINE.get());
     }
 }
