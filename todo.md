@@ -37,10 +37,11 @@
 - [x]  fix: logs not stripping
 - [ ]  fix: potted blocks for saplings
 - [ ]  fix: try to make a 50/50 replace later again
-- [ ]  fix: make disc obtainable
+- [ ]  fix: make disc obtainable ; any loot table chest? ; or dungeons
 - [ ]  fix: WATERFALLS
 - [ ]  fix: do some profiling to make sure i didnt add any performance pitfalls
-- [ ]  fix: anthocyanin should spawn near jungle
+- [x]  fix: anthocyanin should spawn near jungle
+- [ ]  fix: add teaser hut structure
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn

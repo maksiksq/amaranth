@@ -38,14 +38,10 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
     public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
     public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
-    // in dev ^
     public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
-    //    public static final ResourceKey<Biome> WITCHBREW_FOREST = register("witchbrew_forest");
-    // in dev ^
     public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
-    // in dev ^
     public static final ResourceKey<Biome> MUSHLAND = register("mushland");
-    // in dev ^
+    public static final ResourceKey<Biome> WITCHY_FOREST = register("witchy_forest");
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -340,7 +336,6 @@ public class ModBiomes {
                         .build())
                 .build();
     }
-
 
     // orderly
     public static Biome orderlyCourts(BootstrapContext<Biome> context) {
@@ -838,4 +833,47 @@ public class ModBiomes {
                         .build())
                 .build();
     }
+
+
+    // witchy
+    public static Biome witchyForest(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+        globalOverworldGeneration(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.FOREST_FLOWERS);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        // TODO: witchy trees
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.MIXED_OAK_PLACED_KEY);
+
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.8f)
+                .temperature(0.6F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x78a125)
+                        .foliageColorOverride(0x59AE30)
+                        .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
 }
