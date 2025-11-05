@@ -376,8 +376,9 @@
 
 ### witchy forest
 ----------------------
-- [ ] the witchy tree from the survival world 
+- [x] the witchy tree from the survival world 
 - [ ] webs and stuffs
+- [ ] a lot of bushes
 ----------------------
 
 ### pumpkin fields (thrumletons)
@@ -404,6 +405,24 @@
 ### exposed stalactites
 ----------------------
 - [ ] rocky gen
+----------------------
+
+### alpine biome with rocks
+----------------------
+- [ ] alpine pine trees
+- [ ] lighter rock, limestone? (maybe)
+----------------------
+
+### norway
+----------------------
+- [ ] by that i mean flat dark short grass cover
+- [ ] and huge cliffs near the ocean
+- [ ] with gravelly beaches or water at their base
+----------------------
+
+### lupine fields
+----------------------
+- [ ] iceland
 ----------------------
 
 tutorial:
