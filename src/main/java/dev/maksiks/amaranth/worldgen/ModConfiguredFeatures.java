@@ -2,11 +2,11 @@ package dev.maksiks.amaranth.worldgen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
-import dev.maksiks.amaranth.block.custom.ModGoldenLeafLitterBlock;
-import dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock;
+import dev.maksiks.amaranth.block.custom.GoldenLeafLitterBlock;
+import dev.maksiks.amaranth.block.custom.SpikyArchesBlock;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.*;
-import dev.maksiks.amaranth.worldgen.tree.trunk_placer.*;
+import dev.maksiks.amaranth.worldgen.tree.foliage_placer.custom.*;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -32,7 +32,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
@@ -217,7 +216,7 @@ public class ModConfiguredFeatures {
         for (int i = 1; i <= 4; i++) {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 goldenLeafLitterBuilder.add(
-                        ModBlocks.GOLDEN_LEAF_LITTER.get().defaultBlockState().setValue(ModGoldenLeafLitterBlock.AMOUNT, Integer.valueOf(i)).setValue(ModGoldenLeafLitterBlock.FACING, direction), 1
+                        ModBlocks.GOLDEN_LEAF_LITTER.get().defaultBlockState().setValue(GoldenLeafLitterBlock.AMOUNT, Integer.valueOf(i)).setValue(GoldenLeafLitterBlock.FACING, direction), 1
                 );
             }
         }
@@ -360,10 +359,10 @@ public class ModConfiguredFeatures {
                         22, 12, 1, PlacementUtils.onlyWhenEmpty(ModFeatures.SPIKY_ARCHES_FILL_FEATURE.get(), new SimpleBlockConfiguration(
                         new WeightedStateProvider(
                                 SimpleWeightedRandomList.<BlockState>builder()
-                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 0), 4)
-                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 1), 4)
-                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 2), 4)
-                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(ModSpikyArchesBlock.VARIANT, 3), 1)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(SpikyArchesBlock.VARIANT, 0), 4)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(SpikyArchesBlock.VARIANT, 1), 4)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(SpikyArchesBlock.VARIANT, 2), 4)
+                                        .add(ModBlocks.SPIKY_ARCHES.get().defaultBlockState().setValue(SpikyArchesBlock.VARIANT, 3), 1)
                                         .build()
                         )
                 ))

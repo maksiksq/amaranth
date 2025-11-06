@@ -2,8 +2,8 @@ package dev.maksiks.amaranth.item;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
-import dev.maksiks.amaranth.item.custom.ModCrownOfThornsItem;
-import dev.maksiks.amaranth.item.custom.ModWisteriaJuiceItem;
+import dev.maksiks.amaranth.item.custom.CrownOfThornsItem;
+import dev.maksiks.amaranth.item.custom.WisteriaJuiceItem;
 import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -48,12 +48,12 @@ public class ModItems {
     public static final DeferredItem<Item> THORN = ITEMS.register("thorn",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<ArmorItem> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
-            () -> new ModCrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
+            () -> new CrownOfThornsItem(ModArmorMaterials.CROWN_OF_THORNS_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(9))));
 
     // pastel
     public static final DeferredItem<Item> WISTERIA_JUICE = ITEMS.register("wisteria_juice",
-            () -> new ModWisteriaJuiceItem(new Item.Properties().food(ModFoodProperties.WISTERIA_JUICE)));
+            () -> new WisteriaJuiceItem(new Item.Properties().food(ModFoodProperties.WISTERIA_JUICE)));
 
     // mush
     public static final DeferredItem<Item> REED_BAR = ITEMS.register("reed_bar",

@@ -31,7 +31,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
 public class ModEventBusEvents {
-
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ShroomBoiModel.LAYER_LOCATION, ShroomBoiModel::createBodyLayer);

@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.block.custom.SpikyArchesBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -266,7 +267,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String baseName = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath();
 
         getVariantBuilder(blockRegistryObject.get()).forAllStates(state -> {
-            int variant = state.getValue(dev.maksiks.amaranth.block.custom.ModSpikyArchesBlock.VARIANT);
+            int variant = state.getValue(SpikyArchesBlock.VARIANT);
             return ConfiguredModel.builder()
                     .modelFile(models()
                             .cross(baseName + "_" + variant, modLoc("block/" + baseName + "_" + variant))

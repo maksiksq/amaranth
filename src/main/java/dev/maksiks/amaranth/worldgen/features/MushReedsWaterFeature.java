@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import static dev.maksiks.amaranth.block.custom.ModReedsBlock.isValidReedSoil;
+import static dev.maksiks.amaranth.block.custom.ReedsBlock.isValidReedSoil;
 
 public class MushReedsWaterFeature extends Feature<NoneFeatureConfiguration> {
     // basically random patch but 1 block underwater

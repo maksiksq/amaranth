@@ -14,20 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dev.maksiks.amaranth.worldgen.noise.ModNoises.*;
-import static net.minecraft.world.level.levelgen.SurfaceRules.*;
+import static net.minecraft.world.level.levelgen.SurfaceRules.stoneDepthCheck;
+import static net.minecraft.world.level.levelgen.SurfaceRules.yBlockCheck;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
-    private static final SurfaceRules.RuleSource RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
     private static final SurfaceRules.RuleSource SNOW_BLOCK = makeStateRule(Blocks.SNOW_BLOCK);
     private static final SurfaceRules.RuleSource YELLOW_TERRACOTTA = makeStateRule(Blocks.YELLOW_TERRACOTTA);
     private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
     private static final SurfaceRules.RuleSource POWDER_SNOW = makeStateRule(Blocks.POWDER_SNOW);
-    private static final SurfaceRules.RuleSource DIORITE = makeStateRule(Blocks.DIORITE);
-    private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW);
     private static final SurfaceRules.RuleSource LIME_TERRACOTTA = makeStateRule(Blocks.LIME_TERRACOTTA);
-    private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
     private static final SurfaceRules.RuleSource MYCELIUM = makeStateRule(Blocks.MYCELIUM);
     private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
     private static final SurfaceRules.RuleSource DEAD_TUBE_CORAL_BLOCK = makeStateRule(Blocks.DEAD_TUBE_CORAL_BLOCK);

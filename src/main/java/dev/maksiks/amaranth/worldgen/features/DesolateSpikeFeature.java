@@ -206,7 +206,7 @@ public class DesolateSpikeFeature extends Feature<NoneFeatureConfiguration> {
         BlockState existingBlock = level.getBlockState(pos);
         Block block = existingBlock.getBlock();
 
-        // don't replace the ghost-post structure bits
+        // not replacing the ghost-post structure bits
         if (block == Blocks.SPRUCE_FENCE || block == Blocks.SPRUCE_HANGING_SIGN || block == Blocks.BARREL) {
             return false;
         }

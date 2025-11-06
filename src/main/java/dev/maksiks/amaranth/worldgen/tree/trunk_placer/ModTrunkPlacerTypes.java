@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.worldgen.tree.trunk_placer;
 
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.*;
 import net.neoforged.neoforge.registries.DeferredHolder;

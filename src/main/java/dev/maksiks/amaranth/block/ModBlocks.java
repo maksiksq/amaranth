@@ -39,19 +39,19 @@ public class ModBlocks {
 
     // mystic
     public static final DeferredBlock<Block> MYSTIC_LOG = registerBlock("mystic_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> MYSTIC_WOOD = registerBlock("mystic_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
     public static final DeferredBlock<Block> STRIPPED_MYSTIC_LOG = registerBlock("stripped_mystic_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
     public static final DeferredBlock<Block> STRIPPED_MYSTIC_WOOD = registerBlock("stripped_mystic_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
 
     public static final DeferredBlock<Block> MYSTIC_PLANKS = registerBlock("mystic_planks",
-            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+            () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     public static final DeferredBlock<Block> MYSTIC_LEAVES = registerBlock("mystic_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new FlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
             () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
@@ -88,19 +88,19 @@ public class ModBlocks {
 
     // silver birch
     public static final DeferredBlock<Block> SILVERY_SILVER_BIRCH_LEAVES = registerBlock("silvery_silver_birch_leaves",
-            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new SilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> LIGHT_SILVER_BIRCH_LEAVES = registerBlock("light_silver_birch_leaves",
-            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new SilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> DARK_SILVER_BIRCH_LEAVES = registerBlock("dark_silver_birch_leaves",
-            () -> new ModSilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new SilverBirchLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> SILVER_BIRCH_SAPLING = registerBlock("silver_birch_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
     public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
-            () -> new ModGoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
+            () -> new GoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
     // desolate ice fields
     public static final DeferredBlock<Block> SORROW_ICE = registerBlock("sorrow_ice",
@@ -110,13 +110,13 @@ public class ModBlocks {
 
     // mixed forest
     public static final DeferredBlock<Block> PURPLE_MIXED_OAK_LEAVES = registerBlock("purple_mixed_oak_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+            () -> new FlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
     public static final DeferredBlock<Block> YELLOW_MIXED_OAK_LEAVES = registerBlock("yellow_mixed_oak_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+            () -> new FlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
     public static final DeferredBlock<Block> RED_MIXED_OAK_LEAVES = registerBlock("red_mixed_oak_leaves",
-            () -> new ModFlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+            () -> new FlammableLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
     public static final DeferredBlock<Block> PURPLE_MIXED_OAK_SAPLING = registerBlock("purple_mixed_oak_sapling",
             () -> new SaplingBlock(ModTreeGrowers.PURPLE_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
@@ -133,21 +133,21 @@ public class ModBlocks {
 
     // anthocyanin
     public static final DeferredBlock<Block> ANTHOCYANIN_LOG = registerBlock("anthocyanin_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> ANTHOCYANIN_WOOD = registerBlock("anthocyanin_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
     public static final DeferredBlock<Block> STRIPPED_ANTHOCYANIN_LOG = registerBlock("stripped_anthocyanin_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
     public static final DeferredBlock<Block> STRIPPED_ANTHOCYANIN_WOOD = registerBlock("stripped_anthocyanin_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
 
     public static final DeferredBlock<Block> ANTHOCYANIN_PLANKS = registerBlock("anthocyanin_planks",
-            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+            () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     public static final DeferredBlock<Block> ANTHOCYANIN_LEAVES = registerBlock("anthocyanin_leaves",
-            () -> new ModAnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new AnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
     public static final DeferredBlock<Block> BLOOMING_ANTHOCYANIN_LEAVES = registerBlock("blooming_anthocyanin_leaves",
-            () -> new ModAnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new AnthocyaninLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> ANTHOCYANIN_SAPLING = registerBlock("anthocyanin_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
@@ -185,12 +185,12 @@ public class ModBlocks {
 
     // pain
     public static final DeferredBlock<Block> SPIKY_ARCHES = registerBlock("spiky_arches",
-            () -> new ModSpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+            () -> new SpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
 
     // thrumletons
     public static final DeferredBlock<Block> THICK_PUMPKIN = registerBlock("thick_pumpkin",
-            () -> new ModThickPumpkinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PUMPKIN)));
+            () -> new ThickPumpkinBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PUMPKIN)));
 
     // speary
     public static final DeferredBlock<Block> SPEARY_SAPLING = registerBlock("speary_sapling",
@@ -198,21 +198,21 @@ public class ModBlocks {
 
     // pastel
     public static final DeferredBlock<Block> JUICY_WISTERIA_LOG = registerBlock("juicy_wisteria_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> WISTERIA_LOG = registerBlock("wisteria_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
     public static final DeferredBlock<Block> WISTERIA_WOOD = registerBlock("wisteria_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
     public static final DeferredBlock<Block> STRIPPED_WISTERIA_LOG = registerBlock("stripped_wisteria_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
     public static final DeferredBlock<Block> STRIPPED_WISTERIA_WOOD = registerBlock("stripped_wisteria_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
 
     public static final DeferredBlock<Block> WISTERIA_PLANKS = registerBlock("wisteria_planks",
-            () -> new ModFlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+            () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     public static final DeferredBlock<Block> WISTERIA_LEAVES = registerBlock("wisteria_leaves",
-            () -> new ModWisteriaLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new WisteriaLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> WISTERIA_SAPLING = registerBlock("wisteria_sapling",
             () -> new SaplingBlock(ModTreeGrowers.WISTERIA_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
@@ -243,7 +243,7 @@ public class ModBlocks {
 
     // mush
     public static final DeferredBlock<Block> REEDS = registerBlock("reeds",
-            () -> new ModReedsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ROSE_BUSH)));
+            () -> new ReedsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ROSE_BUSH)));
 
     public static final DeferredBlock<Block> RED_MINI_SHROOM_SPORELING = registerBlock("red_mini_shroom_sporeling",
             () -> new SaplingBlock(ModTreeGrowers.RED_MINI_SHROOM_GROWER,
@@ -271,7 +271,7 @@ public class ModBlocks {
 
     // lupine
     public static final DeferredBlock<Block> LUPINE = registerBlock("lupine",
-            () -> new ModFlowerBlockNonShifting(MobEffects.POISON, 0.35F, BlockBehaviour.Properties.of()
+            () -> new FlowerBlockNonShifting(MobEffects.POISON, 0.35F, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
                     .instabreak()
