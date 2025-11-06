@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 import static dev.maksiks.amaranth.worldgen.biome.ModRegionUtils.*;
 
 //
-// Terrablender has no docs and this is unexplained as hell so took some reference from
+// Terrablender has no docs and this is unexplained as hell so took reference from
 // BWG, thanks!
 //
 
@@ -60,7 +60,7 @@ public class ModTerrablenderRegions extends Region {
                 7,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_2),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_VARIANT_2),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_VARIANT),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES_VARIANT),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SHATTERED_BIOMES),
@@ -68,7 +68,7 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES_VARIANT),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES),
-                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES_VARIANT),
                 new IdentityHashMap<>(),
                 Map.of()
         );
@@ -76,10 +76,10 @@ public class ModTerrablenderRegions extends Region {
         REGION_2 = new ModTerrablenderRegions(
                 2,
                 4,
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS_2),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_3),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES_2),
+                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SHATTERED_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.BEACH_BIOMES_TERRABLENDER),
@@ -97,7 +97,7 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.OCEANS_TERRABLENDER),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_4),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES_3),
+                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PLATEAU_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SHATTERED_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.BEACH_BIOMES_TERRABLENDER),

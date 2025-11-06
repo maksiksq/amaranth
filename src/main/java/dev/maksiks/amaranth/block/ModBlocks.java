@@ -2,6 +2,10 @@ package dev.maksiks.amaranth.block;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.custom.*;
+import dev.maksiks.amaranth.block.custom.leaves.AnthocyaninLeavesBlock;
+import dev.maksiks.amaranth.block.custom.leaves.FlammableLeavesBlock;
+import dev.maksiks.amaranth.block.custom.leaves.SilverBirchLeavesBlock;
+import dev.maksiks.amaranth.block.custom.leaves.WisteriaLeavesBlock;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
 import net.minecraft.world.effect.MobEffects;

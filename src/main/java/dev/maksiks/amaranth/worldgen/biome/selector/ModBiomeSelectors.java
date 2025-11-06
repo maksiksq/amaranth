@@ -4,8 +4,6 @@ import dev.maksiks.amaranth.worldgen.biome.ModTerrablenderOverworldBiomeBuilder;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import terrablender.api.Region;
 
 import java.util.List;
 
@@ -55,11 +53,6 @@ public class ModBiomeSelectors {
             List.of(P, P, P, P, P)
     );
 
-    public static final List<List<ResourceKey<Biome>>> MOD_OCEANS_2 = ModBiomeSelectorUtils.create("oceans/mod_oceans_2", "",
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P)
-    );
-
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes", "",
             List.of(P, P, P, P, P),
             List.of(P, P, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, P),
@@ -100,34 +93,10 @@ public class ModBiomeSelectors {
             List.of(V, V, V, V, V)
     );
 
-    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_VARIANT_2 = ModBiomeSelectorUtils.create("middle_biomes_variant/mod_middle_biomes_variant_2", "",
-            List.of(P, V, P, V, V),
-            List.of(V, V, P, V, P),
-            List.of(P, V, P, V, V),
-            List.of(V, V, P, P, P),
-            List.of(V, V, V, V, V)
-    );
-
     public static final List<List<ResourceKey<Biome>>> MOD_PLATEAU_BIOMES = ModBiomeSelectorUtils.create("plateau_biomes/mod_plateau_biomes", "",
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),
             List.of(P, P, ModBiomes.SPARSEY_SPEARS, ModBiomes.ORDERLY_COURTS, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P)
-    );
-
-    public static final List<List<ResourceKey<Biome>>> MOD_PLATEAU_BIOMES_2 = ModBiomeSelectorUtils.create("plateau_biomes/mod_plateau_biomes_2", "",
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P)
-    );
-
-    public static final List<List<ResourceKey<Biome>>> MOD_PLATEAU_BIOMES_3 = ModBiomeSelectorUtils.create("plateau_biomes/mod_plateau_biomes_3", "",
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P)
     );
@@ -140,15 +109,7 @@ public class ModBiomeSelectors {
             List.of(P, V, P, P, V)
     );
 
-    public static final List<List<ResourceKey<Biome>>> MOD_PEAK_BIOMES = ModBiomeSelectorUtils.create("peak_biomes/mod_peak_biomes", "",
-            List.of(P, P, V, V, V),
-            List.of(P, P, V, V, V),
-            List.of(P, P, V, V, V),
-            List.of(P, P, V, V, V),
-            List.of(P, P, V, V, V)
-    );
-
-    // TODO: MAYBE REMOVE VOIDS FROM SHATTERED AND ETC TO PREVENT SMALL OUTCROPPINGS
+    // TODO: EXPERIMENT, MAYBE REMOVE VOIDS FROM SHATTERED AND ETC TO PREVENT SMALL OUTCROPPINGS
 
     public static final List<List<ResourceKey<Biome>>> MOD_SHATTERED_BIOMES = ModBiomeSelectorUtils.create("shattered_biomes/mod_shattered_biomes", "",
             List.of(P, P, P, P, P),
@@ -159,6 +120,14 @@ public class ModBiomeSelectors {
     );
 
     public static final List<List<ResourceKey<Biome>>> MOD_BEACH_BIOMES = ModBiomeSelectorUtils.create("beach_biomes/mod_beach_biomes", "",
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P)
+    );
+
+    public static final List<List<ResourceKey<Biome>>> MOD_PEAK_BIOMES = ModBiomeSelectorUtils.create("peak_biomes/mod_peak_biomes", "",
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),
@@ -180,5 +149,13 @@ public class ModBiomeSelectors {
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P)
+    );
+
+    public static final List<List<ResourceKey<Biome>>> MOD_SLOPE_BIOMES_VARIANT = ModBiomeSelectorUtils.create("slope_biomes/mod_slope_biomes_variant", "",
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(V, V, V, V, V),
+            List.of(P, P, V, V, V)
     );
 }

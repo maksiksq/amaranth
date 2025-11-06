@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.block.custom;
+package dev.maksiks.amaranth.block.custom.leaves;
 
 import com.mojang.serialization.MapCodec;
 import dev.maksiks.amaranth.particle.ModParticles;

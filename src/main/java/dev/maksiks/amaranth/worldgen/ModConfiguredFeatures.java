@@ -524,7 +524,6 @@ public class ModConfiguredFeatures {
                 WITCHY_KEY,
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
-                        // TODO: tree
                         BlockStateProvider.simple(Blocks.CHERRY_WOOD),
                         new WitchyTrunkPlacer(0, 0, 0),
                         new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()

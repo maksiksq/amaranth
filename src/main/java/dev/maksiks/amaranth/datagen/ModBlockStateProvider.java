@@ -44,7 +44,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         twoPlanesCutoutBlock(ModBlocks.MYSTIC_SAPLING);
         leavesBlock(ModBlocks.MYSTIC_LEAVES);
 
-        // TODO: Add a helper for this with some string manipulation
         stairsBlock(ModBlocks.MYSTIC_STAIRS.get(), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
         slabBlock(ModBlocks.MYSTIC_SLAB.get(), blockTexture(ModBlocks.MYSTIC_PLANKS.get()), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
 
@@ -108,7 +107,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.ANTHOCYANIN_LEAVES);
         leavesBlock(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
 
-        // TODO: Add a helper for this
         stairsBlock(ModBlocks.ANTHOCYANIN_STAIRS.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
         slabBlock(ModBlocks.ANTHOCYANIN_SLAB.get(), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()), blockTexture(ModBlocks.ANTHOCYANIN_PLANKS.get()));
 
@@ -162,7 +160,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         twoPlanesCutoutBlock(ModBlocks.WISTERIA_SAPLING);
         leavesBlock(ModBlocks.WISTERIA_LEAVES);
 
-        // TODO: Add a helper for this
         stairsBlock(ModBlocks.WISTERIA_STAIRS.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
         slabBlock(ModBlocks.WISTERIA_SLAB.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
 

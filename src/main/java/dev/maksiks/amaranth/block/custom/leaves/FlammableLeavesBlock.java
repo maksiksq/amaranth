@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.block.custom;
+package dev.maksiks.amaranth.block.custom.leaves;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

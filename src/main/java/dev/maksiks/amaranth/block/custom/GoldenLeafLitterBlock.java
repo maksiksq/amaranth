@@ -19,8 +19,5 @@ public class GoldenLeafLitterBlock extends PinkPetalsBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel p_273476_, RandomSource p_273093_, BlockPos p_272601_, BlockState p_272683_) {
-        return;
-    }
-
+    public void performBonemeal(ServerLevel p_273476_, RandomSource p_273093_, BlockPos p_272601_, BlockState p_272683_) {}
 }

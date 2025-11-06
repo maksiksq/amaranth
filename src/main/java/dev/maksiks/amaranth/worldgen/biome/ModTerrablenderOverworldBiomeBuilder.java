@@ -1,10 +1,12 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
+import dev.maksiks.amaranth.worldgen.biome.selector.ModBiomeSelectors;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.biome.OverworldBiomeBuilder;
 import terrablender.api.TerrablenderOverworldBiomeBuilder;
 
 import java.util.function.Consumer;
@@ -38,7 +40,9 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
     ///
     /// Adjusting parameter points / biomes
     /// tho, the builder takes in most
-    /// vanilla biomes as deferred placeholders
+    /// vanilla biomes as deferred placeholders,
+    /// so those have to be replaced in {@link ModBiomeSelectors}
+    /// matching with {@link OverworldBiomeBuilder}
     ///
     private Pair<Climate.ParameterPoint, ResourceKey<Biome>> adjustParameters(Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair, Integer regionId) {
         Climate.ParameterPoint point = pair.getFirst();

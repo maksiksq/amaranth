@@ -44,7 +44,7 @@ public class AnthocyaninParticles extends TextureSheetParticle {
         if (setting == ParticleStatus.MINIMAL ||
                 HIDE_BIOME_AMBIENCE_PARTICLES.getAsBoolean() ||
                 HIDE_ALL_BIOME_PARTICLES.getAsBoolean()) {
-            // also see the minimize one somewhere else
+            /// also see the minimize one in {@link dev.maksiks.amaranth.block.custom.leaves.AnthocyaninLeavesBlock}
             this.remove();
         }
 

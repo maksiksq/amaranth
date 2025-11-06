@@ -1,8 +1,8 @@
 package dev.maksiks.amaranth.event;
 
 import dev.maksiks.amaranth.Amaranth;
-import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.sound.DesolateWindSoundInstance;
+import dev.maksiks.amaranth.sound.ModSounds;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.sounds.SoundManager;
@@ -38,13 +38,13 @@ public class CustomWeatherHandler {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         if (HIDE_CUSTOM_BIOME_WEATHER_PARTICLES.getAsBoolean() || HIDE_ALL_BIOME_PARTICLES.getAsBoolean()) {
-            stopMoodSound(Minecraft.getInstance());
+            stopMoodSound();
             return;
         }
 
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null || mc.isPaused()) {
-            stopMoodSound(mc);
+            stopMoodSound();
             return;
         }
 
@@ -97,7 +97,7 @@ public class CustomWeatherHandler {
         }
     }
 
-    private static void stopMoodSound(Minecraft mc) {
+    private static void stopMoodSound() {
         if (moodSound != null) {
             moodSound.startFadeOut();
             moodSound = null;
