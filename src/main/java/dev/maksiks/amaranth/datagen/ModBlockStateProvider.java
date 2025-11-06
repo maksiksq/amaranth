@@ -190,7 +190,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         twoPlanesCutoutBlock(ModBlocks.WITCHY_SAPLING);
 
         // lupine
-        twoPlanesCutoutBlock(ModBlocks.LUPINE);
+        twoPlanesCutoutMippedBlock(ModBlocks.LUPINE);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -282,6 +282,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void twoPlanesCutoutBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
                 models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
+    private void twoPlanesCutoutMippedBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout_mipped"));
     }
 
     private void doubleFourPlaneCropBlock(DeferredBlock<Block> block) {

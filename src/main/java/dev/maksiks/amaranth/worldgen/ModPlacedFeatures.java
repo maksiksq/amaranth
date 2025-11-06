@@ -57,9 +57,11 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> MUSH_REEDS_WATER_PLACED_KEY = registerKey("mush_reeds_water_placed");
 
     public static final ResourceKey<PlacedFeature> RED_MINI_SHROOM_PLACED_KEY = registerKey("red_mini_shroom_placed");
-    public static final ResourceKey<PlacedFeature> BROWN_MINI_SHROOM_PLACED_KEY = registerKey("brown_mini_shroom_placed_key");
+    public static final ResourceKey<PlacedFeature> BROWN_MINI_SHROOM_PLACED_KEY = registerKey("brown_mini_shroom_placed");
 
-    public static final ResourceKey<PlacedFeature> WITCHY_PLACED_KEY = registerKey("witchy_placed_key");
+    public static final ResourceKey<PlacedFeature> WITCHY_PLACED_KEY = registerKey("witchy_placed");
+
+    public static final ResourceKey<PlacedFeature> LUPINE_FILL_PLACED_KEY = registerKey("lupine_fill_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -243,6 +245,14 @@ public class ModPlacedFeatures {
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1),
                         ModBlocks.WITCHY_SAPLING.get()));
+
+        register(context, LUPINE_FILL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LUPINE_FILL_KEY),
+                List.of(
+                        CountPlacement.of(5),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                ));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

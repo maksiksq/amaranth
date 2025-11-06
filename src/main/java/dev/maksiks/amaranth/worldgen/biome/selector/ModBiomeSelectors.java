@@ -101,15 +101,10 @@ public class ModBiomeSelectors {
     });
 
     public static final List<List<ResourceKey<Biome>>> MIDDLE_BIOMES_AMARANTH = ModBiomeSelectorUtils.create("middle_biomes/middle_biomes_amaranth", "", new ResourceKey[][]{
-            // freezing
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER},
-            // cool
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
-            // mid
             {ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, Region.DEFERRED_PLACEHOLDER},
-            // warm
-            {ModBiomes.STUBBY_WOODLAND, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, ModBiomes.ANTHOCYANIN_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
-            // hot
+            {ModBiomes.STUBBY_WOODLAND, ModBiomes.LUPINE_MEADOW, Region.DEFERRED_PLACEHOLDER, ModBiomes.ANTHOCYANIN_FOREST, ModBiomes.ANTHOCYANIN_FOREST},
             {Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER, Region.DEFERRED_PLACEHOLDER}
     });
 
