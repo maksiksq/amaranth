@@ -189,6 +189,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_anthocyanin_door", has(ModBlocks.ANTHOCYANIN_DOOR.get()))
                 .unlockedBy("has_blooming_anthocyanin_leaves", has(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES.get()))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.CYAN_DYE, 1)
+                .requires(ModBlocks.MALACHITE_VIPERS_BUGLOSS)
+                .unlockedBy("has_malachite_vipers_bugloss", has(ModBlocks.MALACHITE_VIPERS_BUGLOSS))
+                .save(recipeOutput);
         
         // pastel
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_PLANKS.asItem(), 4)
@@ -248,6 +253,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.SUGAR)
                 .requires(ModBlocks.REEDS.asItem())
                 .unlockedBy("has_reeds", has(ModBlocks.REEDS.asItem()))
+                .save(recipeOutput);
+
+        // lupine
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PURPLE_DYE, 1)
+                .requires(ModBlocks.LUPINE.asItem())
+                .unlockedBy("has_lupine", has(ModBlocks.LUPINE.asItem()))
                 .save(recipeOutput);
     }
 }
