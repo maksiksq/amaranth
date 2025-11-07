@@ -66,8 +66,8 @@ class AlpineSpruceFoliagePlacer(
             }
 
             ctx.square(2, trunkPos.above(1));
-            ctx.incSquare(trunkPos.above(2), 0, 50, 100);
-            ctx.incSquare(trunkPos.above(3), 0, 100, 75, 50);
+            ctx.incSquare(trunkPos.above(2), 100, 50, 100);
+            ctx.incSquare(trunkPos.above(3), 100, 100, 75, 50);
         }
 
         // 2-3 above all
@@ -78,8 +78,9 @@ class AlpineSpruceFoliagePlacer(
             ctx.incDiamond(trunkPos.above(height + above1.height + 1), 100, 75, 60, 50, 40, 30, 20, 10, 1)
             ctx.incDiamond(trunkPos.above(height + above1.height + 2), 100, 100)
             ctx.incDiamond(trunkPos.above(height + above1.height + 3), 100, *IntArray(5) {100})
-            ctx.incDiamond(trunkPos.above(height + above1.height + 3), 100, *IntArray(7) {50})
-            ctx.incDisc(trunkPos.above(height + above1.height + 3), 100, *IntArray(7) {50})
+            ctx.incDiamond(trunkPos.above(height + above1.height + 4), 100, *IntArray(7) {50})
+            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, *IntArray(9) {100})
+            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, *IntArray(9) {100})
         }
 
         // BELOW groups

@@ -6,8 +6,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import kotlin.Boolean
 import kotlin.math.abs
-import kotlin.math.ceil
+import kotlin.math.round
 import kotlin.math.sqrt
 
 @JvmField
@@ -76,12 +77,12 @@ class LeafPlacerContext(
 
         for (x in -radius..radius) {
             for (z in -radius..radius) {
-                val distance = maxOf(abs(x), abs(z))
+                val dist = maxOf(abs(x), abs(z))
                 val pos = trunkPos.offset(x, 0, z);
 
                 val chance =
-                    if (distance == 0) centerChance
-                    else layerChances[distance - 1]
+                    if (dist == 0) centerChance
+                    else layerChances[dist - 1]
 
                 if (random.nextInt(100) < chance) {
                     placeLeaf(pos)
@@ -127,13 +128,13 @@ class LeafPlacerContext(
 
         for (x in -radius..radius) {
             for (z in -radius..radius) {
-                val distance = abs(x) + abs(z)
+                val dist = abs(x) + abs(z)
                 val pos = trunkPos.offset(x, 0, z)
-                if (distance > radius) continue
+                if (dist > radius) continue
 
                 val chance =
-                    if (distance == 0) centerChance
-                    else layerChances[distance - 1]
+                    if (dist == 0) centerChance
+                    else layerChances[dist - 1]
 
                 if (random.nextInt(100) < chance) {
                     placeLeaf(pos)
@@ -149,11 +150,12 @@ class LeafPlacerContext(
      * */
     fun disc(
         radius: Int,
+        smooth: Boolean = true,
         trunkPos: BlockPos,
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incDisc(trunkPos, centerChance, *IntArray(radius) { chance })
+        incDisc(trunkPos, smooth, centerChance,*IntArray(radius) { chance })
     }
 
 
@@ -169,26 +171,32 @@ class LeafPlacerContext(
      *  ☐🟪🟪🟪☐
      *  Where the chances of spawning a block are as follows:
      *  🟨 - 100%; 🟦 - 50%; 🟥 - 25;
+     *
+     *  @param smooth removes the 1 block off the cardinal sides of the disc at most radii,
+     *  makes it less like a star and more circular. Usually what you want.
      * */
     fun incDisc(
         trunkPos: BlockPos,
+        smooth: Boolean = true,
         centerChance: Int = 100,
         vararg layerChances: Int
     ) {
         val radius = layerChances.size
+        val outerCutoff = radius + 0.4
 
         for (x in -radius..radius) {
             for (z in -radius..radius) {
-                val distanceSq = x * x + z * z
-                if (distanceSq > radius * radius) continue
+                val distSq = x * x + z * z
+                if (smooth && distSq > radius * radius) continue
+                if (!smooth && distSq > outerCutoff * outerCutoff) continue
 
                 // integer distance in layers
-                val r = sqrt(distanceSq.toDouble()).toInt()
+                val ld = sqrt((x * x + z * z).toDouble()).toInt()
                 val pos = trunkPos.offset(x, 0, z)
 
-                val chance = when (r) {
+                val chance = when (ld) {
                     0 -> centerChance
-                    in 1..radius -> layerChances[r - 1]
+                    in 1..radius -> layerChances[ld - 1]
                     else -> continue
                 }
 
