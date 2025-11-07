@@ -38,5 +38,5 @@ public class ModFoliagePlacerTypes{
             FOLIAGE_PLACER_TYPES.register("witchy_foliage_placer", () -> new FoliagePlacerType<>(WitchyFoliagePlacer.CODEC));
 
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AlpineSpruceFoliagePlacer>> ALPINE_SPRUCE_FOLIAGE_PLACER =
-            FOLIAGE_PLACER_TYPES.register("alpine_spruce_foliage_placer", () -> new FoliagePlacerType<>(AlpineSpruceFoliagePlacer.CODEC));
+            FOLIAGE_PLACER_TYPES.register("alpine_spruce_foliage_placer", () -> new FoliagePlacerType<>(AlpineSpruceFoliagePlacer.getCODEC()));
 }
