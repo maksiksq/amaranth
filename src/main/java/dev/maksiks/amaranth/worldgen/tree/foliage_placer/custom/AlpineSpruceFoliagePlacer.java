@@ -12,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -46,26 +47,26 @@ public class AlpineSpruceFoliagePlacer extends FoliagePlacer {
             int foliageRadius,
             int offset
     ) {
-        BlockPos trunkPos = attachment.pos();
+        BlockPos trunkPos = attachment.pos().below();
         LeafPlacerContext ctx = LeafPlacerContext.ctx(level, blockSetter, random, config);
-
-//        blockSetter.set(trunkPos.below(), Blocks.COAL_BLOCK.defaultBlockState());
 
         record Group(int height) {}
 
         // ABOVE groups
         var above1 = new Group(3); {
             // core
-            for (int i = 1; i < height; i++) {
+            for (int i = 1; i < above1.height; i++) {
                 ctx.placeLeaf(trunkPos.above(i+above1.height));
             }
 
-            ctx.cross(50, true, 50);
+            ctx.square(2, trunkPos.above(1));
+            ctx.incSquare(trunkPos.above(2), 0, 50, 100);
+            ctx.incSquare(trunkPos.above(3), 0, 100, 75, 50);
         }
 
         // 2-3 above all
         var lance = new Group(random.nextInt(2) + 2); {
-            for (int i = 1; i < height; i++) {
+            for (int i = 1; i < lance.height; i++) {
                 ctx.placeLeaf(trunkPos.above(i+above1.height));
             }
         }
