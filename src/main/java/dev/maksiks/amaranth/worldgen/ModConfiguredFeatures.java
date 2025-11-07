@@ -86,6 +86,8 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> LUPINE_FILL_KEY = registerKey("lupine_fill");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> ALPINE_SPRUCE_KEY = registerKey("alpine");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -550,6 +552,20 @@ public class ModConfiguredFeatures {
                                 )
                         )
                 )
+        );
+
+
+        // alpine
+        register(
+                context,
+                ALPINE_SPRUCE_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.SPRUCE_LOG),
+                        new StraightTrunkPlacer(9, 1, 1),
+                        BlockStateProvider.simple(Blocks.SPRUCE_LEAVES),
+                        new AlpineSpruceFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
 

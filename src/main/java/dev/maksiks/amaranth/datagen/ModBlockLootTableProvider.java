@@ -193,6 +193,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // lupine
         this.dropSelf(ModBlocks.LUPINE.get());
+
+        // alpine
+        this.dropSelf(ModBlocks.ALPINE_SPRUCE_SAPLING.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

@@ -283,6 +283,11 @@ public class ModBlocks {
                     .offsetType(BlockBehaviour.OffsetType.NONE)
                     .pushReaction(PushReaction.DESTROY)));
 
+    // alpine
+    public static final DeferredBlock<Block> ALPINE_SPRUCE_SAPLING = registerBlock("alpine_spruce_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.ALPINE_SPRUCE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

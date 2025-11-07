@@ -4,9 +4,7 @@ import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -140,5 +138,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // lupine
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.LUPINE.get());
-    }
+
+        // alpine
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.ALPINE_SPRUCE_SAPLING.get()); }
 }

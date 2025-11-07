@@ -19,7 +19,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static dev.maksiks.amaranth.worldgen.tree.ModTreeHelpers.splat;
+import static dev.maksiks.amaranth.worldgen.tree.ModOldTreeHelpers.splat;
 
 public class SpearyFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<SpearyFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> blobParts(instance).apply(instance, SpearyFoliagePlacer::new));

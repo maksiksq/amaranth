@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-import static dev.maksiks.amaranth.worldgen.tree.ModTreeHelpers.diagonals;
+import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
 
 public class WitchyTrunkPlacer extends TrunkPlacer {
     public static final MapCodec<WitchyTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(

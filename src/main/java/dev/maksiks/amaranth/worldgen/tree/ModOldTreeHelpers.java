@@ -13,23 +13,19 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
-public class ModTreeHelpers {
+import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
+
+
+@Deprecated
+public class ModOldTreeHelpers {
     @FunctionalInterface
     public interface LeafPlacer {
         void place();
     }
 
-    public static final Direction[] diagonals = {
-            Direction.NORTH, Direction.EAST,
-            Direction.NORTH, Direction.WEST,
-            Direction.SOUTH, Direction.EAST,
-            Direction.SOUTH, Direction.WEST
-    };
-
-    //
-    // TODO: REMAKE !!!
-    // why is everything 1 block above
-    //
+    ///
+    /// use {@link LeafPlacerContext} instead
+    ///
 
     // checks if there is a neighbouring leaf or log block
     public static boolean checkIfDetached(LevelSimulatedReader level, BlockPos pos) {

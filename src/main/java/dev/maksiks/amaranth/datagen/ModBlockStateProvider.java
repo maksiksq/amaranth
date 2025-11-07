@@ -189,6 +189,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // lupine
         twoPlanesCutoutMippedBlock(ModBlocks.LUPINE);
+
+        // alpine
+        twoPlanesCutoutBlock(ModBlocks.ALPINE_SPRUCE_SAPLING);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

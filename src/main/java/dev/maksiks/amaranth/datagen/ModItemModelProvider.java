@@ -98,6 +98,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // lupine
         splatBlockItem(ModBlocks.LUPINE);
+
+        // alpine
+        splatBlockItem(ModBlocks.ALPINE_SPRUCE_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

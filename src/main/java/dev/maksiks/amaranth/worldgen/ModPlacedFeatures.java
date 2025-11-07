@@ -63,6 +63,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> LUPINE_FILL_PLACED_KEY = registerKey("lupine_fill_placed");
 
+    public static final ResourceKey<PlacedFeature> ALPINE_SPRUCE_PLACED_KEY = registerKey("alpine_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -253,6 +255,12 @@ public class ModPlacedFeatures {
                         PlacementUtils.HEIGHTMAP,
                         BiomeFilter.biome()
                 ));
+
+
+        register(context, ALPINE_SPRUCE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALPINE_SPRUCE_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(7, 0.1F, 0),
+                        ModBlocks.ALPINE_SPRUCE_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

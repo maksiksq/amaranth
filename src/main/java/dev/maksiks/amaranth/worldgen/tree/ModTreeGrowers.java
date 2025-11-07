@@ -42,4 +42,6 @@ public class ModTreeGrowers {
 
     public static final TreeGrower WITCHY_GROWER = new TreeGrower(Amaranth.MOD_ID + ":witchy",
             Optional.empty(), Optional.of(ModConfiguredFeatures.WITCHY_KEY), Optional.empty());
+    public static final TreeGrower ALPINE_SPRUCE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":alpine",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ALPINE_SPRUCE_KEY), Optional.empty());
 }

@@ -19,7 +19,8 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static dev.maksiks.amaranth.worldgen.tree.ModTreeHelpers.*;
+import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
+import static dev.maksiks.amaranth.worldgen.tree.ModOldTreeHelpers.*;
 
 public class WitchyFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<WitchyFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> blobParts(instance).apply(instance, WitchyFoliagePlacer::new));
