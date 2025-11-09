@@ -104,12 +104,18 @@ class AlpineSpruceFoliagePlacer(
             for (i in 1 until height) {
                 ctx.placeLeaf(trunkPos.above(i + above1.height))
             }
-            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, *IntArray(9) { 100 })
-            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, *IntArray(9) { 100 })
+            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30))
+            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30), LeafPlacerContext.HrLayer(100, 30))
 
             ctx.incDiamond(trunkPos.above(height + above1.height + 8), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(50, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true))
             ctx.incDiamond(trunkPos.below(1), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(70, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(50, 60, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(30, 30, removeIfDecays = true, centricFactor = 0.9) )
             ctx.incDiamond(trunkPos.above(height + above1.height + 13), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(70, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(50, 60, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(30, 30, removeIfDecays = true, centricFactor = 0.1) )
+            ctx.incDisc(trunkPos.above(height + above1.height + 14), true, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+            ctx.incDisc(trunkPos.above(height + above1.height + 15), false, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+            ctx.incDisc(trunkPos.above(height + above1.height + 16), true, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+            ctx.incDisc(trunkPos.above(height + above1.height + 17), false, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+            ctx.incDisc(trunkPos.above(height + above1.height + 18), true, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+            ctx.incDisc(trunkPos.above(height + above1.height + 19), false, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
 
             // BELOW groups
         }
