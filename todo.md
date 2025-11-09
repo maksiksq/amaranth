@@ -424,8 +424,14 @@
 ----------------------
 - [ ] iceland !
 - [x] lupine
-- [ ] remake lupine texture to be more minecrafty
+- [x] remake lupine texture to be more minecrafty ; ish
 ----------------------
+
+### something savanna-ish
+----------------------
+- [ ] that one tree from test world
+----------------------
+
 
 tutorial:
 - for swamps vanilla doesnt use the arrays

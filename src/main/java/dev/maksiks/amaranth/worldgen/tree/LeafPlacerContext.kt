@@ -2,13 +2,17 @@ package dev.maksiks.amaranth.worldgen.tree;
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.LevelWriter
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import kotlin.Boolean
 import kotlin.math.abs
-import kotlin.math.round
 import kotlin.math.sqrt
 
 @JvmField
@@ -37,112 +41,261 @@ class LeafPlacerContext(
         }
     }
 
+    val debug = true;
+
     fun placeLeaf(pos: BlockPos) {
+        if (debug) {
+            blockSetter.set(pos, Blocks.GREEN_TERRACOTTA.defaultBlockState())
+        }
         // cutting out the try part just to separate it tho it does the same thing
-        FoliagePlacer.tryPlaceLeaf(level, blockSetter, random, config, pos);
+        FoliagePlacer.tryPlaceLeaf(level, blockSetter, random, config, pos)
     }
 
     /**
-     *  Makes a square with a chance to add a middle
-     *  and a chance to place for all blocks, as shrimple as that
+     * A horizontal layer
+     *
+     * @param chance chance of spawning a block in this layer, 1-100%.
+     * @param guaranteed guaranteed percentage of blocks to spawn in this layer.
+     * @param cap maximum percentage of blocks to spawn in this layer.
+     * @param centricFactor biases blocks to spawn near the middle/corners.
+     * - 1.0 - higher chance towards the middle (axes);
+     * - 0.5 normal;
+     * - 0.0 higher chance towards the corners (sides).
+     * @param connected if true, will ensure that each leaf block in the layer is connected to another
+     *  (in any direction) to prevent leaf decay. If it didn't proc, another block will be substituted elsewhere
+     *  so the distribution remains the same. Might make the tree slightly more "solid" depending on other settings.
+     * @param custom you can pass in your own code to be executed instead of the leaf placing function.
+     * Can be useful if you want to add custom conditions or place different blocks.
+     *
+     * E.g., place a lantern below every other block in horizontal layer 2:
+     * TODO: java examples for everything
+     * ```
+     * LeafPlacerContext.HrLayer(100, custom = { ctx, pos, x, z, dist ->
+     *     if (dist == 2 && ctx.random.nextBoolean()) {
+     *         ctx.placeLeaf(pos)
+     *         ctx.blockSetter.set(pos.below(), Blocks.LANTERN.defaultBlockState())
+     *     }
+     * })
+     * ```
+     * If you don't care about the horizontal layer, it's likely better to make a separate for loop instead.
+     *
+     *  @see incSquare
+     *  @see incDiamond
+     *  @see incDisc
+     * */
+    data class HrLayer(
+        val chance: Int,
+        val guaranteed: Int = 0,
+        val centricFactor: Double? = null,
+        val connected: Boolean = false,
+        val custom: ((LeafPlacerContext, BlockPos, Int, Int, Int) -> Unit)? = null
+    )
+
+    enum class ShapeType {
+        SQUARE,
+        DIAMOND
+    }
+
+    /**
+     * Internal shape building math, use [incSquare], [incDiamond], [incDisc] instead.
+     *
+     *  @see incSquare
+     *  @see incDiamond
+     *  @see incDisc
+     * */
+    fun incShape(
+        pos: BlockPos,
+        centerChance: Int = 100,
+        shapeType: ShapeType,
+        vararg layers: HrLayer
+    ) {
+        val radius = layers.size
+
+        for (x in -radius..radius) {
+            for (z in -radius..radius) {
+                val dist = when (shapeType) {
+                    ShapeType.SQUARE -> maxOf(abs(x), abs(z))
+                    ShapeType.DIAMOND -> abs(x) + abs(z)
+                }
+                // irrelevant for square
+                if (dist > radius) continue
+
+                val placePos = pos.offset(x, 0, z)
+
+                val chance = if (dist == 0) {
+                    centerChance
+                } else {
+                    val layer = layers[dist - 1]
+                    if (layer.centricFactor != null) {
+                        val gradient = when (shapeType) {
+                            ShapeType.SQUARE -> {
+                                // 1.0 = center
+                                // 0.0 = corners
+                                val layerEdgeDist = dist - (abs(x).coerceAtMost(abs(z)))
+                                1.0 - (layerEdgeDist.toDouble() / dist)
+                            }
+                            ShapeType.DIAMOND -> {
+                                // 1.0 = axes
+                                // 0.0 = sides
+                                1.0 - abs(abs(x) - abs(z)).toDouble() / dist
+                            }
+                        }
+
+                        val factor = layer.centricFactor
+                        val bias = (0.5 - factor) * 2.0
+
+                        val weighted = gradient * (1 + bias) + (1 - gradient) * (1 - bias)
+
+                        val modifiedChance = (layer.chance * weighted).coerceIn(0.0, 100.0)
+                        modifiedChance.toInt()
+                    } else {
+                        layer.chance
+                    }
+                }
+
+                if (debug) {
+                    // spawning an armor stand showing the percentage
+                    val armorStand = EntityType.ARMOR_STAND.create(level as Level)
+                    armorStand?.let {
+                        it.setPos(placePos.x + 0.5, placePos.y + 0.5, placePos.z + 0.5)
+                        it.isInvisible = true
+                        it.isMarker = true
+                        it.customName = Component.literal("$chance%")
+                        it.isCustomNameVisible = true
+                        (level as LevelWriter).addFreshEntity(it)
+                    }
+                }
+
+                if (random.nextInt(100) < chance) {
+                    if (dist == 0) {
+                        placeLeaf(placePos)
+                        continue
+                    }
+                    layers[dist - 1].custom?.invoke(this, placePos, x, z, dist) ?: placeLeaf(placePos)
+                }
+            }
+        }
+    }
+
+    /**
+     *  Makes a square with of a certain radius at a certain position, as shrimple as that.
+     *
+     *  @param radius radius.
+     *  @param pos the position from which placing starts. Usu. above/at/below trunk attachment position.
+     *   a chance to place the middle block,
+     *   and a chance to place each block applied individually per block,
+     *  @param centerChance chance specifically for the center block,
+     *   you might want to alternate it quite often, 1-100%.
+     *  @param chance chance of spawning each individual block, 1-100%.
+     *
+     *  See [incSquare] and [incShape] for more details
+     *
+     *  @see incSquare
+     *  @see incShape
      * */
     fun square(
         radius: Int,
-        trunkPos: BlockPos,
+        pos: BlockPos,
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incSquare(trunkPos, centerChance, *IntArray(radius) { chance })
+        incSquare(pos, centerChance, *Array(radius) { HrLayer(chance) })
     }
 
     /**
-     *  Makes a square with incremental chances for each layer.
-     *  In Java chances may be passed as an array.
+     * Makes a square with incremental chances for each layer.
      *
-     *  For example, incSquare(pos, 100, 50, 25) would result in:
-     *  🟥🟪🟪🟪🟥
-     *  🟪🟦🟦🟦🟪
-     *  🟪🟦🟨🟦🟪
-     *  🟪🟦🟦🟦🟪
-     *  🟥🟪🟪🟪🟥
-     *  Where the chances of spawning a block are as follows:
-     *  🟨 - 100%; 🟦 - 50%; 🟥 - 25;
+     * For example (Java):
+     * ```
+     * ctx.incSquare(pos, 100, new HrLayer(50), new HrLayer(25));
+     * ```
+     * (Kotlin):
+     * ```
+     * ctx.incSquare(pos, 100, HrLayer(50), HrLayer(25))
+     * ```
+     * Would result in:
+     *  ```
+     *  🟥 🟥 🟥 🟥 🟥 ️
+     *  🟥 🟦 🟦 🟦 🟥
+     *  🟥 🟦 🟨 🟦 🟥
+     *  🟥 🟦 🟦 🟦 🟥
+     *  🟥 🟥 🟥 🟥 🟥
+     *  ```
+     *  Where the chances of spawning a block are:
+     *  🟨 - 100%; 🟦 - 50%; 🟥 - 25%;
+     *
+     *  @param pos the position from which placing starts. Usu. above/below trunk attachment position.
+     *  @param centerChance chance specifically for the center block,
+     *   separate from [layers] because all other [HrLayer] params don't really apply to it,
+     *   and you might want to alternate it quite often.
+     *  @param layers an array of [HrLayer], each defines settings for a single incremented outward layer,
+     *   and the size of the array defines the radius of the resulting shape.
+     *
+     *  @see square
+     *  @see incShape
      * */
-    fun incSquare(
-        trunkPos: BlockPos,
-        centerChance: Int = 100,
-        vararg layerChances: Int
-    ) {
-        val radius = layerChances.size
-
-        for (x in -radius..radius) {
-            for (z in -radius..radius) {
-                val dist = maxOf(abs(x), abs(z))
-                val pos = trunkPos.offset(x, 0, z);
-
-                val chance =
-                    if (dist == 0) centerChance
-                    else layerChances[dist - 1]
-
-                if (random.nextInt(100) < chance) {
-                    placeLeaf(pos)
-                }
-            }
-        }
-    }
+    fun incSquare(pos: BlockPos, centerChance: Int = 100, vararg layers: HrLayer) =
+        incShape(pos, centerChance, ShapeType.SQUARE, *layers);
 
     /**
-     *  Makes a diamond with a chance to add a middle
-     *  and a chance to place for all blocks
+     *  Makes a diamond with of a certain radius at a certain position, as shrimple as that.
+     *
+     *  @param radius radius.
+     *  @param pos the position from which placing starts. Usu. above/at/below trunk attachment position.
+     *   a chance to place the middle block,
+     *   and a chance to place each block applied individually per block,
+     *  @param centerChance chance specifically for the center block,
+     *   you might want to alternate it quite often, 1-100%.
+     *  @param chance chance of spawning each individual block, 1-100%.
+     *
+     *  See [incDiamond] and [incShape] for more details
+     *
+     *  @see incDiamond
+     *  @see incShape
      * */
-    @JvmOverloads
     fun diamond(
         radius: Int,
-        trunkPos: BlockPos,
+        pos: BlockPos,
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incDiamond(trunkPos, centerChance, *IntArray(radius) { chance })
+        incDiamond(pos, centerChance, *Array(radius) { HrLayer(chance) })
     }
-
 
     /**
-     *  Makes a diamond with incremental chances for each layer.
-     *  In Java chances may be passed as an array.
+     * Makes a diamond with incremental chances for each layer.
      *
-     *  For example, incDiamond(pos, 100, 50, 25) would result in:
-     *  ☐☐🟪☐☐
-     *  ☐🟪🟦🟪☐
-     *  🟪🟦🟨🟦🟪
-     *  ☐🟪🟦🟪☐
-     *  ☐☐🟪☐☐
-     *  Where the chances of spawning a block are as follows:
-     *  🟨 - 100%; 🟦 - 50%; 🟥 - 25;
+     * For example (Java):
+     * ```
+     * ctx.incDiamond(pos, 100, new HrLayer(50), new HrLayer(25));
+     * ```
+     * (Kotlin):
+     * ```
+     * ctx.incDiamond(pos, 100, HrLayer(50), HrLayer(25))
+     * ```
+     * Would result in:
+     *  ```
+     *  🆓 🆓 🟥 🆓 🆓 ️
+     *  🆓 🟥 🟦 🟥 🆓
+     *  🟥 🟦 🟨 🟦 🟥
+     *  🆓 🟥 🟦 🟥 🆓
+     *  🆓 🆓 🟥 🆓 🆓
+     *  ```
+     *  Where the chances of spawning a block are:
+     *  🟨 - 100%; 🟦 - 50%; 🟥 - 25%;
+     *
+     *  @param pos the position from which placing starts. Usu. above/below trunk attachment position.
+     *  @param centerChance chance specifically for the center block,
+     *   separate from [layers] because all other [HrLayer] params don't really apply to it,
+     *   and you might want to alternate it quite often.
+     *  @param layers an array of [HrLayer], each defines settings for a single incremented outward layer,
+     *   and the size of the array defines the radius of the resulting shape.
+     *
+     *  @see diamond
+     *  @see incShape
      * */
-    fun incDiamond(
-        trunkPos: BlockPos,
-        centerChance: Int = 100,
-        vararg layerChances: Int
-    ) {
-        val radius = layerChances.size
-
-        for (x in -radius..radius) {
-            for (z in -radius..radius) {
-                val dist = abs(x) + abs(z)
-                val pos = trunkPos.offset(x, 0, z)
-                if (dist > radius) continue
-
-                val chance =
-                    if (dist == 0) centerChance
-                    else layerChances[dist - 1]
-
-                if (random.nextInt(100) < chance) {
-                    placeLeaf(pos)
-                }
-            }
-        }
-    }
-
+    fun incDiamond(pos: BlockPos, centerChance: Int = 100, vararg layers: HrLayer) =
+        incShape(pos, centerChance, ShapeType.DIAMOND, *layers);
 
     /**
      *  Makes a disc with a chance to add a middle
@@ -155,9 +308,8 @@ class LeafPlacerContext(
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incDisc(trunkPos, smooth, centerChance,*IntArray(radius) { chance })
+        incDisc(trunkPos, smooth, centerChance, *IntArray(radius) { chance })
     }
-
 
     /**
      *  Makes a disc with incremental chances for each layer.
@@ -172,7 +324,7 @@ class LeafPlacerContext(
      *  Where the chances of spawning a block are as follows:
      *  🟨 - 100%; 🟦 - 50%; 🟥 - 25;
      *
-     *  @param smooth removes the 1 block off the cardinal sides of the disc at most radii,
+     *  @param smooth removes the 1 block off the cardinal sides of the disc,
      *  makes it less like a star and more circular. Usually what you want.
      * */
     fun incDisc(

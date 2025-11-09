@@ -11,6 +11,7 @@ import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
 import net.minecraft.util.RandomSource
 import net.minecraft.util.valueproviders.IntProvider
 import net.minecraft.world.level.LevelSimulatedReader
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType
@@ -65,9 +66,37 @@ class AlpineSpruceFoliagePlacer(
                 ctx.placeLeaf(trunkPos.above(i + height))
             }
 
-            ctx.square(2, trunkPos.above(1));
-            ctx.incSquare(trunkPos.above(2), 100, 50, 100);
-            ctx.incSquare(trunkPos.above(3), 100, 100, 75, 50);
+            ctx.square(2, trunkPos.above(1))
+            val layers1 = arrayOf(
+                LeafPlacerContext.HrLayer(100, 30, connected = true),
+                LeafPlacerContext.HrLayer(100, custom = { ctx, pos, x, z, dist ->
+                    if (dist == 2 && ctx.random.nextBoolean()) {
+                        ctx.placeLeaf(pos)
+                        ctx.blockSetter.set(pos.below(), Blocks.LANTERN.defaultBlockState())
+                    }
+                }),
+                LeafPlacerContext.HrLayer(50, 30, connected = true),
+                LeafPlacerContext.HrLayer(30, 30, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 0.9),
+                LeafPlacerContext.HrLayer(50, 0, 0.8),
+                LeafPlacerContext.HrLayer(50, 0, 0.7),
+                LeafPlacerContext.HrLayer(50, 0, 0.6),
+                LeafPlacerContext.HrLayer(50, 0, 0.5),
+                LeafPlacerContext.HrLayer(50, 0, 0.4),
+                LeafPlacerContext.HrLayer(50, 0, 0.3),
+                LeafPlacerContext.HrLayer(50, 0, 0.2),
+                LeafPlacerContext.HrLayer(50, 0, 0.1),
+            )
+            ctx.incSquare(trunkPos.above(2), 100, *layers1)
+//            val layers = arrayOf(
+//                LeafPlacerContext.HrLayer(100),
+//                LeafPlacerContext.HrLayer(50),
+//                LeafPlacerContext.HrLayer(25),
+//            )
+//            ctx.incSquare(trunkPos.above(2), 100, *layers)
+
+//            ctx.incSquare(trunkPos.above(2), 100, 50, 100);
+//            ctx.incSquare(trunkPos.above(3), 100, 100, 75, 50);
         }
 
         // 2-3 above all
@@ -75,15 +104,15 @@ class AlpineSpruceFoliagePlacer(
             for (i in 1 until height) {
                 ctx.placeLeaf(trunkPos.above(i + above1.height))
             }
-            ctx.incDiamond(trunkPos.above(height + above1.height + 1), 100, 75, 60, 50, 40, 30, 20, 10, 1)
-            ctx.incDiamond(trunkPos.above(height + above1.height + 2), 100, 100)
-            ctx.incDiamond(trunkPos.above(height + above1.height + 3), 100, *IntArray(5) {100})
-            ctx.incDiamond(trunkPos.above(height + above1.height + 4), 100, *IntArray(7) {50})
-            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, *IntArray(9) {100})
-            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, *IntArray(9) {100})
-        }
+            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, *IntArray(9) { 100 })
+            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, *IntArray(9) { 100 })
 
-        // BELOW groups
+            ctx.incDiamond(trunkPos.above(height + above1.height + 8), 100, LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(50, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true))
+            ctx.incDiamond(trunkPos.above(height + above1.height + 10), 100, LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(70, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(50, 60, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(30, 30, connected = true, centricFactor = 0.9) )
+            ctx.incDiamond(trunkPos.above(height + above1.height + 13), 100, LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(70, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(50, 60, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(30, 30, connected = true, centricFactor = 0.1) )
+
+            // BELOW groups
+        }
     }
 
     override fun foliageHeight(random: RandomSource, height: Int, config: TreeConfiguration): Int =
