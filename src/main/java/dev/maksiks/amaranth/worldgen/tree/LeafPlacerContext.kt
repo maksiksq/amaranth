@@ -41,9 +41,10 @@ class LeafPlacerContext(
             blockSetter: FoliagePlacer.FoliageSetter,
             random: RandomSource,
             config: TreeConfiguration,
-            foliage: Array<BlockState>? = null
+            foliage: Array<BlockState>? = null,
+            debug: Boolean = false
         ): LeafPlacerContext {
-            return LeafPlacerContext(level, blockSetter, random, config, foliage);
+            return LeafPlacerContext(level, blockSetter, random, config, foliage, debug)
         }
     }
 
@@ -186,22 +187,49 @@ class LeafPlacerContext(
         discSmoothInternal: Boolean = true
     ) {
         val radius = layers.size
-        val candidates = mutableListOf<Candidate>()
+        val finalCandidates = mutableListOf<Candidate>()
+
+        val layerCandidates = Array(radius) { mutableListOf<Candidate>() }
+        val layerTotals = IntArray(radius) { 0 }
 
         // disc cutoff
         val outerCutoff = if (shapeType == ShapeType.DISC) radius + 0.4 else null
 
-        // placing
+        // first pass, skeleton
         for (x in -radius..radius) {
             for (z in -radius..radius) {
                 val dist = calculateDist(shapeType, x, z)
-                // irrelevant for square
+
                 if (shapeType == ShapeType.DISC) {
                     if (outerCutoff == null) throw IllegalStateException("outerCutoff is null for DISC shape")
                     val distSq = x * x + z * z
                     if (!discSmoothInternal && distSq > radius * radius) continue
                     if (discSmoothInternal && distSq > outerCutoff * outerCutoff) continue
+                    val euclideanDist = sqrt((x * x + z * z).toDouble()).toInt()
+                    if (euclideanDist > radius) continue
+                } else {
+                    if (dist > radius) continue
+                }
 
+                if (dist > 0) {
+                    layerTotals[dist - 1]++
+                }
+            }
+        }
+
+        // second pass, collecting all potential candidates with their chances
+        val layerPotentialCandidates = Array(radius) { mutableListOf<Pair<Candidate, Int>>() }
+
+        for (x in -radius..radius) {
+            for (z in -radius..radius) {
+                val dist = calculateDist(shapeType, x, z)
+
+                // same filtering as in pass 1
+                if (shapeType == ShapeType.DISC) {
+                    if (outerCutoff == null) throw IllegalStateException("outerCutoff is null for DISC shape")
+                    val distSq = x * x + z * z
+                    if (!discSmoothInternal && distSq > radius * radius) continue
+                    if (discSmoothInternal && distSq > outerCutoff * outerCutoff) continue
                     val euclideanDist = sqrt((x * x + z * z).toDouble()).toInt()
                     if (euclideanDist > radius) continue
                 } else {
@@ -210,28 +238,24 @@ class LeafPlacerContext(
 
                 val placePos = pos.offset(x, 0, z)
 
-                val chance = if (dist == 0) {
-                    centerChance
+                if (dist == 0) {
+                    if (random.nextInt(100) < centerChance) {
+                        finalCandidates.add(Candidate(placePos, dist, x, z))
+                    }
                 } else {
                     val layer = layers[dist - 1]
-                    if (layer.centricFactor != null) {
+
+                    // calculating base chance with centricFactor
+                    val baseChance = if (layer.centricFactor != null) {
                         val gradient = when (shapeType) {
                             ShapeType.SQUARE -> {
-                                // 1.0 = center
-                                // 0.0 = corners
                                 val layerEdgeDist = dist - (abs(x).coerceAtMost(abs(z)))
                                 1.0 - (layerEdgeDist.toDouble() / dist)
                             }
-
                             ShapeType.DIAMOND -> {
-                                // 1.0 = axes
-                                // 0.0 = sides
                                 1.0 - abs(abs(x) - abs(z)).toDouble() / dist
                             }
-
                             ShapeType.DISC -> {
-                                // 1.0 = axes
-                                // 0.0 = sides
                                 val angle = atan2(z.toDouble(), x.toDouble())
                                 val normalizedAngle = (angle % (kotlin.math.PI / 2)) / (kotlin.math.PI / 2)
                                 1.0 - 2.0 * abs(normalizedAngle - 0.5)
@@ -240,21 +264,61 @@ class LeafPlacerContext(
 
                         val factor = layer.centricFactor
                         val bias = (0.5 - factor) * 2.0
-
                         val weighted = gradient * (1 + bias) + (1 - gradient) * (1 - bias)
-
                         val modifiedChance = (layer.chance * weighted).coerceIn(0.0, 100.0)
                         modifiedChance.toInt()
                     } else {
                         layer.chance
                     }
-                }
 
-                if (this.debug) {
-                    // spawning an armor stand showing the percentage
+                    val candidate = Candidate(placePos, dist, x, z)
+                    layerPotentialCandidates[dist - 1].add(candidate to baseChance)
+                }
+            }
+        }
+
+        // third pass, selecting candidates per layer w guaranteed/cap
+        for (layerIndex in 0 until radius) {
+            val layer = layers[layerIndex]
+            val potentials = layerPotentialCandidates[layerIndex]
+            val totalInLayer = layerTotals[layerIndex]
+
+            val guaranteedCount = (totalInLayer * layer.guaranteed / 100.0).toInt()
+            val capCount = (totalInLayer * layer.cap / 100.0).toInt()
+
+            // gambling
+            val selected = mutableListOf<Candidate>()
+            for ((candidate, chance) in potentials) {
+                if (random.nextInt(100) < chance) {
+                    selected.add(candidate)
+                }
+            }
+
+            if (selected.size < guaranteedCount) {
+                val unselected = potentials.map { it.first }.filter { it !in selected }.toMutableList()
+                unselected.shuffle()
+
+                val needed = guaranteedCount - selected.size
+                selected.addAll(unselected.take(needed))
+            }
+
+            if (selected.size > capCount) {
+                selected.shuffle()
+                selected.subList(capCount, selected.size).clear()
+            }
+
+            layerCandidates[layerIndex].addAll(selected)
+            finalCandidates.addAll(selected)
+        }
+
+        if (this.debug) {
+            for (layerIndex in 0 until radius) {
+                val potentials = layerPotentialCandidates[layerIndex]
+
+                for ((candidate, chance) in potentials) {
                     val armorStand = EntityType.ARMOR_STAND.create(level as Level)
                     armorStand?.let {
-                        it.setPos(placePos.x + 0.5, placePos.y + 0.5, placePos.z + 0.5)
+                        it.setPos(candidate.placePos.x + 0.5, candidate.placePos.y + 0.5, candidate.placePos.z + 0.5)
                         it.isInvisible = true
                         it.isMarker = true
                         it.customName = Component.literal("$chance%")
@@ -262,28 +326,29 @@ class LeafPlacerContext(
                         (level as LevelWriter).addFreshEntity(it)
                     }
                 }
-
-                if ((random.nextInt(100) < chance)) {
-                    candidates.add(Candidate(placePos, dist, x, z))
-
-                    if (dist == 0) {
-                        placeLeaf(placePos)
-                        continue
-                    }
-                    layers[dist - 1].custom?.invoke(this, pos, x, z, dist) ?: placeLeaf(placePos)
-                }
             }
         }
 
-        // carving
-        for (candidate in candidates) {
-            val placePos = candidate.placePos
+        // placing all selected candiates
+        for (candidate in finalCandidates) {
             val dist = candidate.dist
             if (dist == 0) {
-                continue
+                placeLeaf(candidate.placePos)
+            } else {
+                layers[dist - 1].custom?.invoke(this, candidate.placePos, candidate.x, candidate.z, dist)
+                    ?: placeLeaf(candidate.placePos)
             }
+        }
+
+        // carving (decay check)
+        for (candidate in finalCandidates) {
+            val dist = candidate.dist
+            if (dist == 0) continue
+
             val layer = layers[dist - 1]
-            if (layer.removeIfDecays && wouldDecay(placePos)) removeLeaf(placePos)
+            if (layer.removeIfDecays && wouldDecay(candidate.placePos)) {
+                removeLeaf(candidate.placePos)
+            }
         }
     }
 

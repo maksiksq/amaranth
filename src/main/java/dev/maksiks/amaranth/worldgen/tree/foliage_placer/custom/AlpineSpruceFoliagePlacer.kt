@@ -55,7 +55,7 @@ class AlpineSpruceFoliagePlacer(
         offset: Int
     ) {
         val trunkPos = attachment.pos().below();
-        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config);
+        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, debug = true);
 
         data class Group(val height: Int)
 
@@ -116,6 +116,35 @@ class AlpineSpruceFoliagePlacer(
             ctx.incDisc(trunkPos.above(height + above1.height + 17), false, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
             ctx.incDisc(trunkPos.above(height + above1.height + 18), true, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
             ctx.incDisc(trunkPos.above(height + above1.height + 19), false, 100, LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100), LeafPlacerContext.HrLayer(100))
+
+            val layers1 = arrayOf(
+                LeafPlacerContext.HrLayer(100, 30, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(50, 30, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(30, 30, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(0, 0, 100, 0.9, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.8, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(0, 0, 100, 0.7, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.6, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(0, 0, 100, 0.5, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.4, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(0, 0, 100, 0.3, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.2, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(0, 0, 100, 0.1, removeIfDecays = false),
+            )
+            ctx.incDisc(trunkPos.above(height + above1.height + 20), true, 100, *layers1)
+
+
+            val layers2 = arrayOf(
+                LeafPlacerContext.HrLayer(10, 90, 100),
+                LeafPlacerContext.HrLayer(10, 90, 100),
+                LeafPlacerContext.HrLayer(10, 90, 100),
+                LeafPlacerContext.HrLayer(10, 90, 100),
+                LeafPlacerContext.HrLayer(10, 90, 100),
+                LeafPlacerContext.HrLayer(90, 0, 40),
+                LeafPlacerContext.HrLayer(90, 0, 40),
+                LeafPlacerContext.HrLayer(90, 0, 40),
+            )
+            ctx.incDisc(trunkPos.above(height + above1.height + 24), true, 100, *layers2)
 
             // BELOW groups
         }
