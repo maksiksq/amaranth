@@ -55,7 +55,7 @@ class AlpineSpruceFoliagePlacer(
         offset: Int
     ) {
         val trunkPos = attachment.pos().below();
-        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, arrayOf(Blocks.GREEN_TERRACOTTA.defaultBlockState()));
+        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config);
 
         data class Group(val height: Int)
 
@@ -68,24 +68,24 @@ class AlpineSpruceFoliagePlacer(
 
             ctx.square(2, trunkPos.above(1))
             val layers1 = arrayOf(
-                LeafPlacerContext.HrLayer(100, 30, connected = true),
+                LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true),
                 LeafPlacerContext.HrLayer(100, custom = { ctx, pos, x, z, dist ->
                     if (dist == 2 && ctx.random.nextBoolean()) {
                         ctx.placeLeaf(pos)
                         ctx.blockSetter.set(pos.below(), Blocks.LANTERN.defaultBlockState())
                     }
                 }),
-                LeafPlacerContext.HrLayer(50, 30, connected = true),
-                LeafPlacerContext.HrLayer(30, 30, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.9, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.8, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.7, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.6, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.5, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.4, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.3, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.2, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 100, 0.1, connected = true),
+                LeafPlacerContext.HrLayer(50, 30, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(30, 30, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.9, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.8, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.7, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.6, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.5, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.4, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.3, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.2, removeIfDecays = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.1, removeIfDecays = true),
             )
             ctx.incSquare(trunkPos.above(2), 100, *layers1)
 //            val layers = arrayOf(
@@ -107,9 +107,9 @@ class AlpineSpruceFoliagePlacer(
             ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, *IntArray(9) { 100 })
             ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, *IntArray(9) { 100 })
 
-            ctx.incDiamond(trunkPos.above(height + above1.height + 8), 100, LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true), LeafPlacerContext.HrLayer(50, 30, connected = true), LeafPlacerContext.HrLayer(100, 30, connected = true))
-            ctx.incDiamond(trunkPos.above(height + above1.height + 10), 100, LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(70, 30, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(50, 60, connected = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(30, 30, connected = true, centricFactor = 0.9) )
-            ctx.incDiamond(trunkPos.above(height + above1.height + 13), 100, LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(100, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(70, 30, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(50, 60, connected = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(30, 30, connected = true, centricFactor = 0.1) )
+            ctx.incDiamond(trunkPos.above(height + above1.height + 8), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(50, 30, removeIfDecays = true), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true))
+            ctx.incDiamond(trunkPos.below(1), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(70, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(50, 60, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HrLayer(30, 30, removeIfDecays = true, centricFactor = 0.9) )
+            ctx.incDiamond(trunkPos.above(height + above1.height + 13), 100, LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(70, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(50, 60, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HrLayer(30, 30, removeIfDecays = true, centricFactor = 0.1) )
 
             // BELOW groups
         }
