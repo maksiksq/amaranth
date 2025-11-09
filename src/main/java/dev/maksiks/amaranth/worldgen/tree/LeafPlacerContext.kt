@@ -1,7 +1,6 @@
 package dev.maksiks.amaranth.worldgen.tree;
 
 import dev.maksiks.amaranth.Amaranth
-import net.minecraft.commands.arguments.coordinates.BlockPosArgument.blockPos
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component
@@ -12,8 +11,10 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.LevelWriter
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider
 import java.util.function.Predicate
 import kotlin.Boolean
 import kotlin.math.abs
@@ -31,7 +32,8 @@ class LeafPlacerContext(
     var level: LevelSimulatedReader,
     var blockSetter: FoliagePlacer.FoliageSetter,
     var random: RandomSource,
-    var config: TreeConfiguration
+    var config: TreeConfiguration,
+    var foliage: Array<BlockState>? = null
 ) {
     companion object {
         @JvmStatic
@@ -39,35 +41,43 @@ class LeafPlacerContext(
             level: LevelSimulatedReader,
             blockSetter: FoliagePlacer.FoliageSetter,
             random: RandomSource,
-            config: TreeConfiguration
+            config: TreeConfiguration,
+            foliage: Array<BlockState>? = null
         ): LeafPlacerContext {
-            return LeafPlacerContext(level, blockSetter, random, config);
+            return LeafPlacerContext(level, blockSetter, random, config, foliage);
         }
     }
 
     val debug = true;
 
     fun placeLeaf(pos: BlockPos) {
-        if (debug) {
-            blockSetter.set(pos, Blocks.GREEN_TERRACOTTA.defaultBlockState())
-        }
         // cutting out the try part just to separate it tho it does the same thing
         FoliagePlacer.tryPlaceLeaf(level, blockSetter, random, config, pos)
+    }
+
+    /**
+     * Safely removes a leaf block
+     **/
+    fun removeLeaf(removePos: BlockPos) {
+        if (isLeaves(removePos)) {
+            Amaranth.LOGGER.info("Removing unconnected leaf at {} {} {}", removePos.x, removePos.y, removePos.z)
+            blockSetter.set(removePos, Blocks.AIR.defaultBlockState())
+        }
     }
 
     /**
      * A horizontal layer
      *
      * @param chance chance of spawning a block in this layer, 1-100%.
-     * @param guaranteed guaranteed percentage of blocks to spawn in this layer.
-     * @param cap maximum percentage of blocks to spawn in this layer.
+     * @param guaranteed guaranteed percentage of blocks to spawn in this layer, 1-100%.
+     * @param cap maximum percentage of blocks to spawn in this layer, 1-100%.
      * @param centricFactor biases blocks to spawn near the middle/corners.
      * - 1.0 - higher chance towards the middle (axes);
      * - 0.5 normal;
      * - 0.0 higher chance towards the corners (sides).
      * @param connected if true, will ensure that each leaf block in the layer is connected to another
-     *  (in any direction) to prevent leaf decay. If it didn't proc, another block will be substituted elsewhere
-     *  so the distribution remains the same. Might make the tree slightly more "solid" depending on other settings.
+     *  (in any direction) to prevent leaf decay.
+     *  This just removes the unconnected leaves, you can substitute for that by slightly increasing [chance].
      * @param custom you can pass in your own code to be executed instead of the leaf placing function.
      * Can be useful if you want to add custom conditions or place different blocks.
      *
@@ -90,21 +100,38 @@ class LeafPlacerContext(
     data class HrLayer(
         val chance: Int,
         val guaranteed: Int = 0,
+        val cap: Int = 100,
         val centricFactor: Double? = null,
         val connected: Boolean = false,
         val custom: ((LeafPlacerContext, BlockPos, Int, Int, Int) -> Unit)? = null
     )
 
     data class Candidate(
-        val pos: BlockPos,
+        val placePos: BlockPos,
         val dist: Int,
         val x: Int,
         val z: Int
     )
 
-    private fun checkIfConnected(pos: BlockPos): Boolean {
+    /**
+     * Checks if a block is a leaf block.
+     * Tries Blocktags.LEAVES if foliage not specified
+     *
+     * @see foliage
+     * */
+    private fun isLeaves(pos: BlockPos): Boolean {
+        if (foliage != null) {
+            for (state in foliage) {
+                if (level.isStateAtPosition(pos) { it.`is`(state.block) }) return true
+            }
+            return false
+        }
+        return level.isStateAtPosition(pos) { it.`is`(BlockTags.LEAVES) }
+    }
+
+    private fun isConnected(pos: BlockPos): Boolean {
         for (dir in Direction.entries) {
-            if (level.isStateAtPosition(pos.relative(dir), Predicate( BlockTags.LEAVES::equals))) return true
+            if (isLeaves(pos.relative(dir))) return true
         }
         return false
     }
@@ -138,7 +165,7 @@ class LeafPlacerContext(
         val radius = layers.size
 
         val candidates = mutableListOf<Candidate>()
-        // skeleton
+        // placing
         for (x in -radius..radius) {
             for (z in -radius..radius) {
                 val dist = calculateDist(shapeType, x, z)
@@ -159,6 +186,7 @@ class LeafPlacerContext(
                                 val layerEdgeDist = dist - (abs(x).coerceAtMost(abs(z)))
                                 1.0 - (layerEdgeDist.toDouble() / dist)
                             }
+
                             ShapeType.DIAMOND -> {
                                 // 1.0 = axes
                                 // 0.0 = sides
@@ -193,20 +221,24 @@ class LeafPlacerContext(
 
                 if ((random.nextInt(100) < chance)) {
                     candidates.add(Candidate(placePos, dist, x, z))
+
+                    if (dist == 0) {
+                        placeLeaf(placePos)
+                        continue
+                    }
+                    layers[dist - 1].custom?.invoke(this, pos, x, z, dist) ?: placeLeaf(placePos)
                 }
             }
 
-            // placing
+            // carving
             for (candidate in candidates) {
-                val pos = candidate.pos
+                val placePos = candidate.placePos
                 val dist = candidate.dist
                 if (dist == 0) {
-                    placeLeaf(pos)
                     continue
                 }
                 val layer = layers[dist - 1]
-                if (layer.connected && !checkIfConnected(pos)) continue
-                layers[dist - 1].custom?.invoke(this, pos, candidate.x, candidate.z, dist) ?: placeLeaf(pos)
+                if (layer.connected && !isConnected(placePos)) removeLeaf(placePos)
             }
         }
     }

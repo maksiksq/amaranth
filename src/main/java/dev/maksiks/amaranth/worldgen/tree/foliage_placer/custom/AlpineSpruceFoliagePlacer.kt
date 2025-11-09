@@ -55,7 +55,7 @@ class AlpineSpruceFoliagePlacer(
         offset: Int
     ) {
         val trunkPos = attachment.pos().below();
-        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config);
+        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, arrayOf(Blocks.GREEN_TERRACOTTA.defaultBlockState()));
 
         data class Group(val height: Int)
 
@@ -77,15 +77,15 @@ class AlpineSpruceFoliagePlacer(
                 }),
                 LeafPlacerContext.HrLayer(50, 30, connected = true),
                 LeafPlacerContext.HrLayer(30, 30, connected = true),
-                LeafPlacerContext.HrLayer(50, 0, 0.9),
-                LeafPlacerContext.HrLayer(50, 0, 0.8),
-                LeafPlacerContext.HrLayer(50, 0, 0.7),
-                LeafPlacerContext.HrLayer(50, 0, 0.6),
-                LeafPlacerContext.HrLayer(50, 0, 0.5),
-                LeafPlacerContext.HrLayer(50, 0, 0.4),
-                LeafPlacerContext.HrLayer(50, 0, 0.3),
-                LeafPlacerContext.HrLayer(50, 0, 0.2),
-                LeafPlacerContext.HrLayer(50, 0, 0.1),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.9, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.8, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.7, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.6, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.5, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.4, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.3, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.2, connected = true),
+                LeafPlacerContext.HrLayer(50, 0, 100, 0.1, connected = true),
             )
             ctx.incSquare(trunkPos.above(2), 100, *layers1)
 //            val layers = arrayOf(
