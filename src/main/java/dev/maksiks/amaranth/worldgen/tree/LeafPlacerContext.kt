@@ -1,8 +1,11 @@
 package dev.maksiks.amaranth.worldgen.tree;
 
+import dev.maksiks.amaranth.Amaranth
+import net.minecraft.commands.arguments.coordinates.BlockPosArgument.blockPos
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component
+import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.level.Level
@@ -11,6 +14,7 @@ import net.minecraft.world.level.LevelWriter
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import java.util.function.Predicate
 import kotlin.Boolean
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -91,19 +95,41 @@ class LeafPlacerContext(
         val custom: ((LeafPlacerContext, BlockPos, Int, Int, Int) -> Unit)? = null
     )
 
-    enum class ShapeType {
+    data class Candidate(
+        val pos: BlockPos,
+        val dist: Int,
+        val x: Int,
+        val z: Int
+    )
+
+    private fun checkIfConnected(pos: BlockPos): Boolean {
+        for (dir in Direction.entries) {
+            if (level.isStateAtPosition(pos.relative(dir), Predicate( BlockTags.LEAVES::equals))) return true
+        }
+        return false
+    }
+
+    private enum class ShapeType {
         SQUARE,
-        DIAMOND
+        DIAMOND,
+//        DISC
+    }
+
+    private fun calculateDist(shapeType: ShapeType, x: Int, z: Int): Int {
+        return when (shapeType) {
+            ShapeType.SQUARE -> maxOf(abs(x), abs(z))
+            ShapeType.DIAMOND -> abs(x) + abs(z)
+        }
     }
 
     /**
      * Internal shape building math, use [incSquare], [incDiamond], [incDisc] instead.
      *
-     *  @see incSquare
-     *  @see incDiamond
-     *  @see incDisc
+     * @see incSquare
+     * @see incDiamond
+     * @see incDisc
      * */
-    fun incShape(
+    private fun incShape(
         pos: BlockPos,
         centerChance: Int = 100,
         shapeType: ShapeType,
@@ -111,12 +137,11 @@ class LeafPlacerContext(
     ) {
         val radius = layers.size
 
+        val candidates = mutableListOf<Candidate>()
+        // skeleton
         for (x in -radius..radius) {
             for (z in -radius..radius) {
-                val dist = when (shapeType) {
-                    ShapeType.SQUARE -> maxOf(abs(x), abs(z))
-                    ShapeType.DIAMOND -> abs(x) + abs(z)
-                }
+                val dist = calculateDist(shapeType, x, z)
                 // irrelevant for square
                 if (dist > radius) continue
 
@@ -166,13 +191,22 @@ class LeafPlacerContext(
                     }
                 }
 
-                if (random.nextInt(100) < chance) {
-                    if (dist == 0) {
-                        placeLeaf(placePos)
-                        continue
-                    }
-                    layers[dist - 1].custom?.invoke(this, placePos, x, z, dist) ?: placeLeaf(placePos)
+                if ((random.nextInt(100) < chance)) {
+                    candidates.add(Candidate(placePos, dist, x, z))
                 }
+            }
+
+            // placing
+            for (candidate in candidates) {
+                val pos = candidate.pos
+                val dist = candidate.dist
+                if (dist == 0) {
+                    placeLeaf(pos)
+                    continue
+                }
+                val layer = layers[dist - 1]
+                if (layer.connected && !checkIfConnected(pos)) continue
+                layers[dist - 1].custom?.invoke(this, pos, candidate.x, candidate.z, dist) ?: placeLeaf(pos)
             }
         }
     }
