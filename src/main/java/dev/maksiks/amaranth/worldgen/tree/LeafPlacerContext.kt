@@ -69,6 +69,32 @@ class LeafPlacerContext(
 
         val skip: Int get() = 1 shl bit
     }
+    enum class LayerPattern {
+        CORNERS,        // just the 4 corners
+        CARDINALS,      // just N, E, S, W
+        DIAGONALS,      // just NE, SE, SW, NW
+        STRIPE_NS,      // north-south stripe
+        STRIPE_EW,      // east-west stripe
+        CROSS,          // + shape
+        X_SHAPE,        // x shape
+        RING,           // outer edge only
+        INNER;          // everything except outer edge
+    }
+
+    fun matchesPattern(pattern: LayerPattern, x: Int, z: Int, dist: Int, maxDist: Int): Boolean {
+        return when (pattern) {
+            LayerPattern.CORNERS -> abs(x) == abs(z) && abs(x) != 0
+            LayerPattern.CARDINALS -> (x == 0 || z == 0) && !(x == 0 && z == 0)
+            LayerPattern.DIAGONALS -> abs(x) == abs(z) && x != 0
+            LayerPattern.STRIPE_NS -> x == 0
+            LayerPattern.STRIPE_EW -> z == 0
+            LayerPattern.CROSS -> x == 0 || z == 0
+            LayerPattern.X_SHAPE -> abs(x) == abs(z)
+            LayerPattern.RING -> dist == maxDist
+            LayerPattern.INNER -> dist < maxDist
+        }
+    }
+
 
     /**
      * A horizontal layer
@@ -109,6 +135,7 @@ class LeafPlacerContext(
         val cap: Int = 100,
         val centricFactor: Double? = null,
         val removeIfDecays: Boolean = false,
+        val pattern: LayerPattern? = null,
         val skipSector: Int? = null,
         val custom: ((LeafPlacerContext, BlockPos, Int, Int, Int) -> Unit)? = null
     )
@@ -222,6 +249,23 @@ class LeafPlacerContext(
                 }
 
                 if (dist > 0) {
+                    val layer = layers[dist - 1]
+
+                    // matching to pattern
+                    if (layer.pattern != null && !matchesPattern(layer.pattern, x, z, dist, radius)) {
+                        continue
+                    }
+
+                    // skipping sectors
+                    if (layer.skipSector != null) {
+                        val angle = atan2(z.toDouble(), x.toDouble())
+                        val normalizedAngle = if (angle < 0) angle + 2 * PI else angle
+                        val octant = ((normalizedAngle + PI / 2) / (PI / 4)).toInt() % 8
+                        val octantBit = 1 shl octant
+
+                        if ((layer.skipSector and octantBit) != 0) continue
+                    }
+
                     layerTotals[dist - 1]++
                 }
             }
@@ -255,13 +299,21 @@ class LeafPlacerContext(
                 } else {
                     val layer = layers[dist - 1]
 
+                    // matching to pattern
+                    if (layer.pattern != null && !matchesPattern(layer.pattern, x, z, dist, radius)) {
+                        continue
+                    }
+
+                    // skipping sectors
                     if (layer.skipSector != null) {
                         val angle = atan2(z.toDouble(), x.toDouble())
-                        val octant = ((angle + PI) / (PI / 4)).toInt() % 8
+                        val normalizedAngle = if (angle < 0) angle + 2 * PI else angle
+                        val octant = ((normalizedAngle + PI / 2) / (PI / 4)).toInt() % 8
                         val octantBit = 1 shl octant
 
                         if ((layer.skipSector and octantBit) != 0) continue
                     }
+
 
                     // calculating base chance with centricFactor
                     val baseChance = if (layer.centricFactor != null) {

@@ -161,8 +161,16 @@ class AlpineSpruceFoliagePlacer(
                 LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
                 LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
             )
-            ctx.incDisc(trunkPos.above(height + above1.height + 28), true, 100, *layers3)
-            ctx.incDisc(trunkPos.above(height + above1.height + 30), false, 100, *layers3)
+
+            val layers4 = Array(6) {
+                LeafPlacerContext.HrLayer(100, pattern = LeafPlacerContext.LayerPattern.CROSS)
+            }
+            val layers5 = Array(6) {
+                LeafPlacerContext.HrLayer(100, pattern = LeafPlacerContext.LayerPattern.DIAGONALS)
+            }
+            ctx.incSquare(trunkPos.above(height + above1.height + 32),  100, *layers4)
+            ctx.incSquare(trunkPos.above(height + above1.height + 34),  100, *layers5)
+            ctx.incSquare(trunkPos.above(height + above1.height + 36),  100, *layers3)
             // BELOW groups
         }
     }
