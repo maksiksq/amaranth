@@ -1,19 +1,18 @@
-package dev.maksiks.amaranth.worldgen.tree;
+package dev.maksiks.amaranth.worldgen.tree
 
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction;
+import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.tags.BlockTags
-import net.minecraft.util.RandomSource;
+import net.minecraft.util.RandomSource
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.LevelSimulatedReader
 import net.minecraft.world.level.LevelWriter
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
-import kotlin.Boolean
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -27,6 +26,22 @@ val diagonals: Array<Direction> = arrayOf(
     Direction.SOUTH, Direction.WEST
 )
 
+/**
+ *
+ * ### Config for foliage placement.
+ *
+ * The idea is using shapes with configurable placement chances to
+ * sculpt your tree layer per layer or en masse.
+ *
+ * @see square
+ * @see incSquare
+ * @see diamond
+ * @see incDiamond
+ * @see disc
+ * @see incDisc
+ * @see Sector
+ * @see LayerPattern
+ **/
 class LeafPlacerContext(
     var level: LevelSimulatedReader,
     var blockSetter: FoliagePlacer.FoliageSetter,
@@ -58,7 +73,9 @@ class LeafPlacerContext(
      * Safely removes a leaf block
      **/
     fun removeLeaf(removePos: BlockPos) {
-        if (isCurrentFoliage(removePos) || isLeaves(removePos)) {
+        if (isCurrentFoliage(removePos) || isLeaves(removePos)
+            && !level.isStateAtPosition(removePos) { it.isAir }
+        ) {
             blockSetter.set(removePos, Blocks.AIR.defaultBlockState())
         }
     }
@@ -69,6 +86,7 @@ class LeafPlacerContext(
 
         val skip: Int get() = 1 shl bit
     }
+
     enum class LayerPattern {
         CORNERS,        // just the 4 corners
         CARDINALS,      // just N, E, S, W
@@ -79,6 +97,8 @@ class LeafPlacerContext(
         X_SHAPE,        // x shape
         RING,           // outer edge only
         INNER;          // everything except outer edge
+
+        // RING and INNER can be achieved w hollow layers, they're more of a shorthand.
     }
 
     fun matchesPattern(pattern: LayerPattern, x: Int, z: Int, dist: Int, maxDist: Int): Boolean {
@@ -100,8 +120,8 @@ class LeafPlacerContext(
      * A horizontal layer
      *
      * @param chance chance of spawning a block in this layer, 1-100%.
-     * @param guaranteed guaranteed percentage of blocks to spawn in this layer, 1-100%.
-     * @param cap maximum percentage of blocks to spawn in this layer, 1-100%.
+     * @param guaranteed guaranteed percentage of blocks to spawn in this layer (accounted for other params), 1-100%.
+     * @param cap maximum percentage of blocks to spawn in this layer (accounted for other params), 1-100%.
      * @param centricFactor biases blocks to spawn near the middle/corners.
      * - 1.0 - higher chance towards the middle (axes);
      * - 0.5 normal;
@@ -113,23 +133,23 @@ class LeafPlacerContext(
      * Can be useful if you want to add custom conditions or place different blocks.
      *
      * E.g., place a lantern below every other block in horizontal layer 2:
-     * TODO: java examples for everything
+     * TODO: java examples for everything, simpler docs, and more docs
      * ```
-     * LeafPlacerContext.HrLayer(100, custom = { ctx, pos, x, z, dist ->
+     * LeafPlacerContext.HorizontalLayer(100, custom = { ctx, pos, x, z, dist ->
      *     if (dist == 2 && ctx.random.nextBoolean()) {
      *         ctx.placeLeaf(pos)
      *         ctx.blockSetter.set(pos.below(), Blocks.LANTERN.defaultBlockState())
      *     }
      * })
      * ```
-     * If you don't care about the horizontal layer and don't need any of the other [HrLayer] placement features,
+     * If you don't care about the horizontal layer and don't need any of the other [HorizontalLayer] placement features,
      * it's likely better to make a separate for loop to place blocks instead.
      *
      *  @see incSquare
      *  @see incDiamond
      *  @see incDisc
      * */
-    data class HrLayer(
+    data class HorizontalLayer(
         val chance: Int,
         val guaranteed: Int = 0,
         val cap: Int = 100,
@@ -220,7 +240,7 @@ class LeafPlacerContext(
         pos: BlockPos,
         centerChance: Int = 100,
         shapeType: ShapeType,
-        vararg layers: HrLayer,
+        vararg layers: HorizontalLayer,
         discSmoothInternal: Boolean = true
     ) {
         val radius = layers.size
@@ -322,12 +342,14 @@ class LeafPlacerContext(
                                 val layerEdgeDist = dist - (abs(x).coerceAtMost(abs(z)))
                                 1.0 - (layerEdgeDist.toDouble() / dist)
                             }
+
                             ShapeType.DIAMOND -> {
                                 1.0 - abs(abs(x) - abs(z)).toDouble() / dist
                             }
+
                             ShapeType.DISC -> {
                                 val angle = atan2(z.toDouble(), x.toDouble())
-                                val normalizedAngle = (angle % (kotlin.math.PI / 2)) / (kotlin.math.PI / 2)
+                                val normalizedAngle = (angle % (PI / 2)) / (PI / 2)
                                 1.0 - 2.0 * abs(normalizedAngle - 0.5)
                             }
                         }
@@ -441,7 +463,7 @@ class LeafPlacerContext(
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incSquare(pos, centerChance, *Array(radius) { HrLayer(chance) })
+        incSquare(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
     }
 
     /**
@@ -449,11 +471,11 @@ class LeafPlacerContext(
      *
      * For example (Java):
      * ```
-     * ctx.incSquare(pos, 100, new HrLayer(50), new HrLayer(25));
+     * ctx.incSquare(pos, 100, new HorizontalLayer(50), new HorizontalLayer(25));
      * ```
      * (Kotlin):
      * ```
-     * ctx.incSquare(pos, 100, HrLayer(50), HrLayer(25))
+     * ctx.incSquare(pos, 100, HorizontalLayer(50), HorizontalLayer(25))
      * ```
      * Would result in:
      *  ```
@@ -466,18 +488,18 @@ class LeafPlacerContext(
      *  Where the chances of spawning a block are:
      *  🏽 - 100%; 🏾 - 50%; 🏿 - 25%;
      *
-     *  @param pos the position from which placing starts. Usu. above/below trunk attachment position.
-     *  @param centerChance chance specifically for the center block,
-     *   separate from [layers] because all other [HrLayer] params don't really apply to it,
-     *   and you might want to alternate it quite often.
-     *  @param layers an array of [HrLayer], each defines settings for a single incremented outward layer,
-     *   and the size of the array defines the radius of the resulting shape.
+     * @param pos the position from which placing starts. Usu. above/below trunk attachment position.
+     * @param centerChance chance specifically for the center block,
+     *  separate from [layers] because all other [HorizontalLayer] params don't really apply to it,
+     *  and you might want to alternate it quite often.
+     * @param layers an array of [HorizontalLayer], each defines settings for a single incremented outward layer,
+     *  and the size of the array defines the radius of the resulting shape.
      *
-     *  @see square
-     *  @see incShape
+     * @see square
+     * @see incShape
      * */
-    fun incSquare(pos: BlockPos, centerChance: Int = 100, vararg layers: HrLayer) =
-        incShape(pos, centerChance, ShapeType.SQUARE, *layers);
+    fun incSquare(pos: BlockPos, centerChance: Int = 100, vararg layers: HorizontalLayer) =
+        incShape(pos, centerChance, ShapeType.SQUARE, *layers)
 
     /**
      * Makes a diamond shape of a certain radius at a certain position.
@@ -498,7 +520,7 @@ class LeafPlacerContext(
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incDiamond(pos, centerChance, *Array(radius) { HrLayer(chance) })
+        incDiamond(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
     }
 
     /**
@@ -506,11 +528,11 @@ class LeafPlacerContext(
      *
      * For example (Java):
      * ```
-     * ctx.incDiamond(pos, 100, new HrLayer(50), new HrLayer(25));
+     * ctx.incDiamond(pos, 100, new HorizontalLayer(50), new HorizontalLayer(25));
      * ```
      * (Kotlin):
      * ```
-     * ctx.incDiamond(pos, 100, HrLayer(50), HrLayer(25))
+     * ctx.incDiamond(pos, 100, HorizontalLayer(50), HorizontalLayer(25))
      * ```
      * Would result in:
      *  ```
@@ -525,16 +547,16 @@ class LeafPlacerContext(
      *
      *  @param pos the position from which placing starts. Usu. above/below trunk attachment position.
      *  @param centerChance chance specifically for the center block,
-     *   separate from [layers] because all other [HrLayer] params don't really apply to it,
+     *   separate from [layers] because all other [HorizontalLayer] params don't really apply to it,
      *   and you might want to alternate it quite often.
-     *  @param layers an array of [HrLayer], each defines settings for a single incremented outward layer,
+     *  @param layers an array of [HorizontalLayer], each defines settings for a single incremented outward layer,
      *   and the size of the array defines the radius of the resulting shape.
      *
      *  @see diamond
      *  @see incShape
      * */
-    fun incDiamond(pos: BlockPos, centerChance: Int = 100, vararg layers: HrLayer) =
-        incShape(pos, centerChance, ShapeType.DIAMOND, *layers);
+    fun incDiamond(pos: BlockPos, centerChance: Int = 100, vararg layers: HorizontalLayer) =
+        incShape(pos, centerChance, ShapeType.DIAMOND, *layers)
 
 
     /**
@@ -557,7 +579,7 @@ class LeafPlacerContext(
         centerChance: Int = 100,
         chance: Int = 100
     ) {
-        incDisc(pos, smooth, centerChance, *Array(radius) { HrLayer(chance) })
+        incDisc(pos, smooth, centerChance, *Array(radius) { HorizontalLayer(chance) })
     }
 
 
@@ -566,11 +588,11 @@ class LeafPlacerContext(
      *
      * For example (Java):
      * ```
-     * ctx.incDisc(pos, true, 100, new HrLayer(75), new HrLayer(50), new HrLayer(25));
+     * ctx.incDisc(pos, true, 100, new HorizontalLayer(75), new HorizontalLayer(50), new HorizontalLayer(25));
      * ```
      * (Kotlin):
      * ```
-     * ctx.incDisc(pos, true, 100, HrLayer(75), HrLayer(50), HrLayer(25))
+     * ctx.incDisc(pos, true, 100, HorizontalLayer(75), HorizontalLayer(50), HorizontalLayer(25))
      * ```
      * Would result in:
      *  ```
@@ -589,19 +611,14 @@ class LeafPlacerContext(
      * @param smooth removes the 1 block off the cardinal sides of the disc,
      *   makes it less like a star and more circular. Usually what you want.
      * @param centerChance chance specifically for the center block,
-     *   separate from [layers] because all other [HrLayer] params don't really apply to it,
+     *   separate from [layers] because all other [HorizontalLayer] params don't really apply to it,
      *   and you might want to alternate it quite often.
-     * @param layers an array of [HrLayer], each defines settings for a single incremented outward layer,
-     *   and the size of the array defines the radius of the resulting shape.
+     * @param layers an array of [HorizontalLayer], each defines settings for a single incremented outward layer.
+     *   The size of the array defines the radius of the resulting shape.
      *
      * @see disc
      * @see incShape
      * */
-    fun incDisc(pos: BlockPos, smooth: Boolean, centerChance: Int = 100, vararg layers: HrLayer) =
+    fun incDisc(pos: BlockPos, smooth: Boolean, centerChance: Int = 100, vararg layers: HorizontalLayer) =
         incShape(pos, centerChance, ShapeType.DISC, *layers, discSmoothInternal = smooth)
-
-    // TODO: splat (possible with current shapes?)
-    //  just corners! OR better CROSS!
-    //  maybe ellipses, stars and hexagons if i feel like it
-    //  very maybe gausssian blob
 }
