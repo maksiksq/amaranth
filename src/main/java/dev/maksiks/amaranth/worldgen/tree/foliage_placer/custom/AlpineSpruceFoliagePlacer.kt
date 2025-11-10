@@ -7,6 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
 import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
+import dev.maksiks.amaranth.worldgen.tree.ReferenceFoliage
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
 import net.minecraft.util.RandomSource
 import net.minecraft.util.valueproviders.IntProvider
@@ -55,7 +56,7 @@ class AlpineSpruceFoliagePlacer(
         offset: Int
     ) {
         val trunkPos = attachment.pos().below();
-        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, debug = true);
+        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, debug = false);
 
         data class Group(val height: Int)
 
@@ -171,6 +172,8 @@ class AlpineSpruceFoliagePlacer(
             ctx.incSquare(trunkPos.above(height + above1.height + 32),  100, *layers4)
             ctx.incSquare(trunkPos.above(height + above1.height + 34),  100, *layers5)
             ctx.incSquare(trunkPos.above(height + above1.height + 36),  100, *layers3)
+
+            ReferenceFoliage.createReferenceFoliage(ctx, trunkPos.above(height + above1.height + 40), true)
             // BELOW groups
         }
     }
