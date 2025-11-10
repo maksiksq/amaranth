@@ -130,6 +130,7 @@ class AlpineSpruceFoliagePlacer(
                 LeafPlacerContext.HrLayer(0, 0, 100, 0.3, removeIfDecays = false),
                 LeafPlacerContext.HrLayer(50, 0, 100, 0.2, removeIfDecays = false),
                 LeafPlacerContext.HrLayer(0, 0, 100, 0.1, removeIfDecays = false),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
             )
             ctx.incDisc(trunkPos.above(height + above1.height + 20), true, 100, *layers1)
 
@@ -146,6 +147,22 @@ class AlpineSpruceFoliagePlacer(
             )
             ctx.incDisc(trunkPos.above(height + above1.height + 24), true, 100, *layers2)
 
+
+            val layers3 = arrayOf(
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+                LeafPlacerContext.HrLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+            )
+            ctx.incDisc(trunkPos.above(height + above1.height + 28), true, 100, *layers3)
+            ctx.incDisc(trunkPos.above(height + above1.height + 30), false, 100, *layers3)
             // BELOW groups
         }
     }

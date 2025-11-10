@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import kotlin.Boolean
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.sqrt
@@ -62,6 +63,13 @@ class LeafPlacerContext(
         }
     }
 
+    enum class Sector(val bit: Int) {
+        N(0), NE(1), E(2), SE(3),
+        S(4), SW(5), W(6), NW(7);
+
+        val skip: Int get() = 1 shl bit
+    }
+
     /**
      * A horizontal layer
      *
@@ -88,7 +96,8 @@ class LeafPlacerContext(
      *     }
      * })
      * ```
-     * If you don't care about the horizontal layer, it's likely better to make a separate for loop instead.
+     * If you don't care about the horizontal layer and don't need any of the other [HrLayer] placement features,
+     * it's likely better to make a separate for loop to place blocks instead.
      *
      *  @see incSquare
      *  @see incDiamond
@@ -100,6 +109,7 @@ class LeafPlacerContext(
         val cap: Int = 100,
         val centricFactor: Double? = null,
         val removeIfDecays: Boolean = false,
+        val skipSector: Int? = null,
         val custom: ((LeafPlacerContext, BlockPos, Int, Int, Int) -> Unit)? = null
     )
 
@@ -244,6 +254,14 @@ class LeafPlacerContext(
                     }
                 } else {
                     val layer = layers[dist - 1]
+
+                    if (layer.skipSector != null) {
+                        val angle = atan2(z.toDouble(), x.toDouble())
+                        val octant = ((angle + PI) / (PI / 4)).toInt() % 8
+                        val octantBit = 1 shl octant
+
+                        if ((layer.skipSector and octantBit) != 0) continue
+                    }
 
                     // calculating base chance with centricFactor
                     val baseChance = if (layer.centricFactor != null) {
@@ -528,5 +546,10 @@ class LeafPlacerContext(
      * @see incShape
      * */
     fun incDisc(pos: BlockPos, smooth: Boolean, centerChance: Int = 100, vararg layers: HrLayer) =
-        incShape(pos, centerChance, ShapeType.DISC, *layers, discSmoothInternal = smooth);
+        incShape(pos, centerChance, ShapeType.DISC, *layers, discSmoothInternal = smooth)
+
+    // TODO: splat (possible with current shapes?)
+    //  just corners! OR better CROSS!
+    //  maybe ellipses, stars and hexagons if i feel like it
+    //  very maybe gausssian blob
 }
