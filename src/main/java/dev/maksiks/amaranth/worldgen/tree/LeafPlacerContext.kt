@@ -62,6 +62,16 @@ class LeafPlacerContext(
         ): LeafPlacerContext {
             return LeafPlacerContext(level, blockSetter, random, config, foliage, debug)
         }
+
+        @JvmStatic
+        val empty = HorizontalLayer(0)
+
+        @JvmStatic
+        val simpleGuaranteed = HorizontalLayer(100)
+
+        @JvmStatic
+        val skipCardinalSectors = Sector.N.skip or Sector.S.skip or Sector.E.skip or Sector.W.skip
+        val skipDiagonalSectors = Sector.NE.skip or Sector.NW.skip or Sector.SE.skip or Sector.SW.skip
     }
 
     fun placeLeaf(pos: BlockPos) {
@@ -86,6 +96,7 @@ class LeafPlacerContext(
 
         val skip: Int get() = 1 shl bit
     }
+
 
     enum class LayerPattern {
         CORNERS,        // just the 4 corners
@@ -237,13 +248,14 @@ class LeafPlacerContext(
      * @see incDisc
      * */
     private fun incShape(
-        pos: BlockPos,
+        positions: Iterable<BlockPos>,
         centerChance: Int = 100,
         shapeType: ShapeType,
         vararg layers: HorizontalLayer,
         discSmoothInternal: Boolean = true
     ) {
         val radius = layers.size
+        val basePos = positions.firstOrNull() ?: throw IllegalArgumentException("Empty position")
         val finalCandidates = mutableListOf<Candidate>()
 
         val layerCandidates = Array(radius) { mutableListOf<Candidate>() }
@@ -310,7 +322,7 @@ class LeafPlacerContext(
                     if (dist > radius) continue
                 }
 
-                val placePos = pos.offset(x, 0, z)
+                val placePos = basePos.offset(x, 0, z)
 
                 if (dist == 0) {
                     if (random.nextInt(100) < centerChance) {
@@ -403,6 +415,21 @@ class LeafPlacerContext(
             finalCandidates.addAll(selected)
         }
 
+        // replicating the positions for each copy
+        if (positions.count() > 1) {
+            val others = positions.drop(1)
+            val clones = mutableListOf<Candidate>()
+            for (candidate in finalCandidates) {
+                for (other in others) {
+                    val dx = other.x - basePos.x
+                    val dy = other.y - basePos.y
+                    val dz = other.z - basePos.z
+                    clones.add(candidate.copy(placePos = candidate.placePos.offset(dx, dy, dz)))
+                }
+            }
+            finalCandidates.addAll(clones)
+        }
+
         if (this.debug) {
             for (layerIndex in 0 until radius) {
                 val potentials = layerPotentialCandidates[layerIndex]
@@ -445,6 +472,17 @@ class LeafPlacerContext(
     }
 
     /**
+     * See docs for similar overload taking in multiple BlockPos.
+     * */
+    private fun incShape(
+        pos: BlockPos,
+        centerChance: Int = 100,
+        shapeType: ShapeType,
+        vararg layers: HorizontalLayer,
+        discSmoothInternal: Boolean = true
+    ) = incShape(listOf(pos), centerChance, shapeType, *layers, discSmoothInternal = discSmoothInternal)
+
+    /**
      * Makes a square of a certain radius at a certain position.
      *
      * @param radius radius.
@@ -458,13 +496,26 @@ class LeafPlacerContext(
      * @see incShape
      * */
     fun square(
-        radius: Int,
         pos: BlockPos,
+        radius: Int,
         centerChance: Int = 100,
         chance: Int = 100
-    ) {
-        incSquare(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
-    }
+    ) = incSquare(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
+
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun square(
+        positions: Iterable<BlockPos>,
+        radius: Int,
+        centerChance: Int = 100,
+        chance: Int = 100
+    ) = incSquare(positions, centerChance, *Array(radius) { HorizontalLayer(chance) })
+
 
     /**
      * Makes a square with incremental chances for each layer.
@@ -499,7 +550,17 @@ class LeafPlacerContext(
      * @see incShape
      * */
     fun incSquare(pos: BlockPos, centerChance: Int = 100, vararg layers: HorizontalLayer) =
-        incShape(pos, centerChance, ShapeType.SQUARE, *layers)
+        incShape(listOf(pos), centerChance, ShapeType.SQUARE, *layers)
+
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun incSquare(positions: Iterable<BlockPos>, centerChance: Int = 100, vararg layers: HorizontalLayer) =
+        incShape(positions, centerChance, ShapeType.SQUARE, *layers)
 
     /**
      * Makes a diamond shape of a certain radius at a certain position.
@@ -515,13 +576,25 @@ class LeafPlacerContext(
      * @see incShape
      * */
     fun diamond(
-        radius: Int,
         pos: BlockPos,
+        radius: Int,
         centerChance: Int = 100,
         chance: Int = 100
-    ) {
-        incDiamond(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
-    }
+    ) = incDiamond(pos, centerChance, *Array(radius) { HorizontalLayer(chance) })
+
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun diamond(
+        positions: Iterable<BlockPos>,
+        radius: Int,
+        centerChance: Int = 100,
+        chance: Int = 100
+    ) = incDiamond(positions, centerChance, *Array(radius) { HorizontalLayer(chance) })
 
     /**
      * Makes a diamond with incremental chances for each layer.
@@ -558,6 +631,16 @@ class LeafPlacerContext(
     fun incDiamond(pos: BlockPos, centerChance: Int = 100, vararg layers: HorizontalLayer) =
         incShape(pos, centerChance, ShapeType.DIAMOND, *layers)
 
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun incDiamond(positions: Iterable<BlockPos>, centerChance: Int = 100, vararg layers: HorizontalLayer) =
+        incShape(positions, centerChance, ShapeType.DIAMOND, *layers)
+
 
     /**
      * Makes a disc of a certain radius at a certain position.
@@ -573,14 +656,27 @@ class LeafPlacerContext(
      * @see incShape
      * */
     fun disc(
-        radius: Int,
-        smooth: Boolean = true,
         pos: BlockPos,
+        radius: Int,
         centerChance: Int = 100,
-        chance: Int = 100
-    ) {
-        incDisc(pos, smooth, centerChance, *Array(radius) { HorizontalLayer(chance) })
-    }
+        chance: Int = 100,
+        smooth: Boolean = true
+    ) = incDisc(pos, centerChance, smooth,*Array(radius) { HorizontalLayer(chance) })
+
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun disc(
+        positions: Iterable<BlockPos>,
+        radius: Int,
+        centerChance: Int = 100,
+        chance: Int = 100,
+        smooth: Boolean = true
+    ) = incDisc(positions, centerChance, smooth,*Array(radius) { HorizontalLayer(chance) })
 
 
     /**
@@ -619,6 +715,17 @@ class LeafPlacerContext(
      * @see disc
      * @see incShape
      * */
-    fun incDisc(pos: BlockPos, smooth: Boolean, centerChance: Int = 100, vararg layers: HorizontalLayer) =
+    fun incDisc(pos: BlockPos, centerChance: Int = 100, smooth: Boolean = true, vararg layers: HorizontalLayer) =
         incShape(pos, centerChance, ShapeType.DISC, *layers, discSmoothInternal = smooth)
+
+    /**
+     * See docs for similar overload taking in a single BlockPos.
+     *
+     * @param positions an iterable of positions, placement starts at the first position, chances only proc once,
+     *  then the shape is copied over to all other positions.
+     *  Useful for making shapes extend themselves without running the chances again.
+     * */
+    fun incDisc(positions: Iterable<BlockPos>, centerChance: Int = 100, smooth: Boolean = true, vararg layers: HorizontalLayer) =
+        incShape(positions, centerChance, ShapeType.DISC, *layers, discSmoothInternal = smooth)
+
 }

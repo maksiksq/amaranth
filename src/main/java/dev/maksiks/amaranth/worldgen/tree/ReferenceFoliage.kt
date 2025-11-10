@@ -28,11 +28,11 @@ class ReferenceFoliage {
             yOffset += spacing
 
             // disc (smooth)
-            ctx.incDisc(basePos.above(yOffset), smooth = true, 100, *Array(radius) { HorizontalLayer(100) })
+            ctx.incDisc(basePos.above(yOffset), 100, smooth = true, *Array(radius) { HorizontalLayer(100) })
             yOffset += spacing
 
             // disc (non-smooth)
-            ctx.incDisc(basePos.above(yOffset), smooth = false, 100, *Array(radius) { HorizontalLayer(100) })
+            ctx.incDisc(basePos.above(yOffset), 100, smooth = false, *Array(radius) { HorizontalLayer(100) })
             yOffset += spacing
 
             yOffset += 1
@@ -46,7 +46,7 @@ class ReferenceFoliage {
 
             // pie charts i mean sectors
             Sector.entries.forEach { sector ->
-                ctx.incDisc(basePos.above(yOffset), true, 100, *Array(radius) { HorizontalLayer(100, skipSector = sector.skip) })
+                ctx.incDisc(basePos.above(yOffset), 100, true, *Array(radius) { HorizontalLayer(100, skipSector = sector.skip) })
                 yOffset += spacing
             }
 
@@ -164,7 +164,7 @@ class ReferenceFoliage {
 
             // disc with corners only
             ctx.incDisc(
-                basePos.above(yOffset), smooth = true, 100,
+                basePos.above(yOffset), 100, smooth = true,
                 *Array(radius) { HorizontalLayer(100, pattern = LayerPattern.CORNERS) })
             yOffset += spacing
 

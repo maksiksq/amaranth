@@ -6,13 +6,17 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
+import dev.maksiks.amaranth.Amaranth
 import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
-import dev.maksiks.amaranth.worldgen.tree.ReferenceFoliage
+import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.empty
+import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.simpleGuaranteed
+import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.skipDiagonalSectors
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
+import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
 import net.minecraft.util.valueproviders.IntProvider
 import net.minecraft.world.level.LevelSimulatedReader
-import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType
@@ -58,125 +62,131 @@ class AlpineSpruceFoliagePlacer(
         val trunkPos = attachment.pos().below();
         val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, debug = false);
 
-        data class Group(val height: Int)
-
-        // ABOVE groups
-        val above1 = Group(3).apply {
-            // core
-            for (i in 1 until height) {
-                ctx.placeLeaf(trunkPos.above(i + height))
-            }
-
-            ctx.square(2, trunkPos.above(1))
-            val layers1 = arrayOf(
-                LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(100, custom = { ctx, pos, x, z, dist ->
-                    if (dist == 2 && ctx.random.nextBoolean()) {
-                        ctx.placeLeaf(pos)
-                        ctx.blockSetter.set(pos.below(), Blocks.LANTERN.defaultBlockState())
-                    }
-                }),
-                LeafPlacerContext.HorizontalLayer(50, 30, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(30, 30, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.9, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.8, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.7, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.6, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.5, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.4, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.3, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.2, removeIfDecays = true),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.1, removeIfDecays = true),
-            )
-            ctx.incSquare(trunkPos.above(2), 100, *layers1)
-//            val layers = arrayOf(
-//                LeafPlacerContext.HorizontalLayer(100),
-//                LeafPlacerContext.HorizontalLayer(50),
-//                LeafPlacerContext.HorizontalLayer(25),
-//            )
-//            ctx.incSquare(trunkPos.above(2), 100, *layers)
-
-//            ctx.incSquare(trunkPos.above(2), 100, 50, 100);
-//            ctx.incSquare(trunkPos.above(3), 100, 100, 75, 50);
+        fun at(height: Int): BlockPos = trunkPos.above(height)
+        var curY = 0;
+        fun bump() {
+            curY += 1
         }
 
-        // 2-3 above all
-        val lance = Group(random.nextInt(2) + 2).apply {
-            for (i in 1 until height) {
-                ctx.placeLeaf(trunkPos.above(i + above1.height))
-            }
-            ctx.incDisc(trunkPos.above(height + above1.height + 5), false, 100, LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30))
-            ctx.incDisc(trunkPos.above(height + above1.height + 6), true, 100, LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30), LeafPlacerContext.HorizontalLayer(100, 30))
+        fun lower() {
+            curY -= 1
+        }
 
-            ctx.incDiamond(trunkPos.above(height + above1.height + 8), 100, LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true), LeafPlacerContext.HorizontalLayer(50, 30, removeIfDecays = true), LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true))
-            ctx.incDiamond(trunkPos.below(1), 100, LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HorizontalLayer(70, 30, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HorizontalLayer(50, 60, removeIfDecays = true, centricFactor = 0.9), LeafPlacerContext.HorizontalLayer(30, 30, removeIfDecays = true, centricFactor = 0.9) )
-            ctx.incDiamond(trunkPos.above(height + above1.height + 13), 100, LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HorizontalLayer(70, 30, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HorizontalLayer(50, 60, removeIfDecays = true, centricFactor = 0.1), LeafPlacerContext.HorizontalLayer(30, 30, removeIfDecays = true, centricFactor = 0.1) )
-            ctx.incDisc(trunkPos.above(height + above1.height + 14), true, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
-            ctx.incDisc(trunkPos.above(height + above1.height + 15), false, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
-            ctx.incDisc(trunkPos.above(height + above1.height + 16), true, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
-            ctx.incDisc(trunkPos.above(height + above1.height + 17), false, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
-            ctx.incDisc(trunkPos.above(height + above1.height + 18), true, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
-            ctx.incDisc(trunkPos.above(height + above1.height + 19), false, 100, LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100), LeafPlacerContext.HorizontalLayer(100))
+        // ABOVE
+        run {
+            bump()
+            ctx.disc(at(curY), 1)
 
-            val layers1 = arrayOf(
-                LeafPlacerContext.HorizontalLayer(100, 30, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(50, 30, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(30, 30, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(0, 0, 100, 0.9, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.8, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(0, 0, 100, 0.7, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.6, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(0, 0, 100, 0.5, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.4, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(0, 0, 100, 0.3, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(50, 0, 100, 0.2, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(0, 0, 100, 0.1, removeIfDecays = false),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+            bump()
+            bump()
+            ctx.incDisc(
+                listOf(at(curY - 1)), 100, true,
+                LeafPlacerContext.HorizontalLayer(25, 0, 25)
             )
-            ctx.incDisc(trunkPos.above(height + above1.height + 20), true, 100, *layers1)
-
-
-            val layers2 = arrayOf(
-                LeafPlacerContext.HorizontalLayer(10, 90, 100),
-                LeafPlacerContext.HorizontalLayer(10, 90, 100),
-                LeafPlacerContext.HorizontalLayer(10, 90, 100),
-                LeafPlacerContext.HorizontalLayer(10, 90, 100),
-                LeafPlacerContext.HorizontalLayer(10, 90, 100),
-                LeafPlacerContext.HorizontalLayer(90, 0, 40),
-                LeafPlacerContext.HorizontalLayer(90, 0, 40),
-                LeafPlacerContext.HorizontalLayer(90, 0, 40),
-            )
-            ctx.incDisc(trunkPos.above(height + above1.height + 24), true, 100, *layers2)
-
-
-            val layers3 = arrayOf(
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
-                LeafPlacerContext.HorizontalLayer(100, skipSector = LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.E.skip),
+            ctx.incDisc(
+                listOf(at(curY - 1), at(curY)), 100, true,
+                LeafPlacerContext.HorizontalLayer(100, 25, 25)
             )
 
-            val layers4 = Array(6) {
-                LeafPlacerContext.HorizontalLayer(100, pattern = LeafPlacerContext.LayerPattern.CROSS)
+            repeat(random.nextInt(2) + 2) {
+                bump()
+                ctx.placeLeaf(at(curY));
             }
-            val layers5 = Array(6) {
-                LeafPlacerContext.HorizontalLayer(100, pattern = LeafPlacerContext.LayerPattern.DIAGONALS)
+        }
+        // BELOW
+        run {
+            curY = 1
+            run {
+                val height = when (maxFreeTreeHeight >= 12
+                        && random.nextBoolean()) {
+                    true -> 4
+                    false -> 3
+                }
+                repeat(height) {
+                    lower()
+                    ctx.incDisc(
+                        at(curY), 0, true,
+                        simpleGuaranteed
+                    )
+                    ctx.incSquare(
+                        at(curY), 0,
+                        LeafPlacerContext.HorizontalLayer(25, 0, 50, null, true, LeafPlacerContext.LayerPattern.X_SHAPE)
+                    )
+                }
             }
-            ctx.incSquare(trunkPos.above(height + above1.height + 32),  100, *layers4)
-            ctx.incSquare(trunkPos.above(height + above1.height + 34),  100, *layers5)
-            ctx.incSquare(trunkPos.above(height + above1.height + 36),  100, *layers3)
 
-            ReferenceFoliage.createReferenceFoliage(ctx, trunkPos.above(height + above1.height + 40), false)
-            // BELOW groups
+            lower()
+            ctx.disc(at(curY), 1)
+            ctx.incSquare(
+                at(curY), 0,
+                LeafPlacerContext.HorizontalLayer(50, 50, 75, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+            )
+            val keepNSOrNW = random.nextBoolean()
+            run {
+                val offset = when (random.nextBoolean()) {
+                    false -> -2
+                    true -> 2
+                }
+                val offsetDir = when (keepNSOrNW) {
+                    true -> Direction.NORTH
+                    false -> Direction.EAST
+                }
+                ctx.placeLeaf(at(curY).relative(offsetDir, offset))
+            }
+
+            lower()
+            ctx.disc(at(curY), 1)
+            ctx.incSquare(
+                at(curY), 0,
+                LeafPlacerContext.HorizontalLayer(50, 50, 100, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+            )
+            val cardinalAlternatingLayer: LeafPlacerContext.HorizontalLayer = when (keepNSOrNW) {
+                true -> LeafPlacerContext.HorizontalLayer(
+                    100, 50, 100, null, true, null,
+                    LeafPlacerContext.Sector.E.skip or LeafPlacerContext.Sector.W.skip or skipDiagonalSectors
+                )
+
+                false -> LeafPlacerContext.HorizontalLayer(
+                    100, 50, 100, null, true, null,
+                    LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.S.skip or skipDiagonalSectors
+                )
+            }
+            ctx.incDiamond(at(curY), 0, empty, cardinalAlternatingLayer)
+
+            repeat(2) {
+                lower()
+                val guaranteedCrossLayer =
+                    LeafPlacerContext.HorizontalLayer(100, 0, 100, null, false, LeafPlacerContext.LayerPattern.CROSS);
+                ctx.incDiamond(
+                    at(curY), 0,
+                    guaranteedCrossLayer,
+                    guaranteedCrossLayer
+                )
+                ctx.incSquare(
+                    at(curY), 0,
+                    LeafPlacerContext.HorizontalLayer(75, 75, 100, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                )
+            }
+
+            lower()
+            ctx.incDisc(
+                at(curY), 0, true,
+                *Array(2) { simpleGuaranteed }
+            )
+
+            lower()
+            ctx.incDisc(
+                at(curY), 0, true,
+                *Array(2) { simpleGuaranteed },
+                LeafPlacerContext.HorizontalLayer(50, 80, 100)
+            )
+
+            lower()
+            ctx.disc(at(curY), 1)
         }
     }
+
+    // TODO: more variations
 
     override fun foliageHeight(random: RandomSource, height: Int, config: TreeConfiguration): Int =
         this.height
