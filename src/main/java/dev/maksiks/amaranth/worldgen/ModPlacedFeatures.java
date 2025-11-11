@@ -5,6 +5,7 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
@@ -64,6 +65,9 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LUPINE_FILL_PLACED_KEY = registerKey("lupine_fill_placed");
 
     public static final ResourceKey<PlacedFeature> ALPINE_SPRUCE_PLACED_KEY = registerKey("alpine_placed");
+    public static final ResourceKey<PlacedFeature> TREES_TAIGA_RARER_PLACED_KEY = registerKey("trees_taiga_rarer_placed");
+
+    public static final ResourceKey<PlacedFeature> OCCASIONAL_BERRY_BUSH_PLACED_KEY = registerKey("occasional_berry_bushes_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -259,8 +263,24 @@ public class ModPlacedFeatures {
 
         register(context, ALPINE_SPRUCE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALPINE_SPRUCE_KEY),
                 // 1 / chance has to be integer mojang why
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(7, 0.1F, 0),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 0),
                         ModBlocks.ALPINE_SPRUCE_SAPLING.get()));
+
+        register(context, TREES_TAIGA_RARER_PLACED_KEY, configuredFeatures.getOrThrow(VegetationFeatures.TREES_TAIGA),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.5F, 1)));
+
+        register(
+                context,
+                OCCASIONAL_BERRY_BUSH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OCCASIONAL_BERRY_BUSH_KEY),
+                List.of(
+                        CountPlacement.of(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

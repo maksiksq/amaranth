@@ -23,6 +23,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PinkPetalsBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -87,6 +88,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> LUPINE_FILL_KEY = registerKey("lupine_fill");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> ALPINE_SPRUCE_KEY = registerKey("alpine");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> OCCASIONAL_BERRY_BUSH_KEY = registerKey("occasional_berry_bushes");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -565,6 +568,23 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.SPRUCE_LEAVES),
                         new AlpineSpruceFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        register(
+                context,
+                OCCASIONAL_BERRY_BUSH_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        1,
+                        0,
+                        0,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.SWEET_BERRY_BUSH.defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
+                                )
+                        )
+                )
         );
     }
 

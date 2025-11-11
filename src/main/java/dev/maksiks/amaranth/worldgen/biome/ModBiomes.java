@@ -43,6 +43,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> MUSHLAND = register("mushland");
     public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
     public static final ResourceKey<Biome> LUPINE_MEADOW = register("lupine_meadow");
+    public static final ResourceKey<Biome> ALPINE_RANGE = register("alpine_range");
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -79,6 +80,7 @@ public class ModBiomes {
         context.register(MUSHLAND, mushland(context));
         context.register(WITCHY_WOODS, witchyWoods(context));
         context.register(LUPINE_MEADOW, lupineMeadow(context));
+        context.register(ALPINE_RANGE, alpineRange(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
@@ -906,6 +908,55 @@ public class ModBiomes {
                         .grassColorOverride(0x97CC45)
                         .foliageColorOverride(0xaea42a)
                         .fogColor(12638463)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+
+    // witchy
+    public static Biome alpineRange(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 8, 4, 4))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 4, 2, 3))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FOX, 8, 2, 4));
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // friendly reminder to not cause feature order cycle
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addFerns(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.OCCASIONAL_BERRY_BUSH_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALPINE_SPRUCE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.TREES_TAIGA_RARER_PLACED_KEY);
+
+        // TODO: rocks
+        // TODO: maybe make trees shorter
+        // TODO: choose if to generate in slope or in plateau
+
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.25f)
+                .temperature(0.8F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0x86b783)
+                        .fogColor(12638463)
+                        .backgroundMusic(NORMAL_MUSIC)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();

@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
+import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.worldgen.biome.selector.ModBiomeSelectors;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -52,7 +53,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
         if (regionId == null) return pair;
 
         // RegionUtils.getVanillaParameterPoints() for something, maybe?
-
+        Amaranth.LOGGER.info("Biomee: " + biome.location());
         if (regionId == 1) {
             // replacing swamps with mushlands in region 1
             if (biome.equals(Biomes.SWAMP)) {
@@ -103,7 +104,14 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
     }
 
     @Override
-    public ResourceKey<Biome> pickSlopeBiome(int temp, int humidity, Climate.Parameter weirdness) {
-        return super.pickSlopeBiome(temp, humidity, weirdness);
+    public ResourceKey<Biome> pickSlopeBiome(int temperature, int humidity, Climate.Parameter weirdness) {
+        if (regionId == 1) {
+            if (temperature > 3) {
+                return this.pickPlateauBiome(temperature, humidity, weirdness);
+            } else {
+                return ModBiomes.ALPINE_RANGE;
+            }
+        }
+        return super.pickSlopeBiome(temperature, humidity, weirdness);
     }
 }
