@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
+import dev.maksiks.amaranth.Amaranth
 import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
 import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.empty
 import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.simpleGuaranteed
@@ -265,13 +266,10 @@ class AlpineSpruceFoliagePlacer(
             run {
                 curY = 1
 
+                Amaranth.LOGGER.info("Smol variant $maxFreeTreeHeight")
+
                 run {
-                    val height = when (random.nextBoolean()
-                            && maxFreeTreeHeight != 9) {
-                        true -> 6
-                        false -> 5
-                    }
-                    repeat(height) {
+                    repeat(5) {
                         lower()
                         ctx.incDisc(
                             at(curY), 0, true,
