@@ -25,4 +25,6 @@ public class ModTrunkPlacerTypes{
             TRUNK_PLACER_TYPES.register("modified_forking_trunk_placer", () -> new TrunkPlacerType<>(ModififedForkingTrunkPlacer.CODEC));
    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<WitchyTrunkPlacer>> WITCHY_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("witchy_trunk_placer", () -> new TrunkPlacerType<>(WitchyTrunkPlacer.CODEC));
+   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<AlpineSpruceTrunkPlacer>> ALPINE_SPRUCE_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("alpine_spruce_placer", () -> new TrunkPlacerType<>(AlpineSpruceTrunkPlacer.CODEC));
 }

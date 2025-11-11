@@ -561,7 +561,7 @@ public class ModConfiguredFeatures {
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.SPRUCE_LOG),
-                        new StraightTrunkPlacer(11, 1, 1),
+                        new AlpineSpruceTrunkPlacer(12, 1, 1),
                         BlockStateProvider.simple(Blocks.SPRUCE_LEAVES),
                         new AlpineSpruceFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
