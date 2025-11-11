@@ -66,8 +66,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> ALPINE_SPRUCE_PLACED_KEY = registerKey("alpine_placed");
     public static final ResourceKey<PlacedFeature> TREES_TAIGA_RARER_PLACED_KEY = registerKey("trees_taiga_rarer_placed");
-
     public static final ResourceKey<PlacedFeature> OCCASIONAL_BERRY_BUSH_PLACED_KEY = registerKey("occasional_berry_bushes_placed");
+    public static final ResourceKey<PlacedFeature> BOULDER_PLACED_KEY = registerKey("boulder_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -279,6 +279,19 @@ public class ModPlacedFeatures {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()
+                )
+        );
+
+        register(
+                context,
+                BOULDER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.BOULDER_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome(),
+                        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
                 )
         );
     }

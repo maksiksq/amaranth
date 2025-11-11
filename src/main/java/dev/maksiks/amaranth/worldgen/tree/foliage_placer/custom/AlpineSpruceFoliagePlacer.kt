@@ -233,10 +233,14 @@ class AlpineSpruceFoliagePlacer(
                 if (variant == Variant.NORMAL) {
                     ctx.disc(at(curY), 1)
                 }
-                if (variant == Variant.ROUND && random.nextBoolean()) {
-                    ctx.square(at(curY), 1)
-                    lower()
-                    ctx.disc(at(curY), 1)
+                if (variant == Variant.ROUND) {
+                    if (random.nextBoolean()) {
+                        ctx.square(at(curY), 1)
+                        lower()
+                        ctx.disc(at(curY), 1)
+                    } else {
+                        ctx.disc(at(curY), 1)
+                    }
                 }
             }
         } else {

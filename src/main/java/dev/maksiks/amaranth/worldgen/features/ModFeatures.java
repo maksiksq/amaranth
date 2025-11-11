@@ -30,4 +30,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MUSH_REEDS_FEATURE =
             FEATURES.register("mush_reeds",
                     () -> new MushReedsWaterFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDER_FEATURE =
+            FEATURES.register("boulder",
+                    () -> new BoulderFeature(NoneFeatureConfiguration.CODEC));
 }

@@ -88,8 +88,8 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> LUPINE_FILL_KEY = registerKey("lupine_fill");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> ALPINE_SPRUCE_KEY = registerKey("alpine");
-
     public static ResourceKey<ConfiguredFeature<?, ?>> OCCASIONAL_BERRY_BUSH_KEY = registerKey("occasional_berry_bushes");
+    public static ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder_key");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -586,6 +586,10 @@ public class ModConfiguredFeatures {
                         )
                 )
         );
+
+        register(context, BOULDER_KEY,
+                ModFeatures.BOULDER_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
