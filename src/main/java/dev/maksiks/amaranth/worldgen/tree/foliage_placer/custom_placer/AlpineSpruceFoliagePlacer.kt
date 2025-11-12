@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.foliage_placer.custom;
+package dev.maksiks.amaranth.worldgen.tree.foliage_placer.custom_placer;
 
 import com.mojang.datafixers.Products.P3
 import com.mojang.serialization.Codec

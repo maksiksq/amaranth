@@ -435,6 +435,15 @@
 - [ ] that one tree from test world
 ----------------------
 
+### ashen peaks
+----------------------
+- [ ] test world blocks surface rules
+- [ ] dark souls campfire vibes and like that one area where theres the deon king golden and gilden adn shit
+- [ ] silt block, looks like mud sorta but not muddy at all ; creates particles if placed in gen (not when placed by player tho)
+- [ ] mayb some lava to make it vulcanic if that works tho ; only above certain ys
+- [ ] something more detail? just not sure what
+----------------------
+
 
 tutorial:
 - for swamps vanilla doesnt use the arrays

@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom;
+package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom_placer;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;

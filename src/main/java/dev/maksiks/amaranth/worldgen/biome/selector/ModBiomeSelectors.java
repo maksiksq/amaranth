@@ -127,6 +127,7 @@ public class ModBiomeSelectors {
             List.of(P, P, P, P, P)
     );
 
+    // in the builder
     public static final List<List<ResourceKey<Biome>>> MOD_PEAK_BIOMES = ModBiomeSelectorUtils.create("peak_biomes/mod_peak_biomes", "",
             List.of(P, P, P, P, P),
             List.of(P, P, P, P, P),

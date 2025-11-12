@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom;
+package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom_placer;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;
@@ -14,7 +14,6 @@ import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 

@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.worldgen.biome;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -17,6 +18,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import terrablender.api.ParameterUtils;
 
 import javax.annotation.Nullable;
@@ -44,6 +47,13 @@ public class ModBiomes {
     public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
     public static final ResourceKey<Biome> LUPINE_MEADOW = register("lupine_meadow");
     public static final ResourceKey<Biome> ALPINE_RANGE = register("alpine_range");
+    public static final ResourceKey<Biome> FABULOUS_FALLS = register("fabulous_falls");
+    // TODO: gen, make it make little plateaus and each plateau that isn't connected to the last one can make a waterfall to the other or even just below
+    // find slope, extrude it to the side of air, go down, repeat until out of biome
+    // also aliums + phlox
+    public static final ResourceKey<Biome> ASHEN_PEAKS = register("ashen_peaks");
+    public static final ResourceKey<Biome> SATISFOREST = register("satisforest");
+    // oh i wonder what is this a reference too
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -81,6 +91,7 @@ public class ModBiomes {
         context.register(WITCHY_WOODS, witchyWoods(context));
         context.register(LUPINE_MEADOW, lupineMeadow(context));
         context.register(ALPINE_RANGE, alpineRange(context));
+        context.register(ASHEN_PEAKS, ashenPeaks(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
@@ -914,7 +925,7 @@ public class ModBiomes {
     }
 
 
-    // witchy
+    // alpine
     public static Biome alpineRange(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -941,10 +952,6 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALPINE_SPRUCE_PLACED_KEY);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.TREES_TAIGA_RARER_PLACED_KEY);
 
-        // TODO: rocks
-        // TODO: maybe make trees shorter
-        // TODO: choose if to generate in slope or in plateau
-
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
 
         return new Biome.BiomeBuilder()
@@ -960,6 +967,74 @@ public class ModBiomes {
                         .grassColorOverride(0x86b783)
                         .fogColor(12638463)
                         .backgroundMusic(NORMAL_MUSIC)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // ashen
+    // LINKED WITH volcanic ashen peaks, edit both!
+    public static Biome ashenPeaks(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // friendly reminder to not cause feature order cycle
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
+        BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_STONY_PEAKS);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(1.0F)
+                .downfall(0.3f)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .fogColor(12638463)
+                        .backgroundMusic(music)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // volcanic ashen
+    // LINKED WITH ashen peaks, edit both!
+    public static Biome volcanicAshenPeaks(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // friendly reminder to not cause feature order cycle
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
+        BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_STONY_PEAKS);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(1.0F)
+                .downfall(0.3f)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .fogColor(12638463)
+                        .backgroundMusic(music)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();

@@ -1,4 +1,4 @@
-package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom;
+package dev.maksiks.amaranth.worldgen.tree.trunk_placer.custom_placer;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
