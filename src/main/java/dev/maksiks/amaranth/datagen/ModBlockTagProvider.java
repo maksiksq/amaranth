@@ -140,5 +140,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.LUPINE.get());
 
         // alpine
-        this.tag(BlockTags.SAPLINGS).add(ModBlocks.ALPINE_SPRUCE_SAPLING.get()); }
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.ALPINE_SPRUCE_SAPLING.get());
+
+        // ashen
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(ModBlocks.VOLCANIC_ASH.get());
+    }
 }

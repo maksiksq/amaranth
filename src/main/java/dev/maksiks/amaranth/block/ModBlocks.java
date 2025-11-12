@@ -8,6 +8,7 @@ import dev.maksiks.amaranth.block.custom.leaves.SilverBirchLeavesBlock;
 import dev.maksiks.amaranth.block.custom.leaves.WisteriaLeavesBlock;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -287,6 +288,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ALPINE_SPRUCE_SAPLING = registerBlock("alpine_spruce_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ALPINE_SPRUCE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
+    // ashen
+    public static final DeferredBlock<Block> VOLCANIC_ASH = registerBlock("volcanic_ash",
+            () -> new ColoredFallingBlock(
+                    new ColorRGBA(2170911),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -196,6 +196,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // alpine
         this.dropSelf(ModBlocks.ALPINE_SPRUCE_SAPLING.get());
+
+        // ashen
+        this.dropSelf(ModBlocks.VOLCANIC_ASH.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

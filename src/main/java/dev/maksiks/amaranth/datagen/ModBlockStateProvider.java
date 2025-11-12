@@ -192,6 +192,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // alpine
         twoPlanesCutoutBlock(ModBlocks.ALPINE_SPRUCE_SAPLING);
+
+        // ashen
+        blockWithItem(ModBlocks.VOLCANIC_ASH);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

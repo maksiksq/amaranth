@@ -1,5 +1,6 @@
 package dev.maksiks.amaranth.worldgen.biome.surface;
 
+import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import dev.maksiks.amaranth.worldgen.noise.ModNoises;
 import net.minecraft.core.BlockPos;
@@ -47,6 +48,8 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource GOLD_BLOCK = makeStateRule(Blocks.GOLD_BLOCK);
     private static final SurfaceRules.RuleSource TUFF = makeStateRule(Blocks.TUFF);
     private static final SurfaceRules.RuleSource LAVA = makeStateRule(Blocks.LAVA);
+    private static final SurfaceRules.RuleSource VOLCANIC_ASH = makeStateRule(ModBlocks.VOLCANIC_ASH.get());
+
     // silt
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
@@ -361,6 +364,17 @@ public class ModSurfaceRules {
         //
         SurfaceRules.ConditionSource isAshen = SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS, ModBiomes.VOLCANIC_ASHEN_PEAKS);
 
+        // ash spread
+        rules.add(SurfaceRules.ifTrue(
+                isAshen,
+                safeSurfaceFloorRule(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.noiseCondition(SILVER_NOISE, -0.20D, 0.20D),
+                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, VOLCANIC_ASH)
+                        )
+                )
+        ));
+
         // lava at volcanic peaks
         // if the mountain is very high it's likely the lavafall won't look ugly
         rules.add(SurfaceRules.ifTrue(
@@ -478,18 +492,6 @@ public class ModSurfaceRules {
                         )
                 )
         ));
-
-        // silt spread
-        rules.add(SurfaceRules.ifTrue(
-                isAshen,
-                safeSurfaceFloorRule(
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.noiseCondition(SILVER_NOISE, -0.06D, 0.06D),
-                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, MUD)
-                        )
-                )
-        ));
-        // TODO: silt
 
         // upper smooth basalt fill dithered with tuff a bit
         rules.add(
