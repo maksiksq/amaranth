@@ -123,6 +123,13 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
                 return ModBiomes.ALPINE_RANGE;
             }
         }
+        if (regionId == 0) {
+            if (temperature >= 3) {
+                return this.pickPlateauBiome(temperature, humidity, weirdness);
+            } else {
+                return humidity <= 1 ? Biomes.SNOWY_SLOPES : ModBiomes.STEPPED_SPRINGS;
+            }
+        }
         return super.pickSlopeBiome(temperature, humidity, weirdness);
     }
 }

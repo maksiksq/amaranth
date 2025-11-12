@@ -3,7 +3,6 @@ package dev.maksiks.amaranth.worldgen.biome;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.worldgen.ModPlacedFeatures;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -18,8 +17,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import terrablender.api.ParameterUtils;
 
 import javax.annotation.Nullable;
@@ -47,7 +44,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
     public static final ResourceKey<Biome> LUPINE_MEADOW = register("lupine_meadow");
     public static final ResourceKey<Biome> ALPINE_RANGE = register("alpine_range");
-    public static final ResourceKey<Biome> FABULOUS_FALLS = register("fabulous_falls");
+    public static final ResourceKey<Biome> STEPPED_SPRINGS = register("stepped_springs");
     // TODO: gen, make it make little plateaus and each plateau that isn't connected to the last one can make a waterfall to the other or even just below
     // find slope, extrude it to the side of air, go down, repeat until out of biome
     // also aliums + phlox
@@ -1037,6 +1034,48 @@ public class ModBiomes {
                 .hasPrecipitation(true)
                 .temperature(1.0F)
                 .downfall(0.3f)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .fogColor(12638463)
+                        .backgroundMusic(music)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+    // stepped springs
+    public static Biome steppedSprings(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        spawnBuilder
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 4, 2, 3))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.GOAT, 2, 1, 2));
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // friendly reminder to not cause feature order cycle
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        // leaf bushes
+        // phlox
+        // alliums
+
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_MEADOW);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.5f)
+                .temperature(0.8F)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
