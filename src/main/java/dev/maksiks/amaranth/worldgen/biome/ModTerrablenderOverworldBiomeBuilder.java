@@ -103,7 +103,12 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
             return super.pickPeakBiome(temperature, humidity, weirdness);
         } else {
             if (regionId == 0) {
-                return temperature == 3 ? ModBiomes.ASHEN_PEAKS : this.pickBadlandsBiome(humidity, weirdness);
+                // no idea if it varies so just using an average
+                if (Climate.unquantizeCoord((weirdness.min() + weirdness.max()) / 2L) > 0) {
+                    return temperature == 3 ? ModBiomes.VOLCANIC_ASHEN_PEAKS : this.pickBadlandsBiome(humidity, weirdness);
+                } else {
+                    return temperature == 3 ? ModBiomes.ASHEN_PEAKS : this.pickBadlandsBiome(humidity, weirdness);
+                }
             }
             return super.pickPeakBiome(temperature, humidity, weirdness);
         }

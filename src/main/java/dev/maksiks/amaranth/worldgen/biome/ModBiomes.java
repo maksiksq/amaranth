@@ -52,6 +52,7 @@ public class ModBiomes {
     // find slope, extrude it to the side of air, go down, repeat until out of biome
     // also aliums + phlox
     public static final ResourceKey<Biome> ASHEN_PEAKS = register("ashen_peaks");
+    public static final ResourceKey<Biome> VOLCANIC_ASHEN_PEAKS = register("volcanic_ashen_peaks");
     public static final ResourceKey<Biome> SATISFOREST = register("satisforest");
     // oh i wonder what is this a reference too
 
@@ -92,6 +93,7 @@ public class ModBiomes {
         context.register(LUPINE_MEADOW, lupineMeadow(context));
         context.register(ALPINE_RANGE, alpineRange(context));
         context.register(ASHEN_PEAKS, ashenPeaks(context));
+        context.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
@@ -974,6 +976,7 @@ public class ModBiomes {
 
     // ashen
     // LINKED WITH volcanic ashen peaks, edit both!
+
     public static Biome ashenPeaks(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -982,9 +985,12 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         // friendly reminder to not cause feature order cycle
-        globalOverworldGeneration(biomeBuilder);
+        // half-unpacked global overworld
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
         BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
         BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_STONY_PEAKS);
@@ -1016,12 +1022,16 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         // friendly reminder to not cause feature order cycle
-        globalOverworldGeneration(biomeBuilder);
+        // half-unpacked global overworld
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
         BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
         BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
-        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_STONY_PEAKS);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_BASALT_DELTAS);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)

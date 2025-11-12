@@ -95,16 +95,15 @@ public class ModSurfaceRules {
      * Makes sure blocks (usu. liquids) don't have air/non-sturdy blocks nearby except from the top,
      * as to not create waterfalls.
      *
-     * @param allowChunkBoundaries chunk borders are not normally available in worldgen tho,
-     *  so if disabled chunk boundaries are just skipped, optionally uou can allow that instead,
-     *  this will create an effect letting some through as waterfalls occasionally
+     * @param allowChunkBoundariesSometimes you can allow that half the time it will not check a chunk boundary,
+     *  this will create an effect letting some through as waterfalls occasionally.
      */
-    public record LiquidWontRunAwayCondition(boolean allowChunkBoundaries)
+    public record LiquidWontRunAwayCondition(boolean allowChunkBoundariesSometimes)
             implements SurfaceRules.ConditionSource {
 
         @Override
         public SurfaceRules.Condition apply(SurfaceRules.Context context) {
-            return new LiquidWontRunAwayCondition.ConditionImpl(context, allowChunkBoundaries);
+            return new LiquidWontRunAwayCondition.ConditionImpl(context, allowChunkBoundariesSometimes);
         }
 
         @Override
@@ -132,21 +131,24 @@ public class ModSurfaceRules {
                 for (Direction dir : HORIZONTAL_AND_DOWN) {
                     BlockPos neighborPos = currentPos.relative(dir);
 
-                    if (!allowChunkBoundaries) {
-                        int chunkX = currentPos.getX() >> 4;
-                        int chunkZ = currentPos.getZ() >> 4;
-                        int neighborChunkX = neighborPos.getX() >> 4;
-                        int neighborChunkZ = neighborPos.getZ() >> 4;
+                    int chunkX = currentPos.getX() >> 4;
+                    int chunkZ = currentPos.getZ() >> 4;
+                    int neighborChunkX = neighborPos.getX() >> 4;
+                    int neighborChunkZ = neighborPos.getZ() >> 4;
+                    boolean crossesChunkBorder = (chunkX != neighborChunkX || chunkZ != neighborChunkZ);
 
-                        if (chunkX != neighborChunkX || chunkZ != neighborChunkZ) {
+                    if (crossesChunkBorder) {
+                        if (!allowChunkBoundaries) {
                             return false;
                         }
+                        continue;
                     }
 
                     BlockState neighborState = context.chunk.getBlockState(neighborPos);
-
-                    if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
-                        return false;
+                    if (neighborState.getFluidState().isEmpty()) {
+                        if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
+                            return false;
+                        }
                     }
                 }
                 return true;
@@ -355,8 +357,63 @@ public class ModSurfaceRules {
         ));
 
         //
-        // ashen
+        // ashen & volcanic ashen
         //
+        SurfaceRules.ConditionSource isAshen = SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS, ModBiomes.VOLCANIC_ASHEN_PEAKS);
+
+        // lava at volcanic peaks
+        // if the mountain is very high it's likely the lavafall won't look ugly
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.VOLCANIC_ASHEN_PEAKS),
+                SurfaceRules.ifTrue(
+                        new LiquidWontRunAwayCondition(
+                                true
+                        ),
+                        SurfaceRules.ifTrue(
+                                yBlockCheck(VerticalAnchor.absolute(180), 0),
+                                safeSurfaceFloorRule(
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.12D, 0.12D),
+                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LAVA)
+                                        )
+                                )
+                        )
+                )
+        ));
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.VOLCANIC_ASHEN_PEAKS),
+                SurfaceRules.ifTrue(
+                        new LiquidWontRunAwayCondition(
+                                false
+                                ),
+                SurfaceRules.ifTrue(
+                        yBlockCheck(VerticalAnchor.absolute(140), 0),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(VEINY_NOISE, -0.24D, 0.24D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LAVA)
+                                )
+                        )
+                )
+                )
+        ));
+        rules.add(SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.VOLCANIC_ASHEN_PEAKS),
+                SurfaceRules.ifTrue(
+                        new LiquidWontRunAwayCondition(
+                                false
+                                ),
+                SurfaceRules.ifTrue(
+                        yBlockCheck(VerticalAnchor.absolute(140), 0),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.18D, 0.18D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LAVA)
+                                )
+                        )
+                )
+                )
+        ));
 
         // lava at peaks
         rules.add(SurfaceRules.ifTrue(
@@ -369,7 +426,7 @@ public class ModSurfaceRules {
                         yBlockCheck(VerticalAnchor.absolute(175), 0),
                         safeSurfaceFloorRule(
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.06D, 0.06D),
+                                        SurfaceRules.noiseCondition(SILVER_NOISE, -0.05D, 0.05D),
                                         SurfaceRules.ifTrue(isAtOrAboveWaterLevel, LAVA)
                                 )
                         )
@@ -377,21 +434,20 @@ public class ModSurfaceRules {
                 )
         ));
 
-
         // blackstone veins
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                isAshen,
                 SurfaceRules.ifTrue(
                         stoneDepthCheck(0, false, 3, CaveSurface.FLOOR),
                         SurfaceRules.ifTrue(
-                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.02D, 0.01D),
+                                SurfaceRules.noiseCondition(VEINY_NOISE, -0.03D, 0.02D),
                                 SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GILDED_BLACKSTONE)
                         )
                 )
         ));
 
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                isAshen,
                 SurfaceRules.ifTrue(
                         stoneDepthCheck(0, false, 5, CaveSurface.FLOOR),
                         SurfaceRules.ifTrue(
@@ -402,7 +458,7 @@ public class ModSurfaceRules {
         ));
 
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                isAshen,
                 SurfaceRules.ifTrue(
                         stoneDepthCheck(0, false, 5, CaveSurface.FLOOR),
                         SurfaceRules.ifTrue(
@@ -413,7 +469,7 @@ public class ModSurfaceRules {
         ));
 
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                isAshen,
                 SurfaceRules.ifTrue(
                         stoneDepthCheck(0, false, 5, CaveSurface.FLOOR),
                         SurfaceRules.ifTrue(
@@ -425,7 +481,7 @@ public class ModSurfaceRules {
 
         // silt spread
         rules.add(SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                isAshen,
                 safeSurfaceFloorRule(
                         SurfaceRules.ifTrue(
                                 SurfaceRules.noiseCondition(SILVER_NOISE, -0.06D, 0.06D),
@@ -433,11 +489,12 @@ public class ModSurfaceRules {
                         )
                 )
         ));
+        // TODO: silt
 
         // upper smooth basalt fill dithered with tuff a bit
         rules.add(
                 SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                        isAshen,
                         SurfaceRules.ifTrue(
                                 yBlockCheck(VerticalAnchor.absolute(145), 0),
                                 SurfaceRules.ifTrue(
@@ -462,7 +519,7 @@ public class ModSurfaceRules {
         // tuff fill
         rules.add(
                 SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(ModBiomes.ASHEN_PEAKS),
+                        isAshen,
                         SurfaceRules.ifTrue(
                                 // making an illusion instead of cutoff underground i guess, even if it really corresponds to terrain above lol
                                 stoneDepthCheck(0, false, 140, CaveSurface.FLOOR),
