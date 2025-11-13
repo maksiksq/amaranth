@@ -1,7 +1,6 @@
 package dev.maksiks.amaranth.worldgen.biome.surface;
 
 import com.mojang.datafixers.util.Pair;
-import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
 import dev.maksiks.amaranth.worldgen.noise.ModNoises;
@@ -220,8 +219,7 @@ public class ModSurfaceRules {
                             if (w.getFirst()) {
 //                                if (deterministicChance(neighborPos, 97)) return false;
 
-                                context.chunk.setBlockState(w.getSecond(), Blocks.WATER.defaultBlockState(),false);
-                                Amaranth.LOGGER.info("WATERFALLABLEE: {} {} {}", neighborPos.getX(), neighborPos.getY(), neighborPos.getZ());
+                                context.chunk.setBlockState(w.getSecond(), Blocks.WATER.defaultBlockState(), false);
                                 return true;
                             }
                             return false;
@@ -250,6 +248,75 @@ public class ModSurfaceRules {
         }
     }
 
+    /**
+     * cliff edges
+     */
+    public record ExposedHorizontallyOrBelow() implements SurfaceRules.ConditionSource {
+
+        @Override
+        public SurfaceRules.Condition apply(SurfaceRules.Context context) {
+            return new Impl(context);
+        }
+
+        @Override
+        public KeyDispatchDataCodec<? extends SurfaceRules.ConditionSource> codec() {
+            return null;
+        }
+
+        static class Impl implements SurfaceRules.Condition {
+            static final Direction[] HORIZONTAL_AND_DOWN = {
+                    Direction.NORTH, Direction.SOUTH, Direction.EAST,
+                    Direction.WEST, Direction.DOWN
+            };
+
+            private final SurfaceRules.Context context;
+
+            Impl(SurfaceRules.Context context) {
+                this.context = context;
+            }
+
+            @Override
+            public boolean test() {
+                BlockPos currentPos = new BlockPos(context.blockX, context.blockY, context.blockZ);
+                ChunkPos thisChunkPos = context.chunk.getPos();
+
+                for (Direction dir : HORIZONTAL_AND_DOWN) {
+                    BlockPos neighborPos = currentPos.relative(dir);
+
+                    int neighborChunkX = neighborPos.getX() >> 4;
+                    int neighborChunkZ = neighborPos.getZ() >> 4;
+                    if (neighborChunkX != thisChunkPos.x || neighborChunkZ != thisChunkPos.z) {
+                        continue;
+                    }
+
+                    BlockState neighborState = context.chunk.getBlockState(neighborPos);
+                    if (neighborState.getFluidState().isEmpty()) {
+                        if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            private Pair<Boolean, BlockPos> shouldWaterfall(BlockPos pos) {
+                int checkHeight = 3;
+                for (int i = 0; i < 96; i++) {
+                    BlockPos fallPos = pos.below(i + 1);
+                    BlockState state = context.chunk.getBlockState(pos.below(i + 1));
+
+                    if (!state.getFluidState().isEmpty()
+                            || state.isFaceSturdy(context.chunk, fallPos, Direction.UP)) {
+                        if (i < checkHeight) {
+                            return Pair.of(false, BlockPos.ZERO);
+                        }
+                        return Pair.of(true, fallPos);
+                    }
+                }
+                return Pair.of(false, BlockPos.ZERO);
+            }
+        }
+    }
 
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
@@ -639,6 +706,40 @@ public class ModSurfaceRules {
                 )
         );
 
+
+        rules.add(SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.STEPPED_SPRINGS),
+                        safeSurfaceFloorRule(
+                                SurfaceRules.ifTrue(
+                                        new HasWaterfallDropCondition(),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.noiseCondition(CRACKED_VEINY_NOISE, -0.10D, 0.10D),
+                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, STONE)
+                                        )
+                                )
+                        )
+                )
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.STEPPED_SPRINGS),
+                        SurfaceRules.ifTrue(
+                                new ExposedHorizontallyOrBelow(),
+                                SurfaceRules.ifTrue(
+                                        yBlockCheck(VerticalAnchor.absolute(62), 0),
+                                        STONE
+                                )
+                        )
+                )
+        );
+
+        rules.add(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.STEPPED_SPRINGS),
+                                safeSurfaceFloorRule(GRASS_BLOCK)
+                )
+        );
 
         // vanilla default fallback
         SurfaceRuleData.overworld();

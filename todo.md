@@ -451,9 +451,9 @@
 
 ### waterfalls
 ----------------------
-- [ ] waterfalls
-- [ ] also waterfalls
-- [ ] also waterfalls
+- [x] waterfalls
+- [x] also waterfalls
+- [x] also waterfalls
 - [ ] custom gen 
 - [ ] allium and phlox 
 - [ ] make it not spawn near glacial peaks or maybe not, figure out gen 
@@ -471,3 +471,4 @@ tutorial:
 - what each point does
 - all the other biome gen stuff
 - testing tip, do not save
+- biome grass: https://minecraft.fandom.com/wiki/Biome#Climate

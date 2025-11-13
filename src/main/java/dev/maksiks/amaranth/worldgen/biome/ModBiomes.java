@@ -44,14 +44,11 @@ public class ModBiomes {
     public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
     public static final ResourceKey<Biome> LUPINE_MEADOW = register("lupine_meadow");
     public static final ResourceKey<Biome> ALPINE_RANGE = register("alpine_range");
-    public static final ResourceKey<Biome> STEPPED_SPRINGS = register("stepped_springs");
-    // TODO: gen, make it make little plateaus and each plateau that isn't connected to the last one can make a waterfall to the other or even just below
-    // find slope, extrude it to the side of air, go down, repeat until out of biome
-    // also aliums + phlox
     public static final ResourceKey<Biome> ASHEN_PEAKS = register("ashen_peaks");
     public static final ResourceKey<Biome> VOLCANIC_ASHEN_PEAKS = register("volcanic_ashen_peaks");
+    public static final ResourceKey<Biome> STEPPED_SPRINGS = register("stepped_springs");
     public static final ResourceKey<Biome> SATISFOREST = register("satisforest");
-    // oh i wonder what is this a reference too
+
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
@@ -1062,17 +1059,16 @@ public class ModBiomes {
         // friendly reminder to not cause feature order cycle
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
 
         // leaf bushes
         // phlox
         // alliums
+        // maybe tree? like purpel
 
         // make it place less dirt below
-        // and waterfalls waterfalls
 
-        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
 
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_MEADOW);
 
@@ -1086,6 +1082,7 @@ public class ModBiomes {
                         .waterColor(FAIRLY_NORMAL_WATER_COLOR)
                         .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
                         .skyColor(7972607)
+                        .grassColorOverride(0x83bb6d)
                         .fogColor(12638463)
                         .backgroundMusic(music)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
