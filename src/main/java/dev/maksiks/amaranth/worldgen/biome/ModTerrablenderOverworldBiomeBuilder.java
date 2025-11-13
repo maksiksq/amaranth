@@ -127,7 +127,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
             if (temperature >= 3) {
                 return this.pickPlateauBiome(temperature, humidity, weirdness);
             } else {
-                return humidity <= 1 ? Biomes.SNOWY_SLOPES : ModBiomes.STEPPED_SPRINGS;
+                return temperature > 1 ? ModBiomes.STEPPED_SPRINGS : Biomes.GROVE;
             }
         }
         return super.pickSlopeBiome(temperature, humidity, weirdness);
