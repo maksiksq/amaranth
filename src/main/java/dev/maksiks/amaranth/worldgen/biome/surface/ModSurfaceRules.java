@@ -50,6 +50,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource TUFF = makeStateRule(Blocks.TUFF);
     private static final SurfaceRules.RuleSource LAVA = makeStateRule(Blocks.LAVA);
     private static final SurfaceRules.RuleSource VOLCANIC_ASH = makeStateRule(ModBlocks.VOLCANIC_ASH.get());
+    private static final SurfaceRules.RuleSource ANDESITE = makeStateRule(Blocks.ANDESITE);
 
     private static SurfaceRules.RuleSource silverLayerRule(int layerY) {
         return SurfaceRules.ifTrue(
@@ -711,11 +712,8 @@ public class ModSurfaceRules {
                         SurfaceRules.isBiome(ModBiomes.STEPPED_SPRINGS),
                         safeSurfaceFloorRule(
                                 SurfaceRules.ifTrue(
-                                        new HasWaterfallDropCondition(),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.noiseCondition(CRACKED_VEINY_NOISE, -0.10D, 0.10D),
-                                                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, STONE)
-                                        )
+                                        SurfaceRules.noiseCondition(CRACKED_VEINY_NOISE, -0.06D, 0.06D),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, STONE)
                                 )
                         )
                 )
@@ -727,8 +725,19 @@ public class ModSurfaceRules {
                         SurfaceRules.ifTrue(
                                 new ExposedHorizontallyOrBelow(),
                                 SurfaceRules.ifTrue(
-                                        yBlockCheck(VerticalAnchor.absolute(62), 0),
-                                        STONE
+                                        stoneDepthCheck(0, false, 40, CaveSurface.FLOOR),
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel,
+                                                SurfaceRules.sequence(
+                                                        SurfaceRules.ifTrue(
+                                                                SurfaceRules.verticalGradient("springs_transition",
+                                                                        VerticalAnchor.absolute(100),
+                                                                        VerticalAnchor.absolute(200)
+                                                                ),
+                                                                STONE
+                                                        ),
+                                                        ANDESITE
+                                                )
+                                        )
                                 )
                         )
                 )
@@ -737,7 +746,7 @@ public class ModSurfaceRules {
         rules.add(
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.STEPPED_SPRINGS),
-                                safeSurfaceFloorRule(GRASS_BLOCK)
+                        safeSurfaceFloorRule(GRASS_BLOCK)
                 )
         );
 

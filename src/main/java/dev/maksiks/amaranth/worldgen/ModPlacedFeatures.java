@@ -69,6 +69,10 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> OCCASIONAL_BERRY_BUSH_PLACED_KEY = registerKey("occasional_berry_bushes_placed");
     public static final ResourceKey<PlacedFeature> BOULDER_PLACED_KEY = registerKey("boulder_placed");
 
+    public static final ResourceKey<PlacedFeature> SPRING_FLOWER_ALLIUM_PLACED_KEY = registerKey("spring_flower_allium_placed");
+    public static final ResourceKey<PlacedFeature> SPRING_FLOWER_PHLOX_PLACED_KEY = registerKey("spring_flower_phlox_placed");
+    public static final ResourceKey<PlacedFeature> SPRING_PATCH_SUGAR_CANE_PLACED_KEY = registerKey("spring_patch_sugar_cane_placed");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -294,6 +298,33 @@ public class ModPlacedFeatures {
                         HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
                 )
         );
+
+        // spring
+        register(context, SPRING_FLOWER_ALLIUM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SPRING_FLOWER_ALLIUM_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, CountPlacement.of(5), BiomeFilter.biome()));
+
+        register(
+                context,
+                SPRING_FLOWER_PHLOX_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.SPRING_FLOWER_PHLOX_KEY),
+                List.of(
+                        NoiseThresholdCountPlacement.of(-0.4, 15, 18),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                )
+        );
+
+        PlacementUtils.register(
+                context,
+                SPRING_PATCH_SUGAR_CANE_PLACED_KEY,
+                configuredFeatures.getOrThrow(VegetationFeatures.PATCH_SUGAR_CANE),
+                CountPlacement.of(2),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                BiomeFilter.biome()
+        );
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

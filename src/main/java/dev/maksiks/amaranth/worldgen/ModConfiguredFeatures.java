@@ -91,6 +91,9 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> OCCASIONAL_BERRY_BUSH_KEY = registerKey("occasional_berry_bushes");
     public static ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder_key");
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_ALLIUM_KEY = registerKey("spring_allium_key");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_PHLOX_KEY = registerKey("spring_phlox_key");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -459,11 +462,11 @@ public class ModConfiguredFeatures {
                         new CherryFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), ConstantInt.of(5), 0.5F, 0.5F, 0.4F, 0.33333334F),
                         new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
-        SimpleWeightedRandomList.Builder<BlockState> wisteriaBuilder = SimpleWeightedRandomList.builder();
+        SimpleWeightedRandomList.Builder<BlockState> wisteriaPhloxBuilder = SimpleWeightedRandomList.builder();
 
         for (int i = 1; i <= 4; i++) {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
-                wisteriaBuilder.add(
+                wisteriaPhloxBuilder.add(
                         ModBlocks.PHLOX.get().defaultBlockState().setValue(PinkPetalsBlock.AMOUNT, Integer.valueOf(i)).setValue(PinkPetalsBlock.FACING, direction), 1
                 );
             }
@@ -474,7 +477,7 @@ public class ModConfiguredFeatures {
                 PASTEL_FLOWER_KEY,
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
-                        96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaBuilder)))
+                        96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaPhloxBuilder)))
                 )
         );
 
@@ -590,6 +593,42 @@ public class ModConfiguredFeatures {
         register(context, BOULDER_KEY,
                 ModFeatures.BOULDER_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
+        // spring
+        register(
+                context,
+                SPRING_FLOWER_ALLIUM_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        65,
+                        16,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.ALLIUM)
+                                )
+                        )
+                )
+        );
+
+        SimpleWeightedRandomList.Builder<BlockState> springPhloxBuilder = SimpleWeightedRandomList.builder();
+
+        for (int i = 1; i <= 4; i++) {
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                springPhloxBuilder.add(
+                        ModBlocks.PHLOX.get().defaultBlockState().setValue(PinkPetalsBlock.AMOUNT, Integer.valueOf(i)).setValue(PinkPetalsBlock.FACING, direction), 1
+                );
+            }
+        }
+
+        register(
+                context,
+                SPRING_FLOWER_PHLOX_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        60, 12, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaPhloxBuilder)))
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
