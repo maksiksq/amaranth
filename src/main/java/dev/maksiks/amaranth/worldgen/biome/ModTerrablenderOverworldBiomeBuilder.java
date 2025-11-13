@@ -53,7 +53,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
         if (regionId == null) return pair;
 
         // RegionUtils.getVanillaParameterPoints() for something, maybe?
-        Amaranth.LOGGER.info("Biomee: " + biome.location());
+
         if (regionId == 1) {
             // replacing swamps with mushlands in region 1
             if (biome.equals(Biomes.SWAMP)) {

@@ -449,6 +449,17 @@
 - [ ] more peaks
 ----------------------
 
+### waterfalls
+----------------------
+- [ ] waterfalls
+- [ ] also waterfalls
+- [ ] also waterfalls
+- [ ] custom gen 
+- [ ] allium and phlox 
+- [ ] make it not spawn near glacial peaks or maybe not, figure out gen 
+- [ ] meadowy grass color
+----------------------
+
 tutorial:
 - for swamps vanilla doesnt use the arrays
 - a small amount of regions is why BWG gen looks so fragmented
@@ -459,3 +470,4 @@ tutorial:
 - snowcapped
 - what each point does
 - all the other biome gen stuff
+- testing tip, do not save

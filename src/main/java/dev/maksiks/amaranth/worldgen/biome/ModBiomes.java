@@ -91,6 +91,7 @@ public class ModBiomes {
         context.register(ALPINE_RANGE, alpineRange(context));
         context.register(ASHEN_PEAKS, ashenPeaks(context));
         context.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(context));
+        context.register(STEPPED_SPRINGS, steppedSprings(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
