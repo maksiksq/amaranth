@@ -1069,6 +1069,9 @@ public class ModBiomes {
         // phlox
         // alliums
 
+        // make it place less dirt below
+        // and waterfalls waterfalls
+
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
 
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_MEADOW);

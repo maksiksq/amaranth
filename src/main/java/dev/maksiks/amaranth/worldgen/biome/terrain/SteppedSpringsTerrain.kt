@@ -22,7 +22,7 @@ import kotlin.math.sqrt
 **/
 class SteppedSpringsTerrain {
     companion object {
-        private const val BLEND_RADIUS = 3
+        private const val BLEND_RADIUS = 1
         private const val LAYER_HEIGHT = 5
         private const val LAYER_OFFSET = 0
 
@@ -99,7 +99,7 @@ class SteppedSpringsTerrain {
                 for (zOff in -radius..radius) {
                     val samplePos = BlockPos(centerX + xOff, centerY, centerZ + zOff)
                     val sampled = biomeGetter.apply(samplePos)
-                    if (!sampled.`is`(targetBiome)) {
+                    if (!sampled.`is`(targetBiome.unwrapKey().orElse(null))) {
                         val dist = sqrt((xOff * xOff + zOff * zOff).toDouble())
                         if (dist < minDistanceToNonTarget) minDistanceToNonTarget = dist
                     }
