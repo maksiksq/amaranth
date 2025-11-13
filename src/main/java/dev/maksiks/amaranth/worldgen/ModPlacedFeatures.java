@@ -319,7 +319,7 @@ public class ModPlacedFeatures {
                 context,
                 SPRING_PATCH_SUGAR_CANE_PLACED_KEY,
                 configuredFeatures.getOrThrow(VegetationFeatures.PATCH_SUGAR_CANE),
-                CountPlacement.of(2),
+                CountPlacement.of(1),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome()

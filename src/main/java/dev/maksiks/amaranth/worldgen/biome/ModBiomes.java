@@ -1080,7 +1080,7 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SPRING_FLOWER_PHLOX_PLACED_KEY);
         // maybe tree? like purpel
 
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,ModPlacedFeatures.SPRING_PATCH_SUGAR_CANE_PLACED_KEY);
 
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_MEADOW);
 
