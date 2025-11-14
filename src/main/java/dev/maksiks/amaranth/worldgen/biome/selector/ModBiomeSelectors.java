@@ -1,7 +1,7 @@
 package dev.maksiks.amaranth.worldgen.biome.selector;
 
-import dev.maksiks.amaranth.worldgen.biome.ModTerrablenderOverworldBiomeBuilder;
 import dev.maksiks.amaranth.worldgen.biome.ModBiomes;
+import dev.maksiks.amaranth.worldgen.biome.ModTerrablenderOverworldBiomeBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 
@@ -71,9 +71,9 @@ public class ModBiomeSelectors {
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_3 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_2", "",
             List.of(ModBiomes.DESOLATE_ICE_FIELDS, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, ModBiomes.MYSTIC_FOREST, ModBiomes.FIELDS_OF_PAIN, P),
-            List.of(P, P, P, P, ModBiomes.SHROOMLANDS),
+            List.of(P, P, ModBiomes.SATISFOREST, P, P),
+            List.of(P, ModBiomes.MYSTIC_FOREST, ModBiomes.MYSTIC_FOREST, ModBiomes.FIELDS_OF_PAIN, P),
+            List.of(P, P, ModBiomes.SATISFOREST, P, ModBiomes.SHROOMLANDS),
             List.of(P, ModBiomes.DUSTY_FLATS, P, P, P)
     );
 

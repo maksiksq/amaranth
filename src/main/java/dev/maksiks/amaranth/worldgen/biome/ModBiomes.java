@@ -51,7 +51,6 @@ public class ModBiomes {
     public static final ResourceKey<Biome> STEPPED_SPRINGS = register("stepped_springs");
     public static final ResourceKey<Biome> SATISFOREST = register("satisforest");
 
-
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
     // in dev ^
@@ -91,6 +90,7 @@ public class ModBiomes {
         context.register(ASHEN_PEAKS, ashenPeaks(context));
         context.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(context));
         context.register(STEPPED_SPRINGS, steppedSprings(context));
+        context.register(SATISFOREST, satisForest(context));
 
         // underground
         context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
@@ -923,7 +923,6 @@ public class ModBiomes {
                 .build();
     }
 
-
     // alpine
     public static Biome alpineRange(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
@@ -1097,6 +1096,52 @@ public class ModBiomes {
                         .grassColorOverride(0x83bb6d)
                         .fogColor(12638463)
                         .backgroundMusic(music)
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
+
+
+    // satis
+    public static Biome satisForest(BootstrapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+        BiomeDefaultFeatures.commonSpawns(spawnBuilder);
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+        // friendly reminder to not cause feature order cycle
+        globalOverworldGeneration(biomeBuilder);
+        BiomeDefaultFeatures.addFerns(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
+
+        // tree normie
+        // tree giant
+        // custom ferns
+        // rocks
+        // bamboos
+        // alien fence plant
+        // maybe those big sphere things?
+
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0.25f)
+                .temperature(0.8F)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(FAIRLY_NORMAL_WATER_COLOR)
+                        .waterFogColor(FAILRY_NORMAL_WATER_FOG_COLOR)
+                        .skyColor(7972607)
+                        .grassColorOverride(0xeb60c0)
+                        .fogColor(12638463)
+                        .backgroundMusic(NORMAL_MUSIC)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();
