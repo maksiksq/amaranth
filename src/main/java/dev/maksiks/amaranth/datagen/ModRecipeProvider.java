@@ -300,5 +300,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .group("sticks")
                 .unlockedBy("has_alien_phyllostachys", has(ModBlocks.ALIEN_PHYLLOSTACHYS.asItem()))
                 .save(recipeOutput, "stick_from_alien_phyllostachys_item");
+
+        fenceBuilder(ModBlocks.ALIEN_FENCE_PLANT.get(), Ingredient.of(ModBlocks.ALIEN_FENCE_PLANKS.get())).group("mystic")
+                .unlockedBy("has_alien_fence_planks", has(ModBlocks.ALIEN_FENCE_PLANKS.get())).save(recipeOutput);
+
     }
 }

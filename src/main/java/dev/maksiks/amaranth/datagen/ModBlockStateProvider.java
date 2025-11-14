@@ -242,6 +242,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         twoPlanesCutoutBlock(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING);
         // bamboo is made manually
+
+        blockWithItem(ModBlocks.ALIEN_FENCE_PLANKS);
+        fenceBlock(ModBlocks.ALIEN_FENCE_PLANT.get(), blockTexture(ModBlocks.ALIEN_FENCE_PLANKS.get()));
     }
 
     private String getName(Block block) {

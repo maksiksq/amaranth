@@ -468,7 +468,8 @@
 - [ ] maybe planks for the bamboo
 - [ ] non-block blocks
 - [ ] funky bushes
-- [ ] alien fence plant
+- [x] alien fence plant
+- [ ] maybe make alien fence plant a little bit less like weisteria that i blatantly copied it into
 ----------------------
 
 

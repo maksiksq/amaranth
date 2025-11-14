@@ -131,6 +131,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ANTHOCYANIN_FENCE_GATE);
                         output.accept(ModBlocks.WISTERIA_FENCE_GATE);
                         output.accept(ModBlocks.SATISTREE_FENCE_GATE);
+                        output.accept(ModBlocks.ALIEN_FENCE_PLANT);
 
                         output.accept(ModBlocks.MYSTIC_DOOR);
                         output.accept(ModBlocks.ANTHOCYANIN_DOOR);

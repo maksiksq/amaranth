@@ -340,6 +340,18 @@ public class ModBlocks {
             () -> new AlienPhyllostachysStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO)));
     // potted
 
+    public static final DeferredBlock<Block> ALIEN_FENCE_PLANKS = registerBlock("alien_fence_planks",
+            () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+    // chewy on the inside!
+    public static final DeferredBlock<FenceBlock> ALIEN_FENCE_PLANT = registerBlock("alien_fence_plant",
+            () -> new FenceBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BANJO)
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WET_GRASS)
+                    .ignitedByLava()));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

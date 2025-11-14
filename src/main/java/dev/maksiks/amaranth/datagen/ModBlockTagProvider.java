@@ -177,5 +177,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get(), ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get(), Blocks.GRAVEL, Blocks.SUSPICIOUS_GRAVEL);
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get());
+        this.tag(BlockTags.PLANKS).add(ModBlocks.ALIEN_FENCE_PLANKS.get());
+        // sorta wooden? idk, still counts
+        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.ALIEN_FENCE_PLANT.get());
     }
 }

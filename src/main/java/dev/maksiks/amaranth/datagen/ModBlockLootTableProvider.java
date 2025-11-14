@@ -229,6 +229,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.ALIEN_PHYLLOSTACHYS.get());
         this.dropOther(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get(), ModBlocks.ALIEN_PHYLLOSTACHYS.get());
+
+        this.dropSelf(ModBlocks.ALIEN_FENCE_PLANKS.get());
+        this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
