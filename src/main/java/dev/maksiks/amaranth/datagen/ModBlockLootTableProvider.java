@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -209,7 +208,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.STRIPPED_SATISTREE_WOOD.get());
         this.dropSelf(ModBlocks.SATISTREE_PLANKS.get());
         this.dropSelf(ModBlocks.SATISTREE_SAPLING.get());
+        this.dropSelf(ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get());
 
+        // TODO: add gigantic sapling and alien fence plant drops
         this.add(ModBlocks.SATISTREE_LEAVES.get(),
                 block -> createLeavesDrops(ModBlocks.SATISTREE_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
@@ -232,6 +233,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANKS.get());
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT.get());
+        this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

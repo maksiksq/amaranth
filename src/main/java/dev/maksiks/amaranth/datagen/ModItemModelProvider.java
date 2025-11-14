@@ -109,10 +109,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.SATISTREE_DOOR.asItem());
 
         splatBlockItem(ModBlocks.SATISTREE_SAPLING);
+        splatBlockItem(ModBlocks.GIGANTIC_SATISTREE_SPROUTS);
 
         basicItem(ModBlocks.ALIEN_PHYLLOSTACHYS.asItem());
 
         fenceItem(ModBlocks.ALIEN_FENCE_PLANT, ModBlocks.ALIEN_FENCE_PLANKS);
+        splatBlockItem(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

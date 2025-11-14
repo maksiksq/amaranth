@@ -312,6 +312,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SATISTREE_SAPLING = registerBlock("satistree_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<Block> GIGANTIC_SATISTREE_SPROUTS = registerBlock("gigantic_satistree_sprouts",
+            () -> new SaplingBlock(ModTreeGrowers.GIGANTIC_SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> SATISTREE_STAIRS = registerBlock("satistree_stairs",
@@ -350,6 +352,17 @@ public class ModBlocks {
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WET_GRASS)
                     .ignitedByLava()));
+
+    public static final DeferredBlock<Block> ALIEN_FENCE_PLANT_SAPLING = registerBlock("alien_fence_plant_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.ALIEN_FENCE_PLANT_GROWER,
+                    BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.WET_GRASS)
+                    .pushReaction(PushReaction.DESTROY)));
+
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

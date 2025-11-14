@@ -469,7 +469,7 @@
 - [ ] non-block blocks
 - [ ] funky bushes
 - [x] alien fence plant
-- [ ] maybe make alien fence plant a little bit less like weisteria that i blatantly copied it into
+- [ ] maybe make alien fence plant a little bit less like wisteria that i blatantly copied it into ; nvm it's different enough, feels watery
 ----------------------
 
 

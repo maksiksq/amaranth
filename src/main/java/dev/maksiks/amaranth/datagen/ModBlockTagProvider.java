@@ -6,7 +6,6 @@ import dev.maksiks.amaranth.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -167,6 +166,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.SATISTREE_PRESSURE_PLATE.get());
         this.tag(BlockTags.LEAVES).add(ModBlocks.SATISTREE_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.SATISTREE_SAPLING.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get());
         this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.SATISTREE_DOOR.get());
         this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.SATISTREE_TRAPDOOR.get());
         this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.SATISTREE_FENCE.get());
@@ -180,5 +180,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.PLANKS).add(ModBlocks.ALIEN_FENCE_PLANKS.get());
         // sorta wooden? idk, still counts
         this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.ALIEN_FENCE_PLANT.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get());
     }
 }

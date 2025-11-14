@@ -46,6 +46,12 @@ public class ModTreeGrowers {
     public static final TreeGrower ALPINE_SPRUCE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":alpine",
             Optional.empty(), Optional.of(ModConfiguredFeatures.ALPINE_SPRUCE_KEY), Optional.empty());
 
-    public static final TreeGrower SATISTREE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":satis",
+    public static final TreeGrower SATISTREE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":satistree",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ALPINE_SPRUCE_KEY), Optional.empty());
+
+    public static final TreeGrower GIGANTIC_SATISTREE_GROWER = new TreeGrower(Amaranth.MOD_ID + ":gigantic_satistree",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ALPINE_SPRUCE_KEY), Optional.empty());
+
+    public static final TreeGrower ALIEN_FENCE_PLANT_GROWER = new TreeGrower(Amaranth.MOD_ID + ":alien_fence_plant",
             Optional.empty(), Optional.of(ModConfiguredFeatures.ALPINE_SPRUCE_KEY), Optional.empty());
 }

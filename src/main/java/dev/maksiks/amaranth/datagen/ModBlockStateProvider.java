@@ -6,15 +6,9 @@ import dev.maksiks.amaranth.block.custom.SpikyArchesBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.blockstates.Condition;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
-import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -23,10 +17,6 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -220,6 +210,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.SATISTREE_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.SATISTREE_SAPLING);
+        twoPlanesCutoutBlock(ModBlocks.GIGANTIC_SATISTREE_SPROUTS);
         leavesBlock(ModBlocks.SATISTREE_LEAVES);
 
         stairsBlock(ModBlocks.SATISTREE_STAIRS.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
@@ -245,6 +236,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.ALIEN_FENCE_PLANKS);
         fenceBlock(ModBlocks.ALIEN_FENCE_PLANT.get(), blockTexture(ModBlocks.ALIEN_FENCE_PLANKS.get()));
+        twoPlanesCutoutBlock(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
     }
 
     private String getName(Block block) {
