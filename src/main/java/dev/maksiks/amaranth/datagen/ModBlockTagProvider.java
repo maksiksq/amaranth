@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.datagen;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -170,8 +171,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.SATISTREE_TRAPDOOR.get());
         this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.SATISTREE_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.SATISTREE_FENCE_GATE.get());
-        this.tag(BlockTags.BAMBOO_PLANTABLE_ON)
-                .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get(), ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get());
+        this.tag(ModTags.Blocks.ALIEN_PHYLLOSTACHYS_PLANTABLE_ON)
+                .addTag(BlockTags.SAND)
+                .addTag(BlockTags.DIRT)
+                .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get(), ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get(), Blocks.GRAVEL, Blocks.SUSPICIOUS_GRAVEL);
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get());
     }

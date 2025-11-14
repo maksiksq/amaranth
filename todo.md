@@ -45,6 +45,8 @@
 - [x]  fix: dont forget the waterfalls ewew
 - [ ]  TODO: IMPORTANT: maybe if i can pull it off this time, add biome replacements, so it's 50% to back to the vanilla biome, why? because they all keep spawning in the same region, this is one way to solve the problem of all biomes being clumped together in the region, give each a 50/50 vanilla alternative and in turn just make it rarer
 - [ ]  TRAILER: -5621453417704106832  -291172 158 5765  screenshottable as hell
+- [ ]  look into isSolid
+- [ ]  make mod to make leaf litter and etc replaceable if it's not a thing on later versions
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn
@@ -460,10 +462,12 @@
 - [x] meadowy grass color
 ----------------------
 
-
-### satisfactory reference
+### silly factory game reference
 ----------------------
-- [ ] add separate placing tag
+- [x] add separate placing tag
+- [ ] maybe planks for the bamboo
+- [ ] non-block blocks
+- [ ] funky bushes
 ----------------------
 
 
