@@ -15,5 +15,6 @@
         "east":  { "uv": [  0, 0, 2, 16 ], "texture": "#all" }
       }
     }
-  ]
+  ],
+  "render_type": "cutout"
 }
