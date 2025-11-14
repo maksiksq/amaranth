@@ -218,7 +218,7 @@ public class ModSurfaceRules {
                         if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
                             Pair<Boolean, BlockPos> w = shouldWaterfall(neighborPos);
                             if (w.getFirst()) {
-//                                if (deterministicChance(neighborPos, 97)) return false;
+                                if (deterministicChance(neighborPos, 3)) return false;
 
                                 context.chunk.setBlockState(w.getSecond(), Blocks.WATER.defaultBlockState(), false);
                                 return true;
