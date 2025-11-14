@@ -294,6 +294,52 @@ public class ModBlocks {
                     new ColorRGBA(2170911),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)));
 
+    // satis
+    public static final DeferredBlock<Block> SATISTREE_LOG = registerBlock("satistree_log",
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LOG)));
+    public static final DeferredBlock<Block> SATISTREE_WOOD = registerBlock("satistree_wood",
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_WOOD)));
+    public static final DeferredBlock<Block> STRIPPED_SATISTREE_LOG = registerBlock("stripped_satistree_log",
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)));
+    public static final DeferredBlock<Block> STRIPPED_SATISTREE_WOOD = registerBlock("stripped_satistree_wood",
+            () -> new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)));
+
+    public static final DeferredBlock<Block> SATISTREE_PLANKS = registerBlock("satistree_planks",
+            () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
+
+    public static final DeferredBlock<Block> SATISTREE_LEAVES = registerBlock("satistree_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+
+    public static final DeferredBlock<Block> SATISTREE_SAPLING = registerBlock("satistree_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+
+    // non-full block stuff
+    public static final DeferredBlock<StairBlock> SATISTREE_STAIRS = registerBlock("satistree_stairs",
+            () -> new StairBlock(ModBlocks.SATISTREE_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+    public static final DeferredBlock<SlabBlock> SATISTREE_SLAB = registerBlock("satistree_slab",
+            () -> new SlabBlock(normalWoodProps.get()));
+
+    public static final DeferredBlock<PressurePlateBlock> SATISTREE_PRESSURE_PLATE = registerBlock("satistree_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
+    public static final DeferredBlock<ButtonBlock> SATISTREE_BUTTON = registerBlock("satistree_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
+
+    public static final DeferredBlock<FenceBlock> SATISTREE_FENCE = registerBlock("satistree_fence",
+            () -> new FenceBlock(normalWoodProps.get()));
+    public static final DeferredBlock<FenceGateBlock> SATISTREE_FENCE_GATE = registerBlock("satistree_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, normalWoodProps.get()));
+
+    public static final DeferredBlock<DoorBlock> SATISTREE_DOOR = registerBlock("satistree_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<TrapDoorBlock> SATISTREE_TRAPDOOR = registerBlock("satistree_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
+
+    public static final DeferredBlock<Block> ALIEN_PHYLLOSTACHYS_SAPLING = registerBlock("alien_phyllostachys_sapling",
+            () -> new AlienPhyllostachysSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING)));
+    public static final DeferredBlock<Block> ALIEN_PHYLLOSTACHYS = registerBlock("alien_phyllostachys",
+            () -> new AlienPhyllostachysStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO)));
+    // potted
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

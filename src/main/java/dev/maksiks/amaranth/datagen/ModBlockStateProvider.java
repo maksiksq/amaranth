@@ -6,9 +6,15 @@ import dev.maksiks.amaranth.block.custom.SpikyArchesBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.blockstates.Condition;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -17,6 +23,10 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -195,6 +205,47 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // ashen
         blockWithItem(ModBlocks.VOLCANIC_ASH);
+
+        // satis
+        logBlock(((RotatedPillarBlock) ModBlocks.SATISTREE_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.SATISTREE_WOOD.get()), blockTexture(ModBlocks.SATISTREE_LOG.get()), blockTexture(ModBlocks.SATISTREE_LOG.get()));
+
+        logBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_SATISTREE_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_SATISTREE_WOOD.get()), blockTexture(ModBlocks.STRIPPED_SATISTREE_LOG.get()), blockTexture(ModBlocks.STRIPPED_SATISTREE_LOG.get()));
+
+        blockItem(ModBlocks.SATISTREE_LOG);
+        blockItem(ModBlocks.SATISTREE_WOOD);
+        blockItem(ModBlocks.STRIPPED_SATISTREE_LOG);
+        blockItem(ModBlocks.STRIPPED_SATISTREE_WOOD);
+
+        blockWithItem(ModBlocks.SATISTREE_PLANKS);
+        twoPlanesCutoutBlock(ModBlocks.SATISTREE_SAPLING);
+        leavesBlock(ModBlocks.SATISTREE_LEAVES);
+
+        stairsBlock(ModBlocks.SATISTREE_STAIRS.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+        slabBlock(ModBlocks.SATISTREE_SLAB.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+
+        buttonBlock(ModBlocks.SATISTREE_BUTTON.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+        pressurePlateBlock(ModBlocks.SATISTREE_PRESSURE_PLATE.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+
+        fenceBlock(ModBlocks.SATISTREE_FENCE.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+        fenceGateBlock(ModBlocks.SATISTREE_FENCE_GATE.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
+
+        doorBlockWithRenderType(ModBlocks.SATISTREE_DOOR.get(), modLoc("block/satistree_door_bottom"), modLoc("block/satistree_door_top"), "cutout");
+        trapdoorBlockWithRenderType(ModBlocks.SATISTREE_TRAPDOOR.get(), modLoc("block/satistree_trapdoor"), true, "cutout");
+
+        blockItem(ModBlocks.SATISTREE_STAIRS);
+        blockItem(ModBlocks.SATISTREE_SLAB);
+        blockItem(ModBlocks.SATISTREE_PRESSURE_PLATE);
+        blockItem(ModBlocks.SATISTREE_FENCE_GATE);
+        blockItem(ModBlocks.SATISTREE_TRAPDOOR, "_bottom");
+
+        twoPlanesCutoutBlock(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING);
+        // bamboo is made manually
+    }
+
+    private String getName(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

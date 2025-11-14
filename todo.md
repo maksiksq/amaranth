@@ -454,11 +454,18 @@
 - [x] waterfalls
 - [x] also waterfalls
 - [x] also waterfalls
-- [ ] custom gen 
-- [ ] allium and phlox 
-- [ ] make it not spawn near glacial peaks or maybe not, figure out gen 
-- [ ] meadowy grass color
+- [x] custom gen 
+- [x] allium and phlox 
+- [x] make it not spawn near glacial peaks or maybe not, figure out gen 
+- [x] meadowy grass color
 ----------------------
+
+
+### satisfactory reference
+----------------------
+- [ ] add separate placing tag
+----------------------
+
 
 tutorial:
 - for swamps vanilla doesnt use the arrays

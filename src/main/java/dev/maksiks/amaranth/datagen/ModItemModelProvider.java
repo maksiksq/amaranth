@@ -101,6 +101,16 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // alpine
         splatBlockItem(ModBlocks.ALPINE_SPRUCE_SAPLING);
+
+        // satis
+        buttonItem(ModBlocks.SATISTREE_BUTTON, ModBlocks.SATISTREE_PLANKS);
+        fenceItem(ModBlocks.SATISTREE_FENCE, ModBlocks.SATISTREE_PLANKS);
+
+        basicItem(ModBlocks.SATISTREE_DOOR.asItem());
+
+        splatBlockItem(ModBlocks.SATISTREE_SAPLING);
+
+        basicItem(ModBlocks.ALIEN_PHYLLOSTACHYS.asItem());
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

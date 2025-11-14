@@ -5,6 +5,8 @@ import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -145,5 +147,32 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // ashen
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.VOLCANIC_ASH.get());
+
+        // satis
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.SATISTREE_LOG.get())
+                .add(ModBlocks.SATISTREE_WOOD.get())
+                .add(ModBlocks.STRIPPED_SATISTREE_LOG.get())
+                .add(ModBlocks.STRIPPED_SATISTREE_WOOD.get());
+        this.tag(BlockTags.OVERWORLD_NATURAL_LOGS)
+                .add(ModBlocks.SATISTREE_LOG.get())
+                .add(ModBlocks.SATISTREE_WOOD.get())
+                .add(ModBlocks.STRIPPED_SATISTREE_LOG.get())
+                .add(ModBlocks.STRIPPED_SATISTREE_WOOD.get());
+        this.tag(BlockTags.PLANKS).add(ModBlocks.SATISTREE_PLANKS.get());
+        this.tag(BlockTags.WOODEN_SLABS).add(ModBlocks.SATISTREE_SLAB.get());
+        this.tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.SATISTREE_STAIRS.get());
+        this.tag(BlockTags.WOODEN_BUTTONS).add(ModBlocks.SATISTREE_BUTTON.get());
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.SATISTREE_PRESSURE_PLATE.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.SATISTREE_LEAVES.get());
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.SATISTREE_SAPLING.get());
+        this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.SATISTREE_DOOR.get());
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.SATISTREE_TRAPDOOR.get());
+        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.SATISTREE_FENCE.get());
+        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.SATISTREE_FENCE_GATE.get());
+        this.tag(BlockTags.BAMBOO_PLANTABLE_ON)
+                .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get(), ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get());
     }
 }

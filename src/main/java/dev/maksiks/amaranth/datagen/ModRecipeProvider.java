@@ -259,5 +259,46 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.LUPINE.asItem())
                 .unlockedBy("has_lupine", has(ModBlocks.LUPINE.asItem()))
                 .save(recipeOutput);
+        
+        // satis
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SATISTREE_PLANKS.asItem(), 4)
+                .requires(ModBlocks.SATISTREE_LOG.get())
+                .unlockedBy("has_satistree_log", has(ModBlocks.SATISTREE_LOG.asItem()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "satistree_planks_from_juiceless_log"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SATISTREE_WOOD.asItem(), 3)
+                .requires(ModBlocks.SATISTREE_LOG.get())
+                .requires(ModBlocks.SATISTREE_LOG.get())
+                .requires(ModBlocks.SATISTREE_LOG.get())
+                .requires(ModBlocks.SATISTREE_LOG.get())
+                .unlockedBy("has_satistree_log", has(ModBlocks.SATISTREE_LOG.asItem()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "satistree_wood_from_juiceless_log"));
+
+        stairBuilder(ModBlocks.SATISTREE_STAIRS.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get()))
+                .save(recipeOutput);
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.SATISTREE_SLAB.get(), ModBlocks.SATISTREE_PLANKS.get());
+
+        buttonBuilder(ModBlocks.SATISTREE_BUTTON.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get())).save(recipeOutput);
+        pressurePlate(recipeOutput, ModBlocks.SATISTREE_PRESSURE_PLATE.get(), ModBlocks.SATISTREE_PLANKS.get());
+
+        fenceBuilder(ModBlocks.SATISTREE_FENCE.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get())).save(recipeOutput);
+        fenceGateBuilder(ModBlocks.SATISTREE_FENCE_GATE.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get())).save(recipeOutput);
+
+        doorBuilder(ModBlocks.SATISTREE_DOOR.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocks.SATISTREE_TRAPDOOR.get(), Ingredient.of(ModBlocks.SATISTREE_PLANKS.get())).group("satistree")
+                .unlockedBy("has_satistree_planks", has(ModBlocks.SATISTREE_PLANKS.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STICK, 1)
+                .define('#', ModBlocks.ALIEN_PHYLLOSTACHYS.asItem())
+                .pattern("#")
+                .pattern("#")
+                .group("sticks")
+                .unlockedBy("has_alien_phyllostachys", has(ModBlocks.ALIEN_PHYLLOSTACHYS.asItem()))
+                .save(recipeOutput, "stick_from_alien_phyllostachys_item");
     }
 }

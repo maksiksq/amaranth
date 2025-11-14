@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -199,6 +200,35 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // ashen
         this.dropSelf(ModBlocks.VOLCANIC_ASH.get());
+
+
+        // satis
+        this.dropSelf(ModBlocks.SATISTREE_LOG.get());
+        this.dropSelf(ModBlocks.SATISTREE_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_SATISTREE_LOG.get());
+        this.dropSelf(ModBlocks.STRIPPED_SATISTREE_WOOD.get());
+        this.dropSelf(ModBlocks.SATISTREE_PLANKS.get());
+        this.dropSelf(ModBlocks.SATISTREE_SAPLING.get());
+
+        this.add(ModBlocks.SATISTREE_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.SATISTREE_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        this.dropSelf(ModBlocks.SATISTREE_STAIRS.get());
+        this.add(ModBlocks.SATISTREE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.SATISTREE_SLAB.get()));
+
+        this.dropSelf(ModBlocks.SATISTREE_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.SATISTREE_BUTTON.get());
+
+        this.dropSelf(ModBlocks.SATISTREE_FENCE.get());
+        this.dropSelf(ModBlocks.SATISTREE_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.SATISTREE_TRAPDOOR.get());
+
+        this.add(ModBlocks.SATISTREE_DOOR.get(),
+                block -> createDoorTable(ModBlocks.SATISTREE_DOOR.get()));
+
+        this.dropSelf(ModBlocks.ALIEN_PHYLLOSTACHYS.get());
+        this.dropOther(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get(), ModBlocks.ALIEN_PHYLLOSTACHYS.get());
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
