@@ -67,7 +67,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ALPINE_SPRUCE_SAPLING);
                         output.accept(ModBlocks.SATISTREE_SAPLING);
                         output.accept(ModBlocks.GIGANTIC_SATISTREE_SPROUTS);
-                        output.accept(ModBlocks.ALIEN_FENCE_PLANT);
+                        output.accept(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
 
                         // biome decor
                         output.accept(ModBlocks.GOLDEN_LEAF_LITTER);
