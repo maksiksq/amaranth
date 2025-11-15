@@ -59,6 +59,40 @@ class AlienFencePlantFoliagePlacer(
         foliageRadius: Int,
         offset: Int
     ) {
+        val trunkPos = attachment.pos().below()
+        val ctx = LeafPlacerContext.ctx(level, blockSetter, random, config, debug = false);
+
+        fun at(height: Int): BlockPos = trunkPos.above(height)
+        var curY = 0;
+        fun bump() {
+            curY += 1
+        }
+
+        fun lower() {
+            curY -= 1
+        }
+
+        bump()
+        // low thingie
+        if (random.nextInt(4) <= 2) {
+            ctx.incDiamond(
+                at(curY), 0,
+                LeafPlacerContext.HorizontalLayer(95, 75, 100)
+            )
+            bump()
+            ctx.placeLeaf(at(curY))
+            return;
+        }
+        // high thingie
+        ctx.disc(at(curY), 1, 0)
+        bump()
+        ctx.placeLeaf(at(curY))
+        ctx.incDiamond(
+            at(curY), 0,
+            LeafPlacerContext.HorizontalLayer(100, 25, 25)
+        )
+        bump()
+        ctx.placeLeaf(at(curY))
     }
 
     override fun foliageHeight(random: RandomSource, height: Int, config: TreeConfiguration): Int =

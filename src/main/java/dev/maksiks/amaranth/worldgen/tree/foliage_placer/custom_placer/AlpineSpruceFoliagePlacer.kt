@@ -73,7 +73,6 @@ class AlpineSpruceFoliagePlacer(
         fun bump() {
             curY += 1
         }
-
         fun lower() {
             curY -= 1
         }

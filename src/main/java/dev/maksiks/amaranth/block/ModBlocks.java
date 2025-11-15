@@ -2,10 +2,7 @@ package dev.maksiks.amaranth.block;
 
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.custom.*;
-import dev.maksiks.amaranth.block.custom.leaves.AnthocyaninLeavesBlock;
-import dev.maksiks.amaranth.block.custom.leaves.FlammableLeavesBlock;
-import dev.maksiks.amaranth.block.custom.leaves.SilverBirchLeavesBlock;
-import dev.maksiks.amaranth.block.custom.leaves.WisteriaLeavesBlock;
+import dev.maksiks.amaranth.block.custom.leaves.*;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.worldgen.tree.ModTreeGrowers;
 import net.minecraft.util.ColorRGBA;
@@ -308,7 +305,7 @@ public class ModBlocks {
             () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     public static final DeferredBlock<Block> ALIEN_LEAVES = registerBlock("alien_leaves",
-            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
+            () -> new AlienLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> SATISTREE_SAPLING = registerBlock("satistree_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
