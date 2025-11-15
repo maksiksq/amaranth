@@ -48,7 +48,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ANTHOCYANIN_LEAVES);
                         output.accept(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
                         output.accept(ModBlocks.WISTERIA_LEAVES);
-                        output.accept(ModBlocks.SATISTREE_LEAVES);
+                        output.accept(ModBlocks.ALIEN_LEAVES);
 
                         // saplings
                         output.accept(ModBlocks.MYSTIC_SAPLING);

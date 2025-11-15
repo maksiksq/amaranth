@@ -211,7 +211,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SATISTREE_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.SATISTREE_SAPLING);
         twoPlanesCutoutBlock(ModBlocks.GIGANTIC_SATISTREE_SPROUTS);
-        leavesBlock(ModBlocks.SATISTREE_LEAVES);
+        leavesBlock(ModBlocks.ALIEN_LEAVES);
 
         stairsBlock(ModBlocks.SATISTREE_STAIRS.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));
         slabBlock(ModBlocks.SATISTREE_SLAB.get(), blockTexture(ModBlocks.SATISTREE_PLANKS.get()), blockTexture(ModBlocks.SATISTREE_PLANKS.get()));

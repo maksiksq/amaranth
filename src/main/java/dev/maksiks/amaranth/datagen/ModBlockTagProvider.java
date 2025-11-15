@@ -164,7 +164,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.SATISTREE_STAIRS.get());
         this.tag(BlockTags.WOODEN_BUTTONS).add(ModBlocks.SATISTREE_BUTTON.get());
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.SATISTREE_PRESSURE_PLATE.get());
-        this.tag(BlockTags.LEAVES).add(ModBlocks.SATISTREE_LEAVES.get());
+        this.tag(BlockTags.LEAVES).add(ModBlocks.ALIEN_LEAVES.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.SATISTREE_SAPLING.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get());
         this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.SATISTREE_DOOR.get());

@@ -211,8 +211,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get());
 
         // TODO: add gigantic sapling and alien fence plant drops
-        this.add(ModBlocks.SATISTREE_LEAVES.get(),
-                block -> createLeavesDrops(ModBlocks.SATISTREE_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.ALIEN_LEAVES.get(),
+                block -> createLeavesDrops(ModBlocks.ALIEN_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ModBlocks.SATISTREE_STAIRS.get());
         this.add(ModBlocks.SATISTREE_SLAB.get(),

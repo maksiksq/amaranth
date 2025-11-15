@@ -91,8 +91,12 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> OCCASIONAL_BERRY_BUSH_KEY = registerKey("occasional_berry_bushes");
     public static ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder_key");
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_ALLIUM_KEY = registerKey("spring_allium_key");
-    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_PHLOX_KEY = registerKey("spring_phlox_key");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_ALLIUM_KEY = registerKey("spring_allium");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_PHLOX_KEY = registerKey("spring_phlox");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> SATISTREE_KEY = registerKey("satistree");
+    public static ResourceKey<ConfiguredFeature<?, ?>> GIGANTIC_SATISTREE_KEY = registerKey("gigantic_satistree");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_FENCE_PLANT_KEY = registerKey("alien_fence_plant");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -628,6 +632,19 @@ public class ModConfiguredFeatures {
                 new RandomPatchConfiguration(
                         60, 12, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaPhloxBuilder)))
                 )
+        );
+
+        // satis
+        register(
+                context,
+                ALIEN_FENCE_PLANT_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.ALIEN_FENCE_PLANT.get()),
+                        new AlienFencePlantTrunkPlacer(12, 1, 1),
+                        BlockStateProvider.simple(ModBlocks.ALIEN_LEAVES.get()),
+                        new AlienFencePlantFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
+                        new TwoLayersFeatureSize(1, 0, 1)).build()
         );
     }
 

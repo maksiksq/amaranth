@@ -307,7 +307,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SATISTREE_PLANKS = registerBlock("satistree_planks",
             () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
-    public static final DeferredBlock<Block> SATISTREE_LEAVES = registerBlock("satistree_leaves",
+    public static final DeferredBlock<Block> ALIEN_LEAVES = registerBlock("alien_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_LEAVES)));
 
     public static final DeferredBlock<Block> SATISTREE_SAPLING = registerBlock("satistree_sapling",
