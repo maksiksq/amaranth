@@ -47,6 +47,7 @@
 - [ ]  TRAILER: -5621453417704106832  -291172 158 5765  screenshottable as hell
 - [ ]  look into isSolid
 - [ ]  make mod to make leaf litter and etc replaceable if it's not a thing on later versions
+- [ ]  fix maybe: you can bonemeal leaf litter into existence in silver birch
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at all rn

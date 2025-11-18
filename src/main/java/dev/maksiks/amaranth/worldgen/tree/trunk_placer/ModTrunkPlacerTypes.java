@@ -27,6 +27,10 @@ public class ModTrunkPlacerTypes{
             TRUNK_PLACER_TYPES.register("witchy_trunk_placer", () -> new TrunkPlacerType<>(WitchyTrunkPlacer.CODEC));
    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<AlpineSpruceTrunkPlacer>> ALPINE_SPRUCE_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("alpine_spruce_trunk_placer", () -> new TrunkPlacerType<>(AlpineSpruceTrunkPlacer.CODEC));
+   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<SatistreeTrunkPlacer>> SATISTREE_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("satistree_trunk_placer", () -> new TrunkPlacerType<>(SatistreeTrunkPlacer.CODEC));
+   public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<GiganticSatistreeTrunkPlacer>> GIGANTIC_SATISTREE_TRUNK_PLACER =
+            TRUNK_PLACER_TYPES.register("gigantic_satistree_trunk_placer", () -> new TrunkPlacerType<>(GiganticSatistreeTrunkPlacer.CODEC));
    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<AlienFencePlantTrunkPlacer>> ALIEN_FENCE_PLANT_TRUNK_PLACER =
             TRUNK_PLACER_TYPES.register("alien_fence_plant_trunk_placer", () -> new TrunkPlacerType<>(AlienFencePlantTrunkPlacer.CODEC));
 }

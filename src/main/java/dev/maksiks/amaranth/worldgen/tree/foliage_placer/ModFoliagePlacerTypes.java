@@ -31,6 +31,10 @@ public class ModFoliagePlacerTypes{
             FOLIAGE_PLACER_TYPES.register("witchy_foliage_placer", () -> new FoliagePlacerType<>(WitchyFoliagePlacer.CODEC));
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AlpineSpruceFoliagePlacer>> ALPINE_SPRUCE_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("alpine_spruce_foliage_placer", () -> new FoliagePlacerType<>(AlpineSpruceFoliagePlacer.getCODEC()));
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<SatistreeFoliagePlacer>> SATISTREE_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("satistree_foliage_placer", () -> new FoliagePlacerType<>(SatistreeFoliagePlacer.getCODEC()));
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<GiganticSatistreeFoliagePlacer>> GIGANTIC_SATISTREE_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("gigantic_satistree_foliage_placer", () -> new FoliagePlacerType<>(GiganticSatistreeFoliagePlacer.getCODEC()));
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AlienFencePlantFoliagePlacer>> ALIEN_FENCE_PLANT_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("alien_fence_plant_foliage_placer", () -> new FoliagePlacerType<>(AlienFencePlantFoliagePlacer.getCODEC()));
 }
