@@ -603,7 +603,7 @@ public class ModConfiguredFeatures {
                 SPRING_FLOWER_ALLIUM_KEY,
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
-                        65,
+                        85,
                         16,
                         2,
                         PlacementUtils.onlyWhenEmpty(
@@ -630,7 +630,7 @@ public class ModConfiguredFeatures {
                 SPRING_FLOWER_PHLOX_KEY,
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
-                        60, 12, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaPhloxBuilder)))
+                        80, 12, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(wisteriaPhloxBuilder)))
                 )
         );
 
