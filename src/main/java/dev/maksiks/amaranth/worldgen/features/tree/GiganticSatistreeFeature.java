@@ -3,10 +3,12 @@ package dev.maksiks.amaranth.worldgen.features.tree;
 import com.mojang.serialization.Codec;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
+import dev.maksiks.amaranth.worldgen.features.structure_processor.GiganticSatistreeStructureProcessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -23,10 +25,12 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import java.util.ArrayList;
 import java.util.List;
 
+import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.wouldDecay;
+
 public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> {
 
     private static final int CANOPY_VARIANT_COUNT = 2;
-    private static final int VERTICAL_OFFSET = -23;
+    private static final int VERTICAL_OFFSET = -25;
     private static final int X_OFFSET = 0;
     private static final int Z_OFFSET = 0;
     private static final int BASE_HEIGHT = 40;
@@ -105,7 +109,7 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
         }
 
         for (int i = 0; i < freeTreeHeight; i++) {
-            this.safeSetBlock(level, origin.above(i), logState);
+            this.safeLeafReplacingSetBlock(level, origin.above(i), logState);
         }
 
         return true;
@@ -127,7 +131,10 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
                 .setRotation(rotation)
                 .setMirror(mirror)
                 .setIgnoreEntities(false)
-                .setRandom(random);
+                .setRandom(random)
+                .addProcessor(GiganticSatistreeStructureProcessor.INSTANCE);
+        // custom processor for random chances and whatever else i'll add in the next 5 minutes before i starve
+        // i mean, go to the fridge
 
         BlockPos intendedCenter = pos.above(VERTICAL_OFFSET)
                 .relative(Direction.EAST, X_OFFSET)
@@ -193,6 +200,14 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
         }
     }
 
+    private void safeLeafReplacingSetBlock(WorldGenLevel level, BlockPos pos, BlockState state) {
+        BlockState existing = level.getBlockState(pos);
+
+        if (existing.is(BlockTags.LEAVES) || existing.canBeReplaced()) {
+            this.setBlock(level, pos, state);
+        }
+    }
+
     private boolean hasVerticalSpace(WorldGenLevel level, BlockPos origin, int height) {
         for (int i = 1; i <= height; i++) {
             BlockPos check = origin.above(i);
@@ -235,4 +250,53 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
             case CLOCKWISE_90, COUNTERCLOCKWISE_90 -> new BlockPos(s.getZ(), s.getY(), s.getX());
         };
     }
+
+    // "decaying" leaves
+    // uses the same math as above oh god this class is complicated as hell
+//    // BROKEN !!!
+//    private void postProcessLeaves(WorldGenLevel level, BlockPos canopyPos, ResourceLocation structureLocation, RandomSource random) {
+//        StructureTemplateManager templateManager = level.getLevel().getServer().getStructureManager();
+//        StructureTemplate template = templateManager.getOrCreate(structureLocation);
+//
+//        Mirror mirror = Mirror.NONE;
+//
+//        BlockPos intendedCenter = canopyPos.above(VERTICAL_OFFSET)
+//                .relative(Direction.EAST, X_OFFSET)
+//                .relative(Direction.NORTH, Z_OFFSET);
+//
+//        BlockPos size = new BlockPos(template.getSize());
+//        int cx = size.getX() / 2;
+//        int cz = size.getZ() / 2;
+//
+//        BlockPos transformed = transformLocalByMirrorRotation(cx, 0, cz, size.getX(), size.getZ(), mirror, rotation);
+//        BlockPos start = intendedCenter.offset(-transformed.getX(), -transformed.getY(), -transformed.getZ());
+//        BlockPos realStart = template.getZeroPositionWithTransform(start, mirror, rotation);
+//
+//        BlockPos rotationOffset = switch (rotation) {
+//            case NONE -> new BlockPos(0, 0, 1);
+//            case CLOCKWISE_90 -> new BlockPos(-1, 0, 0);
+//            case CLOCKWISE_180 -> new BlockPos(0, 0, -1);
+//            case COUNTERCLOCKWISE_90 -> new BlockPos(1, 0, 0);
+//        };
+//
+//        realStart = realStart.offset(rotationOffset);
+//
+//        BlockPos rotatedSize = getRotatedSize(template, rotation);
+//
+//        for (int x = 0; x < rotatedSize.getX(); x++) {
+//            for (int y = 0; y < rotatedSize.getY(); y++) {
+//                for (int z = 0; z < rotatedSize.getZ(); z++) {
+//
+//                    BlockPos check = realStart.offset(x, y, z);
+//                    BlockState state = level.getBlockState(check);
+//
+//                    if (state.is(BlockTags.LEAVES)) {
+//                        if (wouldDecay(level, check, state)) {
+//                            level.setBlock(check, Blocks.AIR.defaultBlockState(), 2);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

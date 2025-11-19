@@ -1,5 +1,7 @@
 package dev.maksiks.amaranth.worldgen.features;
 
+import com.mojang.datafixers.util.Pair;
+import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -7,11 +9,16 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+
+import java.util.ArrayDeque;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ModFeatureUtils {
     public static boolean canPlaceBigThingAt(LevelAccessor level, BlockPos pos) {
@@ -109,5 +116,44 @@ public class ModFeatureUtils {
             }
         }
     }
+    public static boolean wouldDecay(LevelReader level, BlockPos pos, BlockState state) {
+        if (!state.is(BlockTags.LEAVES)) {
+            return false;
+        }
 
+        final int MAX_DISTANCE = 6;
+        ArrayDeque<Pair<BlockPos, Integer>> queue = new ArrayDeque<>();
+        Set<BlockPos> visited = new HashSet<>();
+
+        queue.add(Pair.of(pos, 0));
+        visited.add(pos);
+
+        while (!queue.isEmpty()) {
+            Pair<BlockPos, Integer> entry = queue.removeFirst();
+            BlockPos current = entry.getFirst();
+            int dist = entry.getSecond();
+
+            if (dist > MAX_DISTANCE) continue;
+
+            for (Direction dir : Direction.values()) {
+                BlockPos neighbor = current.relative(dir);
+
+                if (visited.contains(neighbor)) continue;
+                visited.add(neighbor);
+
+                BlockState nState = level.getBlockState(neighbor);
+
+                if (nState.is(BlockTags.LOGS)) {
+                    return false;
+                }
+
+                if (nState.is(BlockTags.LEAVES) && dist < MAX_DISTANCE) {
+                    queue.add(Pair.of(neighbor, dist + 1));
+                }
+            }
+        }
+
+        Amaranth.LOGGER.info("`Decayed`: {}", visited);
+        return true;
+    }
 }

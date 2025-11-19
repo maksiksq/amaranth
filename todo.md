@@ -57,6 +57,7 @@
 - [ ]  make mod to make leaf litter and etc replaceable if it's not a thing on later versions
 - [ ]  fix maybe: you can bonemeal leaf litter into existence in silver birch
 - [ ]  fix maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
+- [ ]  fix maybe: leaf check for structures
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at
