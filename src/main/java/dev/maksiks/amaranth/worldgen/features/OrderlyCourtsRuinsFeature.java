@@ -60,7 +60,7 @@ public class OrderlyCourtsRuinsFeature extends Feature<NoneFeatureConfiguration>
         }
     }
 
-    // Structure lists for each rarity tier
+    // structure lists for each rarity tier
     private static final List<ResourceLocation> COMMON_STRUCTURES = List.of(
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_arch_1"),
             ResourceLocation.fromNamespaceAndPath("amaranth", "orderly_ruins/orderly_arch_2"),

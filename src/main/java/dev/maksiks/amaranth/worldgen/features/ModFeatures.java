@@ -1,5 +1,6 @@
 package dev.maksiks.amaranth.worldgen.features;
 
+import dev.maksiks.amaranth.worldgen.features.tree.GiganticSatistreeFeature;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -34,4 +35,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDER_FEATURE =
             FEATURES.register("boulder",
                     () -> new BoulderFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> GIGANTIC_SATISTREE_FEATURE =
+            FEATURES.register("gigantic_satistree",
+                    () -> new GiganticSatistreeFeature(NoneFeatureConfiguration.CODEC));
 }

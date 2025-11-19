@@ -650,13 +650,8 @@ public class ModConfiguredFeatures {
         register(
                 context,
                 GIGANTIC_SATISTREE_KEY,
-                Feature.TREE,
-                new TreeConfiguration.TreeConfigurationBuilder(
-                        BlockStateProvider.simple(ModBlocks.SATISTREE_LOG.get()),
-                        new GiganticSatistreeTrunkPlacer(12, 1, 1),
-                        BlockStateProvider.simple(ModBlocks.ALIEN_LEAVES.get()),
-                        new GiganticSatistreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
-                        new TwoLayersFeatureSize(1, 0, 1)).build()
+                ModFeatures.GIGANTIC_SATISTREE_FEATURE.get(),
+                NoneFeatureConfiguration.INSTANCE
         );
 
         register(

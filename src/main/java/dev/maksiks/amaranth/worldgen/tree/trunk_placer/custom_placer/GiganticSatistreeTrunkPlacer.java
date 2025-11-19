@@ -5,13 +5,18 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.maksiks.amaranth.worldgen.tree.trunk_placer.ModTrunkPlacerTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -41,27 +46,38 @@ public class GiganticSatistreeTrunkPlacer extends TrunkPlacer {
     ) {
         setDirtAt(level, blockSetter, random, pos.below(), config);
 
-        int roll = random.nextInt(100);
-        int variant =
-            roll < 10 ? 2 : // round
-            roll < 30 ? 1 : // smol
-            0; // normie
-
-        if (variant == 2 || variant == 0) {
-            for (int i = 0; i < freeTreeHeight; i++) {
-                this.placeLog(level, blockSetter, random, pos.above(i), config);
+        freeTreeHeight = 22 + random.nextInt(4);
+        int limit = 6;
+        Direction highDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            BlockPos placePos = pos.relative(dir);
+            this.placeLog(level, blockSetter, random, placePos, config);
+            this.placeLog(level, blockSetter, random, placePos.above(), config);
+            BlockPos maybeAirPos = placePos.below();
+            limit--;
+            int airIx = 0;
+            while (!level.isStateAtPosition(maybeAirPos, BlockBehaviour.BlockStateBase::isSolid)) {
+                airIx++;
+                this.placeLog(level, blockSetter, random, maybeAirPos, config);
+                maybeAirPos = maybeAirPos.below();
+                if (airIx > limit) break;
+            }
+            if (level.isStateAtPosition(maybeAirPos, Blocks.GRASS_BLOCK.defaultBlockState()::equals)) {
+                setDirtAt(level, blockSetter, random, maybeAirPos, config);
+            }
+            if (level.isStateAtPosition(placePos.below(), Blocks.GRASS_BLOCK.defaultBlockState()::equals)) {
+                setDirtAt(level, blockSetter, random, placePos.below(), config);
+            }
+            if (dir==highDir) {
+                this.placeLog(level, blockSetter, random, pos.relative(highDir.getClockWise()).above(2), config);
+                this.placeLog(level, blockSetter, random, pos.relative(highDir).above(2), config);
+                this.placeLog(level, blockSetter, random, pos.relative(highDir).above(3), config);
             }
         }
-        if (variant == 1) {
-            freeTreeHeight = 9 + random.nextInt(2);
-            for (int i = 0; i < freeTreeHeight; i++) {
-                this.placeLog(level, blockSetter, random, pos.above(i), config);
-            }
+        for (int i = 0; i < freeTreeHeight; i++) {
+            this.placeLog(level, blockSetter, random, pos.above(i), config);
         }
 
-        //
-        // Variant encoded in radiusOffset because that's enough access transformers for this week
-        //
-        return ImmutableList.of(new FoliagePlacer.FoliageAttachment(pos.above(freeTreeHeight), variant, false));
+        return ImmutableList.of(new FoliagePlacer.FoliageAttachment(pos.above(freeTreeHeight), 0, false));
     }
 }
