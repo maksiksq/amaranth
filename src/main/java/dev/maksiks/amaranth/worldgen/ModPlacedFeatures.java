@@ -73,6 +73,12 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SPRING_FLOWER_PHLOX_PLACED_KEY = registerKey("spring_flower_phlox_placed");
     public static final ResourceKey<PlacedFeature> SPRING_PATCH_SUGAR_CANE_PLACED_KEY = registerKey("spring_patch_sugar_cane_placed");
 
+    public static final ResourceKey<PlacedFeature> SATISTREE_PLACED_KEY = registerKey("satistree_placed_");
+    public static final ResourceKey<PlacedFeature> GIGANTIC_SATISTREE_PLACED_KEY = registerKey("gigantic_satistree_placed");
+    public static final ResourceKey<PlacedFeature> ALIEN_FENCE_PLANT_PLACED_KEY = registerKey("alien_fence_plant_placed");
+    public static final ResourceKey<PlacedFeature> ALIEN_PHYLLOSTACHYS_PLACED_KEY = registerKey("alien_phyllostachys_placed");
+
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -325,6 +331,35 @@ public class ModPlacedFeatures {
                 BiomeFilter.biome()
         );
 
+
+        register(context, SATISTREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATISTREE_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 0),
+                        ModBlocks.SATISTREE_SAPLING.get()));
+
+
+        register(context, GIGANTIC_SATISTREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIGANTIC_SATISTREE_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.5F, 1),
+                        ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get()));
+
+        register(context, ALIEN_FENCE_PLANT_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALIEN_FENCE_PLANT_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                        ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get()));
+
+        // TODO: fix bamboo
+        // TODO: fix sand surface rule
+        register(context, ALIEN_PHYLLOSTACHYS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALIEN_PHYLLOSTACHYS_KEY),
+                        List.of(
+                                NoiseThresholdCountPlacement.of(
+                                        0.05,
+                                        0,
+                                        30),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome())
+                );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

@@ -97,6 +97,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> SATISTREE_KEY = registerKey("satistree");
     public static ResourceKey<ConfiguredFeature<?, ?>> GIGANTIC_SATISTREE_KEY = registerKey("gigantic_satistree");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_FENCE_PLANT_KEY = registerKey("alien_fence_plant");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_KEY = registerKey("alien_phyllostachys");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -664,6 +665,13 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(ModBlocks.ALIEN_LEAVES.get()),
                         new AlienFencePlantFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(1, 0, 1)).build()
+        );
+
+        // TODO: make into little groves
+        register(context,
+                ALIEN_PHYLLOSTACHYS_KEY,
+                ModFeatures.ALIEN_PHYLLOSTACHYS_FEATURE.get(),
+                new ProbabilityFeatureConfiguration(0.0F)
         );
     }
 

@@ -1119,12 +1119,13 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
 
-        // tree normie
-        // tree giant
-        // custom ferns
+        // order important here
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.GIGANTIC_SATISTREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SATISTREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALIEN_FENCE_PLANT_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALIEN_PHYLLOSTACHYS_PLACED_KEY);
+        // maybe custom ferns
         // rocks
-        // bamboos
-        // alien fence plant
         // maybe those big sphere things?
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);

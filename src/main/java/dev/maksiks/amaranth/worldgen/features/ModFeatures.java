@@ -4,6 +4,7 @@ import dev.maksiks.amaranth.worldgen.features.tree.GiganticSatistreeFeature;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -39,4 +40,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> GIGANTIC_SATISTREE_FEATURE =
             FEATURES.register("gigantic_satistree",
                     () -> new GiganticSatistreeFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<ProbabilityFeatureConfiguration>> ALIEN_PHYLLOSTACHYS_FEATURE =
+            FEATURES.register("alien_phyllostachys",
+                    () -> new AlienPhyllostachysFeature(ProbabilityFeatureConfiguration.CODEC));
 }
