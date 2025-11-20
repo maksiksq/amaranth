@@ -17,8 +17,8 @@ import java.util.List;
 import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.hasNonSolidBelow;
 import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.isToppedDirt;
 
-public class BoulderFeature extends Feature<NoneFeatureConfiguration> {
-    public BoulderFeature(Codec<NoneFeatureConfiguration> codec) {
+public class RockFeature extends Feature<NoneFeatureConfiguration> {
+    public RockFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
@@ -34,17 +34,23 @@ public class BoulderFeature extends Feature<NoneFeatureConfiguration> {
         // making rock
         for (int x = -r; x <= r; x++) {
             for (int z = -r; z <= r; z++) {
-                positions.add(origin.offset(x, 0, z));
+                if (random.nextInt(100) < 30) {
+                    positions.add(origin.offset(x, 0, z));
+                }
             }
         }
         for (int x = -r; x <= r; x++) {
             for (int y = -r; y <= r; y++) {
-                positions.add(origin.offset(x, y, 0));
+                if (random.nextInt(100) < 60 || (y==0 && x==0)) {
+                    positions.add(origin.offset(x, y, 0));
+                }
             }
         }
         for (int y = -r; y <= r; y++) {
             for (int z = -r; z <= r; z++) {
-                positions.add(origin.offset(0, y, z));
+                if (random.nextInt(100) < 30 || (y==1 && z==0)) {
+                    positions.add(origin.offset(0, y, z));
+                }
             }
         }
 
@@ -88,10 +94,8 @@ public class BoulderFeature extends Feature<NoneFeatureConfiguration> {
     private void setRock(WorldGenLevel level, BlockPos pos, RandomSource random) {
         boolean roll = random.nextBoolean();
         level.setBlock(pos, roll
-                        ? Blocks.TUFF.defaultBlockState()
-                        : random.nextBoolean()
-                            ? Blocks.ANDESITE.defaultBlockState()
-                            : Blocks.STONE.defaultBlockState(),
+                        ? Blocks.STONE.defaultBlockState()
+                        : Blocks.ANDESITE.defaultBlockState(),
                 2);
     }
 }

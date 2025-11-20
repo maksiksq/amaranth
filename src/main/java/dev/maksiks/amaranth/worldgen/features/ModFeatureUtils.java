@@ -12,12 +12,14 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ModFeatureUtils {
@@ -155,5 +157,24 @@ public class ModFeatureUtils {
 
         Amaranth.LOGGER.info("`Decayed`: {}", visited);
         return true;
+    }
+
+    public static boolean hasNonSolidBelow(WorldGenLevel level, List<BlockPos> positions) {
+        for (BlockPos pos : positions) {
+            BlockPos below = pos.below();
+            BlockState belowState = level.getBlockState(below);
+
+            if (!belowState.isSolid()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isToppedDirt(BlockState state) {
+        return state.is(Blocks.GRASS_BLOCK)
+                || state.is(Blocks.MYCELIUM)
+                || state.is(Blocks.PODZOL)
+                || state.is(Blocks.DIRT_PATH);
     }
 }

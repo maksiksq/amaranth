@@ -44,4 +44,8 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, Feature<ProbabilityFeatureConfiguration>> ALIEN_PHYLLOSTACHYS_FEATURE =
             FEATURES.register("alien_phyllostachys",
                     () -> new AlienPhyllostachysFeature(ProbabilityFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ROCK_FEATURE =
+            FEATURES.register("rock",
+                    () -> new RockFeature(NoneFeatureConfiguration.CODEC));
 }

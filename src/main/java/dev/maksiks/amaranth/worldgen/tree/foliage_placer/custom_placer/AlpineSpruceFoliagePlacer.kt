@@ -269,8 +269,6 @@ class AlpineSpruceFoliagePlacer(
             run {
                 curY = 1
 
-                Amaranth.LOGGER.info("Smol variant $maxFreeTreeHeight")
-
                 run {
                     repeat(5) {
                         lower()

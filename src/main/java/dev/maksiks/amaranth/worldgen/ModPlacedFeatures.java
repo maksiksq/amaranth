@@ -77,6 +77,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GIGANTIC_SATISTREE_PLACED_KEY = registerKey("gigantic_satistree_placed");
     public static final ResourceKey<PlacedFeature> ALIEN_FENCE_PLANT_PLACED_KEY = registerKey("alien_fence_plant_placed");
     public static final ResourceKey<PlacedFeature> ALIEN_PHYLLOSTACHYS_PLACED_KEY = registerKey("alien_phyllostachys_placed");
+    public static final ResourceKey<PlacedFeature> ROCK_PLACED_KEY = registerKey("rock_placed");
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -331,10 +332,9 @@ public class ModPlacedFeatures {
                 BiomeFilter.biome()
         );
 
-
         register(context, SATISTREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATISTREE_KEY),
                 // 1 / chance has to be integer mojang why
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 0),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1F, 1),
                         ModBlocks.SATISTREE_SAPLING.get()));
 
 
@@ -348,8 +348,6 @@ public class ModPlacedFeatures {
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
                         ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get()));
 
-        // TODO: fix bamboo
-        // TODO: fix sand surface rule
         register(context, ALIEN_PHYLLOSTACHYS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALIEN_PHYLLOSTACHYS_KEY),
                         List.of(
                                 NoiseThresholdCountPlacement.of(
@@ -360,6 +358,20 @@ public class ModPlacedFeatures {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())
                 );
+
+
+        register(
+                context,
+                ROCK_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome(),
+                        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+                )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
