@@ -758,7 +758,7 @@ public class ModSurfaceRules {
                         safeSurfaceFloorRule(
                                 SurfaceRules.ifTrue(
                                         SurfaceRules.noiseCondition(VEINY_NOISE, -0.10D, 0.10D),
-                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, SAND)
+                                        SurfaceRules.ifTrue(isAtOrAboveWaterLevel, COARSE_DIRT)
                                 )
                         )
                 )

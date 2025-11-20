@@ -334,7 +334,7 @@ public class ModPlacedFeatures {
 
         register(context, SATISTREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATISTREE_KEY),
                 // 1 / chance has to be integer mojang why
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1F, 1),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.5F, 1),
                         ModBlocks.SATISTREE_SAPLING.get()));
 
 
@@ -345,7 +345,7 @@ public class ModPlacedFeatures {
 
         register(context, ALIEN_FENCE_PLANT_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALIEN_FENCE_PLANT_KEY),
                 // 1 / chance has to be integer mojang why
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.25F, 1),
                         ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get()));
 
         register(context, ALIEN_PHYLLOSTACHYS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ALIEN_PHYLLOSTACHYS_KEY),
