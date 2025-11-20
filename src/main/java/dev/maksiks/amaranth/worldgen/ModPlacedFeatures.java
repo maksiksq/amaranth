@@ -78,6 +78,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ALIEN_FENCE_PLANT_PLACED_KEY = registerKey("alien_fence_plant_placed");
     public static final ResourceKey<PlacedFeature> ALIEN_PHYLLOSTACHYS_PLACED_KEY = registerKey("alien_phyllostachys_placed");
     public static final ResourceKey<PlacedFeature> ROCK_PLACED_KEY = registerKey("rock_placed");
+    public static final ResourceKey<PlacedFeature> SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY = registerKey("satis_pitcher_plant_flower_placed");
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -332,6 +333,7 @@ public class ModPlacedFeatures {
                 BiomeFilter.biome()
         );
 
+        // satis
         register(context, SATISTREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATISTREE_KEY),
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.5F, 1),
@@ -372,6 +374,10 @@ public class ModPlacedFeatures {
                         HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
                 )
         );
+
+        register(context, SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATIS_PITCHER_PLANT_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RarityFilter.onAverageOnceEvery(3), BiomeFilter.biome()));
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

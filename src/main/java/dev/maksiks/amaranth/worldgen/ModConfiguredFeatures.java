@@ -39,8 +39,6 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
 
-import static dev.maksiks.amaranth.worldgen.features.ModFeatures.ROCK_FEATURE;
-
 public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_KEY = registerKey("mystic");
     public static ResourceKey<ConfiguredFeature<?, ?>> MYSTIC_FLOWER_KEY = registerKey("mystic_flower");
@@ -101,6 +99,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_FENCE_PLANT_KEY = registerKey("alien_fence_plant");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_KEY = registerKey("alien_phyllostachys");
     public static ResourceKey<ConfiguredFeature<?, ?>> ROCK_KEY = registerKey("rock");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_PITCHER_PLANT_FLOWER_KEY = registerKey("satis_pitcher_plant_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -679,6 +678,24 @@ public class ModConfiguredFeatures {
 
         register(context, ROCK_KEY,
                 ModFeatures.ROCK_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
+
+        // spring
+        register(
+                context,
+                SATIS_PITCHER_PLANT_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        24,
+                        5,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.PITCHER_PLANT)
+                                )
+                        )
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

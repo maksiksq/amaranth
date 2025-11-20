@@ -1136,12 +1136,14 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SATISTREE_PLACED_KEY);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALIEN_FENCE_PLANT_PLACED_KEY);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ALIEN_PHYLLOSTACHYS_PLACED_KEY);
-        // maybe custom ferns
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY);
+        // would be great if it had a light source of some kind
         // maybe those big sphere things?
 
         // TODO: fix bamboo
-        // TODO: fix sand surface rule
+        // TODO: fix surface rule
         // TODO: VARIANTS TO TREE
+        // TODO: maybe make phyllostachys texture less saturated
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
 
