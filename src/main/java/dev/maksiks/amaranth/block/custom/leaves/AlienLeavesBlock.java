@@ -30,16 +30,16 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
- * Copied whole from {@link LeavesBlock}
- * because {getOptionalDistanceAt} is static.
+ * Copied from {@link LeavesBlock}
+ * because getOptionalDistanceAt is static.
  * Don't you dare change anything in these mojang.
  * I'm in your walls.
  */
 
 public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, net.neoforged.neoforge.common.IShearable, IFlammableLeaves {
     public static final MapCodec<net.minecraft.world.level.block.LeavesBlock> CODEC = simpleCodec(net.minecraft.world.level.block.LeavesBlock::new);
-    public static final int DECAY_DISTANCE = 7;
-    public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE;
+    public static final int DECAY_DISTANCE = 10;
+    public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, DECAY_DISTANCE);
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final int TICK_DELAY = 1;
@@ -54,7 +54,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
         this.registerDefaultState(
                 this.stateDefinition
                         .any()
-                        .setValue(DISTANCE, Integer.valueOf(7))
+                        .setValue(DISTANCE, Integer.valueOf(DECAY_DISTANCE))
                         .setValue(PERSISTENT, Boolean.valueOf(false))
                         .setValue(WATERLOGGED, Boolean.valueOf(false))
         );
@@ -67,7 +67,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(DISTANCE) == 7 && !state.getValue(PERSISTENT);
+        return state.getValue(DISTANCE) == DECAY_DISTANCE && !state.getValue(PERSISTENT);
     }
 
     /**
@@ -82,7 +82,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
     }
 
     protected boolean decaying(BlockState state) {
-        return !state.getValue(PERSISTENT) && state.getValue(DISTANCE) == 7;
+        return !state.getValue(PERSISTENT) && state.getValue(DISTANCE) == DECAY_DISTANCE;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
     }
 
     private static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
-        int i = 7;
+        int i = DECAY_DISTANCE;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
         for (Direction direction : Direction.values()) {
@@ -130,11 +130,11 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
     }
 
     private static int getDistanceAt(BlockState neighbor) {
-        return getOptionalDistanceAt(neighbor).orElse(7);
+        return getOptionalDistanceAt(neighbor).orElse(DECAY_DISTANCE);
     }
 
     public static OptionalInt getOptionalDistanceAt(BlockState state) {
-        if (state.is(BlockTags.LOGS) || state.is(ModBlocks.ALIEN_FENCE_PLANT)) {
+        if (state.is(BlockTags.LOGS) || state.is(ModBlocks.ALIEN_FENCE_PLANT.get())) {
             return OptionalInt.of(0);
         } else {
             return state.hasProperty(DISTANCE) ? OptionalInt.of(state.getValue(DISTANCE)) : OptionalInt.empty();

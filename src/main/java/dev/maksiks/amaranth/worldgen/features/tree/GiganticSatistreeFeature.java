@@ -26,12 +26,10 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.wouldDecay;
-
 public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> {
 
-    private static final int CANOPY_VARIANT_COUNT = 2;
-    private static final int VERTICAL_OFFSET = -25;
+    private static final int CANOPY_VARIANT_COUNT = 3;
+    private static final int VERTICAL_OFFSET = -27;
     private static final int X_OFFSET = 0;
     private static final int Z_OFFSET = 0;
     private static final int BASE_HEIGHT = 40;
@@ -100,6 +98,8 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
 
         BlockPos canopyPos = origin.above(freeTreeHeight);
 
+        // the variants are mostly just so you never discover a pattern in survival
+        // but they're basically the same thing
         ResourceLocation selectedCanopy = CANOPY_STRUCTURES.get(random.nextInt(CANOPY_STRUCTURES.size()));
 
         boolean success = placeCanopyStructure(level, canopyPos, selectedCanopy, random);
