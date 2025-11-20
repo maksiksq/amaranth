@@ -56,7 +56,6 @@
 
   "block.amaranth.sorrow_ice": "Sorrow Ice",
   "block.amaranth.remnant_sorrow_ice": "Remnant Sorrow Ice",
-  "sounds.amaranth.arctic_wind_throngled": "Intense Wind",
 
   "block.amaranth.purple_mixed_oak_leaves": "Purple Mixed Oak Leaves",
   "block.amaranth.red_mixed_oak_leaves": "Red Mixed Oak Leaves",
@@ -76,21 +75,16 @@
   "block.amaranth.anthocyanin_wood": "Anthocyanin Wood",
   "block.amaranth.stripped_anthocyanin_wood": "Stripped Anthocyanin Wood",
   "block.amaranth.anthocyanin_sapling": "Anthocyanin Sapling",
-
   "block.amaranth.anthocyanin_stairs": "Anthocyanin Stairs",
   "block.amaranth.anthocyanin_slab": "Anthocyanin Slab",
-
   "block.amaranth.anthocyanin_button": "Anthocyanin Button",
   "block.amaranth.anthocyanin_pressure_plate": "Anthocyanin Pressure Plate",
-
   "block.amaranth.anthocyanin_fence": "Anthocyanin Fence",
   "block.amaranth.anthocyanin_fence_gate": "Anthocyanin Fence Gate",
-
   "block.amaranth.anthocyanin_door": "Anthocyanin Door",
   "block.amaranth.ornamented_anthocyanin_door": "Ornamented Anthocyanin Door",
   "block.amaranth.anthocyanin_trapdoor": "Anthocyanin Trapdoor",
   "block.amaranth.ornamented_anthocyanin_trapdoor": "Ornamented Anthocyanin Trapdoor",
-
   "block.amaranth.malachite_vipers_bugloss": "Malachite Viper's Bugloss",
   "block.amaranth.potted_malachite_vipers_bugloss": "Potted Malachite Viper's Bugloss",
 
@@ -136,5 +130,29 @@
 
   "block.amaranth.volcanic_ash": "Volcanic Ash",
 
-  "entity.amaranth.shroom_boi": "Shroom Boi"
+  "block.amaranth.alien_leaves": "Alien Leaves",
+  "block.amaranth.satistree_log": "Satistree Log",
+  "block.amaranth.stripped_satistree_log": "Stripped Satistree Log",
+  "block.amaranth.satistree_planks": "Satistree Planks",
+  "block.amaranth.satistree_wood": "Satistree Wood",
+  "block.amaranth.stripped_satistree_wood": "Stripped Satistree Wood",
+  "block.amaranth.satistree_sapling": "Satistree Sapling",
+  "block.amaranth.gigantic_satistree_sprouts": "Gigantic Satistree Sprouts",
+  "block.amaranth.alien_fence_plant_sapling": "Alien Fence Plant Sapling",
+  "block.amaranth.alien_fence_plant": "Alien Fence Plant",
+  "block.amaranth.satistree_stairs": "Satistree Stairs",
+  "block.amaranth.satistree_slab": "Satistree Slab",
+  "block.amaranth.satistree_button": "Satistree Button",
+  "block.amaranth.satistree_pressure_plate": "Satistree Pressure Plate",
+  "block.amaranth.satistree_fence": "Satistree Fence",
+  "block.amaranth.satistree_fence_gate": "Satistree Fence Gate",
+  "block.amaranth.satistree_door": "Satistree Door",
+  "block.amaranth.satistree_trapdoor": "Satistree Trapdoor",
+  "block.amaranth.alien_phyllostachys": "Alien Phyllostachys",
+  "block.amaranth.alien_phyllostachys_sapling": "Alien Phyllostachys Sapling",
+  "block.amaranth.potted_alien_phyllostachys": "Potted Alien Phyllostachys",
+
+  "entity.amaranth.shroom_boi": "Shroom Boi",
+
+  "sounds.amaranth.arctic_wind_throngled": "Intense Wind"
 }
