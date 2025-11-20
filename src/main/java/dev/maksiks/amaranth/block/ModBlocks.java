@@ -337,7 +337,8 @@ public class ModBlocks {
             () -> new AlienPhyllostachysSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING)));
     public static final DeferredBlock<Block> ALIEN_PHYLLOSTACHYS = registerBlock("alien_phyllostachys",
             () -> new AlienPhyllostachysStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO)));
-    // potted
+    public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_PHYLLOSTACHYS = registerBlock("potted_alien_phyllostachys",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ALIEN_PHYLLOSTACHYS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_BAMBOO)));
 
     public static final DeferredBlock<Block> ALIEN_FENCE_PLANKS = registerBlock("alien_fence_planks",
             () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
@@ -361,7 +362,6 @@ public class ModBlocks {
                     .pushReaction(PushReaction.DESTROY)));
 
 
-
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
@@ -379,7 +379,9 @@ public class ModBlocks {
             ANTHOCYANIN_WOOD, STRIPPED_ANTHOCYANIN_WOOD,
             WISTERIA_LOG, STRIPPED_WISTERIA_LOG,
             WISTERIA_WOOD, STRIPPED_WISTERIA_WOOD,
-            JUICY_WISTERIA_LOG, STRIPPED_WISTERIA_LOG
+            JUICY_WISTERIA_LOG, STRIPPED_WISTERIA_LOG,
+            SATISTREE_LOG, STRIPPED_SATISTREE_LOG,
+            SATISTREE_WOOD, STRIPPED_SATISTREE_WOOD
     );
 
     public static void register(IEventBus eventBus) {

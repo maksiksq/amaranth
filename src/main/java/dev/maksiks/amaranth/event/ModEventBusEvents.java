@@ -52,8 +52,12 @@ public class ModEventBusEvents {
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
-                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "malachite_vipers_bugloss"),
+                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ModBlocks.MALACHITE_VIPERS_BUGLOSS.getId().getPath()),
                     ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS
+            );
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
+                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ModBlocks.ALIEN_PHYLLOSTACHYS.getId().getPath()),
+                    ModBlocks.POTTED_ALIEN_PHYLLOSTACHYS
             );
         });
     }

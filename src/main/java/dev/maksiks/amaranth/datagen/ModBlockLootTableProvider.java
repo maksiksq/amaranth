@@ -48,7 +48,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.MYSTIC_SAPLING.get());
 
         this.add(ModBlocks.MYSTIC_LEAVES.get(),
-                block -> createFruitLeavesDrops(ModBlocks.MYSTIC_LEAVES.get(), ModBlocks.MYSTIC_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                block -> createFruitOrExtraLeavesDrops(ModBlocks.MYSTIC_LEAVES.get(), ModBlocks.MYSTIC_SAPLING.get(), ModItems.HEXFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ModBlocks.MYSTIC_STAIRS.get());
         this.add(ModBlocks.MYSTIC_SLAB.get(),
@@ -210,9 +210,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SATISTREE_SAPLING.get());
         this.dropSelf(ModBlocks.GIGANTIC_SATISTREE_SPROUTS.get());
 
-        // TODO: add gigantic sapling and alien fence plant drops
         this.add(ModBlocks.ALIEN_LEAVES.get(),
-                block -> createLeavesDrops(ModBlocks.ALIEN_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                block -> createFruitOrExtraLeavesDrops(ModBlocks.ALIEN_LEAVES.get(), ModBlocks.SATISTREE_SAPLING.get(), ModBlocks.ALIEN_FENCE_PLANT_SAPLING.asItem(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ModBlocks.SATISTREE_STAIRS.get());
         this.add(ModBlocks.SATISTREE_SLAB.get(),
@@ -234,6 +233,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANKS.get());
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT.get());
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get());
+
+        this.add(ModBlocks.POTTED_ALIEN_PHYLLOSTACHYS.get(),
+                block -> createPotFlowerItemTable(ModBlocks.ALIEN_PHYLLOSTACHYS.get()));
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
@@ -264,7 +266,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 );
     }
 
-    protected LootTable.Builder createFruitLeavesDrops(Block leavesBlock, Block saplingBlock, Item item, float... chances) {
+    protected LootTable.Builder createFruitOrExtraLeavesDrops(Block leavesBlock, Block saplingBlock, Item item, float... chances) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return this.createLeavesDrops(leavesBlock, saplingBlock, chances)
                 .withPool(
