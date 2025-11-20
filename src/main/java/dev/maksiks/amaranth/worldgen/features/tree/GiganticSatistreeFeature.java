@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
@@ -101,15 +102,46 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
 
         ResourceLocation selectedCanopy = CANOPY_STRUCTURES.get(random.nextInt(CANOPY_STRUCTURES.size()));
 
-        boolean success =  placeCanopyStructure(level, canopyPos, selectedCanopy, random);
+        boolean success = placeCanopyStructure(level, canopyPos, selectedCanopy, random);
         if (!success) return false;
 
         for (BlockPos rootPos : roots) {
             this.safeSetBlock(level, rootPos, logState);
         }
 
+        int randomBranchCount = random.nextInt(4) + 1;
         for (int i = 0; i < freeTreeHeight; i++) {
             this.safeLeafReplacingSetBlock(level, origin.above(i), logState);
+        }
+
+        // very readable i know
+        // placing branches, starting at the start of the leaves so they're hidden
+        // reused the same branches from anthocyanin but they're inside the leaves so they work here just fine
+        // that 5 accounts for the leaves on top having a lot of open space so stuff might stick out
+        while (randomBranchCount > 0) {
+            for (int i = freeTreeHeight+VERTICAL_OFFSET; i < freeTreeHeight-5; i++) {
+                if (random.nextInt(100) < 15) {
+                    randomBranchCount--;
+
+                    for (int j = 0; j < 2 + random.nextInt(2); j++) {
+                        double horizontalAngle = random.nextDouble() * Math.PI * 2.0D;
+                        int length = 2 + random.nextInt(3);
+                        double tilt = Math.toRadians(random.nextDouble() * 50.0D + 15.0D);
+
+                        double xDir = Math.cos(horizontalAngle) * Math.cos(tilt);
+                        double yDir = Math.sin(tilt);
+                        double zDir = Math.cos(horizontalAngle) * Math.sin(tilt);
+
+                        for (int k = 0; k < length; k++) {
+                            BlockPos placementPos = origin.above(i);
+                            int x = placementPos.getX() + (int) Math.round(xDir * k);
+                            int y = placementPos.getY() + (int) Math.round(yDir * k);
+                            int z = placementPos.getZ() + (int) Math.round(zDir * k);
+                            this.safeLeafReplacingSetBlock(level, new BlockPos(x, y, z), logState);
+                        }
+                    }
+                }
+            }
         }
 
         return true;
@@ -220,8 +252,7 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
 
     // im only half sure this check works properly
     private boolean hasCanopySpace(WorldGenLevel level, BlockPos start, StructureTemplate template,
-                                   Rotation rotation)
-    {
+                                   Rotation rotation) {
         BlockPos size = getRotatedSize(template, rotation);
         int sx = size.getX();
         int sy = size.getY();

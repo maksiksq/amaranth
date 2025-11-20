@@ -1,6 +1,7 @@
 package dev.maksiks.amaranth.worldgen.features.structure_processor;
 
 import com.mojang.serialization.MapCodec;
+import dev.maksiks.amaranth.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 
 import javax.annotation.Nullable;
 
-import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.wouldDecay;
 import static dev.maksiks.amaranth.worldgen.features.structure_processor.ModStructureProcessorTypes.GIGANTIC_SATISTREE_PROCESSOR;
 
 public class GiganticSatistreeStructureProcessor extends StructureProcessor {
@@ -35,6 +35,7 @@ public class GiganticSatistreeStructureProcessor extends StructureProcessor {
 
         // slightly dithering the leaves
         // failed to implement a leaf decay check for it, would be more fun to make it like 75%
+        if (placed.state().is(ModBlocks.SATISTREE_LOG.get())) return placed;
         if (random.nextInt(100) < 95) {
             return placed;
         } else {
