@@ -18,11 +18,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeat
 public class AlienPhyllostachysFeature extends Feature<ProbabilityFeatureConfiguration> {
     private static final BlockState BAMBOO_TRUNK = ModBlocks.ALIEN_PHYLLOSTACHYS.get()
             .defaultBlockState()
-            .setValue(BambooStalkBlock.AGE, Integer.valueOf(1))
+            .setValue(BambooStalkBlock.AGE, 1)
             .setValue(BambooStalkBlock.LEAVES, BambooLeaves.NONE)
-            .setValue(BambooStalkBlock.STAGE, Integer.valueOf(0));
+            .setValue(BambooStalkBlock.STAGE, 0);
     private static final BlockState BAMBOO_FINAL_LARGE = BAMBOO_TRUNK.setValue(BambooStalkBlock.LEAVES, BambooLeaves.LARGE)
-            .setValue(BambooStalkBlock.STAGE, Integer.valueOf(1));
+            .setValue(BambooStalkBlock.STAGE, 1);
     private static final BlockState BAMBOO_TOP_LARGE = BAMBOO_TRUNK.setValue(BambooStalkBlock.LEAVES, BambooLeaves.LARGE);
     private static final BlockState BAMBOO_TOP_SMALL = BAMBOO_TRUNK.setValue(BambooStalkBlock.LEAVES, BambooLeaves.SMALL);
 
@@ -41,7 +41,7 @@ public class AlienPhyllostachysFeature extends Feature<ProbabilityFeatureConfigu
         BlockPos.MutableBlockPos blockpos$mutableblockpos1 = blockpos.mutable();
         if (worldgenlevel.isEmptyBlock(blockpos$mutableblockpos)) {
             if (ModBlocks.ALIEN_PHYLLOSTACHYS.get().defaultBlockState().canSurvive(worldgenlevel, blockpos$mutableblockpos)) {
-                int j = randomsource.nextInt(2) + 3;
+                int j = randomsource.nextInt(3) + 3;
                 if (randomsource.nextFloat() < probabilityfeatureconfiguration.probability) {
                     int k = randomsource.nextInt(4) + 1;
 

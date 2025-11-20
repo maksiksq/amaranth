@@ -173,7 +173,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.SATISTREE_FENCE_GATE.get());
         this.tag(ModTags.Blocks.ALIEN_PHYLLOSTACHYS_PLANTABLE_ON)
                 .addTag(BlockTags.SAND)
-                .addTag(BlockTags.DIRT)
+                .addTag(BlockTags.DIRT).remove(Blocks.COARSE_DIRT)
                 .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get(), ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING.get(), Blocks.GRAVEL, Blocks.SUSPICIOUS_GRAVEL);
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.ALIEN_PHYLLOSTACHYS.get());

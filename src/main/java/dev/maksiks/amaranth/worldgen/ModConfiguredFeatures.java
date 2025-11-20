@@ -12,6 +12,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -35,6 +36,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
@@ -98,6 +100,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> GIGANTIC_SATISTREE_KEY = registerKey("gigantic_satistree");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_FENCE_PLANT_KEY = registerKey("alien_fence_plant");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_KEY = registerKey("alien_phyllostachys");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_PATCH_KEY = registerKey("alien_phyllostachys_patch");
     public static ResourceKey<ConfiguredFeature<?, ?>> ROCK_KEY = registerKey("rock");
     public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_PITCHER_PLANT_FLOWER_KEY = registerKey("satis_pitcher_plant_flower");
 
@@ -669,11 +672,20 @@ public class ModConfiguredFeatures {
                         new TwoLayersFeatureSize(1, 0, 1)).build()
         );
 
-        // TODO: make into little groves
         register(context,
                 ALIEN_PHYLLOSTACHYS_KEY,
                 ModFeatures.ALIEN_PHYLLOSTACHYS_FEATURE.get(),
                 new ProbabilityFeatureConfiguration(0.0F)
+        );
+
+        register(context, ALIEN_PHYLLOSTACHYS_PATCH_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        256,
+                        5,
+                        2,
+                        PlacementUtils.inlinePlaced(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(ALIEN_PHYLLOSTACHYS_KEY))
+                )
         );
 
         register(context, ROCK_KEY,
