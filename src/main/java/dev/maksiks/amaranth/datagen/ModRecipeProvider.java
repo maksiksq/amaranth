@@ -304,5 +304,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         fenceBuilder(ModBlocks.ALIEN_FENCE_PLANT.get(), Ingredient.of(ModBlocks.ALIEN_FENCE_PLANKS.get())).group("mystic")
                 .unlockedBy("has_alien_fence_planks", has(ModBlocks.ALIEN_FENCE_PLANKS.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.GIGANTIC_SATISTREE_SPROUTS.asItem(), 1)
+                .requires(Blocks.BONE_BLOCK)
+                .requires(Blocks.BONE_BLOCK)
+                .requires(Blocks.PODZOL)
+                .requires(Blocks.BROWN_MUSHROOM)
+                .requires(Blocks.BROWN_MUSHROOM)
+                .requires(ModBlocks.SATISTREE_SAPLING.get())
+                .requires(ModBlocks.SATISTREE_SAPLING.get())
+                .requires(ModBlocks.SATISTREE_SAPLING.get())
+                .requires(ModBlocks.SATISTREE_SAPLING.get())
+                .unlockedBy("has_satistree_sapling", has(ModBlocks.SATISTREE_SAPLING.asItem()))
+                .save(recipeOutput);
+
     }
 }
