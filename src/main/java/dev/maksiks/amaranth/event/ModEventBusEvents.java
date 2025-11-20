@@ -20,6 +20,8 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
+import static dev.maksiks.amaranth.block.ModBlocks.MOD_FLOWER_POTS;
+
 @EventBusSubscriber(modid = Amaranth.MOD_ID)
 public class ModEventBusEvents {
     @SubscribeEvent
@@ -34,31 +36,26 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-        System.out.println("Registering spawn placement for Shroom Boi!");
         event.register(
                 ModEntities.SHROOM_BOI.get(),
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, level, reason, pos, random) -> {
-                    System.out.println("Shroom Boi spawn check at: " + pos);
                     return true;
                 },
                 RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
-        System.out.println("Spawn placement registered!");
     }
 
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
-                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ModBlocks.MALACHITE_VIPERS_BUGLOSS.getId().getPath()),
-                    ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS
-            );
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
-                    ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, ModBlocks.ALIEN_PHYLLOSTACHYS.getId().getPath()),
-                    ModBlocks.POTTED_ALIEN_PHYLLOSTACHYS
-            );
+            MOD_FLOWER_POTS.forEach((plant, pot) -> {
+                ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
+                        ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, plant.getId().getPath()),
+                        pot
+                );
+            });
         });
     }
 

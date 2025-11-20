@@ -20,10 +20,14 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
+    public static HashMap<DeferredBlock<Block>, DeferredBlock<FlowerPotBlock>> MOD_FLOWER_POTS = new HashMap<>();
+
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(Amaranth.MOD_ID);
 
@@ -33,6 +37,15 @@ public class ModBlocks {
             .strength(2.0F, 3.0F)
             .sound(SoundType.WOOD)
             .ignitedByLava();
+
+    private static DeferredBlock<FlowerPotBlock> registerFlowerPot(DeferredBlock<Block> plant) {
+        Amaranth.LOGGER.info("PLANT ID: {}", plant.getId().getPath().replace("amaranth:", ""));
+        Amaranth.LOGGER.info("PLANT 1ID: {}", "potted_" + plant.getId().getPath());
+        DeferredBlock<FlowerPotBlock> pot = registerBlock("potted_" + plant.getId().getPath(),
+                () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_SPRUCE_SAPLING)));
+        MOD_FLOWER_POTS.put(plant, pot);
+        return pot;
+    }
 
     // misc
     // mmm yes calcite 2
@@ -57,17 +70,18 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MYSTIC_SAPLING = registerBlock("mystic_sapling",
             () -> new SaplingBlock(ModTreeGrowers.MYSTIC_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_MYSTIC_SAPLING = registerFlowerPot(MYSTIC_SAPLING);
 
-     // non-full block stuff
-     public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
-             () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
-     public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
-             () -> new SlabBlock(normalWoodProps.get()));
+    // non-full block stuff
+    public static final DeferredBlock<StairBlock> MYSTIC_STAIRS = registerBlock("mystic_stairs",
+            () -> new StairBlock(ModBlocks.MYSTIC_PLANKS.get().defaultBlockState(), normalWoodProps.get()));
+    public static final DeferredBlock<SlabBlock> MYSTIC_SLAB = registerBlock("mystic_slab",
+            () -> new SlabBlock(normalWoodProps.get()));
 
-     public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
-             () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
-     public static final DeferredBlock<ButtonBlock> MYSTIC_BUTTON = registerBlock("mystic_button",
-             () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
+    public static final DeferredBlock<PressurePlateBlock> MYSTIC_PRESSURE_PLATE = registerBlock("mystic_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, normalWoodProps.get()));
+    public static final DeferredBlock<ButtonBlock> MYSTIC_BUTTON = registerBlock("mystic_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 30, normalWoodProps.get().noCollission()));
 
     public static final DeferredBlock<FenceBlock> MYSTIC_FENCE = registerBlock("mystic_fence",
             () -> new FenceBlock(normalWoodProps.get()));
@@ -87,6 +101,7 @@ public class ModBlocks {
     // stubby
     public static final DeferredBlock<Block> STUBBY_SAPLING = registerBlock("stubby_sapling",
             () -> new SaplingBlock(ModTreeGrowers.STUBBY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_STUBBY_SAPLING = registerFlowerPot(STUBBY_SAPLING);
 
     // silver birch
     public static final DeferredBlock<Block> SILVERY_SILVER_BIRCH_LEAVES = registerBlock("silvery_silver_birch_leaves",
@@ -100,6 +115,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SILVER_BIRCH_SAPLING = registerBlock("silver_birch_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SILVER_BIRCH_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_SILVER_BIRCH_SAPLING = registerFlowerPot(SILVER_BIRCH_SAPLING);
 
     public static final DeferredBlock<Block> GOLDEN_LEAF_LITTER = registerBlock("golden_leaf_litter",
             () -> new GoldenLeafLitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
@@ -122,16 +138,20 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> PURPLE_MIXED_OAK_SAPLING = registerBlock("purple_mixed_oak_sapling",
             () -> new SaplingBlock(ModTreeGrowers.PURPLE_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_MIXED_OAK_SAPLING = registerFlowerPot(PURPLE_MIXED_OAK_SAPLING);
 
     public static final DeferredBlock<Block> RED_MIXED_OAK_SAPLING = registerBlock("red_mixed_oak_sapling",
             () -> new SaplingBlock(ModTreeGrowers.RED_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_RED_MIXED_OAK_SAPLING = registerFlowerPot(RED_MIXED_OAK_SAPLING);
 
     public static final DeferredBlock<Block> YELLOW_MIXED_OAK_SAPLING = registerBlock("yellow_mixed_oak_sapling",
             () -> new SaplingBlock(ModTreeGrowers.YELLOW_MIXED_OAK_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_YELLOW_MIXED_OAK_SAPLING = registerFlowerPot(YELLOW_MIXED_OAK_SAPLING);
 
     // orderly courts
     public static final DeferredBlock<Block> TRIMMED_TREE_SAPLING = registerBlock("trimmed_tree_sapling",
             () -> new SaplingBlock(ModTreeGrowers.TRIMMED_TREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_TRIMMED_TREE_SAPLING = registerFlowerPot(TRIMMED_TREE_SAPLING);
 
     // anthocyanin
     public static final DeferredBlock<Block> ANTHOCYANIN_LOG = registerBlock("anthocyanin_log",
@@ -153,6 +173,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> ANTHOCYANIN_SAPLING = registerBlock("anthocyanin_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ANTHOCYANIN_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_ANTHOCYANIN_SAPLING = registerFlowerPot(ANTHOCYANIN_SAPLING);
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> ANTHOCYANIN_STAIRS = registerBlock("anthocyanin_stairs",
@@ -172,7 +193,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<DoorBlock> ANTHOCYANIN_DOOR = registerBlock("anthocyanin_door",
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
-        public static final DeferredBlock<DoorBlock> ORNAMENTED_ANTHOCYANIN_DOOR = registerBlock("ornamented_anthocyanin_door",
+    public static final DeferredBlock<DoorBlock> ORNAMENTED_ANTHOCYANIN_DOOR = registerBlock("ornamented_anthocyanin_door",
             () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties.of().strength(2F).noOcclusion().isValidSpawn(Blocks::never)));
     public static final DeferredBlock<TrapDoorBlock> ANTHOCYANIN_TRAPDOOR = registerBlock("anthocyanin_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.SPRUCE, normalWoodProps.get().noOcclusion().isValidSpawn(Blocks::never)));
@@ -181,14 +202,11 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MALACHITE_VIPERS_BUGLOSS = registerBlock("malachite_vipers_bugloss",
             () -> new FlowerBlock(MobEffects.POISON, 0.35F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
-
-    public static final DeferredBlock<FlowerPotBlock> POTTED_MALACHITE_VIPERS_BUGLOSS = registerBlock("potted_malachite_vipers_bugloss",
-            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MALACHITE_VIPERS_BUGLOSS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_MALACHITE_VIPERS_BUGLOSS = registerFlowerPot(MALACHITE_VIPERS_BUGLOSS);
 
     // pain
     public static final DeferredBlock<Block> SPIKY_ARCHES = registerBlock("spiky_arches",
             () -> new SpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
-
 
     // thrumletons
     public static final DeferredBlock<Block> THICK_PUMPKIN = registerBlock("thick_pumpkin",
@@ -197,6 +215,7 @@ public class ModBlocks {
     // speary
     public static final DeferredBlock<Block> SPEARY_SAPLING = registerBlock("speary_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SPEARY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_SPEARY_SAPLING = registerFlowerPot(SPEARY_SAPLING);
 
     // pastel
     public static final DeferredBlock<Block> JUICY_WISTERIA_LOG = registerBlock("juicy_wisteria_log",
@@ -218,6 +237,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> WISTERIA_SAPLING = registerBlock("wisteria_sapling",
             () -> new SaplingBlock(ModTreeGrowers.WISTERIA_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_WISTERIA_SAPLING = registerFlowerPot(WISTERIA_SAPLING);
 
     // non-full block stuff
     public static final DeferredBlock<StairBlock> WISTERIA_STAIRS = registerBlock("wisteria_stairs",
@@ -250,26 +270,29 @@ public class ModBlocks {
     public static final DeferredBlock<Block> RED_MINI_SHROOM_SPORELING = registerBlock("red_mini_shroom_sporeling",
             () -> new SaplingBlock(ModTreeGrowers.RED_MINI_SHROOM_GROWER,
                     BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
-                    .noCollission()
-                    .randomTicks()
-                    .instabreak()
-                    .sound(SoundType.MUD)
-                    .pushReaction(PushReaction.DESTROY)));
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.MUD)
+                            .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_RED_MINI_SHROOM_SPORELING = registerFlowerPot(RED_MINI_SHROOM_SPORELING);
 
     public static final DeferredBlock<Block> BROWN_MINI_SHROOM_SPORELING = registerBlock("brown_mini_shroom_sporeling",
             () -> new SaplingBlock(ModTreeGrowers.BROWN_MINI_SHROOM_GROWER,
                     BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
-                    .noCollission()
-                    .randomTicks()
-                    .instabreak()
-                    .sound(SoundType.MUD)
-                    .pushReaction(PushReaction.DESTROY)));
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.MUD)
+                            .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_BROWN_MINI_SHROOM_SPORELING = registerFlowerPot(BROWN_MINI_SHROOM_SPORELING);
 
     // witchy
     public static final DeferredBlock<Block> WITCHY_SAPLING = registerBlock("witchy_sapling",
             () -> new SaplingBlock(ModTreeGrowers.WITCHY_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_WITCHY_SAPLING = registerFlowerPot(WITCHY_SAPLING);
 
     // lupine
     public static final DeferredBlock<Block> LUPINE = registerBlock("lupine",
@@ -280,10 +303,12 @@ public class ModBlocks {
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.NONE)
                     .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_LUPINE = registerFlowerPot(LUPINE);
 
     // alpine
     public static final DeferredBlock<Block> ALPINE_SPRUCE_SAPLING = registerBlock("alpine_spruce_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ALPINE_SPRUCE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_ALPINE_SPRUCE_SAPLING = registerFlowerPot(ALPINE_SPRUCE_SAPLING);
 
     // ashen
     public static final DeferredBlock<Block> VOLCANIC_ASH = registerBlock("volcanic_ash",
@@ -309,6 +334,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SATISTREE_SAPLING = registerBlock("satistree_sapling",
             () -> new SaplingBlock(ModTreeGrowers.SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_SATISTREE_SAPLING = registerFlowerPot(SATISTREE_SAPLING);
     public static final DeferredBlock<Block> GIGANTIC_SATISTREE_SPROUTS = registerBlock("gigantic_satistree_sprouts",
             () -> new SaplingBlock(ModTreeGrowers.GIGANTIC_SATISTREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
 
@@ -337,9 +363,7 @@ public class ModBlocks {
             () -> new AlienPhyllostachysSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING)));
     public static final DeferredBlock<Block> ALIEN_PHYLLOSTACHYS = registerBlock("alien_phyllostachys",
             () -> new AlienPhyllostachysStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO)));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_PHYLLOSTACHYS = registerBlock("potted_alien_phyllostachys",
-            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ALIEN_PHYLLOSTACHYS, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_BAMBOO)));
-
+    public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_PHYLLOSTACHYS = registerFlowerPot(ALIEN_PHYLLOSTACHYS);
     public static final DeferredBlock<Block> ALIEN_FENCE_PLANKS = registerBlock("alien_fence_planks",
             () -> new FlammablePlanksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
     // chewy on the inside!
@@ -354,13 +378,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ALIEN_FENCE_PLANT_SAPLING = registerBlock("alien_fence_plant_sapling",
             () -> new SaplingBlock(ModTreeGrowers.ALIEN_FENCE_PLANT_GROWER,
                     BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
-                    .noCollission()
-                    .randomTicks()
-                    .instabreak()
-                    .sound(SoundType.WET_GRASS)
-                    .pushReaction(PushReaction.DESTROY)));
-
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.WET_GRASS)
+                            .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_FENCE_PLANT_SAPLING = registerFlowerPot(ALIEN_FENCE_PLANT_SAPLING);
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

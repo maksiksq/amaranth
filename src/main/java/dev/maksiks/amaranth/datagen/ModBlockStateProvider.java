@@ -8,10 +8,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -42,6 +44,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.MYSTIC_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.MYSTIC_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_MYSTIC_SAPLING, ModBlocks.MYSTIC_SAPLING);
         leavesBlock(ModBlocks.MYSTIC_LEAVES);
 
         stairsBlock(ModBlocks.MYSTIC_STAIRS.get(), blockTexture(ModBlocks.MYSTIC_PLANKS.get()));
@@ -64,6 +67,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // stubby
         twoPlanesCutoutBlock(ModBlocks.STUBBY_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_STUBBY_SAPLING, ModBlocks.STUBBY_SAPLING);
 
         // silver
         leavesBlock(ModBlocks.SILVERY_SILVER_BIRCH_LEAVES);
@@ -72,6 +76,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // leaf litter is made manually
         twoPlanesCutoutBlock(ModBlocks.SILVER_BIRCH_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_SILVER_BIRCH_SAPLING, ModBlocks.SILVER_BIRCH_SAPLING);
 
         // desolate
         iceBlock(ModBlocks.SORROW_ICE);
@@ -84,11 +89,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.YELLOW_MIXED_OAK_LEAVES);
 
         twoPlanesCutoutBlock(ModBlocks.PURPLE_MIXED_OAK_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_PURPLE_MIXED_OAK_SAPLING, ModBlocks.PURPLE_MIXED_OAK_SAPLING);
         twoPlanesCutoutBlock(ModBlocks.RED_MIXED_OAK_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_RED_MIXED_OAK_SAPLING, ModBlocks.RED_MIXED_OAK_SAPLING);
         twoPlanesCutoutBlock(ModBlocks.YELLOW_MIXED_OAK_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_YELLOW_MIXED_OAK_SAPLING, ModBlocks.YELLOW_MIXED_OAK_SAPLING);
 
         // orderly
         twoPlanesCutoutBlock(ModBlocks.TRIMMED_TREE_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_TRIMMED_TREE_SAPLING, ModBlocks.TRIMMED_TREE_SAPLING);
 
         // anthocyanin
         logBlock(((RotatedPillarBlock) ModBlocks.ANTHOCYANIN_LOG.get()));
@@ -104,6 +113,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.ANTHOCYANIN_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.ANTHOCYANIN_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_ANTHOCYANIN_SAPLING, ModBlocks.ANTHOCYANIN_SAPLING);
         leavesBlock(ModBlocks.ANTHOCYANIN_LEAVES);
         leavesBlock(ModBlocks.BLOOMING_ANTHOCYANIN_LEAVES);
 
@@ -129,7 +139,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.ORNAMENTED_ANTHOCYANIN_TRAPDOOR, "_bottom");
 
         twoPlanesCutoutBlock(ModBlocks.MALACHITE_VIPERS_BUGLOSS);
-        // pot is made manually
+        pottedPlantBlock(ModBlocks.POTTED_MALACHITE_VIPERS_BUGLOSS, ModBlocks.MALACHITE_VIPERS_BUGLOSS);
 
         // pain
         randomVariantTwoPlaneCutout(ModBlocks.SPIKY_ARCHES, 4);
@@ -141,6 +151,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // speary
         twoPlanesCutoutBlock(ModBlocks.SPEARY_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_SPEARY_SAPLING, ModBlocks.SPEARY_SAPLING);
 
         // pastel
         axisBlock((RotatedPillarBlock) ModBlocks.JUICY_WISTERIA_LOG.get(), modLoc("block/wisteria_log"), modLoc("block/juicy_wisteria_log_top"));
@@ -158,6 +169,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.WISTERIA_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.WISTERIA_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_WISTERIA_SAPLING, ModBlocks.WISTERIA_SAPLING);
         leavesBlock(ModBlocks.WISTERIA_LEAVES);
 
         stairsBlock(ModBlocks.WISTERIA_STAIRS.get(), blockTexture(ModBlocks.WISTERIA_PLANKS.get()));
@@ -182,16 +194,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         doubleFourPlaneCropBlock(ModBlocks.REEDS);
 
         twoPlanesCutoutBlock(ModBlocks.RED_MINI_SHROOM_SPORELING);
+        pottedPlantBlock(ModBlocks.POTTED_RED_MINI_SHROOM_SPORELING, ModBlocks.RED_MINI_SHROOM_SPORELING);
         twoPlanesCutoutBlock(ModBlocks.BROWN_MINI_SHROOM_SPORELING);
+        pottedPlantBlock(ModBlocks.POTTED_BROWN_MINI_SHROOM_SPORELING, ModBlocks.BROWN_MINI_SHROOM_SPORELING);
 
         // witchy
         twoPlanesCutoutBlock(ModBlocks.WITCHY_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_WITCHY_SAPLING, ModBlocks.WITCHY_SAPLING);
 
         // lupine
         twoPlanesCutoutMippedBlock(ModBlocks.LUPINE);
+        pottedPlantBlock(ModBlocks.POTTED_LUPINE, ModBlocks.LUPINE);
 
         // alpine
         twoPlanesCutoutBlock(ModBlocks.ALPINE_SPRUCE_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_ALPINE_SPRUCE_SAPLING, ModBlocks.ALPINE_SPRUCE_SAPLING);
 
         // ashen
         blockWithItem(ModBlocks.VOLCANIC_ASH);
@@ -210,6 +227,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.SATISTREE_PLANKS);
         twoPlanesCutoutBlock(ModBlocks.SATISTREE_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_SATISTREE_SAPLING, ModBlocks.SATISTREE_SAPLING);
         twoPlanesCutoutBlock(ModBlocks.GIGANTIC_SATISTREE_SPROUTS);
         leavesBlock(ModBlocks.ALIEN_LEAVES);
 
@@ -232,15 +250,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.SATISTREE_TRAPDOOR, "_bottom");
 
         twoPlanesCutoutBlock(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING);
-        // bamboo is made manually
+        // aline bamboo is made manually
 
         blockWithItem(ModBlocks.ALIEN_FENCE_PLANKS);
         fenceBlock(ModBlocks.ALIEN_FENCE_PLANT.get(), blockTexture(ModBlocks.ALIEN_FENCE_PLANKS.get()));
         twoPlanesCutoutBlock(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_ALIEN_FENCE_PLANT_SAPLING, ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
     }
 
-    private String getName(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block).getPath();
+    private void pottedPlantBlock(DeferredBlock<FlowerPotBlock> pottedBlock, DeferredBlock<Block> plantBlock) {
+        String pottedName = BuiltInRegistries.BLOCK.getKey(pottedBlock.get()).getPath();
+        ResourceLocation plantTexture = blockTexture(plantBlock.get());
+
+        ModelFile pottedModel = models()
+                .withExistingParent(pottedName, mcLoc("block/flower_pot_cross"))
+                .texture("plant", plantTexture)
+                .renderType("cutout");
+
+        simpleBlock(pottedBlock.get(), pottedModel);
     }
 
     private void thickPumpkinBlock(DeferredBlock<Block> blockRegistryObject) {

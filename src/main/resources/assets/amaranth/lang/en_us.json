@@ -33,6 +33,7 @@
   "block.amaranth.mystic_wood": "Mystic Wood",
   "block.amaranth.stripped_mystic_wood": "Stripped Mystic Wood",
   "block.amaranth.mystic_sapling": "Mystic Sapling",
+  "block.amaranth.potted_mystic_sapling": "Potted Mystic Sapling",
 
   "block.amaranth.mystic_stairs": "Mystic Stairs",
   "block.amaranth.mystic_slab": "Mystic Slab",
@@ -47,8 +48,10 @@
   "block.amaranth.mystic_trapdoor": "Mystic Trapdoor",
 
   "block.amaranth.stubby_sapling": "Stubby Sapling",
+  "block.amaranth.potted_stubby_sapling": "Potted Stubby Sapling",
 
   "block.amaranth.silver_birch_sapling": "Silver Birch Sapling",
+  "block.amaranth.potted_silver_birch_sapling": "Potted Silver Birch Sapling",
   "block.amaranth.light_silver_birch_leaves": "Light Silver Birch Leaves",
   "block.amaranth.dark_silver_birch_leaves": "Dark Silver Birch Leaves",
   "block.amaranth.silvery_silver_birch_leaves": "Silvery Silver Birch Leaves",
@@ -62,10 +65,14 @@
   "block.amaranth.yellow_mixed_oak_leaves": "Yellow Mixed Oak Leaves",
 
   "block.amaranth.purple_mixed_oak_sapling": "Purple Mixed Oak Sapling",
+  "block.amaranth.potted_purple_mixed_oak_sapling": "Potted Purple Mixed Oak Sapling",
   "block.amaranth.red_mixed_oak_sapling": "Red Mixed Oak Sapling",
+  "block.amaranth.potted_red_mixed_oak_sapling": "Potted Red Mixed Oak Sapling",
   "block.amaranth.yellow_mixed_oak_sapling": "Yellow Mixed Oak Sapling",
+  "block.amaranth.potted_yellow_mixed_oak_sapling": "Potted Yellow Mixed Oak Sapling",
 
   "block.amaranth.trimmed_tree_sapling": "Trimmed Tree Sapling",
+  "block.amaranth.potted_trimmed_tree_sapling": "Potted Trimmed Tree Sapling",
 
   "block.amaranth.anthocyanin_leaves": "Anthocyanin Leaves",
   "block.amaranth.blooming_anthocyanin_leaves": "Blooming Anthocyanin Leaves",
@@ -75,6 +82,7 @@
   "block.amaranth.anthocyanin_wood": "Anthocyanin Wood",
   "block.amaranth.stripped_anthocyanin_wood": "Stripped Anthocyanin Wood",
   "block.amaranth.anthocyanin_sapling": "Anthocyanin Sapling",
+  "block.amaranth.potted_anthocyanin_sapling": "Potted Anthocyanin Sapling",
   "block.amaranth.anthocyanin_stairs": "Anthocyanin Stairs",
   "block.amaranth.anthocyanin_slab": "Anthocyanin Slab",
   "block.amaranth.anthocyanin_button": "Anthocyanin Button",
@@ -93,6 +101,7 @@
   "block.amaranth.spiky_arches": "Spiky Arches",
 
   "block.amaranth.speary_sapling": "Speary Sapling",
+  "block.amaranth.potted_speary_sapling": "Potted Speary Sapling",
 
   "block.amaranth.wisteria_leaves": "Wisteria Leaves",
   "block.amaranth.juicy_wisteria_log": "Juicy Wisteria Log",
@@ -102,6 +111,7 @@
   "block.amaranth.wisteria_wood": "Wisteria Wood",
   "block.amaranth.stripped_wisteria_wood": "Stripped Wisteria Wood",
   "block.amaranth.wisteria_sapling": "Wisteria Sapling",
+  "block.amaranth.potted_wisteria_sapling": "Potted Wisteria Sapling",
 
   "block.amaranth.wisteria_stairs": "Wisteria Stairs",
   "block.amaranth.wisteria_slab": "Wisteria Slab",
@@ -120,13 +130,18 @@
   "block.amaranth.reeds": "Reeds",
 
   "block.amaranth.red_mini_shroom_sporeling": "Red Mini Shroom Sporeling",
+  "block.amaranth.potted_red_mini_shroom_sporeling": "Potted Red Mini Shroom Sporeling",
   "block.amaranth.brown_mini_shroom_sporeling": "Brown Mini Shroom Sporeling",
+  "block.amaranth.potted_brown_mini_shroom_sporeling": "Potted Brown Mini Shroom Sporeling",
 
   "block.amaranth.witchy_sapling": "Witchy Sapling",
+  "block.amaranth.potted_witchy_sapling": "Potted Witchy Sapling",
 
   "block.amaranth.lupine": "Lupine",
+  "block.amaranth.potted_lupine": "Potted Lupine",
 
   "block.amaranth.alpine_spruce_sapling": "Alpine Spruce Sapling",
+  "block.amaranth.potted_alpine_spruce_sapling": "Potted Alpine Spruce Sapling",
 
   "block.amaranth.volcanic_ash": "Volcanic Ash",
 
@@ -137,8 +152,10 @@
   "block.amaranth.satistree_wood": "Satistree Wood",
   "block.amaranth.stripped_satistree_wood": "Stripped Satistree Wood",
   "block.amaranth.satistree_sapling": "Satistree Sapling",
+  "block.amaranth.potted_satistree_sapling": "Potted Satistree Sapling",
   "block.amaranth.gigantic_satistree_sprouts": "Gigantic Satistree Sprouts",
   "block.amaranth.alien_fence_plant_sapling": "Alien Fence Plant Sapling",
+  "block.amaranth.potted_alien_fence_plant_sapling": "Potted Alien Fence Plant Sapling",
   "block.amaranth.alien_fence_plant": "Alien Fence Plant",
   "block.amaranth.satistree_stairs": "Satistree Stairs",
   "block.amaranth.satistree_slab": "Satistree Slab",
