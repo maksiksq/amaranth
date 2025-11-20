@@ -120,7 +120,7 @@ public class GiganticSatistreeFeature extends Feature<NoneFeatureConfiguration> 
         // that 5 accounts for the leaves on top having a lot of open space so stuff might stick out
         while (randomBranchCount > 0) {
             for (int i = freeTreeHeight+VERTICAL_OFFSET; i < freeTreeHeight-5; i++) {
-                if (random.nextInt(100) < 15) {
+                if (random.nextInt(100) < 10) {
                     randomBranchCount--;
 
                     for (int j = 0; j < 2 + random.nextInt(2); j++) {
