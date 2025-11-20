@@ -103,6 +103,7 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_PATCH_KEY = registerKey("alien_phyllostachys_patch");
     public static ResourceKey<ConfiguredFeature<?, ?>> ROCK_KEY = registerKey("rock");
     public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_PITCHER_PLANT_FLOWER_KEY = registerKey("satis_pitcher_plant_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_FLOWER_KEY = registerKey("satis_flower");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -691,7 +692,6 @@ public class ModConfiguredFeatures {
         register(context, ROCK_KEY,
                 ModFeatures.ROCK_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
-        // spring
         register(
                 context,
                 SATIS_PITCHER_PLANT_FLOWER_KEY,
@@ -704,6 +704,23 @@ public class ModConfiguredFeatures {
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         BlockStateProvider.simple(Blocks.PITCHER_PLANT)
+                                )
+                        )
+                )
+        );
+
+        register(
+                context,
+                SATIS_FLOWER_KEY,
+                Feature.FLOWER,
+                new RandomPatchConfiguration(
+                        42,
+                        12,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.OXEYE_DAISY)
                                 )
                         )
                 )

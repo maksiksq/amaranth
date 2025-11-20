@@ -79,6 +79,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ALIEN_PHYLLOSTACHYS_PATCH_PLACED_KEY = registerKey("alien_phyllostachys_patch_placed");
     public static final ResourceKey<PlacedFeature> ROCK_PLACED_KEY = registerKey("rock_placed");
     public static final ResourceKey<PlacedFeature> SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY = registerKey("satis_pitcher_plant_flower_placed");
+    public static final ResourceKey<PlacedFeature> SATIS_FLOWER_PLACED_KEY = registerKey("satis_flower_placed");
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -372,6 +373,9 @@ public class ModPlacedFeatures {
 
         register(context, SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATIS_PITCHER_PLANT_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RarityFilter.onAverageOnceEvery(3), BiomeFilter.biome()));
+
+        register(context, SATIS_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATIS_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RarityFilter.onAverageOnceEvery(2), BiomeFilter.biome()));
 
     }
 
