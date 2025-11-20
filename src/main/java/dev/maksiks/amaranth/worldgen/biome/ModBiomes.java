@@ -1140,10 +1140,7 @@ public class ModBiomes {
         // would be great if it had a light source of some kind
         // maybe those big sphere things?
 
-        // TODO: fix bamboo
-        // TODO: fix surface rule
         // TODO: VARIANTS TO TREE
-        // TODO: maybe make phyllostachys texture less saturated
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
 
