@@ -580,7 +580,7 @@
 - [ ] fix maybe tweaks: bamboo has no upper check ; gigantic trees very rarely override eachother (vanilla bug im pretty sure) ; fence plant can spawn on rocks ; some textures still stand out a tad much 
 - [ ] fix: was too tired, door texture is bad
 - [ ] URANIUM
-
+- [ ] maybe those sphere thingies
 ----------------------
 
 
