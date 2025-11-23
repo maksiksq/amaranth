@@ -1,5 +1,6 @@
 package dev.maksiks.amaranth.worldgen.tree;
 
+import dev.maksiks.twigonometry.api.LeafPlacerContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -13,7 +14,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
-import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
+import static dev.maksiks.twigonometry.api.LeafPlacerContextKt.DIAGONALS;
 
 
 @Deprecated
@@ -61,11 +62,11 @@ public class ModOldTreeHelpers {
                 return;
             }
 
-            for (int j = 0; j < diagonals.length; j += 2) {
+            for (int j = 0; j < DIAGONALS.length; j += 2) {
                 if (random.nextInt(100) >= cornersChance) {
                     continue;
                 }
-                tryPlaceLeaf.accept(trunkPos.relative(diagonals[j], 1).relative(diagonals[j + 1], 1).above(currentY.get()), random);
+                tryPlaceLeaf.accept(trunkPos.relative(DIAGONALS[j], 1).relative(DIAGONALS[j + 1], 1).above(currentY.get()), random);
             }
         };
     }

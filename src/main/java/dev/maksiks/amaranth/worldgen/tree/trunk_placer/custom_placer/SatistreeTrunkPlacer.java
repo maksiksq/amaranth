@@ -17,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
-import static dev.maksiks.amaranth.worldgen.tree.TreeUtils.isAdjacent;
 import static dev.maksiks.amaranth.worldgen.tree.TreeUtils.isAdjacentToAny;
+import static dev.maksiks.twigonometry.api.LeafPlacerContextKt.DIAGONALS;
 
 public class SatistreeTrunkPlacer extends TrunkPlacer {
     public static final MapCodec<SatistreeTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
@@ -70,8 +69,8 @@ public class SatistreeTrunkPlacer extends TrunkPlacer {
             do {
                 if (diagonal) {
                     int roll = random.nextInt(4) * 2;
-                    branchingPos = startPos.relative(diagonals[roll]).relative(diagonals[roll + 1]);
-                    xwise = random.nextBoolean() ? diagonals[roll] : diagonals[roll + 1];
+                    branchingPos = startPos.relative(DIAGONALS[roll]).relative(DIAGONALS[roll + 1]);
+                    xwise = random.nextBoolean() ? DIAGONALS[roll] : DIAGONALS[roll + 1];
                     upperPos = branchingPos.relative(xwise).above();
                 } else {
                     Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);

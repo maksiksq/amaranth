@@ -19,8 +19,8 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
 import static dev.maksiks.amaranth.worldgen.tree.ModOldTreeHelpers.*;
+import static dev.maksiks.twigonometry.api.LeafPlacerContextKt.DIAGONALS;
 
 public class WitchyFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<WitchyFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> blobParts(instance).apply(instance, WitchyFoliagePlacer::new));
@@ -80,15 +80,15 @@ public class WitchyFoliagePlacer extends FoliagePlacer {
                 tryPlaceLeaf(level, blockSetter, random, config, pos);
             }
 
-            for (int j = 0; j < diagonals.length; j += 2) {
+            for (int j = 0; j < DIAGONALS.length; j += 2) {
                 if (random.nextInt(100) >= 12) {
                     continue;
                 }
 
                 // placing if adjacent to cardinal
-                BlockPos pos = trunkPos.relative(diagonals[j]).relative(diagonals[j + 1]);
-                if (placedAtTrunk0.contains(trunkPos.relative(diagonals[j].getOpposite())) ||
-                        placedAtTrunk0.contains(trunkPos.relative(diagonals[j + 1].getOpposite()))) {
+                BlockPos pos = trunkPos.relative(DIAGONALS[j]).relative(DIAGONALS[j + 1]);
+                if (placedAtTrunk0.contains(trunkPos.relative(DIAGONALS[j].getOpposite())) ||
+                        placedAtTrunk0.contains(trunkPos.relative(DIAGONALS[j + 1].getOpposite()))) {
                     tryPlaceLeaf(level, blockSetter, random, config, pos);
                 }
             }
@@ -109,20 +109,20 @@ public class WitchyFoliagePlacer extends FoliagePlacer {
                     }
                 }
 
-                for (int j = 0; j < diagonals.length; j += 2) {
+                for (int j = 0; j < DIAGONALS.length; j += 2) {
                     if (random.nextInt(100) >= 12) continue;
 
                     // placing if adjacent to cardinal and extending
-                    BlockPos pos = trunkPos.relative(diagonals[j]).relative(diagonals[j + 1]).below(i);
-                    if (placedAtTrunkN.contains(trunkPos.relative(diagonals[j].getOpposite()).below(i)) ||
-                            placedAtTrunkN.contains(trunkPos.relative(diagonals[j + 1].getOpposite()).below(i))) {
+                    BlockPos pos = trunkPos.relative(DIAGONALS[j]).relative(DIAGONALS[j + 1]).below(i);
+                    if (placedAtTrunkN.contains(trunkPos.relative(DIAGONALS[j].getOpposite()).below(i)) ||
+                            placedAtTrunkN.contains(trunkPos.relative(DIAGONALS[j + 1].getOpposite()).below(i))) {
                         tryPlaceLeaf(level, blockSetter, random, config, pos);
 
                         if (random.nextInt(100) <= 40) {
-                            tryPlaceLeaf(level, blockSetter, random, config, pos.relative(diagonals[j]));
+                            tryPlaceLeaf(level, blockSetter, random, config, pos.relative(DIAGONALS[j]));
                         }
                         if (random.nextInt(100) <= 40) {
-                            tryPlaceLeaf(level, blockSetter, random, config, pos.relative(diagonals[j + 1]));
+                            tryPlaceLeaf(level, blockSetter, random, config, pos.relative(DIAGONALS[j + 1]));
                         }
                     }
                 }
@@ -142,15 +142,15 @@ public class WitchyFoliagePlacer extends FoliagePlacer {
                 tryPlaceLeaf(level, blockSetter, random, config, pos);
             }
 
-            for (int j = 0; j < diagonals.length; j += 2) {
+            for (int j = 0; j < DIAGONALS.length; j += 2) {
                 if (random.nextInt(100) >= 12) {
                     continue;
                 }
 
                 // placing if adjacent to cardinal
-                BlockPos pos = trunkPos.relative(diagonals[j]).relative(diagonals[j + 1]);
-                if (placedAtTrunk0.contains(trunkPos.relative(diagonals[j].getOpposite())) ||
-                        placedAtTrunk0.contains(trunkPos.relative(diagonals[j + 1].getOpposite()))) {
+                BlockPos pos = trunkPos.relative(DIAGONALS[j]).relative(DIAGONALS[j + 1]);
+                if (placedAtTrunk0.contains(trunkPos.relative(DIAGONALS[j].getOpposite())) ||
+                        placedAtTrunk0.contains(trunkPos.relative(DIAGONALS[j + 1].getOpposite()))) {
                     tryPlaceLeaf(level, blockSetter, random, config, pos);
                 }
             }

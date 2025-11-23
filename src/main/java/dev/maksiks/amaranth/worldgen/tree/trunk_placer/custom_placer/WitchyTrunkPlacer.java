@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-import static dev.maksiks.amaranth.worldgen.tree.LeafPlacerContextKt.diagonals;
+import static dev.maksiks.twigonometry.api.LeafPlacerContextKt.DIAGONALS;
 
 public class WitchyTrunkPlacer extends TrunkPlacer {
     public static final MapCodec<WitchyTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
@@ -122,7 +122,7 @@ public class WitchyTrunkPlacer extends TrunkPlacer {
             boolean isLonger
     ) {
         int ix = random.nextInt(4) * 2;
-        Direction[] dirs = {diagonals[ix], diagonals[ix + 1]};
+        Direction[] dirs = {DIAGONALS[ix], DIAGONALS[ix + 1]};
         BlockPos branchPos = startPos.relative(dirs[0]).relative(dirs[1]);
         this.placeLog(level, blockSetter, random, branchPos, config);
 

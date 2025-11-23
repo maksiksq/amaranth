@@ -6,12 +6,13 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
-import dev.maksiks.amaranth.Amaranth
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.empty
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.simpleGuaranteed
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.skipDiagonalSectors
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
+import dev.maksiks.twigonometry.api.LayerPattern
+import dev.maksiks.twigonometry.api.LeafPlacerContext
+import dev.maksiks.twigonometry.api.LeafPlacerContext.Companion.empty
+import dev.maksiks.twigonometry.api.LeafPlacerContext.Companion.simpleGuaranteed
+import dev.maksiks.twigonometry.api.LeafPlacerContext.Companion.skipDiagonalSectors
+import dev.maksiks.twigonometry.api.Sector
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
@@ -132,7 +133,7 @@ class AlpineSpruceFoliagePlacer(
                                 50,
                                 null,
                                 true,
-                                LeafPlacerContext.LayerPattern.X_SHAPE
+                                LayerPattern.X_SHAPE
                             )
                         )
                     }
@@ -142,7 +143,7 @@ class AlpineSpruceFoliagePlacer(
                 ctx.disc(at(curY), 1)
                 ctx.incSquare(
                     at(curY), 0,
-                    LeafPlacerContext.HorizontalLayer(50, 50, 75, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                    LeafPlacerContext.HorizontalLayer(50, 50, 75, null, false, LayerPattern.X_SHAPE)
                 )
                 val keepNSOrNW = random.nextBoolean()
                 run {
@@ -161,17 +162,17 @@ class AlpineSpruceFoliagePlacer(
                 ctx.disc(at(curY), 1)
                 ctx.incSquare(
                     at(curY), 0,
-                    LeafPlacerContext.HorizontalLayer(50, 50, 100, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                    LeafPlacerContext.HorizontalLayer(50, 50, 100, null, false, LayerPattern.X_SHAPE)
                 )
                 val cardinalAlternatingLayer: LeafPlacerContext.HorizontalLayer = when (keepNSOrNW) {
                     true -> LeafPlacerContext.HorizontalLayer(
                         100, 50, 100, null, true, null,
-                        LeafPlacerContext.Sector.E.skip or LeafPlacerContext.Sector.W.skip or skipDiagonalSectors
+                        Sector.E.skip or Sector.W.skip or skipDiagonalSectors
                     )
 
                     false -> LeafPlacerContext.HorizontalLayer(
                         100, 50, 100, null, true, null,
-                        LeafPlacerContext.Sector.N.skip or LeafPlacerContext.Sector.S.skip or skipDiagonalSectors
+                        Sector.N.skip or Sector.S.skip or skipDiagonalSectors
                     )
                 }
                 ctx.incDiamond(at(curY), 0, empty, cardinalAlternatingLayer)
@@ -185,7 +186,7 @@ class AlpineSpruceFoliagePlacer(
                             100,
                             null,
                             false,
-                            LeafPlacerContext.LayerPattern.CROSS
+                            LayerPattern.CROSS
                         );
                     ctx.incDiamond(
                         at(curY), 0,
@@ -200,7 +201,7 @@ class AlpineSpruceFoliagePlacer(
                             100,
                             null,
                             false,
-                            LeafPlacerContext.LayerPattern.X_SHAPE
+                            LayerPattern.X_SHAPE
                         )
                     )
                 }
@@ -284,7 +285,7 @@ class AlpineSpruceFoliagePlacer(
                                 50,
                                 null,
                                 true,
-                                LeafPlacerContext.LayerPattern.X_SHAPE
+                                LayerPattern.X_SHAPE
                             )
                         )
                     }

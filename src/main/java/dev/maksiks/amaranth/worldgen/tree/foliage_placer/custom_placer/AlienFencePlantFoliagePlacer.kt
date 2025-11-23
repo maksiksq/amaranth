@@ -6,14 +6,9 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
-import dev.maksiks.amaranth.Amaranth
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.empty
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.simpleGuaranteed
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.skipDiagonalSectors
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
+import dev.maksiks.twigonometry.api.LeafPlacerContext
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
 import net.minecraft.util.valueproviders.IntProvider
 import net.minecraft.world.level.LevelSimulatedReader

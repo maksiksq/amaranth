@@ -21,6 +21,7 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    mavenLocal()
     maven { url = 'https://maven.minecraftforge.net/' }
     maven {
         name = 'Kotlin for Forge'
@@ -148,6 +149,8 @@ dependencies {
 
     implementation "com.github.glitchfiend:TerraBlender-neoforge:${minecraft_version}-${terrablender_version}"
     implementation 'thedarkcolour:kotlinforforge-neoforge:5.10.0'
+
+    implementation group: 'dev.maksiks.twigonometry', name: "twigonometry-neoforge-${minecraft_version}", version: "${version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

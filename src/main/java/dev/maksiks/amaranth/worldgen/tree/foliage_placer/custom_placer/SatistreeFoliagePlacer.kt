@@ -7,15 +7,10 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu
-import dev.maksiks.amaranth.Amaranth
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.empty
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.simpleGuaranteed
-import dev.maksiks.amaranth.worldgen.tree.LeafPlacerContext.Companion.skipDiagonalSectors
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes
-import dev.maksiks.amaranth.worldgen.tree.foliage_placer.custom_placer.AlpineSpruceFoliagePlacer.Variant
+import dev.maksiks.twigonometry.api.LayerPattern
+import dev.maksiks.twigonometry.api.LeafPlacerContext
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
 import net.minecraft.util.valueproviders.IntProvider
 import net.minecraft.world.level.LevelSimulatedReader
@@ -97,7 +92,7 @@ class SatistreeFoliagePlacer(
                 if (i==1) {
                     ctx.incSquare(
                         ImmutableList.of(at(curY), at(curY+1)), 0,
-                        LeafPlacerContext.HorizontalLayer(25, 25, 25, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                        LeafPlacerContext.HorizontalLayer(25, 25, 25, null, false, LayerPattern.X_SHAPE)
                     )
                     val cornerHeight = when (random.nextBoolean()) {
                         true -> 3
@@ -105,7 +100,7 @@ class SatistreeFoliagePlacer(
                     }
                     ctx.incSquare(
                         List(cornerHeight) { at(curY + it) }, 0,
-                        LeafPlacerContext.HorizontalLayer(25, 25, 25, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                        LeafPlacerContext.HorizontalLayer(25, 25, 25, null, false, LayerPattern.X_SHAPE)
                     )
                 }
             }
@@ -122,12 +117,12 @@ class SatistreeFoliagePlacer(
             bump()
             ctx.diamond(at(curY), 1, 0)
             ctx.incSquare(at(curY), 0,
-                LeafPlacerContext.HorizontalLayer(15, 0, 25, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                LeafPlacerContext.HorizontalLayer(15, 0, 25, null, false, LayerPattern.X_SHAPE)
             )
             bump()
             ctx.diamond(at(curY), 1, 100)
             ctx.incSquare(at(curY), 0,
-                LeafPlacerContext.HorizontalLayer(2, 0, 25, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                LeafPlacerContext.HorizontalLayer(2, 0, 25, null, false, LayerPattern.X_SHAPE)
             )
             bump()
             ctx.placeLeaf(at(curY))
@@ -139,7 +134,7 @@ class SatistreeFoliagePlacer(
             bump()
             ctx.diamond(at(curY), 1, 100)
             ctx.incSquare(at(curY), 0,
-                LeafPlacerContext.HorizontalLayer(15, 0, 25, null, false, LeafPlacerContext.LayerPattern.X_SHAPE)
+                LeafPlacerContext.HorizontalLayer(15, 0, 25, null, false, LayerPattern.X_SHAPE)
             )
             bump()
             ctx.placeLeaf(at(curY))
