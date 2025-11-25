@@ -26,10 +26,11 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static HashMap<DeferredBlock<Block>, DeferredBlock<FlowerPotBlock>> MOD_FLOWER_POTS = new HashMap<>();
-
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(Amaranth.MOD_ID);
+
+
+    public static HashMap<DeferredBlock<Block>, DeferredBlock<FlowerPotBlock>> MOD_FLOWER_POTS = new HashMap<>();
 
     private static final Supplier<BlockBehaviour.Properties> normalWoodProps = () -> BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD)
@@ -386,16 +387,6 @@ public class ModBlocks {
                             .pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_FENCE_PLANT_SAPLING = registerFlowerPot(ALIEN_FENCE_PLANT_SAPLING);
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
-    }
-
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
-    }
-
     public static Map<DeferredBlock<Block>, DeferredBlock<Block>> MOD_STRIPPABLES = Map.of(
             MYSTIC_LOG, STRIPPED_MYSTIC_LOG,
             MYSTIC_WOOD, STRIPPED_MYSTIC_WOOD,
@@ -407,6 +398,16 @@ public class ModBlocks {
             SATISTREE_LOG, STRIPPED_SATISTREE_LOG,
             SATISTREE_WOOD, STRIPPED_SATISTREE_WOOD
     );
+
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

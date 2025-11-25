@@ -167,7 +167,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_version            : mod_version,
             mod_authors            : mod_authors,
             mod_description        : mod_description,
-            terrablender_version_range : terrablender_version_range
+            terrablender_version_range : terrablender_version_range,
+            twigonometry_version_range : twigonometry_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties

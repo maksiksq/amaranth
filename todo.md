@@ -59,6 +59,7 @@
 - [ ]  fix maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 - [ ]  fix maybe: leaf check for structures
 - [ ]  cfg config
+- [ ]  tweaks: if amethysts in mystic biome, they glow, spiky impassable without shears
 
 
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at

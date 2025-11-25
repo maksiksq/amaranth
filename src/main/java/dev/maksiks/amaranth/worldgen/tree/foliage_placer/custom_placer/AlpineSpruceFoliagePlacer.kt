@@ -186,7 +186,7 @@ class AlpineSpruceFoliagePlacer(
                             100,
                             null,
                             false,
-                            LayerPattern.CROSS
+                            LayerPattern.PLUS
                         );
                     ctx.incDiamond(
                         at(curY), 0,

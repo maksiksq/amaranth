@@ -72,9 +72,6 @@ public class Amaranth {
         modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
     }
 
-    public static void LOGGER(String adding) {
-    }
-
     private void commonSetup(FMLCommonSetupEvent event) {
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
     }

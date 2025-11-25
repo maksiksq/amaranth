@@ -109,7 +109,7 @@ file="META-INF/accesstransformer.cfg"
     modId="twigonometry"
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[0.0.1,)"
+    versionRange="${twigonometry_version_range}"
     ordering="NONE"
     side="SERVER"
 
