@@ -6,6 +6,30 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "amaranth:palette_overload_music_disc",
+          "weight":45
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 45
+        },
+        {
+          "type": "minecraft:empty",
+          "weight":10
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 1.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "minecraft:poisonous_potato",
           "weight": 5
         },
@@ -18,11 +42,6 @@
           "type": "minecraft:item",
           "name": "minecraft:bowl",
           "weight": 10
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:diamond",
-          "weight": 1
         }
       ],
       "rolls": {

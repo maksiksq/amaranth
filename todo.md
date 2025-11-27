@@ -1,73 +1,76 @@
+### Current
+- [ ] todo maybe: Completely unsolicited dani reference because i felt nostalgic ; milk ; and then he came back what the hell
+- [ ] todo very: melon helmet
+- [ ] fix: worldgen balancing
+- [ ] fix: look into isSolid vs isFaceSturdy
+- [ ] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
+- [ ] todo: add teaser hut structure
+- [ ] cfg: config
+- [ ] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
+
+### Moderate
+- [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
+- [ ] todo fun: a mod that makes players edible
+- [ ] todo very: a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also make it an example mod ; !!!
+- [ ] todo fun: make mod to make leaf litter and etc replaceable if it's not a thing on later versions
+- [ ] fix maybe: you can bonemeal leaf litter into existence in silver birch
+- [ ] todo fun: if amethysts in mystic biome, they glow
+- [ ] todo fun: spiky impassable without shears
+
+### Should, but would?
+- [ ] finish: shrooms
+- [ ] todo maybe: maybe marble columns and etc.
+- [ ] todo maybe: actually put marble in somewhere
+- [ ] improve: pumpkin
+
+### Whatever
+- [ ] fix: maybe try fixing the grass color for silver birch again?? ; sodium mixin makes it hard
+- [ ] todo maybe: unrelated but make like an actually good color picker website cuz im annoyed ; so real
+- [ ] pain: do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip ; on my Christmas wishlist
+- [ ] feat twig maybe: leaf check for structures
+
+***
+
+// backlog
 - [x] A MUSIC DISC
-- [ ] Completely unsolicited dani reference because i felt nostalgic ; milk
-
 - [x] mc tree maker framework or something because it's kinda pain
-- [ ] unrelated but make like an actually good color picker website cuz im annoyed
-- [ ] framework for turn nbt into placed feature gen ; place like fossils do, plus already exists
-- [ ] a mod that makes players edible
-- [ ] a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also make it an
-  example mod ; !!!
-
+- [x] ~~framework for turn nbt into placed feature gen ; place like fossils do, plus already exists~~ ; superseded by twig
 - [x] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully
   but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just
   fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in
   them ; terrablender builder
 - [x] fix: deprecated petal cutout renderer
-- [ ] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome
-  so it's ok for now. ; it adds to the biome
-- [ ] fix: maybe try fixing the grass color for silver birch again??
+- [x] maybe fix: silver birch detached check is a bit loose but you do only get a few saplings here and there per biome
+  so it's ok for now. ; it adds to the biome ; i legit like it actually, it's tasteful
 - [x] fix: silver birch has grass inside
 - [x] fix: use a placed feature instead of a structure because why again
 - [x] add more creative mod tabs ; just sorted the one tab i have
 - [x] fix: fountains generate with grass corners
 - [x] fix: dusty biome
-- [ ] finish: shrooms
-- [ ] maybe marble columns and etc.
-- [ ] actually put marble in somewhere
-- [x] ; forgot what was here???
-- [ ]  report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
-- [x]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now ; terrablender's builder let's
-  go
+- [x] ; forgot what was here??? ; what
+- [x]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now ; terrablender's builder let's go
 - [x]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
 - [x]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
 - [x]  add overrides to terrablender's builder for exceptions
 - [x]  fix: desolate biome effects should not work underground
 - [x]  redistribute the biomes according to the annotation
-- [ ]  do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip ; on my
-  Christmas wishlist
-- [ ]  melon helmet
-- [ ]  finish: pumpkin
-- [ ]  fix: unchecked operation somewhere
-- [ ]  fix: maybe use offset to prevent patchiness? ; no
+- [x]  fix: unchecked operation somewhere
+- [ ]  fix: ~~maybe use offset to prevent patchiness?~~ ; no
 - [x]  fix: logs not stripping
-- [ ]  fix: potted blocks for saplings
-- [ ]  fix: try to make a 50/50 replace later again ; !
-- [ ]  fix: make disc obtainable ; any loot table chest? ; or dungeons
+- [x]  fix: potted blocks for saplings
 - [x]  fix: i can make freaking WATERFALLS
-- [ ]  fix: do some profiling to make sure i didnt add any performance pitfalls
+- [x]  fix: do some profiling to make sure i didnt add any performance pitfalls ; i did, kinda hungry eating 3-10% cpu sometimes for custom terrain, but it's a worldgen mod after all, definitely some of my code having pitfalls tho, hands off, not gonna fix tho :evil_smirk:
 - [x]  fix: anthocyanin should spawn near jungle
-- [ ]  fix: add teaser hut structure
 - [x]  fix: later rework foliage places to be more sensible
 - [x]  fix: dont forget the waterfalls ewew
-- [ ]  TODO: IMPORTANT: maybe if i can pull it off this time, add biome replacements, so it's 50% to back to the vanilla
+- [ ]  ~~IMPORTANT: maybe if i can pull it off this time, add biome replacements, so it's 50% to back to the vanilla
   biome, why? because they all keep spawning in the same region, this is one way to solve the problem of all biomes
-  being clumped together in the region, give each a 50/50 vanilla alternative and in turn just make it rarer
-- [ ]  TRAILER: -5621453417704106832 -291172 158 5765 screenshottable as hell
-- [ ]  look into isSolid
-- [ ]  make mod to make leaf litter and etc replaceable if it's not a thing on later versions
-- [ ]  fix maybe: you can bonemeal leaf litter into existence in silver birch
-- [ ]  fix maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
-- [ ]  fix maybe: leaf check for structures
-- [ ]  cfg config
-- [ ]  tweaks: if amethysts in mystic biome, they glow, spiky impassable without shears
-
-
+  being clumped together in the region, give each a 50/50 vanilla alternative and in turn just make it rarer~~ ; too much effort, very maybe, wish terrablender did this
+- [ ]  ~~TRAILER: -5621453417704106832 -291172 158 5765 screenshottable as hell~~ ; no time for trailer c:
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at
   all rn
-
-- //
-
 - [x] music
+
 
 -------------------------
 
