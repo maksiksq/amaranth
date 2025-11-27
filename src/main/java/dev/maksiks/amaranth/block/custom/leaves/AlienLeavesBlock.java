@@ -37,7 +37,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  */
 
 public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, net.neoforged.neoforge.common.IShearable, IFlammableLeaves {
-    public static final MapCodec<net.minecraft.world.level.block.LeavesBlock> CODEC = simpleCodec(net.minecraft.world.level.block.LeavesBlock::new);
+    public static final MapCodec<AlienLeavesBlock> CODEC = simpleCodec(AlienLeavesBlock::new);
     public static final int DECAY_DISTANCE = 10;
     public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, DECAY_DISTANCE);
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
@@ -45,7 +45,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
     private static final int TICK_DELAY = 1;
 
     @Override
-    public MapCodec<? extends net.minecraft.world.level.block.LeavesBlock> codec() {
+    public MapCodec<? extends AlienLeavesBlock> codec() {
         return CODEC;
     }
 
