@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -22,6 +23,11 @@ public class ModArmorMaterials {
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
                 attribute.put(ArmorItem.Type.HELMET, 2);
             }), BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.GRASS_BREAK),16, 0f, 0.05f, ModItems.THORN);
+
+    public static final Holder<ArmorMaterial> MELON_HELMET_MATERIAL = register("melon_helmet",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.HELMET, 1);
+            }), BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.WET_GRASS_HIT),15, 0f, 0.05f, () -> Items.MELON_SLICE);
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection, Holder<SoundEvent> equipSound,
                                                   int enchantability, float toughness, float knockbackResistance,

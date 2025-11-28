@@ -23,6 +23,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MAFIA_BLOB);
                         output.accept(ModItems.BEANIE_BLOB);
                         output.accept(ModItems.EMPTY_TEA_CUP);
+                        output.accept(ModItems.MELON_HELMET);
 
                         // biome items
                         output.accept(ModItems.THORN);

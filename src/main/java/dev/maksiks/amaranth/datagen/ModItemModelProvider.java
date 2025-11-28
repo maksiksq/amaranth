@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         // misc
         basicItem(ModItems.PALETTE_OVERLOAD_MUSIC_DISC.get());
         basicItem(ModItems.EMPTY_TEA_CUP.get());
+        basicItem(ModItems.MELON_HELMET.asItem());
 
         // mystic
         basicItem(ModItems.MAFIA_BLOB.get());

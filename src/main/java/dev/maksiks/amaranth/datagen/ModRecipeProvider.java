@@ -23,16 +23,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         // misc
-        // temp
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.MELON_HELMET, 1)
+                .requires(Blocks.MELON)
+                .requires(Items.SHEARS)
+                .unlockedBy("has_melon", has(Items.MELON))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MAFIA_BLOB.get(), 1)
                 .requires(ModItems.HEXFRUIT.get())
                 .unlockedBy("has_hexfruit", has(ModItems.HEXFRUIT.get()))
                 .save(recipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MAFIA_BLOB.get(), 1)
-                .requires(ModBlocks.MYSTIC_LEAVES.get())
-                .unlockedBy("has_mystic_leaves", has(ModBlocks.MYSTIC_LEAVES.get()))
-                .save(recipeOutput, "amaranth:mafia_blob_from_leaves");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.BEANIE_BLOB.get())
                 .pattern("HHH")
@@ -193,7 +193,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.MALACHITE_VIPERS_BUGLOSS)
                 .unlockedBy("has_malachite_vipers_bugloss", has(ModBlocks.MALACHITE_VIPERS_BUGLOSS))
                 .save(recipeOutput);
-        
+
         // pastel
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WISTERIA_PLANKS.asItem(), 4)
                 .requires(ModBlocks.JUICY_WISTERIA_LOG.get())
@@ -259,7 +259,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.LUPINE.asItem())
                 .unlockedBy("has_lupine", has(ModBlocks.LUPINE.asItem()))
                 .save(recipeOutput);
-        
+
         // satis
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SATISTREE_PLANKS.asItem(), 4)
                 .requires(ModBlocks.SATISTREE_LOG.get())

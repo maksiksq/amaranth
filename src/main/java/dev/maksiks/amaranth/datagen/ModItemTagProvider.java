@@ -32,6 +32,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
                 .add(ModItems.CROWN_OF_THORNS.get());
 
+        this.tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(ModItems.MELON_HELMET.get());
+        this.tag(ItemTags.HEAD_ARMOR)
+                .add(ModItems.MELON_HELMET.get());
+        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
+                .add(ModItems.MELON_HELMET.get());
+
         // uh
         this.tag(ItemTags.GOAT_FOOD)
                 .add(ModItems.MUSHROOM_TEA.get());

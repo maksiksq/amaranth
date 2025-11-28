@@ -3,6 +3,7 @@ package dev.maksiks.amaranth.item;
 import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.entity.ModEntities;
 import dev.maksiks.amaranth.item.custom.CrownOfThornsItem;
+import dev.maksiks.amaranth.item.custom.MelonHelmetItem;
 import dev.maksiks.amaranth.item.custom.WisteriaJuiceItem;
 import dev.maksiks.amaranth.sound.ModSounds;
 import net.minecraft.network.chat.Component;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Amaranth.MOD_ID);
 
+    // misc
     public static final DeferredItem<Item> MAFIA_BLOB = ITEMS.register("mafia_blob",
             () -> new Item(new Item.Properties()) {
                 @Override
@@ -39,6 +41,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> MUSHROOM_TEA = ITEMS.register("mushroom_tea",
             () -> new Item(new Item.Properties().food(ModFoodProperties.MUSHROOM_TEA)));
+
+    public static final DeferredItem<ArmorItem> MELON_HELMET = ITEMS.register("melon_helmet",
+            () -> new MelonHelmetItem(ModArmorMaterials.MELON_HELMET_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(5))));
 
     // discs
     public static final DeferredItem<Item> PALETTE_OVERLOAD_MUSIC_DISC = ITEMS.register("palette_overload_music_disc",
