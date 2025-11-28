@@ -55,33 +55,33 @@ public class ModBiomeSelectors {
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes", "",
             List.of(P, P, P, P, P),
-            List.of(P, P, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, P),
-            List.of(ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, P),
-            List.of(ModBiomes.STUBBY_WOODLAND, ModBiomes.LUPINE_MEADOW, P, ModBiomes.ANTHOCYANIN_FOREST, ModBiomes.ANTHOCYANIN_FOREST),
+            List.of(P, ModBiomes.THRUMLETONS, ModBiomes.SILVER_BIRCH_FOREST, P, P),
+            List.of(ModBiomes.MIXED_WOODS, P, ModBiomes.MIXED_WOODS, ModBiomes.SILVER_BIRCH_FOREST, P),
+            List.of(ModBiomes.STUBBY_WOODLAND, ModBiomes.LUPINE_MEADOW, P, P, ModBiomes.ANTHOCYANIN_FOREST),
             List.of(P, P, P, P, P)
     );
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_2 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_2", "",
             List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, ModBiomes.WITCHY_WOODS, P),
+            List.of(P, P, ModBiomes.THRUMLETONS, P, P),
+            List.of(P, P, ModBiomes.MIXED_WOODS, ModBiomes.WITCHY_WOODS, P),
             List.of(P, P, P, P, P),
             List.of(ModBiomes.DUSTY_FLATS, P, P, P, P)
     );
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_3 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_2", "",
             List.of(ModBiomes.DESOLATE_ICE_FIELDS, P, P, P, P),
-            List.of(P, P, ModBiomes.SATISFOREST, P, P),
-            List.of(P, ModBiomes.MYSTIC_FOREST, ModBiomes.MYSTIC_FOREST, ModBiomes.FIELDS_OF_PAIN, P),
-            List.of(P, P, ModBiomes.SATISFOREST, P, ModBiomes.SHROOMLANDS),
+            List.of(ModBiomes.FIELDS_OF_PAIN, ModBiomes.FIELDS_OF_PAIN, ModBiomes.MYSTIC_FOREST, P, P),
+            List.of(P, P, ModBiomes.MYSTIC_FOREST, P, P),
+            List.of(P, P, P, ModBiomes.MYSTIC_FOREST, ModBiomes.SHROOMLANDS),
             List.of(P, ModBiomes.DUSTY_FLATS, P, P, P)
     );
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_4 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_3", "",
             List.of(P, P, P, P, P),
-            List.of(P, P, P, P, P),
-            List.of(P, P, P, P, ModBiomes.TREE_ON_TREE_FOREST),
-            List.of(P, P, P, P, P),
+            List.of(P, P, ModBiomes.SATISFOREST, P, P),
+            List.of(P, P, ModBiomes.SATISFOREST, P, ModBiomes.TREE_ON_TREE_FOREST),
+            List.of(P, P, ModBiomes.SATISFOREST, P, P),
             List.of(P, P, P, P, P)
     );
 

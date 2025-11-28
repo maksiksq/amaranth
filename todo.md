@@ -3,7 +3,7 @@
 - [ ] todo very: melon helmet
 - [ ] fix: worldgen balancing
 - [ ] fix: look into isSolid vs isFaceSturdy
-- [ ] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
+- [x] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
 - [ ] todo: add teaser hut structure
 - [ ] cfg: config
 - [ ] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see

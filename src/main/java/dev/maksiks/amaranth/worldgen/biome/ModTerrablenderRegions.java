@@ -39,7 +39,7 @@ public class ModTerrablenderRegions extends Region {
     public static void init() {
         REGION_0 = new ModTerrablenderRegions(
                 0,
-                9,
+                7,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_VARIANT),
@@ -75,7 +75,7 @@ public class ModTerrablenderRegions extends Region {
 
         REGION_2 = new ModTerrablenderRegions(
                 2,
-                4,
+                1,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_3),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
@@ -93,7 +93,7 @@ public class ModTerrablenderRegions extends Region {
 
         REGION_3 = new ModTerrablenderRegions(
                 3,
-                2,
+                1,
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.OCEANS_TERRABLENDER),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_4),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.MIDDLE_BIOMES_VARIANT_TERRABLENDER),
