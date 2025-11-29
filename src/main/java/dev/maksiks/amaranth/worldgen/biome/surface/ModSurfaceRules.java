@@ -151,7 +151,7 @@ public class ModSurfaceRules {
 
                     BlockState neighborState = context.chunk.getBlockState(neighborPos);
                     if (neighborState.getFluidState().isEmpty()) {
-                        if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
+                        if (!neighborState.isSolid()) {
                             return false;
                         }
                     }
@@ -217,7 +217,7 @@ public class ModSurfaceRules {
 
                     BlockState neighborState = context.chunk.getBlockState(neighborPos);
                     if (neighborState.getFluidState().isEmpty()) {
-                        if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
+                        if (!neighborState.isSolid()) {
                             Pair<Boolean, BlockPos> w = shouldWaterfall(neighborPos);
                             if (w.getFirst()) {
                                 if (deterministicChance(neighborPos, 3)) return false;
@@ -239,7 +239,7 @@ public class ModSurfaceRules {
                     BlockState state = context.chunk.getBlockState(pos.below(i + 1));
 
                     if (!state.getFluidState().isEmpty()
-                            || state.isFaceSturdy(context.chunk, fallPos, Direction.UP)) {
+                            || state.isSolid()) {
                         if (i < checkHeight) {
                             return Pair.of(false, BlockPos.ZERO);
                         }
@@ -294,7 +294,7 @@ public class ModSurfaceRules {
 
                     BlockState neighborState = context.chunk.getBlockState(neighborPos);
                     if (neighborState.getFluidState().isEmpty()) {
-                        if (!neighborState.isFaceSturdy(context.chunk, neighborPos, dir.getOpposite())) {
+                        if (!neighborState.isSolid()) {
                             return true;
                         }
                     }
@@ -309,7 +309,7 @@ public class ModSurfaceRules {
                     BlockState state = context.chunk.getBlockState(pos.below(i + 1));
 
                     if (!state.getFluidState().isEmpty()
-                            || state.isFaceSturdy(context.chunk, fallPos, Direction.UP)) {
+                            || state.isSolid()) {
                         if (i < checkHeight) {
                             return Pair.of(false, BlockPos.ZERO);
                         }

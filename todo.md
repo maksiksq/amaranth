@@ -1,13 +1,12 @@
 ### Current
-- [ ] todo maybe: Completely unsolicited dani reference because i felt nostalgic ; milk ; and then he came back what the hell
 - [x] todo very: melon helmet
 - [ ] cfg: worldgen balancing
-- [ ] fix: look into isSolid vs isFaceSturdy
+- [x] fix: look into isSolid vs isFaceSturdy
 - [x] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
-- [ ] todo: add teaser hut structure
+- [x] todo: add teaser hut structure
 - [x] cfg: config
 - [ ] todo very: full config, region weights + change biome selectors
-- [ ] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
+- [x] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 
 ### Moderate
 - [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
@@ -18,6 +17,10 @@
 - [ ] todo fun: if amethysts in mystic biome, they glow
 - [ ] todo fun: spiky impassable without shears
 - [ ] todo maybe: replace biomes in the region instead of the builder
+- [ ] todo maybe: switch to multiloader, do fabric
+- [ ] todo maybe: 1.21.10
+- [ ] todo maybe: 1.20.1
+- [ ] todo maybe: revisit some biomes ; witchy ; satisforest
 
 ### Should, but would?
 - [ ] finish: shrooms

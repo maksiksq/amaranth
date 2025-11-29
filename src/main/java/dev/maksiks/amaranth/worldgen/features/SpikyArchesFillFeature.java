@@ -31,7 +31,7 @@ public class SpikyArchesFillFeature extends SimpleBlockFeature {
 
                 DoublePlantBlock.placeAt(worldgenlevel, blockstate, blockpos, 2);
             } else {
-                if ((!worldgenlevel.getBlockState(blockpos.below()).isFaceSturdy(worldgenlevel, blockpos.below(), Direction.UP)
+                if ((!worldgenlevel.getBlockState(blockpos.below()).isSolid()
                         || worldgenlevel.getBlockState(blockpos.below()).is(Blocks.SAND))
                                 && !worldgenlevel.getBlockState(blockpos.below()).is(ModBlocks.SPIKY_ARCHES.get())) {
                     return false;

@@ -72,7 +72,7 @@ public class ModFeatureUtils {
         // above trees check
         BlockPos surfaceBelowPos = surfacePos.below();
         BlockState groundBlock = level.getBlockState(surfaceBelowPos);
-        if (!groundBlock.isFaceSturdy(level, surfaceBelowPos, Direction.UP, SupportType.FULL) || groundBlock.is(BlockTags.LEAVES)) {
+        if (!groundBlock.isSolid() || groundBlock.is(BlockTags.LEAVES)) {
             return false;
         }
 

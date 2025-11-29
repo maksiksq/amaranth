@@ -155,7 +155,7 @@ public class AlienLeavesBlock extends Block implements SimpleWaterloggedBlock, n
             if (random.nextInt(15) == 1) {
                 BlockPos blockpos = pos.below();
                 BlockState blockstate = level.getBlockState(blockpos);
-                if (!blockstate.canOcclude() || !blockstate.isFaceSturdy(level, blockpos, Direction.UP)) {
+                if (!blockstate.canOcclude() || !blockstate.isSolid()) {
                     ParticleUtils.spawnParticleBelow(level, pos, random, ParticleTypes.DRIPPING_WATER);
                 }
             }

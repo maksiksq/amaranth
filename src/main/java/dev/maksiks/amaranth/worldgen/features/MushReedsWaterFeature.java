@@ -127,7 +127,7 @@ public class MushReedsWaterFeature extends Feature<NoneFeatureConfiguration> {
                 BlockState state = level.getBlockState(checkPos);
 
                 if (!state.getFluidState().is(FluidTags.WATER) &&
-                        state.isFaceSturdy(level, checkPos, net.minecraft.core.Direction.UP)) {
+                        state.isSolid()) {
                     return true;
                 }
             }

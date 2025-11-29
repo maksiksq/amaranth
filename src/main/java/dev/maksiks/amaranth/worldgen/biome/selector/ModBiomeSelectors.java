@@ -71,7 +71,7 @@ public class ModBiomeSelectors {
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_3 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_3", "",
             List.of(ModBiomes.DESOLATE_ICE_FIELDS, P, P, P, P),
-            List.of(ModBiomes.FIELDS_OF_PAIN, ModBiomes.FIELDS_OF_PAIN, ModBiomes.MYSTIC_FOREST, P, P),
+            List.of(ModBiomes.FIELDS_OF_PAIN, P, ModBiomes.MYSTIC_FOREST, P, P),
             List.of(P, P, ModBiomes.MYSTIC_FOREST, P, P),
             List.of(P, P, P, ModBiomes.MYSTIC_FOREST, ModBiomes.SHROOMLANDS),
             List.of(P, ModBiomes.DUSTY_FLATS, P, P, P)

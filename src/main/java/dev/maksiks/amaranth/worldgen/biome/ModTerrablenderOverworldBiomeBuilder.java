@@ -54,8 +54,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
 
         // RegionUtils.getVanillaParameterPoints() for something, maybe?
 
-        if (regionId == 1) {
-            // replacing swamps with mushlands in region 1
+        if (regionId == 0 || regionId == 1) {
             if (biome.equals(Biomes.SWAMP)) {
                 
                 return Pair.of(point, ModBiomes.MUSHLAND);
@@ -103,7 +102,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
         if (temperature <= 2) {
             return super.pickPeakBiome(temperature, humidity, weirdness);
         } else {
-            if (regionId == 0) {
+            if (regionId == 0 || regionId == 1) {
                 // no idea if it varies so just using an average
                 if (Climate.unquantizeCoord((weirdness.min() + weirdness.max()) / 2L) > 0) {
                     return temperature == 3 ? ModBiomes.VOLCANIC_ASHEN_PEAKS : this.pickBadlandsBiome(humidity, weirdness);

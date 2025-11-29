@@ -203,7 +203,7 @@ public class OrderlyCourtsRuinsFeature extends Feature<NoneFeatureConfiguration>
 
                 BlockPos belowPos = groundPos.below();
                 BlockState groundBlock = level.getBlockState(belowPos);
-                if (!groundBlock.isFaceSturdy(level, belowPos, Direction.UP, SupportType.FULL)) {
+                if (!groundBlock.isSolid()) {
                     return false;
                 }
 
