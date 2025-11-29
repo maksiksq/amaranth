@@ -19,7 +19,7 @@ public class ClientConfig {
     public static final ModConfigSpec.BooleanValue HIDE_BIOME_LEAF_PARTICLES = BUILDER
             .comment(" # These are global biome particle settings.")
             .comment(" All of them can be disabled by setting particles to minimal in vanilla settings as well.")
-            .comment(" The minimize ones should hopefully reduce lag while keeping the minimal amount of particles to make it still feel alive.")
+            .comment(" If you experience lag you might also want to try the minimize options, they make the biomes have less particles instead of removing them completely.")
             .comment("")
             .comment(" Whether to hide leaf particles e.g. in the silver birch biome.")
             .define("hideBiomeLeafParticles", false);
