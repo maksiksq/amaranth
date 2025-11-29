@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "amaranth:suspicious_hut",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 64857338,
+    "separation": 6,
+    "spacing": 24
+  }
+}

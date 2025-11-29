@@ -40,8 +40,6 @@ public class ModBlocks {
             .ignitedByLava();
 
     private static DeferredBlock<FlowerPotBlock> registerFlowerPot(DeferredBlock<Block> plant) {
-        Amaranth.LOGGER.info("PLANT ID: {}", plant.getId().getPath().replace("amaranth:", ""));
-        Amaranth.LOGGER.info("PLANT 1ID: {}", "potted_" + plant.getId().getPath());
         DeferredBlock<FlowerPotBlock> pot = registerBlock("potted_" + plant.getId().getPath(),
                 () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_SPRUCE_SAPLING)));
         MOD_FLOWER_POTS.put(plant, pot);

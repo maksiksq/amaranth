@@ -155,7 +155,6 @@ public class ModFeatureUtils {
             }
         }
 
-        Amaranth.LOGGER.info("`Decayed`: {}", visited);
         return true;
     }
 

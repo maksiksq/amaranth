@@ -33,8 +33,6 @@ public class AmaranthClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        Amaranth.LOGGER.info("HELLO FROM CLIENT SETUP");
-        Amaranth.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 
     @SubscribeEvent

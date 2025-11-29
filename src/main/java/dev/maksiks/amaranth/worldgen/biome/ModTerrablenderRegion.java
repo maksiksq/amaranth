@@ -171,7 +171,6 @@ public class ModTerrablenderRegion extends Region {
             }
 
             if (!modKeys.contains(biomeKey) || Config.isBiomeEnabled(biomeKey)) {
-                Amaranth.LOGGER.info("Adding biome {} to region {}", biomeKey, this.getName());
                 mapper.accept(new Pair<>(parameterPoint, biomeKey));
                 modMapperAccepted.increment();
             } else {

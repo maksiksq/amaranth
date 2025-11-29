@@ -28,7 +28,6 @@ public class Config {
         BUILDER.comment(" Toggle each biome, only applies after you rejoin the world!");
         BUILDER.push("biome_toggles");
 
-        Amaranth.LOGGER.info("biome_: {}", MOD_OVERWORLD_SURFACE_BIOMES);
         Stream.concat(
                 MOD_OVERWORLD_SURFACE_BIOMES.stream(),
                 MOD_OVERWORLD_CAVE_BIOMES.stream()
