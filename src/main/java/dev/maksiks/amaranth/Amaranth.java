@@ -7,7 +7,7 @@ import dev.maksiks.amaranth.entity.client.ShroomBoiRenderer;
 import dev.maksiks.amaranth.item.ModItems;
 import dev.maksiks.amaranth.particle.ModParticles;
 import dev.maksiks.amaranth.sound.ModSounds;
-import dev.maksiks.amaranth.worldgen.biome.ModTerrablenderRegions;
+import dev.maksiks.amaranth.worldgen.biome.ModTerrablenderRegion;
 import dev.maksiks.amaranth.worldgen.biome.surface.ModSurfaceRules;
 import dev.maksiks.amaranth.worldgen.features.ModFeatures;
 import dev.maksiks.amaranth.worldgen.tree.foliage_placer.ModFoliagePlacerTypes;
@@ -55,7 +55,7 @@ public class Amaranth {
         ModSounds.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
 
-        ModTerrablenderRegions.init();
+        ModTerrablenderRegion.init();
 
         // registering trunk and foliage placer types
         ModTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);

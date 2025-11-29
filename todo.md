@@ -1,11 +1,12 @@
 ### Current
 - [ ] todo maybe: Completely unsolicited dani reference because i felt nostalgic ; milk ; and then he came back what the hell
-- [ ] todo very: melon helmet
-- [ ] fix: worldgen balancing
+- [x] todo very: melon helmet
+- [ ] cfg: worldgen balancing
 - [ ] fix: look into isSolid vs isFaceSturdy
 - [x] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
 - [ ] todo: add teaser hut structure
-- [ ] cfg: config
+- [x] cfg: config
+- [ ] todo very: full config, region weights + change biome selectors
 - [ ] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 
 ### Moderate
@@ -16,6 +17,7 @@
 - [ ] fix maybe: you can bonemeal leaf litter into existence in silver birch
 - [ ] todo fun: if amethysts in mystic biome, they glow
 - [ ] todo fun: spiky impassable without shears
+- [ ] todo maybe: replace biomes in the region instead of the builder
 
 ### Should, but would?
 - [ ] finish: shrooms

@@ -69,7 +69,7 @@ public class ModBiomeSelectors {
             List.of(ModBiomes.DUSTY_FLATS, P, P, P, P)
     );
 
-    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_3 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_2", "",
+    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_3 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_3", "",
             List.of(ModBiomes.DESOLATE_ICE_FIELDS, P, P, P, P),
             List.of(ModBiomes.FIELDS_OF_PAIN, ModBiomes.FIELDS_OF_PAIN, ModBiomes.MYSTIC_FOREST, P, P),
             List.of(P, P, ModBiomes.MYSTIC_FOREST, P, P),
@@ -77,7 +77,7 @@ public class ModBiomeSelectors {
             List.of(P, ModBiomes.DUSTY_FLATS, P, P, P)
     );
 
-    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_4 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_3", "",
+    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_4 = ModBiomeSelectorUtils.create("middle_biomes/mod_middle_biomes_4", "",
             List.of(P, P, P, P, P),
             List.of(P, P, ModBiomes.SATISFOREST, P, P),
             List.of(P, P, ModBiomes.SATISFOREST, P, ModBiomes.TREE_ON_TREE_FOREST),
@@ -87,6 +87,14 @@ public class ModBiomeSelectors {
 
     public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_VARIANT = ModBiomeSelectorUtils.create("middle_biomes_variant/mod_middle_biomes_variant", "",
             List.of(P, V, P, V, V),
+            List.of(V, V, P, V, P),
+            List.of(P, V, P, V, V),
+            List.of(V, V, P, P, P),
+            List.of(V, V, V, V, V)
+    );
+
+    public static final List<List<ResourceKey<Biome>>> MOD_MIDDLE_BIOMES_VARIANT_2 = ModBiomeSelectorUtils.create("middle_biomes_variant/mod_middle_biomes_variant_2", "",
+            List.of(ModBiomes.DESOLATE_ICE_FIELDS, V, P, V, V),
             List.of(V, V, P, V, P),
             List.of(P, V, P, V, V),
             List.of(V, V, P, P, P),
@@ -103,13 +111,19 @@ public class ModBiomeSelectors {
 
     public static final List<List<ResourceKey<Biome>>> MOD_PLATEAU_BIOMES_VARIANT = ModBiomeSelectorUtils.create("plateau_biomes_variant/mod_plateau_biomes_variant", "",
             List.of(P, P, P, P, P),
-            List.of(ModBiomes.PASTEL_PARCEL, P, P, P, P),
-            List.of(ModBiomes.PASTEL_PARCEL, ModBiomes.PASTEL_PARCEL, P, ModBiomes.ORDERLY_COURTS_RUINS, P),
+            List.of(P, P, P, P, P),
+            List.of(P, P, P, ModBiomes.ORDERLY_COURTS_RUINS, P),
             List.of(P, P, P, P, P),
             List.of(P, V, P, P, V)
     );
 
-    // TODO: EXPERIMENT, MAYBE REMOVE VOIDS FROM SHATTERED AND ETC TO PREVENT SMALL OUTCROPPINGS
+    public static final List<List<ResourceKey<Biome>>> MOD_PLATEAU_BIOMES_VARIANT_2 = ModBiomeSelectorUtils.create("plateau_biomes_variant/mod_plateau_biomes_variant_2", "",
+            List.of(ModBiomes.DESOLATE_ICE_FIELDS, ModBiomes.DESOLATE_ICE_FIELDS, P, P, P),
+            List.of(P, P, P, P, P),
+            List.of(ModBiomes.PASTEL_PARCEL, P, P, P, P),
+            List.of(ModBiomes.PASTEL_PARCEL, ModBiomes.PASTEL_PARCEL, P, P, P),
+            List.of(P, V, P, P, V)
+    );
 
     public static final List<List<ResourceKey<Biome>>> MOD_SHATTERED_BIOMES = ModBiomeSelectorUtils.create("shattered_biomes/mod_shattered_biomes", "",
             List.of(P, P, P, P, P),

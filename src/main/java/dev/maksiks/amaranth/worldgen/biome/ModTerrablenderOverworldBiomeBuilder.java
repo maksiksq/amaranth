@@ -43,7 +43,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
     /// tho, the builder takes in most
     /// vanilla biomes as deferred placeholders,
     /// so those have to be replaced in {@link ModBiomeSelectors}
-    /// matching with {@link OverworldBiomeBuilder}
+    /// matching (or not) with {@link OverworldBiomeBuilder}
     ///
     private Pair<Climate.ParameterPoint, ResourceKey<Biome>> adjustParameters(Pair<Climate.ParameterPoint, ResourceKey<Biome>> pair, Integer regionId) {
         Climate.ParameterPoint point = pair.getFirst();
@@ -90,7 +90,7 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
 //                        this.FULL_RANGE,
 //                        0L
 //                ),
-//                ModBiomes.CUSTOM_DEEP_BIOME
+//                ModBiomes.SOME_SORTA_DEEP_BIOME
 //        ));
     }
 

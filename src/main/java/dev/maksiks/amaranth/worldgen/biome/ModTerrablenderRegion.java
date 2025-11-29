@@ -2,6 +2,7 @@ package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
 import dev.maksiks.amaranth.Amaranth;
+import dev.maksiks.amaranth.Config;
 import dev.maksiks.amaranth.worldgen.biome.selector.ModBiomeSelectors;
 import dev.maksiks.amaranth.worldgen.biome.selector.TerrablenderBiomeSelectors;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -30,14 +31,14 @@ import static dev.maksiks.amaranth.worldgen.biome.ModRegionUtils.*;
 // BWG, thanks!
 //
 
-public class ModTerrablenderRegions extends Region {
-    public static ModTerrablenderRegions REGION_0;
-    public static ModTerrablenderRegions REGION_1;
-    public static ModTerrablenderRegions REGION_2;
-    public static ModTerrablenderRegions REGION_3;
+public class ModTerrablenderRegion extends Region {
+    public static ModTerrablenderRegion REGION_0;
+    public static ModTerrablenderRegion REGION_1;
+    public static ModTerrablenderRegion REGION_2;
+    public static ModTerrablenderRegion REGION_3;
 
     public static void init() {
-        REGION_0 = new ModTerrablenderRegions(
+        REGION_0 = new ModTerrablenderRegion(
                 0,
                 7,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
@@ -50,30 +51,26 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES_VARIANT),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES),
-                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER),
-                new IdentityHashMap<>(),
-                Map.of()
+                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER)
         );
 
-        REGION_1 = new ModTerrablenderRegions(
+        REGION_1 = new ModTerrablenderRegion(
                 1,
                 7,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_2),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_VARIANT),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_MIDDLE_BIOMES_VARIANT_2),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES_VARIANT),
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PLATEAU_BIOMES_VARIANT_2),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SHATTERED_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_BEACH_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_PEAK_BIOMES_VARIANT),
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES),
-                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES_VARIANT),
-                new IdentityHashMap<>(),
-                Map.of()
+                ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_SLOPE_BIOMES_VARIANT)
         );
 
-        REGION_2 = new ModTerrablenderRegions(
+        REGION_2 = new ModTerrablenderRegion(
                 2,
                 1,
                 ModRegionUtils.to2DArray(ModBiomeSelectors.MOD_OCEANS),
@@ -86,12 +83,10 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PEAK_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PEAK_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_TERRABLENDER),
-                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER),
-                new IdentityHashMap<>(),
-                Map.of()
+                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER)
         );
 
-        REGION_3 = new ModTerrablenderRegions(
+        REGION_3 = new ModTerrablenderRegion(
                 3,
                 1,
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.OCEANS_TERRABLENDER),
@@ -104,9 +99,7 @@ public class ModTerrablenderRegions extends Region {
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PEAK_BIOMES_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.PEAK_BIOMES_VARIANT_TERRABLENDER),
                 ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_TERRABLENDER),
-                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER),
-                new IdentityHashMap<>(),
-                Map.of()
+                ModRegionUtils.to2DArray(TerrablenderBiomeSelectors.SLOPE_BIOMES_VARIANT_TERRABLENDER)
         );
 
         Regions.register(REGION_0);
@@ -119,20 +112,16 @@ public class ModTerrablenderRegions extends Region {
     private final RandomSource random = RandomSource.create();
 
     private final Set<ResourceKey<Biome>> modKeys = new ObjectOpenHashSet<>();
-    private final Map<ResourceKey<Biome>, ResourceKey<Biome>> swapper;
-    private final Map<ResourceKey<Biome>, ResourceKey<Biome>> globalSwapper;
     private final ModTerrablenderOverworldBiomeBuilder terrablenderOverworldBiomeBuilder;
 
-    public ModTerrablenderRegions(int regionId, int overworldWeight,
-                                  ResourceKey<Biome>[][] oceans, ResourceKey<Biome>[][] middleBiomes,
-                                  ResourceKey<Biome>[][] middleBiomesVariant, ResourceKey<Biome>[][] plateauBiomes,
-                                  ResourceKey<Biome>[][] plateauBiomesVariant, ResourceKey<Biome>[][] shatteredBiomes,
-                                  ResourceKey<Biome>[][] beachBiomes, ResourceKey<Biome>[][] peakBiomes,
-                                  ResourceKey<Biome>[][] peakBiomesVariant, ResourceKey<Biome>[][] slopeBiomes, ResourceKey<Biome>[][] slopeBiomesVariant,
-                                  Map<ResourceKey<Biome>, ResourceKey<Biome>> swapper, Map<ResourceKey<Biome>, ResourceKey<Biome>> globalSwapper) {
+    public ModTerrablenderRegion(int regionId, int overworldWeight,
+                                 ResourceKey<Biome>[][] oceans, ResourceKey<Biome>[][] middleBiomes,
+                                 ResourceKey<Biome>[][] middleBiomesVariant, ResourceKey<Biome>[][] plateauBiomes,
+                                 ResourceKey<Biome>[][] plateauBiomesVariant, ResourceKey<Biome>[][] shatteredBiomes,
+                                 ResourceKey<Biome>[][] beachBiomes, ResourceKey<Biome>[][] peakBiomes,
+                                 ResourceKey<Biome>[][] peakBiomesVariant, ResourceKey<Biome>[][] slopeBiomes, ResourceKey<Biome>[][] slopeBiomesVariant
+    ) {
         super(ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, "region_" + count++), RegionType.OVERWORLD, overworldWeight);
-        this.swapper = swapper;
-        this.globalSwapper = globalSwapper;
 
         Predicate<ResourceKey<Biome>> noVoidBiomes = biomeResourceKey -> biomeResourceKey != Biomes.THE_VOID;
         oceans = sanitize("oceans", this.getName(), count, oceans, noVoidBiomes, true);
@@ -157,9 +146,6 @@ public class ModTerrablenderRegions extends Region {
         forEachBiome((biomeResourceKey -> {
             if (biomeResourceKey != null) {
                 modKeys.add(biomeResourceKey);
-                if (swapper.containsValue(biomeResourceKey)) {
-                    throw new IllegalArgumentException("Swapper cannot contain elements found in the temperature arrays.");
-                }
             }
         }), oceans, middleBiomes, middleBiomesVariant, plateauBiomes, plateauBiomesVariant, shatteredBiomes, beachBiomes, peakBiomes);
     }
@@ -183,43 +169,23 @@ public class ModTerrablenderRegions extends Region {
             if (!registry.containsKey(biomeKey)) {
                 throw new IllegalArgumentException(String.format("\"%s\" is not a valid biome in the world registry!", biomeKey.location()));
             }
-            // TODO: ADD CONFIG LATER
-            if (true) {
-                totalPairs.increment();
-                boolean mapped = false;
-                boolean alreadyMappedOutsideSwapper = false;
-                if (this.modKeys.contains(biomeKey)) {
-                    mapper.accept(new Pair<>(parameterPoint, this.globalSwapper.getOrDefault(biomeKey, biomeKey)));
-                    modMapperAccepted.increment();
-                    alreadyMappedOutsideSwapper = true;
-                    mapped = true;
-                }
 
-//                if (this.swapper.containsKey(biomeKey)) {
-//                    if (alreadyMappedOutsideSwapper) {
-//                        throw new UnsupportedOperationException(String.format("Attempting to assign a biome resource key in both the swapper and biome selectors. We're crashing your game to let you know that \"%s\" was put in the biome selectors but will always be swapped by \"%s\" due to the swapper. In region \"%s\".", biomeKey.location(), this.swapper.get(biomeKey).location(), this.getName().toString()));
-//                    }
-//                    ResourceKey<Biome> replacement = this.swapper.get(biomeKey);
-//                    ResourceKey<Biome> biomeResourceKey = BWGWorldGenConfig.INSTANCE.get().enabledBiomes().getOrDefault(replacement, true) ? replacement : Region.DEFERRED_PLACEHOLDER;
-//                    mapper.accept(new Pair<>(parameterPoint, this.globalSwapper.getOrDefault(biomeResourceKey, biomeResourceKey)));
-//                    gracefullyrewrittenfrombygbemercifulonyourlicensepleaseMapperAccepted.increment();
-//                    mapped = true;
-//                }
-
-                if (!mapped) {
-                    mapper.accept(new Pair<>(parameterPoint, this.globalSwapper.getOrDefault(biomeKey, biomeKey)));
-                    modMapperAccepted.increment();
-                }
+            if (!modKeys.contains(biomeKey) || Config.isBiomeEnabled(biomeKey)) {
+                Amaranth.LOGGER.info("Adding biome {} to region {}", biomeKey, this.getName());
+                mapper.accept(new Pair<>(parameterPoint, biomeKey));
+                modMapperAccepted.increment();
             } else {
                 mapper.accept(new Pair<>(parameterPoint, Region.DEFERRED_PLACEHOLDER));
+                modMapperAccepted.increment();
             }
+            totalPairs.increment();
         }));
 
         int totalPairsValue = totalPairs.intValue();
         int mapperAcceptValue = modMapperAccepted.intValue();
         boolean sanityCheck = totalPairsValue != mapperAcceptValue;
         if (sanityCheck) {
-            throw new UnsupportedOperationException(String.format("Not all biome parameter points were accepted for a Mod Terrablender biome region: %s. %s/%s were accepted.", this.getName().toString(), totalPairsValue, mapperAcceptValue));
+            throw new UnsupportedOperationException(String.format("Amaranth: Not all biome parameter points were accepted for a biome region: %s. %s/%s were accepted.", this.getName().toString(), totalPairsValue, mapperAcceptValue));
         }
     }
 }

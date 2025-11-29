@@ -22,37 +22,42 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import terrablender.api.ParameterUtils;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModBiomes {
-    public static final ResourceKey<Biome> TEST_BIOME = register("test_biome");
+    public static final List<ResourceKey<Biome>> MOD_OVERWORLD_SURFACE_BIOMES = new ArrayList<>();
+    public static final List<ResourceKey<Biome>> MOD_OVERWORLD_CAVE_BIOMES = new ArrayList<>();
+
+    public static final ResourceKey<Biome> TEST_BIOME = registerOverworld("test_biome");
     // dev ^
-    public static final ResourceKey<Biome> MYSTIC_FOREST = register("mystic_forest");
-    public static final ResourceKey<Biome> STUBBY_WOODLAND = register("stubby_woodland");
-    public static final ResourceKey<Biome> SILVER_BIRCH_FOREST = register("silver_birch_forest");
-    public static final ResourceKey<Biome> DESOLATE_ICE_FIELDS = register("desolate_ice_fields");
-    public static final ResourceKey<Biome> MIXED_WOODS = register("mixed_woods");
-    public static final ResourceKey<Biome> ORDERLY_COURTS = register("orderly_courts");
-    public static final ResourceKey<Biome> ORDERLY_COURTS_RUINS = register("orderly_courts_ruins");
-    public static final ResourceKey<Biome> TREE_ON_TREE_FOREST = register("tree_on_tree_forest");
-    public static final ResourceKey<Biome> SHROOMLANDS = register("shroomlands");
+    public static final ResourceKey<Biome> MYSTIC_FOREST = registerOverworld("mystic_forest");
+    public static final ResourceKey<Biome> STUBBY_WOODLAND = registerOverworld("stubby_woodland");
+    public static final ResourceKey<Biome> SILVER_BIRCH_FOREST = registerOverworld("silver_birch_forest");
+    public static final ResourceKey<Biome> DESOLATE_ICE_FIELDS = registerOverworld("desolate_ice_fields");
+    public static final ResourceKey<Biome> MIXED_WOODS = registerOverworld("mixed_woods");
+    public static final ResourceKey<Biome> ORDERLY_COURTS = registerOverworld("orderly_courts");
+    public static final ResourceKey<Biome> ORDERLY_COURTS_RUINS = registerOverworld("orderly_courts_ruins");
+    public static final ResourceKey<Biome> TREE_ON_TREE_FOREST = registerOverworld("tree_on_tree_forest");
+    public static final ResourceKey<Biome> SHROOMLANDS = registerOverworld("shroomlands");
     // in dev ^
-    public static final ResourceKey<Biome> DUSTY_FLATS = register("dusty_flats");
-    public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = register("anthocyanin_forest");
-    public static final ResourceKey<Biome> FIELDS_OF_PAIN = register("fields_of_pain");
-    public static final ResourceKey<Biome> THRUMLETONS = register("thrumletons");
-    public static final ResourceKey<Biome> SPARSEY_SPEARS = register("sparsey_spears");
-    public static final ResourceKey<Biome> PASTEL_PARCEL = register("pastel_parcel");
-    public static final ResourceKey<Biome> MUSHLAND = register("mushland");
-    public static final ResourceKey<Biome> WITCHY_WOODS = register("witchy_forest");
-    public static final ResourceKey<Biome> LUPINE_MEADOW = register("lupine_meadow");
-    public static final ResourceKey<Biome> ALPINE_RANGE = register("alpine_range");
-    public static final ResourceKey<Biome> ASHEN_PEAKS = register("ashen_peaks");
-    public static final ResourceKey<Biome> VOLCANIC_ASHEN_PEAKS = register("volcanic_ashen_peaks");
-    public static final ResourceKey<Biome> STEPPED_SPRINGS = register("stepped_springs");
-    public static final ResourceKey<Biome> SATISFOREST = register("satisforest");
+    public static final ResourceKey<Biome> DUSTY_FLATS = registerOverworld("dusty_flats");
+    public static final ResourceKey<Biome> ANTHOCYANIN_FOREST = registerOverworld("anthocyanin_forest");
+    public static final ResourceKey<Biome> FIELDS_OF_PAIN = registerOverworld("fields_of_pain");
+    public static final ResourceKey<Biome> THRUMLETONS = registerOverworld("thrumletons");
+    public static final ResourceKey<Biome> SPARSEY_SPEARS = registerOverworld("sparsey_spears");
+    public static final ResourceKey<Biome> PASTEL_PARCEL = registerOverworld("pastel_parcel");
+    public static final ResourceKey<Biome> MUSHLAND = registerOverworld("mushland");
+    public static final ResourceKey<Biome> WITCHY_WOODS = registerOverworld("witchy_forest");
+    public static final ResourceKey<Biome> LUPINE_MEADOW = registerOverworld("lupine_meadow");
+    public static final ResourceKey<Biome> ALPINE_RANGE = registerOverworld("alpine_range");
+    public static final ResourceKey<Biome> ASHEN_PEAKS = registerOverworld("ashen_peaks");
+    public static final ResourceKey<Biome> VOLCANIC_ASHEN_PEAKS = registerOverworld("volcanic_ashen_peaks");
+    public static final ResourceKey<Biome> STEPPED_SPRINGS = registerOverworld("stepped_springs");
+    public static final ResourceKey<Biome> SATISFOREST = registerOverworld("satisforest");
 
     // underground
-    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = register("dwarven_leftovers");
+    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerCave("dwarven_leftovers");
     // in dev ^
 
     protected static final int FAIRLY_NORMAL_WATER_COLOR = 4159204;
@@ -66,34 +71,46 @@ public class ModBiomes {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name));
     }
 
-    public static void bootstrap(BootstrapContext<Biome> context) {
-        context.register(TEST_BIOME, testBiome(context));
-        context.register(MYSTIC_FOREST, mysticForest(context));
-        context.register(STUBBY_WOODLAND, stubbyWoodland(context));
-        context.register(SILVER_BIRCH_FOREST, silverBirchForest(context));
-        context.register(DESOLATE_ICE_FIELDS, desolateIceFields(context));
-        context.register(MIXED_WOODS, mixedWoods(context));
-        context.register(ORDERLY_COURTS, orderlyCourts(context));
-        context.register(ORDERLY_COURTS_RUINS, orderlyCourtsRuins(context));
-        context.register(TREE_ON_TREE_FOREST, treeOnTreeForest(context));
-        context.register(SHROOMLANDS, shroomlands(context));
-        context.register(DUSTY_FLATS, dustyFlats(context));
-        context.register(ANTHOCYANIN_FOREST, anthocyaninForest(context));
-        context.register(FIELDS_OF_PAIN, fieldsOfPain(context));
-        context.register(THRUMLETONS, thrumlethons(context));
-        context.register(SPARSEY_SPEARS, sparseySpears(context));
-        context.register(PASTEL_PARCEL, pastelParcel(context));
-        context.register(MUSHLAND, mushland(context));
-        context.register(WITCHY_WOODS, witchyWoods(context));
-        context.register(LUPINE_MEADOW, lupineMeadow(context));
-        context.register(ALPINE_RANGE, alpineRange(context));
-        context.register(ASHEN_PEAKS, ashenPeaks(context));
-        context.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(context));
-        context.register(STEPPED_SPRINGS, steppedSprings(context));
-        context.register(SATISFOREST, satisForest(context));
+    private static ResourceKey<Biome> registerOverworld(String name) {
+        ResourceKey<Biome> key = register(name);
+        MOD_OVERWORLD_SURFACE_BIOMES.add(key);
+        return key;
+    }
+
+    private static ResourceKey<Biome> registerCave(String name) {
+        ResourceKey<Biome> key = register(name);
+        MOD_OVERWORLD_CAVE_BIOMES.add(key);
+        return key;
+    }
+
+    public static void bootstrap(BootstrapContext<Biome> ctx) {
+        ctx.register(TEST_BIOME, testBiome(ctx));
+        ctx.register(MYSTIC_FOREST, mysticForest(ctx));
+        ctx.register(STUBBY_WOODLAND, stubbyWoodland(ctx));
+        ctx.register(SILVER_BIRCH_FOREST, silverBirchForest(ctx));
+        ctx.register(DESOLATE_ICE_FIELDS, desolateIceFields(ctx));
+        ctx.register(MIXED_WOODS, mixedWoods(ctx));
+        ctx.register(ORDERLY_COURTS, orderlyCourts(ctx));
+        ctx.register(ORDERLY_COURTS_RUINS, orderlyCourtsRuins(ctx));
+        ctx.register(TREE_ON_TREE_FOREST, treeOnTreeForest(ctx));
+        ctx.register(SHROOMLANDS, shroomlands(ctx));
+        ctx.register(DUSTY_FLATS, dustyFlats(ctx));
+        ctx.register(ANTHOCYANIN_FOREST, anthocyaninForest(ctx));
+        ctx.register(FIELDS_OF_PAIN, fieldsOfPain(ctx));
+        ctx.register(THRUMLETONS, thrumlethons(ctx));
+        ctx.register(SPARSEY_SPEARS, sparseySpears(ctx));
+        ctx.register(PASTEL_PARCEL, pastelParcel(ctx));
+        ctx.register(MUSHLAND, mushland(ctx));
+        ctx.register(WITCHY_WOODS, witchyWoods(ctx));
+        ctx.register(LUPINE_MEADOW, lupineMeadow(ctx));
+        ctx.register(ALPINE_RANGE, alpineRange(ctx));
+        ctx.register(ASHEN_PEAKS, ashenPeaks(ctx));
+        ctx.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(ctx));
+        ctx.register(STEPPED_SPRINGS, steppedSprings(ctx));
+        ctx.register(SATISFOREST, satisForest(ctx));
 
         // underground
-        context.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(context));
+        ctx.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(ctx));
     }
 
     protected static int calculateSkyColor(float temperature) {
