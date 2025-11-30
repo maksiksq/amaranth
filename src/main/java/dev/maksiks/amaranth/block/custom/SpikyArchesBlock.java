@@ -8,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -20,6 +21,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.IShearable;
+import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.Nullable;
 
 public class SpikyArchesBlock extends Block implements BonemealableBlock {
@@ -28,6 +31,17 @@ public class SpikyArchesBlock extends Block implements BonemealableBlock {
     public SpikyArchesBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(VARIANT, 0));
+    }
+
+    ///  making them faster when sheared/dug with a sword
+    @Override
+    protected float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
+        ItemStack handItem = player.getMainHandItem();
+        return handItem.canPerformAction(ItemAbilities.SWORD_DIG)
+                || handItem.canPerformAction(ItemAbilities.SHEARS_DIG)
+                || handItem.canPerformAction(ItemAbilities.HOE_DIG)
+                ? 1.0F
+                : super.getDestroyProgress(state, player, level, pos);
     }
 
     ///

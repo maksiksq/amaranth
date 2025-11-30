@@ -6,6 +6,7 @@ import dev.maksiks.amaranth.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -115,6 +116,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // thrumletons
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.THICK_PUMPKIN.get());
+
+        // spiky
+        this.tag(BlockTags.FALL_DAMAGE_RESETTING).add(ModBlocks.SPIKY_ARCHES.get());
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.SPIKY_ARCHES.get());
 
         // pastel
         this.tag(BlockTags.LOGS_THAT_BURN)

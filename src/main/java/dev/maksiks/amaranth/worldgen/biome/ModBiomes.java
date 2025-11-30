@@ -29,7 +29,7 @@ public class ModBiomes {
     public static final List<ResourceKey<Biome>> MOD_OVERWORLD_SURFACE_BIOMES = new ArrayList<>();
     public static final List<ResourceKey<Biome>> MOD_OVERWORLD_CAVE_BIOMES = new ArrayList<>();
 
-    public static final ResourceKey<Biome> TEST_BIOME = registerOverworld("test_biome");
+    public static final ResourceKey<Biome> TEST_BIOME = registerDev("test_biome");
     // dev ^
     public static final ResourceKey<Biome> MYSTIC_FOREST = registerOverworld("mystic_forest");
     public static final ResourceKey<Biome> STUBBY_WOODLAND = registerOverworld("stubby_woodland");
@@ -57,7 +57,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> SATISFOREST = registerOverworld("satisforest");
 
     // underground
-    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerCave("dwarven_leftovers");
+    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerDev("dwarven_leftovers");
     // in dev ^
 
     protected static final int FAIRLY_NORMAL_WATER_COLOR = 4159204;
@@ -69,6 +69,10 @@ public class ModBiomes {
 
     private static ResourceKey<Biome> register(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Amaranth.MOD_ID, name));
+    }
+
+    private static ResourceKey<Biome> registerDev(String name) {
+        return register(name);
     }
 
     private static ResourceKey<Biome> registerOverworld(String name) {

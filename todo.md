@@ -15,7 +15,7 @@
 - [ ] todo fun: make mod to make leaf litter and etc replaceable if it's not a thing on later versions
 - [ ] fix maybe: you can bonemeal leaf litter into existence in silver birch
 - [ ] todo fun: if amethysts in mystic biome, they glow
-- [ ] todo fun: spiky impassable without shears
+- [x] todo fun: spiky impassable without shears
 - [ ] todo maybe: replace biomes in the region instead of the builder
 - [ ] todo maybe: switch to multiloader, do fabric
 - [ ] todo maybe: 1.21.10

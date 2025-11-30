@@ -205,7 +205,8 @@ public class ModBlocks {
 
     // pain
     public static final DeferredBlock<Block> SPIKY_ARCHES = registerBlock("spiky_arches",
-            () -> new SpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+            () -> new SpikyArchesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH).forceSolidOn().strength(4.0F)));
+
 
     // thrumletons
     public static final DeferredBlock<Block> THICK_PUMPKIN = registerBlock("thick_pumpkin",

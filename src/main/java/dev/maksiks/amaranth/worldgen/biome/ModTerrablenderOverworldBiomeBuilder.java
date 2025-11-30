@@ -66,18 +66,20 @@ public class ModTerrablenderOverworldBiomeBuilder extends TerrablenderOverworldB
 
     @Override
     public void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        mapper.accept(Pair.of(
-                new Climate.ParameterPoint(
-                        this.FULL_RANGE,
-                        this.FULL_RANGE,
-                        this.FULL_RANGE,
-                        this.FULL_RANGE,
-                        Climate.Parameter.span(0.2F, 0.9F),
-                        Climate.Parameter.span(0.8F, 0.9F),
-                        0L
-                ),
-                ModBiomes.DWARVEN_LEFTOVERS
-        ));
+        // currently unused
+
+//        mapper.accept(Pair.of(
+//                new Climate.ParameterPoint(
+//                        this.FULL_RANGE,
+//                        this.FULL_RANGE,
+//                        this.FULL_RANGE,
+//                        this.FULL_RANGE,
+//                        Climate.Parameter.span(0.2F, 0.9F),
+//                        Climate.Parameter.span(0.8F, 0.9F),
+//                        0L
+//                ),
+//                ModBiomes.DWARVEN_LEFTOVERS
+//        ));
 
 //        mapper.accept(Pair.of(
 //                new Climate.ParameterPoint(
