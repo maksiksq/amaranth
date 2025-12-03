@@ -386,6 +386,14 @@ public class ModBlocks {
                             .pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_ALIEN_FENCE_PLANT_SAPLING = registerFlowerPot(ALIEN_FENCE_PLANT_SAPLING);
 
+    // shrub
+    public static final DeferredBlock<Block> SHRUB_SAPLING = registerBlock("shrub_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.SHRUB_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SAPLING)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_SHRUB_SAPLING = registerFlowerPot(SHRUB_SAPLING);
+
+
+
+
     public static Map<DeferredBlock<Block>, DeferredBlock<Block>> MOD_STRIPPABLES = Map.of(
             MYSTIC_LOG, STRIPPED_MYSTIC_LOG,
             MYSTIC_WOOD, STRIPPED_MYSTIC_WOOD,

@@ -2,7 +2,6 @@ package dev.maksiks.amaranth.worldgen.features;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -17,8 +16,8 @@ import java.util.List;
 import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.hasNonSolidBelow;
 import static dev.maksiks.amaranth.worldgen.features.ModFeatureUtils.isToppedDirt;
 
-public class RockFeature extends Feature<NoneFeatureConfiguration> {
-    public RockFeature(Codec<NoneFeatureConfiguration> codec) {
+public class AlpineBoulderFeature extends Feature<NoneFeatureConfiguration> {
+    public AlpineBoulderFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
@@ -34,23 +33,17 @@ public class RockFeature extends Feature<NoneFeatureConfiguration> {
         // making rock
         for (int x = -r; x <= r; x++) {
             for (int z = -r; z <= r; z++) {
-                if (random.nextInt(100) < 30) {
-                    positions.add(origin.offset(x, 0, z));
-                }
+                positions.add(origin.offset(x, 0, z));
             }
         }
         for (int x = -r; x <= r; x++) {
             for (int y = -r; y <= r; y++) {
-                if (random.nextInt(100) < 60 || (y==0 && x==0)) {
-                    positions.add(origin.offset(x, y, 0));
-                }
+                positions.add(origin.offset(x, y, 0));
             }
         }
         for (int y = -r; y <= r; y++) {
             for (int z = -r; z <= r; z++) {
-                if (random.nextInt(100) < 30 || (y==1 && z==0)) {
-                    positions.add(origin.offset(0, y, z));
-                }
+                positions.add(origin.offset(0, y, z));
             }
         }
 
@@ -94,8 +87,10 @@ public class RockFeature extends Feature<NoneFeatureConfiguration> {
     private void setRock(WorldGenLevel level, BlockPos pos, RandomSource random) {
         boolean roll = random.nextBoolean();
         level.setBlock(pos, roll
-                        ? Blocks.STONE.defaultBlockState()
-                        : Blocks.ANDESITE.defaultBlockState(),
+                        ? Blocks.TUFF.defaultBlockState()
+                        : random.nextBoolean()
+                            ? Blocks.ANDESITE.defaultBlockState()
+                            : Blocks.STONE.defaultBlockState(),
                 2);
     }
 }

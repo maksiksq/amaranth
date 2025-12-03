@@ -54,4 +54,8 @@ public class ModTreeGrowers {
 
     public static final TreeGrower ALIEN_FENCE_PLANT_GROWER = new TreeGrower(Amaranth.MOD_ID + ":alien_fence_plant",
             Optional.empty(), Optional.of(ModConfiguredFeatures.ALIEN_FENCE_PLANT_KEY), Optional.empty());
+
+    public static final TreeGrower SHRUB_GROWER = new TreeGrower(Amaranth.MOD_ID + ":shrub",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.SHRUBLAND_SHRUB_KEY), Optional.empty());
+
 }

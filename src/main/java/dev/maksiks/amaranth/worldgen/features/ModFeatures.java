@@ -33,9 +33,9 @@ public class ModFeatures {
             FEATURES.register("mush_reeds",
                     () -> new MushReedsWaterFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDER_FEATURE =
-            FEATURES.register("boulder",
-                    () -> new BoulderFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ALPINE_BOULDER_FEATURE =
+            FEATURES.register("alpine_boulder",
+                    () -> new AlpineBoulderFeature(NoneFeatureConfiguration.CODEC));
 
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> GIGANTIC_SATISTREE_FEATURE =
             FEATURES.register("gigantic_satistree",
@@ -45,7 +45,7 @@ public class ModFeatures {
             FEATURES.register("alien_phyllostachys",
                     () -> new AlienPhyllostachysFeature(ProbabilityFeatureConfiguration.CODEC));
 
-    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> ROCK_FEATURE =
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> SATIS_ROCK_FEATURE =
             FEATURES.register("rock",
-                    () -> new RockFeature(NoneFeatureConfiguration.CODEC));
+                    () -> new SatisRockFeature(NoneFeatureConfiguration.CODEC));
 }

@@ -67,7 +67,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ALPINE_SPRUCE_PLACED_KEY = registerKey("alpine_placed");
     public static final ResourceKey<PlacedFeature> TREES_TAIGA_RARER_PLACED_KEY = registerKey("trees_taiga_rarer_placed");
     public static final ResourceKey<PlacedFeature> OCCASIONAL_BERRY_BUSH_PLACED_KEY = registerKey("occasional_berry_bushes_placed");
-    public static final ResourceKey<PlacedFeature> BOULDER_PLACED_KEY = registerKey("boulder_placed");
+    public static final ResourceKey<PlacedFeature> ALPINE_BOULDER_PLACED_KEY = registerKey("alpine_boulder_placed");
 
     public static final ResourceKey<PlacedFeature> SPRING_FLOWER_ALLIUM_PLACED_KEY = registerKey("spring_flower_allium_placed");
     public static final ResourceKey<PlacedFeature> SPRING_FLOWER_PHLOX_PLACED_KEY = registerKey("spring_flower_phlox_placed");
@@ -77,9 +77,11 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GIGANTIC_SATISTREE_PLACED_KEY = registerKey("gigantic_satistree_placed");
     public static final ResourceKey<PlacedFeature> ALIEN_FENCE_PLANT_PLACED_KEY = registerKey("alien_fence_plant_placed");
     public static final ResourceKey<PlacedFeature> ALIEN_PHYLLOSTACHYS_PATCH_PLACED_KEY = registerKey("alien_phyllostachys_patch_placed");
-    public static final ResourceKey<PlacedFeature> ROCK_PLACED_KEY = registerKey("rock_placed");
+    public static final ResourceKey<PlacedFeature> SATIS_ROCK_PLACED_KEY = registerKey("satis_rock_placed");
     public static final ResourceKey<PlacedFeature> SATIS_PITCHER_PLANT_FLOWER_PLACED_KEY = registerKey("satis_pitcher_plant_flower_placed");
     public static final ResourceKey<PlacedFeature> SATIS_FLOWER_PLACED_KEY = registerKey("satis_flower_placed");
+
+    public static final ResourceKey<PlacedFeature> SHRUBLAND_SHRUB_PLACED_KEY = registerKey("shrubland_shrub_placed");
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -297,8 +299,8 @@ public class ModPlacedFeatures {
 
         register(
                 context,
-                BOULDER_PLACED_KEY,
-                configuredFeatures.getOrThrow(ModConfiguredFeatures.BOULDER_KEY),
+                ALPINE_BOULDER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.ALPINE_BOULDER_KEY),
                 List.of(
                         RarityFilter.onAverageOnceEvery(1),
                         InSquarePlacement.spread(),
@@ -360,8 +362,8 @@ public class ModPlacedFeatures {
 
         register(
                 context,
-                ROCK_PLACED_KEY,
-                configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                SATIS_ROCK_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.SATIS_ROCK_KEY),
                 List.of(
                         RarityFilter.onAverageOnceEvery(3),
                         InSquarePlacement.spread(),
@@ -377,6 +379,11 @@ public class ModPlacedFeatures {
         register(context, SATIS_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SATIS_FLOWER_KEY),
                 List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RarityFilter.onAverageOnceEvery(2), BiomeFilter.biome()));
 
+        // shrub
+        register(context, SHRUBLAND_SHRUB_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_SHRUB_KEY),
+                // 1 / chance has to be integer mojang why
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 0),
+                        ModBlocks.SHRUB_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

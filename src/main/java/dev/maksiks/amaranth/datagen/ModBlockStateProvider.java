@@ -250,12 +250,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.SATISTREE_TRAPDOOR, "_bottom");
 
         twoPlanesCutoutBlock(ModBlocks.ALIEN_PHYLLOSTACHYS_SAPLING);
-        // aline bamboo is made manually
+        // alien bamboo is made manually
 
         blockWithItem(ModBlocks.ALIEN_FENCE_PLANKS);
         fenceBlock(ModBlocks.ALIEN_FENCE_PLANT.get(), blockTexture(ModBlocks.ALIEN_FENCE_PLANKS.get()));
         twoPlanesCutoutBlock(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
         pottedPlantBlock(ModBlocks.POTTED_ALIEN_FENCE_PLANT_SAPLING, ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
+
+        // shrub
+        twoPlanesCutoutBlock(ModBlocks.SHRUB_SAPLING);
+        pottedPlantBlock(ModBlocks.POTTED_SHRUB_SAPLING, ModBlocks.SHRUB_SAPLING);
     }
 
     private void pottedPlantBlock(DeferredBlock<FlowerPotBlock> pottedBlock, DeferredBlock<Block> plantBlock) {

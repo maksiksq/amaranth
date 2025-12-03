@@ -101,7 +101,8 @@ public class ModSurfaceRules {
      * as to not create waterfalls.
      *
      * @param allowChunkBoundariesSometimes you can allow that half the time it will not check a chunk boundary,
-     *                                      this will create an effect letting some through as waterfalls occasionally.
+     *                                      this will create an effect letting some through as waterfalls occasionally. Is this a janky way to do this? Yes.
+     *                                      I like the distribution tho.
      */
     public record LiquidWontRunAwayCondition(boolean allowChunkBoundariesSometimes)
             implements SurfaceRules.ConditionSource {

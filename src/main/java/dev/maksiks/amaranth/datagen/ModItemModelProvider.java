@@ -116,6 +116,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.ALIEN_FENCE_PLANT, ModBlocks.ALIEN_FENCE_PLANKS);
         splatBlockItem(ModBlocks.ALIEN_FENCE_PLANT_SAPLING);
+
+        // shrub
+        splatBlockItem(ModBlocks.SHRUB_SAPLING);
+
     }
 
     private void splatBlockItem(DeferredBlock<Block> item) {

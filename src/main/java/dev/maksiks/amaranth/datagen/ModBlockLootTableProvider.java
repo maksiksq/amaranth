@@ -268,6 +268,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get());
         this.add(ModBlocks.POTTED_ALIEN_FENCE_PLANT_SAPLING.get(),
                 block -> createPotFlowerItemTable(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get()));
+
+        // shrub
+        this.dropSelf(ModBlocks.SHRUB_SAPLING.get());
+        this.add(ModBlocks.POTTED_SHRUB_SAPLING.get(),
+                block -> createPotFlowerItemTable(ModBlocks.SHRUB_SAPLING.get()));
+
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {

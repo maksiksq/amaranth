@@ -204,5 +204,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.ALIEN_FENCE_PLANT.get());
         this.tag(BlockTags.SAPLINGS).add(ModBlocks.ALIEN_FENCE_PLANT_SAPLING.get());
         this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_ALIEN_FENCE_PLANT_SAPLING.get());
+
+        // shrub
+        this.tag(BlockTags.SAPLINGS).add(ModBlocks.SHRUB_SAPLING.get());
+        this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_SHRUB_SAPLING.get());
     }
 }

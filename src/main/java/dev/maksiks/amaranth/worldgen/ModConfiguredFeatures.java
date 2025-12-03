@@ -30,6 +30,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider;
@@ -89,7 +90,7 @@ public class ModConfiguredFeatures {
 
     public static ResourceKey<ConfiguredFeature<?, ?>> ALPINE_SPRUCE_KEY = registerKey("alpine");
     public static ResourceKey<ConfiguredFeature<?, ?>> OCCASIONAL_BERRY_BUSH_KEY = registerKey("occasional_berry_bushes");
-    public static ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder");
+    public static ResourceKey<ConfiguredFeature<?, ?>> ALPINE_BOULDER_KEY = registerKey("alpine_boulder");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_ALLIUM_KEY = registerKey("spring_allium");
     public static ResourceKey<ConfiguredFeature<?, ?>> SPRING_FLOWER_PHLOX_KEY = registerKey("spring_phlox");
@@ -99,9 +100,11 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_FENCE_PLANT_KEY = registerKey("alien_fence_plant");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_KEY = registerKey("alien_phyllostachys");
     public static ResourceKey<ConfiguredFeature<?, ?>> ALIEN_PHYLLOSTACHYS_PATCH_KEY = registerKey("alien_phyllostachys_patch");
-    public static ResourceKey<ConfiguredFeature<?, ?>> ROCK_KEY = registerKey("rock");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_ROCK_KEY = registerKey("satis_rock");
     public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_PITCHER_PLANT_FLOWER_KEY = registerKey("satis_pitcher_plant_flower");
     public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_FLOWER_KEY = registerKey("satis_flower");
+
+    public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_SHRUB_KEY = registerKey("shrubland_shrub");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -599,8 +602,8 @@ public class ModConfiguredFeatures {
                 )
         );
 
-        register(context, BOULDER_KEY,
-                ModFeatures.BOULDER_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
+        register(context, ALPINE_BOULDER_KEY,
+                ModFeatures.ALPINE_BOULDER_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
         // spring
         register(
@@ -687,8 +690,8 @@ public class ModConfiguredFeatures {
                 )
         );
 
-        register(context, ROCK_KEY,
-                ModFeatures.ROCK_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
+        register(context, SATIS_ROCK_KEY,
+                ModFeatures.SATIS_ROCK_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
 
         register(
                 context,
@@ -723,6 +726,21 @@ public class ModConfiguredFeatures {
                         )
                 )
         );
+
+        // shrub
+        register(
+                context,
+                SHRUBLAND_SHRUB_KEY,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.OAK_LOG),
+                        new StraightTrunkPlacer(1, 0, 0),
+                        BlockStateProvider.simple(Blocks.ACACIA_LEAVES),
+                        new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+                        new TwoLayersFeatureSize(0, 0, 0)).build()
+        );
+
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
