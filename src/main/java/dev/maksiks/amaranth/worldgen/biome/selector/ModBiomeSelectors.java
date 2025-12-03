@@ -98,7 +98,7 @@ public class ModBiomeSelectors {
             List.of(DESOLATE_ICE_FIELDS, V, P, V, V),
             List.of(V, V, P, V, P),
             List.of(P, V, P, V, V),
-            List.of(V, V, P, P, P),
+            List.of(VIVID_SHRUBLAND, VIVID_SHRUBLAND, P, P, P),
             List.of(V, V, V, V, V)
     );
 

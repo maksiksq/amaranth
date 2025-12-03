@@ -105,6 +105,10 @@ public class ModConfiguredFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> SATIS_FLOWER_KEY = registerKey("satis_flower");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_SHRUB_KEY = registerKey("shrubland_shrub");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_DEAD_BUSH_KEY = registerKey("shrubland_dead_bush");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_TULIP_FLOWER_KEY = registerKey("shrubland_tulip_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_LUPINE_FLOWER_KEY = registerKey("shrubland_lupine_flower");
+    public static ResourceKey<ConfiguredFeature<?, ?>> SHRUBLAND_ROCK_KEY = registerKey("shrubland_rock");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -736,11 +740,63 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.OAK_LOG),
                         new StraightTrunkPlacer(1, 0, 0),
                         BlockStateProvider.simple(Blocks.ACACIA_LEAVES),
-                        new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+                        new ShrubFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0),
                         new TwoLayersFeatureSize(0, 0, 0)).build()
         );
 
+        // shrub
+        register(
+                context,
+                SHRUBLAND_DEAD_BUSH_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        10,
+                        18,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.DEAD_BUSH)
+                                )
+                        )
+                )
+        );
 
+        register(
+                context,
+                SHRUBLAND_TULIP_FLOWER_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        18,
+                        18,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(Blocks.ORANGE_TULIP)
+                                )
+                        )
+                )
+        );
+
+        register(
+                context,
+                SHRUBLAND_LUPINE_FLOWER_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        12,
+                        4,
+                        2,
+                        PlacementUtils.onlyWhenEmpty(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(ModBlocks.LUPINE.get())
+                                )
+                        )
+                )
+        );
+        register(context, SHRUBLAND_ROCK_KEY,
+                ModFeatures.SHRUBLAND_ROCK_FEATURE.get(), NoneFeatureConfiguration.INSTANCE);
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

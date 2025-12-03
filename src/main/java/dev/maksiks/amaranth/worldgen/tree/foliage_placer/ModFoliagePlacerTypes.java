@@ -37,4 +37,6 @@ public class ModFoliagePlacerTypes{
             FOLIAGE_PLACER_TYPES.register("gigantic_satistree_foliage_placer", () -> new FoliagePlacerType<>(GiganticSatistreeFoliagePlacer.getCODEC()));
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<AlienFencePlantFoliagePlacer>> ALIEN_FENCE_PLANT_FOLIAGE_PLACER =
             FOLIAGE_PLACER_TYPES.register("alien_fence_plant_foliage_placer", () -> new FoliagePlacerType<>(AlienFencePlantFoliagePlacer.getCODEC()));
+    public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<ShrubFoliagePlacer>> SHRUB_FOLIAGE_PLACER =
+            FOLIAGE_PLACER_TYPES.register("shrub_foliage_placer", () -> new FoliagePlacerType<>(ShrubFoliagePlacer.getCODEC()));
 }

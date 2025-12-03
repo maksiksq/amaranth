@@ -56,6 +56,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> STEPPED_SPRINGS = registerOverworld("stepped_springs");
     public static final ResourceKey<Biome> SATISFOREST = registerOverworld("satisforest");
     public static final ResourceKey<Biome> SHRUBLAND = registerOverworld("shrubland");
+    public static final ResourceKey<Biome> VIVID_SHRUBLAND = registerOverworld("vivid_shrubland");
 
     // underground
     public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerDev("dwarven_leftovers");
@@ -113,7 +114,8 @@ public class ModBiomes {
         ctx.register(VOLCANIC_ASHEN_PEAKS, volcanicAshenPeaks(ctx));
         ctx.register(STEPPED_SPRINGS, steppedSprings(ctx));
         ctx.register(SATISFOREST, satisForest(ctx));
-        ctx.register(SHRUBLAND, shrubland(ctx));
+        ctx.register(SHRUBLAND, shrublands(ctx, false));
+        ctx.register(VIVID_SHRUBLAND, shrublands(ctx, true));
 
         // underground
         ctx.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(ctx));
@@ -1184,7 +1186,7 @@ public class ModBiomes {
     }
 
     // shrub
-    public static Biome shrubland(BootstrapContext<Biome> context) {
+    public static Biome shrublands(BootstrapContext<Biome> context, Boolean vivid) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.farmAnimals(spawnBuilder);
@@ -1197,27 +1199,42 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         // friendly reminder to not cause feature order cycle
-        globalOverworldGeneration(biomeBuilder);
+        if (vivid) {
+            // unwrapped overworld with edits
+            BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_GRAVEL);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_GRANITE_LOWER);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_DIORITE_LOWER);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_ANDESITE_UPPER);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_ANDESITE_LOWER);
+            biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_TUFF);
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.GLOW_LICHEN);
+            BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
 
-        // rocks
-        // lupine
-        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.ALPINE_BOULDER_PLACED_KEY);
+            // rocks
+            biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.SHRUBLAND_ROCK_PLACED_KEY);
+        } else {
+            globalOverworldGeneration(biomeBuilder);
+        }
 
         BiomeDefaultFeatures.addSavannaGrass(biomeBuilder);
 
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
 
-        // floweys
         BiomeDefaultFeatures.addSavannaExtraGrass(biomeBuilder);
 
-        // shrubs
-        // dead bushes
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH);
+        if (vivid) {
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SHRUBLAND_LUPINE_FLOWER_PLACED_KEY);
+        } else {
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SHRUBLAND_DEAD_BUSH_PLACED_KEY);
+        }
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.SHRUBLAND_SHRUB_PLACED_KEY);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
@@ -1235,6 +1252,4 @@ public class ModBiomes {
                         .build())
                 .build();
     }
-
-    // vivid shrub
 }

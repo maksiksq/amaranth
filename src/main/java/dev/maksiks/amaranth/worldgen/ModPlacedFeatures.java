@@ -82,6 +82,10 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SATIS_FLOWER_PLACED_KEY = registerKey("satis_flower_placed");
 
     public static final ResourceKey<PlacedFeature> SHRUBLAND_SHRUB_PLACED_KEY = registerKey("shrubland_shrub_placed");
+    public static final ResourceKey<PlacedFeature> SHRUBLAND_DEAD_BUSH_PLACED_KEY = registerKey("shrubland_dead_bush_placed");
+    public static final ResourceKey<PlacedFeature> SHRUBLAND_TULIP_FLOWER_PLACED_KEY = registerKey("shrubland_tulip_flower_placed");
+    public static final ResourceKey<PlacedFeature> SHRUBLAND_LUPINE_FLOWER_PLACED_KEY = registerKey("shrubland_lupine_flower_placed");
+    public static final ResourceKey<PlacedFeature> SHRUBLAND_ROCK_PLACED_KEY = registerKey("shrubland_rock_placed");
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -384,6 +388,24 @@ public class ModPlacedFeatures {
                 // 1 / chance has to be integer mojang why
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 0),
                         ModBlocks.SHRUB_SAPLING.get()));
+        register(context, SHRUBLAND_DEAD_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_DEAD_BUSH_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(context, SHRUBLAND_TULIP_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_TULIP_FLOWER_KEY),
+                List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(context, SHRUBLAND_LUPINE_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_LUPINE_FLOWER_KEY),
+                List.of(CountPlacement.of(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(
+                context,
+                SHRUBLAND_ROCK_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_ROCK_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome(),
+                        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+                )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

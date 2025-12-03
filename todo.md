@@ -7,6 +7,7 @@
 - [x] cfg: config
 - [ ] todo very: full config, region weights + change biome selectors
 - [x] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
+- [ ] todo very: add base biome for every climate zone
 
 ### Moderate
 - [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
@@ -19,6 +20,7 @@
 - [ ] todo maybe: replace biomes in the region instead of the builder
 - [ ] todo maybe: switch to multiloader, do fabric
 - [ ] todo maybe: 1.21.10
+- [ ] todo maybe: bog with mud and shrooms
 - [ ] todo maybe: 1.20.1
 - [ ] todo maybe: revisit some biomes ; witchy ; satisforest
 
@@ -27,6 +29,7 @@
 - [ ] todo maybe: maybe marble columns and etc.
 - [ ] todo maybe: actually put marble in somewhere
 - [ ] improve: pumpkin
+- [ ] cleanup: linked biome configs
 
 ### Whatever
 - [ ] fix: maybe try fixing the grass color for silver birch again?? ; sodium mixin makes it hard

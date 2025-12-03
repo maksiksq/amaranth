@@ -46,6 +46,9 @@ public class ModFeatures {
                     () -> new AlienPhyllostachysFeature(ProbabilityFeatureConfiguration.CODEC));
 
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> SATIS_ROCK_FEATURE =
-            FEATURES.register("rock",
+            FEATURES.register("satis_rock",
                     () -> new SatisRockFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> SHRUBLAND_ROCK_FEATURE =
+            FEATURES.register("shrubland_rock",
+                    () -> new VividShrublandRockFeature(NoneFeatureConfiguration.CODEC));
 }
