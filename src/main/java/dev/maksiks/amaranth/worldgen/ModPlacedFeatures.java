@@ -399,7 +399,7 @@ public class ModPlacedFeatures {
                 SHRUBLAND_ROCK_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.SHRUBLAND_ROCK_KEY),
                 List.of(
-                        RarityFilter.onAverageOnceEvery(1),
+                        RarityFilter.onAverageOnceEvery(2),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP,
                         BiomeFilter.biome(),

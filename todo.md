@@ -8,6 +8,8 @@
 - [ ] todo very: full config, region weights + change biome selectors
 - [x] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 - [ ] todo very: add base biome for every climate zone
+- [ ] todo: "subtle" for desc? 
+- [ ] todo: vivid shrubland has too consistent rocks
 
 ### Moderate
 - [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
@@ -138,7 +140,6 @@
 
 - [ ] something very dead
 - [x] something not very dead
--
 
 -------------------------
 
@@ -147,15 +148,6 @@
 -------------------------
 
 - [ ] of some medieval civ
-
--------------------------
-
-### some sort of ruins
-
--------------------------
-
-- [ ] of some medieval civ
--
 
 -------------------------
 
