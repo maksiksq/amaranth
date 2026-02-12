@@ -1,5 +1,6 @@
 ### Current
 
+- [x] prod: remove dev biomes, clean up
 - [x] todo very: melon helmet
 - [x] cfg: worldgen balancing
 - [x] fix: look into isSolid vs isFaceSturdy

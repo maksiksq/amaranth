@@ -1,7 +1,6 @@
 package dev.maksiks.amaranth.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
-import dev.maksiks.amaranth.Amaranth;
 import dev.maksiks.amaranth.worldgen.biome.selector.ModBiomeSelectors;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;

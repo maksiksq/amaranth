@@ -59,7 +59,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> VIVID_SHRUBLAND = registerOverworld("vivid_shrubland");
 
     // underground
-    public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerDev("dwarven_leftovers");
+    // public static final ResourceKey<Biome> DWARVEN_LEFTOVERS = registerDev("dwarven_leftovers");
     // in dev ^
 
     protected static final int FAIRLY_NORMAL_WATER_COLOR = 4159204;
@@ -118,7 +118,7 @@ public class ModBiomes {
         ctx.register(VIVID_SHRUBLAND, shrublands(ctx, true));
 
         // underground
-        ctx.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(ctx));
+//        ctx.register(DWARVEN_LEFTOVERS, dwarvenLeftovers(ctx));
     }
 
     protected static int calculateSkyColor(float temperature) {
