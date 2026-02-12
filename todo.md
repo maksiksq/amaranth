@@ -1,6 +1,7 @@
 ### Current
+
 - [x] todo very: melon helmet
-- [ ] cfg: worldgen balancing
+- [x] cfg: worldgen balancing
 - [x] fix: look into isSolid vs isFaceSturdy
 - [x] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
 - [x] todo: add teaser hut structure
@@ -8,13 +9,15 @@
 - [ ] todo very: full config, region weights + change biome selectors
 - [x] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 - [ ] todo very: add base biome for every climate zone
-- [ ] todo: "subtle" for desc? 
-- [ ] todo: vivid shrubland has too consistent rocks
+- [ ] todo: "subtle" for desc?
+- [x] todo: vivid shrubland has too consistent rocks
 
 ### Moderate
+
 - [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
 - [ ] todo fun: a mod that makes players edible
-- [ ] todo very: a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also make it an example mod ; !!!
+- [ ] todo very: a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also
+  make it an example mod ; !!!
 - [ ] todo fun: make mod to make leaf litter and etc replaceable if it's not a thing on later versions
 - [ ] fix maybe: you can bonemeal leaf litter into existence in silver birch
 - [ ] todo fun: if amethysts in mystic biome, they glow
@@ -27,6 +30,7 @@
 - [ ] todo maybe: revisit some biomes ; witchy ; satisforest
 
 ### Should, but would?
+
 - [ ] finish: shrooms
 - [ ] todo maybe: maybe marble columns and etc.
 - [ ] todo maybe: actually put marble in somewhere
@@ -34,17 +38,24 @@
 - [ ] cleanup: linked biome configs
 
 ### Whatever
+
 - [ ] fix: maybe try fixing the grass color for silver birch again?? ; sodium mixin makes it hard
 - [ ] todo maybe: unrelated but make like an actually good color picker website cuz im annoyed ; so real
-- [ ] pain: do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip ; on my Christmas wishlist
+- [ ] pain: do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip
+  ; on my Christmas wishlist
+  ; one very promising direction is to re-register the regions before Terrablender does it's thing with them when the
+  seed is already available, so like some event that happens right before the world loads or whatever mixin Terrablender runs
+  ; got it to work but requires a world restart and it sounds like a pain to ask the player to relog tho 
 - [ ] feat twig maybe: leaf check for structures
 
 ***
 
 // backlog
+
 - [x] A MUSIC DISC
 - [x] mc tree maker framework or something because it's kinda pain
-- [x] ~~framework for turn nbt into placed feature gen ; place like fossils do, plus already exists~~ ; superseded by twig
+- [x] ~~framework for turn nbt into placed feature gen ; place like fossils do, plus already exists~~ ; superseded by
+  twig
 - [x] FIX IMPORTANT: FILL BIOME RANGES (e.g. oceans) ; the one image that explains terrablender says to fill them fully
   but that sounds horrific, i'll have to recreate vanilla? no thank u, unless im misunderstanding something i'd just
   fill in oceans with ocean which would make vanilla oceans a bit more boring but prevent my biomes from spawning in
@@ -58,7 +69,8 @@
 - [x] fix: fountains generate with grass corners
 - [x] fix: dusty biome
 - [x] ; forgot what was here??? ; what
-- [x]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now ; terrablender's builder let's go
+- [x]  find workaround to keep shroomboi spawning ; maybe keep at monster/ambient for now ; terrablender's builder let's
+  go
 - [x]  !!! make surface rules not generate stuff underground ; find some way to copy vanilla !!!
 - [x]  distribute the biomes with a fresh (balder) head ; im gonna die this is so funny
 - [x]  add overrides to terrablender's builder for exceptions
@@ -69,18 +81,20 @@
 - [x]  fix: logs not stripping
 - [x]  fix: potted blocks for saplings
 - [x]  fix: i can make freaking WATERFALLS
-- [x]  fix: do some profiling to make sure i didnt add any performance pitfalls ; i did, kinda hungry eating 3-10% cpu sometimes for custom terrain, but it's a worldgen mod after all, definitely some of my code having pitfalls tho, hands off, not gonna fix tho :evil_smirk:
+- [x]  fix: do some profiling to make sure i didnt add any performance pitfalls ; i did, kinda hungry eating 3-10% cpu
+  sometimes for custom terrain, but it's a worldgen mod after all, definitely some of my code having pitfalls tho, hands
+  off, not gonna fix tho :evil_smirk:
 - [x]  fix: anthocyanin should spawn near jungle
 - [x]  fix: later rework foliage places to be more sensible
 - [x]  fix: dont forget the waterfalls ewew
 - [ ]  ~~IMPORTANT: maybe if i can pull it off this time, add biome replacements, so it's 50% to back to the vanilla
   biome, why? because they all keep spawning in the same region, this is one way to solve the problem of all biomes
-  being clumped together in the region, give each a 50/50 vanilla alternative and in turn just make it rarer~~ ; too much effort, very maybe, wish terrablender did this
+  being clumped together in the region, give each a 50/50 vanilla alternative and in turn just make it rarer~~ ; too
+  much effort, very maybe, wish terrablender did this
 - [ ]  ~~TRAILER: -5621453417704106832 -291172 158 5765 screenshottable as hell~~ ; no time for trailer c:
 - [x] distribute biome rarity w regions ; also make them not spawn too high ; silver birch seems to not generate like at
   all rn
 - [x] music
-
 
 -------------------------
 
@@ -581,7 +595,8 @@
 - [x] gigantic satistree
 - [x] maybe make alien fence plant a little bit less like wisteria that i blatantly copied it into ; nvm it's different
   enough, feels watery
-- [ ] fix maybe tweaks: bamboo has no upper check ; gigantic trees very rarely override eachother (vanilla bug im pretty sure) ; fence plant can spawn on rocks ; some textures still stand out a tad much 
+- [ ] fix maybe tweaks: bamboo has no upper check ; gigantic trees very rarely override eachother (vanilla bug im pretty
+  sure) ; fence plant can spawn on rocks ; some textures still stand out a tad much
 - [ ] fix: was too tired, door texture is bad
 - [ ] URANIUM
 - [ ] maybe those sphere thingies
@@ -606,4 +621,5 @@ tutorial:
 - sliced lime video
 
 tree tutorial:
+
 - hot module swapping op

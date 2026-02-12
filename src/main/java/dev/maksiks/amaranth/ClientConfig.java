@@ -17,6 +17,7 @@ public class ClientConfig {
             .define("hideAllBiomeParticles", false);
 
     public static final ModConfigSpec.BooleanValue HIDE_BIOME_LEAF_PARTICLES = BUILDER
+            .comment("")
             .comment(" # These are global biome particle settings.")
             .comment(" All of them can be disabled by setting particles to minimal in vanilla settings as well.")
             .comment(" If you experience lag you might also want to try the minimize options, they make the biomes have less particles instead of removing them completely.")
