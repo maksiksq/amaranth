@@ -29,6 +29,7 @@
 - [ ] todo maybe: bog with mud and shrooms
 - [ ] todo maybe: 1.20.1
 - [ ] todo maybe: revisit some biomes ; witchy ; satisforest
+- [ ] todo: block that disables annoying visual effects for biome
 
 ### Should, but would?
 

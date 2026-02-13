@@ -7,12 +7,12 @@
         {
           "type": "minecraft:item",
           "name": "amaranth:palette_overload_music_disc",
-          "weight":45
+          "weight":10
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:diamond",
-          "weight": 45
+          "weight": 10
         },
         {
           "type": "minecraft:empty",
@@ -21,22 +21,37 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:poisonous_potato",
-          "weight": 5
+          "weight": 10
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:stick",
-          "weight": 20
+          "weight": 40
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:bowl",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gray_dye",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:light_gray_dye",
           "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:skeleton_skull",
+          "weight": 5
         }
       ],
       "rolls": {
         "type": "minecraft:uniform",
-        "max": 7.0,
+        "max": 20.0,
         "min": 1.0
       }
     }
