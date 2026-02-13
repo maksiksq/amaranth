@@ -2,7 +2,7 @@
 
 - [x] prod: remove dev biomes, clean up
 - [x] todo very: melon helmet
-- [x] cfg: worldgen balancing
+- [x] cfg: worldgen balancing ; double x
 - [x] fix: look into isSolid vs isFaceSturdy
 - [x] fix: make disc obtainable ; any loot table chest? ; or dungeons ; in desolate loot table, the contrast, WOO
 - [x] todo: add teaser hut structure
@@ -10,12 +10,14 @@
 - [ ] todo very: full config, region weights + change biome selectors
 - [x] todo maybe: specify access transformers for some instead of wildcards. tho no conflicts as far as i can see
 - [ ] todo very: add base biome for every climate zone
-- [ ] todo: "subtle" for desc?
+- [x] todo: "subtle" for desc? ; no but actually yes
 - [x] todo: vivid shrubland has too consistent rocks
+- [ ] todo: publish on Modrinth
+- [ ] todo: publish on Curseforge
 
 ### Moderate
 
-- [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in 1.21.9
+- [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in latest
 - [ ] todo fun: a mod that makes players edible
 - [ ] todo very: a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also
   make it an example mod ; !!!
@@ -29,7 +31,7 @@
 - [ ] todo maybe: bog with mud and shrooms
 - [ ] todo maybe: 1.20.1
 - [ ] todo maybe: revisit some biomes ; witchy ; satisforest
-- [ ] todo: block that disables annoying visual effects for biome
+- [ ] todo: block that disables possibly annoying visual effects for biome
 
 ### Should, but would?
 
