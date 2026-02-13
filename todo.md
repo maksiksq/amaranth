@@ -14,9 +14,15 @@
 - [x] todo: vivid shrubland has too consistent rocks
 - [ ] todo: publish on Modrinth
 - [ ] todo: publish on Curseforge
+- [ ] todo: add Curseforge id to metadata later
 
 ### Moderate
 
+- [ ] pain: do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip
+  ; on my Christmas wishlist
+  ; one very promising direction is to re-register the regions before Terrablender does it's thing with them when the
+  seed is already available, so like some event that happens right before the world loads or whatever mixin Terrablender runs
+  ; got it to work but requires a world restart and it sounds like a pain to ask the player to relog tho
 - [ ] todo maybe: report VanillaParameterOverlayBuilder mob spawn issue if it's still a thing in latest
 - [ ] todo fun: a mod that makes players edible
 - [ ] todo very: a minecraft biome and terrablender biome guide, no one has to suffer through this shit again ; also
@@ -45,11 +51,6 @@
 
 - [ ] fix: maybe try fixing the grass color for silver birch again?? ; sodium mixin makes it hard
 - [ ] todo maybe: unrelated but make like an actually good color picker website cuz im annoyed ; so real
-- [ ] pain: do a 50/50 on some biomes if that would work reasonably ??? ; couldnt with current terrablender rip
-  ; on my Christmas wishlist
-  ; one very promising direction is to re-register the regions before Terrablender does it's thing with them when the
-  seed is already available, so like some event that happens right before the world loads or whatever mixin Terrablender runs
-  ; got it to work but requires a world restart and it sounds like a pain to ask the player to relog tho 
 - [ ] feat twig maybe: leaf check for structures
 
 ***
